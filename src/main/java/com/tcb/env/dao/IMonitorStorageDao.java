@@ -253,31 +253,6 @@ public interface IMonitorStorageDao {
 	
 	/**
 	 * 
-	 * <p>
-	 * [功能描述]：获取实时小时数据(小时)
-	 * </p>
-	 * 
-	 * @author 王垒, 2016年3月29日下午2:50:06
-	 * @since EnvDust 1.0.0
-	 *
-	 * @param devicecode
-	 *            :设备编号
-	 * @param listthingcode
-	 *            :监测物列表
-	 * @param nowtime
-	 *            :系统当前时间
-	 * @param selecttime
-	 *            :上次查询时间
-	 * @return
-	 */
-	List<MonitorStorageModel> getHourMonitorData(
-			@Param("devicecode") String devicecode,
-			@Param("listthingcode") List<String> listthingcode,
-			@Param("nowtime") Timestamp nowtime,
-			@Param("selecttime") Timestamp selecttime);
-	
-	/**
-	 * 
 	 * <p>[功能描述]：获取网络监控最新数据更新时间</p>
 	 * 
 	 * @author	王垒, 2017年8月9日上午10:41:41
@@ -292,42 +267,6 @@ public interface IMonitorStorageDao {
 			@Param("devicecode") String devicecode,
 			@Param("listthingcode") List<String> listthingcode,
 			@Param("statusCode") String statusCode);
-	
-	/**
-	 * 
-	 * <p>[功能描述]：获取网络监控最新数据更新值</p>
-	 * 
-	 * @author	王垒, 2017年8月9日上午10:41:41
-	 * @since	EnvDust 1.0.0
-	 *
-	 * @param devicecode
-	 * @param listthingcode
-	 * @param statusCode
-	 * @return
-	 */
-	List<MonitorStorageModel> getNetMonitorRecentData(
-			@Param("devicecode") String devicecode,
-			@Param("listthingcode") List<String> listthingcode,
-			@Param("statusCode") String statusCode);
-
-	/**
-	 * 
-	 * <p>
-	 * [功能描述]：获取网络监控数据（有设备上传数据,暂不使用）
-	 * </p>
-	 * 
-	 * @author 王垒, 2016年3月29日下午2:50:06
-	 * @since EnvDust 1.0.0
-	 *
-	 * @param devicecode
-	 *            ：设备编号
-	 * @param listthingcode
-	 *            ：监测物列表
-	 * @return
-	 */
-	List<MonitorStorageModel> getNetMonitorData(
-			@Param("devicecode") String devicecode,
-			@Param("listthingcode") List<String> listthingcode);
 
 	/**
 	 * 
@@ -343,21 +282,6 @@ public interface IMonitorStorageDao {
 	 */
 	MonitorStorageModel getNetNoData(
 			@Param("deviceCode") String deviceCode);
-
-	/**
-	 * 
-	 * <p>
-	 * [功能描述]：通过设备code获取name
-	 * </p>
-	 * 
-	 * @author 王垒, 2016年4月6日下午4:11:52
-	 * @since EnvDust 1.0.0
-	 *
-	 * @param listDevCode
-	 * @return
-	 */
-	List<String> getDeviceNamebyCode(
-			@Param("listDevCode") List<String> listDevCode);
 	
 	/**
 	 * 

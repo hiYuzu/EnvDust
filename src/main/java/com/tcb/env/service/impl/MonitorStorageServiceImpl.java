@@ -479,58 +479,6 @@ public class MonitorStorageServiceImpl implements IMonitorStorageService {
 	}
 
 	@Override
-	public List<MonitorStorageModel> getHourMonitorData(
-			List<String> listdevicecode, List<String> listthingcode,
-			Timestamp nowtime, Timestamp selecttime) {
-		List<MonitorStorageModel> liststorage = new ArrayList<MonitorStorageModel>();
-		try {
-			for (String devicecode : listdevicecode) {
-				try {
-					liststorage.addAll(monitorStorageDao.getHourMonitorData(devicecode, listthingcode, nowtime, selecttime));
-				} catch (Exception e) {
-					logger.error(LOG + "：查询小时实时数据失败：" + devicecode);
-				}
-			}
-		} catch (Exception e) {
-			logger.error(LOG + "：查询小时实时数据失败，信息为：" + e.getMessage());
-		}
-		return liststorage;
-	}
-
-	@Override
-	public List<MonitorStorageModel> getNetMonitorData(
-			List<String> listdevicecode, List<String> listthingcode) {
-		// 根据设备编号进行数据查询后整合
-		List<MonitorStorageModel> list = new ArrayList<MonitorStorageModel>();
-		try {
-			for (String devicecode : listdevicecode) {
-				List<MonitorStorageModel> listtemp = monitorStorageDao.getNetMonitorData(devicecode, listthingcode);
-				if (listtemp != null && listtemp.size() > 0) {
-					list.addAll(listtemp);
-				} else {
-					// 获取device基本数据参数
-					try {
-						MonitorStorageModel monitorStorageModel = monitorStorageDao.getNetNoData(devicecode);
-						if (monitorStorageModel != null) {
-							list.add(monitorStorageModel);
-						}
-					} catch (Exception e) {
-						logger.error(LOG + "：查询网络状态设备：" + devicecode);
-					}
-				}
-			}
-		} catch (Exception e) {
-			logger.error(LOG + "：查询网络状态设备，信息为：" + e.getMessage());
-		}
-		return list;
-	}
-
-	@Override
-	public List<String> getDeviceNamebyCode(List<String> listDevCode) {
-		return monitorStorageDao.getDeviceNamebyCode(listDevCode);
-	}
-
-	@Override
 	public List<String> getMonNamebyCode(List<String> listMonCode) {
 		return monitorStorageDao.getMonNamebyCode(listMonCode);
 	}
@@ -609,36 +557,6 @@ public class MonitorStorageServiceImpl implements IMonitorStorageService {
 		try {
 			for (String devicecode : listdevicecode) {
 				List<MonitorStorageModel> listtemp = monitorStorageDao.getNetMonitorRecentTime(devicecode, listthingcode,statusCode);
-				if (listtemp != null && listtemp.size() > 0) {
-					list.addAll(listtemp);
-				} else {
-					// 获取device基本数据参数
-					try {
-						if(statusCode == null || statusCode.isEmpty() || statusCode.equals("Z")){
-							MonitorStorageModel monitorStorageModel = monitorStorageDao.getNetNoData(devicecode);
-							if (monitorStorageModel != null) {
-								list.add(monitorStorageModel);
-							}
-						}
-					} catch (Exception e) {
-						logger.error(LOG + "：查询网络状态设备：" + devicecode);
-					}
-				}
-			}
-		} catch (Exception e) {
-			logger.error(LOG + "：查询网络状态设备，信息为：" + e.getMessage());
-		}
-		return list;
-	}
-
-	@Override
-	public List<MonitorStorageModel> getNetMonitorRecentData(List<String> listdevicecode,
-			List<String> listthingcode,String statusCode) {
-		// 根据设备编号进行数据查询后整合
-		List<MonitorStorageModel> list = new ArrayList<MonitorStorageModel>();
-		try {
-			for (String devicecode : listdevicecode) {
-				List<MonitorStorageModel> listtemp = monitorStorageDao.getNetMonitorRecentData(devicecode, listthingcode,statusCode);
 				if (listtemp != null && listtemp.size() > 0) {
 					list.addAll(listtemp);
 				} else {

@@ -45,7 +45,6 @@ import com.tcb.env.service.IMapService;
 import com.tcb.env.service.ISysflagService;
 import com.tcb.env.service.ITreeService;
 import com.tcb.env.service.IUserService;
-import com.tcb.env.service.IVideoDeviceService;
 import com.tcb.env.util.DateUtil;
 import com.tcb.env.util.DefaultArgument;
 import com.tcb.env.util.OriginSpreadLocation;
@@ -1125,78 +1124,6 @@ public class DeviceController {
             logger.error(LOG + ":查询权限监测物数据错误，错误信息为：" + e.getMessage());
         }
         return listMap;
-    }
-
-    /**
-     * <p>[功能描述]：获取设备摄像头URL（VPNURL）</p>
-     *
-     * @param deviceMn
-     * @param httpsession
-     * @return
-     * @author 王垒, 2016年11月22日下午3:32:14
-     * @since EnvDust 1.0.0
-     */
-    @RequestMapping(value = "/getVideoDeviceUrlByMn", method = {RequestMethod.POST})
-    @ResponseBody
-    @Deprecated
-    public ResultModel getVideoDeviceUrlByMn(String deviceMn, HttpSession httpsession) {
-        ResultModel resultModel = new ResultModel();
-        if (SessionManager.isSessionValidate(httpsession,
-                DefaultArgument.LOGIN_USER)) {
-            return resultModel;
-        } else {
-            if (deviceMn != null && !deviceMn.isEmpty()) {
-                String deviceIP = videoDeviceService.getVideoDeviceIpByMn(deviceMn);
-                if (deviceIP != null && !deviceIP.isEmpty()) {
-                    resultModel.setResult(true);
-                    String url = "http://" + deviceIP + ":8080";
-                    resultModel.setDetail(url);
-                }
-            }
-        }
-        return resultModel;
-
-    }
-
-    /**
-     * <p>[功能描述]：获取设备摄像头URL（摄像头URL）</p>
-     *
-     * @param deviceMn
-     * @param httpsession
-     * @return
-     * @author 王垒, 2016年11月22日下午3:32:14
-     * @since EnvDust 1.0.0
-     */
-    @RequestMapping(value = "/getVideoDeviceProxyUrlByMn", method = {RequestMethod.POST})
-    @ResponseBody
-    @Deprecated
-    public ResultModel getVideoDeviceProxyUrlByMn(String deviceMn, HttpSession httpsession) {
-
-        int videoFlag = dom4jConfig.getDeDevConfig().getVideoFlag();
-        ResultModel resultModel = new ResultModel();
-        if (SessionManager.isSessionValidate(httpsession,
-                DefaultArgument.LOGIN_USER) || videoFlag == 0) {
-            return resultModel;
-        } else {
-            if (deviceMn != null && !deviceMn.isEmpty()) {
-
-                String deviceIP = videoDeviceService.getVideoDeviceIpByMn(deviceMn);
-                if (deviceIP != null && !deviceIP.isEmpty()) {
-                    resultModel.setResult(true);
-                    String url = "";
-                    if (videoFlag == 1) {
-                        url = "rtsp://admin:tjtcb712@" + deviceIP + ":554/h264/ch1/main/av_stream";
-                    } else if (videoFlag == 2) {
-                        String proxyUrl = "RTSP://172.17.80.217/EasyRelayModule?name=" + deviceMn;
-                        url = proxyUrl + "&url=" + "'rtsp://admin:tjtcb712@" + deviceIP + ":554/h264/ch1/main/av_stream'";
-                    }
-
-                    resultModel.setDetail(url);
-                }
-            }
-        }
-        return resultModel;
-
     }
 
     /**

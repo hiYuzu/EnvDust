@@ -472,24 +472,6 @@ function getUserPower() {
                 }
                 htmlArr.push('</div></div>');
             }
-            if (json.netMonitore) {// 网络监控
-                navDom.append('<li class="" _t_nav="netMonitore"><h2><a href="javascript:void(0)">网络监控</a></h2></li>');
-                htmlArr.push('<div id="netMonitore" class="nav-down-menu menu-1" style="display: none;" _t_nav="netMonitore">');
-                htmlArr.push('<div class="navigation-down-inner">');
-                if (json.netStatusMonitor) {
-                    htmlArr.push('<dl><dd><a class="link" href="javascript:void(0)" onclick="$.getScript(\'../javascript/menu/netMonitore/netStatusMonitor.js\');">网络状态</a></dd></dl>');
-                }
-                if (json.netDataMonitor) {
-                    htmlArr.push('<dl><dd><a class="link" href="javascript:void(0)" onclick="$.getScript(\'../javascript/menu/netMonitore/netDataMonitor.js\');">网络数据</a></dd></dl>');
-                }
-                if (json.netVideo) {
-                    htmlArr.push('<dl><dd><a class="link" href="javascript:void(0)" onclick="$.getScript(\'../javascript/menu/netMonitore/netVideo.js\');">网络视频</a></dd></dl>');
-                }
-                if (json.netSampleMonitor) {
-                    htmlArr.push('<dl><dd><a class="link" href="javascript:void(0)" onclick="$.getScript(\'../javascript/menu/netMonitore/netSampleMonitor.js\');">超标采样</a></dd></dl>');
-                }
-                htmlArr.push('</div></div>');
-            }
             if (json.heatMap) {//热力分布图
                 navDom.append('<li class="" _t_nav="heatMap"><h2><a href="javascript:void(0)">热力分布图</a></h2></li>');
                 htmlArr.push('<div id="heatMap" class="nav-down-menu menu-1" style="display: none;" _t_nav="heatMap">');
@@ -553,19 +535,6 @@ function getUserPower() {
                         htmlArr.push('<dd><a class="link" href="javascript:void(0)" onclick="$.getScript(\'../javascript/menu/deviceManager/temperatureControl.js\');">温度控制</a></dd>');
                     }
                     htmlArr.push("</dl>");
-                }
-                htmlArr.push('</div></div>');
-            }
-            if (json.fullMonitor) {// 大屏监控
-                //navDom.append('<li class="" _t_nav="fullMonitor"><h2><a class="link" href="../javascript/btzero_7_Director/bigscreen.html" target="_blank">大屏监控</a></h2></li>');
-                navDom.append('<li class="" _t_nav="fullMonitor"><h2><a href="javascript:void(0)">大屏监控</a></h2></li>');
-                htmlArr.push('<div id="fullMonitor" class="nav-down-menu menu-1" style="display: none;" _t_nav="fullMonitor">');
-                htmlArr.push('<div class="navigation-down-inner">');
-                if (json.allView) {
-                    htmlArr.push('<dl><dd><a class="link" href="../javascript/btzero_7_Director/bigscreenmain.html" target="_blank">全域监控</a></dd></dl>');
-                }
-                if (json.dataView) {
-                    htmlArr.push('<dl><dd><a class="link" href="../javascript/btzero_7_Director/bigscreen.html" target="_blank">数据监控</a></dd></dl>');
                 }
                 htmlArr.push('</div></div>');
             }

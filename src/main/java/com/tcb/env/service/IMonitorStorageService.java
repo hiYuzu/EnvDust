@@ -286,59 +286,6 @@ public interface IMonitorStorageService {
 	/**
 	 * 
 	 * <p>
-	 * [功能描述]：获取实时小时数据
-	 * </p>
-	 * 
-	 * @author 王垒, 2016年3月29日下午2:50:06
-	 * @since EnvDust 1.0.0
-	 *
-	 * @param devicecode
-	 *            :设备编号
-	 * @param listthingcode
-	 *            :监测物列表
-	 * @param nowtime
-	 *            :系统当前时间
-	 * @param selecttime
-	 *            :上次查询时间
-	 * @return
-	 */
-	List<MonitorStorageModel> getHourMonitorData(
-			List<String> listdevicecode, List<String> listthingcode,
-			Timestamp nowtime, Timestamp selecttime);
-
-	/**
-	 * 
-	 * <p>
-	 * [功能描述]：获取网络监控数据
-	 * </p>
-	 * 
-	 * @author 王垒, 2016年3月29日下午2:50:06
-	 * @since EnvDust 1.0.0
-	 *
-	 * @param listdevicecode
-	 * @param listthingcode
-	 * @return
-	 */
-	List<MonitorStorageModel> getNetMonitorData(
-			List<String> listdevicecode, List<String> listthingcode);
-
-	/**
-	 * 
-	 * <p>
-	 * [功能描述]：通过设备code获取name
-	 * </p>
-	 * 
-	 * @author 王垒, 2016年4月6日下午4:11:52
-	 * @since EnvDust 1.0.0
-	 *
-	 * @param listDevCode
-	 * @return
-	 */
-	List<String> getDeviceNamebyCode(List<String> listDevCode);
-
-	/**
-	 * 
-	 * <p>
 	 * [功能描述]：通过监测物code获取name
 	 * </p>
 	 * 
@@ -414,7 +361,7 @@ public interface IMonitorStorageService {
 	 * 
 	 * @author	王垒, 2016年7月1日下午3:43:20
 	 * @since	EnvDust 1.0.0
-	 * 
+	 *
 	 * @param userCode
 	 * @param listdevicecode
 	 * @return
@@ -434,21 +381,6 @@ public interface IMonitorStorageService {
 	 * @return
 	 */
 	List<MonitorStorageModel> getNetMonitorRecentTime(
-			List<String> listdevicecode,List<String> listthingcode,String statusCode);
-	
-	/**
-	 * 
-	 * <p>[功能描述]：获取网络监控最新数据更新值</p>
-	 * 
-	 * @author	王垒, 2017年8月9日上午10:41:41
-	 * @since	EnvDust 1.0.0
-	 *
-	 * @param listdevicecode
-	 * @param listthingcode
-	 * @param statusCode
-	 * @return
-	 */
-	List<MonitorStorageModel> getNetMonitorRecentData(
 			List<String> listdevicecode,List<String> listthingcode,String statusCode);
 	
 	
