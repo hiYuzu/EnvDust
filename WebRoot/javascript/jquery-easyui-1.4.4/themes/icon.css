@@ -121,6 +121,9 @@
 .icon-chart{
 	background:url('icons/chart.png') no-repeat center center;
 }
+.icon-chart-green{
+	background:url('icons/chart1.png') no-repeat center center;
+}
 .icon-listtable{
 	background:url('icons/listtable.png') no-repeat center center;
 }

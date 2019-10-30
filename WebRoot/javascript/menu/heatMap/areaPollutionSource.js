@@ -257,13 +257,14 @@ function openPanel(coordinate, data, windRoseData) {
             fit: false,
             title: "坐标点：" + coordinate,
             tools: [{
-                iconCls: 'icon-reload',
+                iconCls: 'icon-chart',
                 handler: function () {
-                    if (panelFlag) {
-                        showPercentPie(data);
-                    } else {
-                        showRoseWind(windRoseData);
-                    }
+                    showPercentPie(data);
+                }
+            }, {
+                iconCls: 'icon-chart-green',
+                handler: function() {
+                    showRoseWind(windRoseData);
                 }
             }],
             content: '<div class="easyui-layout" data-options="fit:true">'
