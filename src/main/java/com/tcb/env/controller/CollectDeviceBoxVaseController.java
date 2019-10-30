@@ -67,56 +67,6 @@ public class CollectDeviceBoxVaseController {
 	
 	/**
 	 * 
-	 * <p>
-	 * [功能描述]：获取实时数据计划
-	 * </p>
-	 * 
-	 * @author 王垒, 2016年6月7日上午8:43:07
-	 * @since EnvDust 1.0.0
-	 *
-	 * @param dataIntervalModel
-	 * @param httpsession
-	 * @return
-	 */
-	@RequestMapping(value = "/queryNetSample", method = { RequestMethod.POST })
-	@ResponseBody
-	public ResultListModel<NetSamplePlanModel> queryNetSample(
-			NetSamplePlanModel netSamplePlanModel, HttpSession httpsession) {
-		ResultListModel<NetSamplePlanModel> resultListModel = new ResultListModel<NetSamplePlanModel>();
-		try {
-			if (netSamplePlanModel != null) {
-				CommMain commMain = ConvertCommMain(netSamplePlanModel, httpsession);
-				List<String> listDeviceCode = new ArrayList<String>();
-				listDeviceCode.add(commMain.getDevice().getDeviceCode());
-				List<String> listCnCode = new ArrayList<String>();
-				if (netSamplePlanModel.getCnCode() == null
-						|| netSamplePlanModel.getCnCode().isEmpty()) {
-					listCnCode.add(DefaultArgument.PRO_NET_SAMPLE);
-				} else {
-					listCnCode.add(netSamplePlanModel.getCnCode());
-				}
-				int count = collectDeviceBoxVaseService.getNetSampleCount(commMain, listDeviceCode, listCnCode);
-				if (count > 0) {
-					List<NetSamplePlanModel> listModel = new ArrayList<NetSamplePlanModel>();
-					List<CommMain> list = collectDeviceBoxVaseService.getNetSample(commMain, listDeviceCode, listCnCode);
-					for (CommMain commMainTemp : list) {
-						NetSamplePlanModel metSamplePlanModelTemp = ConvertNetSamplePlanModel(commMainTemp);
-						if (metSamplePlanModelTemp != null) {
-							listModel.add(metSamplePlanModelTemp);
-						}
-					}
-					resultListModel.setTotal(count);
-					resultListModel.setRows(listModel);
-				}
-			}
-		} catch (Exception e) {
-			logger.error(LOG + "：查询采样指令失败，原因：" + e.getMessage());
-		}
-		return resultListModel;
-	}
-	
-	/**
-	 * 
 	 * <p>[功能描述]：</p>
 	 * 
 	 * @author	王垒, 2018年7月30日上午11:08:33

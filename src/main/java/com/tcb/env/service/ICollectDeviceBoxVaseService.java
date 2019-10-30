@@ -20,36 +20,6 @@ public interface ICollectDeviceBoxVaseService {
 	
 	/**
 	 * 
-	 * <p>[功能描述]：查询采样指令计划个数</p>
-	 * 
-	 * @author	王垒, 2018年7月27日上午11:18:25
-	 * @since	EnvDust 1.0.0
-	 *
-	 * @param commMain
-	 * @param listDeviceCode
-	 * @param listCnCode
-	 * @return
-	 */
-	int getNetSampleCount(CommMain commMain,
-			List<String> listDeviceCode, List<String> listCnCode);
-
-	/**
-	 * 
-	 * <p>[功能描述]：查询采样指令计划信息</p>
-	 * 
-	 * @author	王垒, 2018年7月27日上午11:18:25
-	 * @since	EnvDust 1.0.0
-	 *
-	 * @param commMain
-	 * @param listDeviceCode
-	 * @param listCnCode
-	 * @return
-	 */
-	List<CommMain> getNetSample(CommMain commMain,
-			List<String> listDeviceCode, List<String> listCnCode);
-	
-	/**
-	 * 
 	 * <p>[功能描述]：获取采样详细数据</p>
 	 * 
 	 * @author	王垒, 2018年7月30日上午10:55:36
