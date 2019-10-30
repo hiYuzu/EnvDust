@@ -1,6 +1,5 @@
 package com.tcb.env.service.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -8,17 +7,10 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.tcb.env.dao.ICollectDeviceBoxVaseDao;
-import com.tcb.env.dao.IDeviceDao;
 import com.tcb.env.model.VaseDataModel;
-import com.tcb.env.pojo.CollectDeviceBoxVase;
-import com.tcb.env.pojo.CommCn;
 import com.tcb.env.pojo.CommMain;
-import com.tcb.env.pojo.CommStatus;
-import com.tcb.env.pojo.Device;
 import com.tcb.env.service.ICollectDeviceBoxVaseService;
 import com.tcb.env.service.ICommMainService;
-import com.tcb.env.util.DateUtil;
-import com.tcb.env.util.DefaultArgument;
 
 /**
  * 
@@ -39,47 +31,6 @@ public class CollectDeviceBoxVaseServiceImpl implements
 
 	@Resource
 	private ICommMainService commMainService;
-
-	@Override
-	public int insertNetSample(String cnCode,String cdCode,
-			String setExcuteTime, int userid) {
-		int resultCount = 0;
-		if (cdCode != null && !cdCode.isEmpty()
-				&& cnCode != null && !cnCode.isEmpty() 
-				&& setExcuteTime != null&& !setExcuteTime.isEmpty()) {
-			List<CommMain> listCommMain = new ArrayList<CommMain>();
-			List<Integer> listCommId = new ArrayList<Integer>();
-			String qn = DateUtil.GetSystemDateTime();
-			Device device = new Device();
-			device.setDeviceCode(cdCode);
-			CommMain commMain = new CommMain();
-			commMain.setSt(DefaultArgument.PRO_ST_ATM);
-			commMain.setQn(qn);
-			CommCn commCn = new CommCn();
-			commCn.setCnCode(cnCode);
-			commMain.setCommCn(commCn);
-			commMain.setExcuteTime(DateUtil.StringToTimestampSecond(setExcuteTime));
-			commMain.setDevice(device);
-			CommStatus commStatus = new CommStatus();
-			commStatus.setStatusId(commMainService.getCommStatusId("1", "0"));
-			commMain.setCommStatus(commStatus);
-			commMain.setFlag("5");
-			commMain.setOptUser(userid);
-			String commId = commMainService.getMainCommId(cnCode, cdCode);
-			if (commId != null && !commId.isEmpty()) {
-				listCommId.add(Integer.valueOf(commId));
-			}
-			listCommMain.add(commMain);
-			// 进行数据库操作
-			if (listCommMain != null && listCommMain.size()>0) {
-				if (listCommId != null && listCommId.size() > 0) {
-					commMainService.deleteCommMain(listCommId);
-				}
-				resultCount = commMainService.insertCommMain(listCommMain);
-			}
-		}
-		return resultCount;
-	}
 
 	@Override
 	public int getNetSampleCount(CommMain commMain,

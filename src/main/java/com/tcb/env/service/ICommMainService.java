@@ -58,20 +58,6 @@ public interface ICommMainService {
 	/**
 	 * 
 	 * <p>
-	 * [功能描述]：插入计划任务准备信息
-	 * </p>
-	 * 
-	 * @author 王垒, 2016年5月31日下午4:07:01
-	 * @since EnvDust 1.0.0
-	 *
-	 * @param commPrepare
-	 * @return
-	 */
-	int insertCommPrepare(CommPrepare commPrepare);
-
-	/**
-	 * 
-	 * <p>
 	 * [功能描述]：插入计划任务信息主表
 	 * </p>
 	 * 
@@ -111,19 +97,6 @@ public interface ICommMainService {
 	 * @return
 	 */
 	int deleteCommMain(List<Integer> listCommId);
-	
-	/**
-	 * 
-	 * <p>[功能描述]：删除计划任务信息</p>
-	 * 
-	 * @author	王垒, 2016年6月6日下午2:04:19
-	 * @since	EnvDust 1.0.0
-	 *
-	 * @param cnCode
-	 * @param listDeviceCode
-	 * @return
-	 */
-	int deleteCommMain(String cnCode, List<String> listDeviceCode);
 
 	/**
 	 * 

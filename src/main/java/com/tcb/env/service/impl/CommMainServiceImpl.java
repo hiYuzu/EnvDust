@@ -50,11 +50,6 @@ public class CommMainServiceImpl implements ICommMainService {
 	}
 
 	@Override
-	public int insertCommPrepare(CommPrepare commPrepare) {
-		return commMainDao.insertCommPrepare(commPrepare);
-	}
-
-	@Override
 	public int insertCommMain(List<CommMain> listCommMain) {
 		return commMainDao.insertCommMain(listCommMain);
 	}
@@ -72,11 +67,6 @@ public class CommMainServiceImpl implements ICommMainService {
 	@Override
 	public int deleteCommMain(List<Integer> listCommId) {
 		return commMainDao.deleteCommMain(listCommId);
-	}
-
-	@Override
-	public int deleteCommMain(String cnCode, List<String> listDeviceCode) {
-		return commMainDao.deleteCommMainCn(cnCode,listDeviceCode);
 	}
 	
 	@Override

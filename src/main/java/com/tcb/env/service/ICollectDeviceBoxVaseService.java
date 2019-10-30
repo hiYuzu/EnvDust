@@ -20,21 +20,6 @@ public interface ICollectDeviceBoxVaseService {
 	
 	/**
 	 * 
-	 * <p>[功能描述]：插入采样指令</p>
-	 * 
-	 * @author	王垒, 2018年7月26日下午5:25:21
-	 * @since	EnvDust 1.0.0
-	 *
-	 * @param cnCode
-	 * @param cdCode
-	 * @param setExcuteTime
-	 * @param userid
-	 * @return
-	 */
-	int insertNetSample(String cnCode, String cdCode, String setExcuteTime, int userid);
-	
-	/**
-	 * 
 	 * <p>[功能描述]：查询采样指令计划个数</p>
 	 * 
 	 * @author	王垒, 2018年7月27日上午11:18:25

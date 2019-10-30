@@ -117,57 +117,6 @@ public class CollectDeviceBoxVaseController {
 	
 	/**
 	 * 
-	 * <p>[功能描述]：插入采样指令</p>
-	 * 
-	 * @author	王垒, 2018年7月26日下午5:25:04
-	 * @since	EnvDust 1.0.0
-	 *
-	 * @param cnCode
-	 * @param cdCode
-	 * @param cdMn
-	 * @param setExcuteTime
-	 * @param httpsession
-	 * @return
-	 */
-	@RequestMapping(value = "/insertNetSample", method = { RequestMethod.POST })
-	@ResponseBody
-	public ResultModel insertNetSample(String cdCode,HttpSession httpsession) {
-		ResultModel resultModel = new ResultModel();
-		try {
-			if (SessionManager.isSessionValidate(httpsession,DefaultArgument.LOGIN_USER)) {
-				resultModel.setDetail("登录超时，请重新登陆后操作！");
-				return resultModel;
-			}
-			String cnCode = DefaultArgument.PRO_NET_SAMPLE;
-			String setExcuteTime = DateUtil.TimestampToString(DateUtil.GetSystemDateTime(0), DateUtil.DATA_TIME);
-			if (cnCode != null && !cnCode.isEmpty() && cdCode != null && !cdCode.isEmpty()) {
-				int userid;
-				UserModel loginUser = (UserModel) httpsession.getAttribute(DefaultArgument.LOGIN_USER);
-				if (loginUser != null) {
-					userid = loginUser.getUserId();
-				} else {
-					resultModel.setDetail("登录超时，请重新登陆后操作！");
-					return resultModel;
-				}
-				int count = collectDeviceBoxVaseService.insertNetSample(cnCode, cdCode,setExcuteTime, userid);
-				if (count > 0) {
-					resultModel.setResult(true);
-				} else {
-					resultModel.setDetail("插入采样指令失败！");
-					return resultModel;
-				}
-			} else {
-				resultModel.setDetail("无操作数据！");
-			}
-		} catch (Exception e) {
-			logger.error(LOG + "：插入采样指令失败，原因：" + e.getMessage());
-			resultModel.setDetail("插入采样指令失败！");
-		}
-		return resultModel;
-	}
-	
-	/**
-	 * 
 	 * <p>[功能描述]：</p>
 	 * 
 	 * @author	王垒, 2018年7月30日上午11:08:33

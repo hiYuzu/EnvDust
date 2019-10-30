@@ -148,26 +148,6 @@
 		</if>
 	</select>
 	
-	<!-- 插入计划任务准备信息 -->
-	<insert id="insertCommPrepare">
-		INSERT INTO tbl_comm_prepare (
-					qn, 
-					cn, 
-					<if test="commPrepare.cp != null and commPrepare.cp != ''">
-						cp, 
-					</if>
-					opt_user
-				)
-				VALUES(
-					#{commPrepare.qn},
-					#{commPrepare.commCn.cnCode},
-					<if test="commPrepare.cp != null and commPrepare.cp != ''">
-						#{commPrepare.cp},
-					</if>
-					#{commPrepare.optUser},
-				)
-	</insert>
-	
 	<!-- 插入计划任务信息主表 -->
 	<insert id="insertCommMain" parameterType="java.util.List">
 		INSERT INTO tbl_comm_main (
