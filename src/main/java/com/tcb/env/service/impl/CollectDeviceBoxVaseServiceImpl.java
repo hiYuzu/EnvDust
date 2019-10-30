@@ -36,24 +36,9 @@ public class CollectDeviceBoxVaseServiceImpl implements
 
 	@Resource
 	private ICollectDeviceBoxVaseDao collectDeviceBoxVaseDao;
-	
-	@Resource
-	private IDeviceDao deviceDao;
-	
+
 	@Resource
 	private ICommMainService commMainService;
-	
-	@Override
-	public int getCollectDeviceBoxVaseCount(
-			CollectDeviceBoxVase collectDeviceBoxVase) {
-		return collectDeviceBoxVaseDao.getCollectDeviceBoxVaseCount(collectDeviceBoxVase);
-	}
-
-	@Override
-	public List<CollectDeviceBoxVase> getCollectDeviceBoxVase(
-			CollectDeviceBoxVase collectDeviceBoxVase) {
-		return collectDeviceBoxVaseDao.getCollectDeviceBoxVase(collectDeviceBoxVase);
-	}
 
 	@Override
 	public int insertNetSample(String cnCode,String cdCode,

@@ -18,30 +18,6 @@ import com.tcb.env.pojo.CollectDeviceBoxVase;
  *
  */
 public interface ICollectDeviceBoxVaseDao {
-	
-	/**
-	 * 
-	 * <p>[功能描述]：获取超标采样记录个数</p>
-	 * 
-	 * @author	王垒, 2018年7月23日上午11:09:59
-	 * @since	EnvDust 1.0.0
-	 *
-	 * @param collectDeviceBoxVase
-	 * @return
-	 */
-	int getCollectDeviceBoxVaseCount(@Param("collectDeviceBoxVase")CollectDeviceBoxVase collectDeviceBoxVase);
-	
-	/**
-	 * 
-	 * <p>[功能描述]：获取超标采样记录信息</p>
-	 * 
-	 * @author	王垒, 2018年7月23日上午11:10:55
-	 * @since	EnvDust 1.0.0
-	 *
-	 * @param collectDeviceBoxVase
-	 * @return
-	 */
-	List<CollectDeviceBoxVase> getCollectDeviceBoxVase(@Param("collectDeviceBoxVase")CollectDeviceBoxVase collectDeviceBoxVase);
 
 	/**
 	 * 

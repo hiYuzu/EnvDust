@@ -121,6 +121,12 @@
 .icon-chart{
 	background:url('icons/chart.png') no-repeat center center;
 }
+.icon-influence{
+	background:url('icons/pie_chart.png') no-repeat center center;
+}
+.icon-rose{
+	background:url('icons/radar.png') no-repeat center center;
+}
 .icon-chart-green{
 	background:url('icons/chart1.png') no-repeat center center;
 }

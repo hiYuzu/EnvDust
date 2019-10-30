@@ -162,7 +162,8 @@ function queryDevice(areaId) {//查询区域
 function storeMarker(point, data) {//储存marker信息
     var title = $('#mytab').tabs('getSelected').panel('options').title;
     var deviceCode = data.deviceCode;
-    var myIcon = null;
+    var myIcon = new BMap.Icon("../../images/pointlink.png", new BMap.Size(32, 32));
+    /*
     if (data != undefined) {
         if (data.statusCode == "N") {//绿
             myIcon = new BMap.Icon("../../images/pointlink.png", new BMap.Size(32,
@@ -178,6 +179,7 @@ function storeMarker(point, data) {//储存marker信息
                 32, 32));
         }
     }
+    */
     if (title == "区域污染溯源") {
         var marker = new BMap.Marker(point, {
             icon: myIcon
@@ -233,6 +235,14 @@ var DiffusionIcon = {
     null: new BMap.Icon("../../images/fault1.gif", new BMap.Size(130, 130))
 };
 
+var DiffusionIcon_alarm = {
+    N: new BMap.Icon("../../images/pointalarm3.gif", new BMap.Size(130, 130)),
+    NT: new BMap.Icon("../../images/pointalarm3.gif", new BMap.Size(130, 130)),
+    O: new BMap.Icon("../../images/pointalarm3.gif", new BMap.Size(130, 130)),
+    Z: new BMap.Icon("../../images/pointalarm3.gif", new BMap.Size(130, 130)),
+    null: new BMap.Icon("../../images/pointalarm3.gif", new BMap.Size(130, 130))
+};
+
 var icons = {};
 
 function changeMarkerIcon(data) {//改变marker图标
@@ -243,7 +253,7 @@ function changeMarkerIcon(data) {//改变marker图标
     for (var i = 0; i < data.length; i++) {
         var marker = markers[data[i].deviceCode];
         icons[data[i].deviceCode] = marker.getIcon();
-        marker.setIcon(DiffusionIcon[statusCodes[data[i].deviceCode]]);
+        marker.setIcon(DiffusionIcon_alarm[statusCodes[data[i].deviceCode]]);
     }
 }
 
@@ -257,12 +267,12 @@ function openPanel(coordinate, data, windRoseData) {
             fit: false,
             title: "坐标点：" + coordinate,
             tools: [{
-                iconCls: 'icon-chart',
+                iconCls: 'icon-influence',
                 handler: function () {
                     showPercentPie(data);
                 }
             }, {
-                iconCls: 'icon-chart-green',
+                iconCls: 'icon-rose',
                 handler: function() {
                     showRoseWind(windRoseData);
                 }

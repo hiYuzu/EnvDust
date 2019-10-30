@@ -67,45 +67,6 @@ public class CollectDeviceBoxVaseController {
 	
 	/**
 	 * 
-	 * <p>[功能描述]：查询采样记录数据</p>
-	 * 
-	 * @author	王垒, 2018年7月24日下午3:32:37
-	 * @since	EnvDust 1.0.0
-	 *
-	 * @param collectDeviceBoxVaseModel
-	 * @param httpsession
-	 * @return
-	 */
-	@RequestMapping(value = "/queryCollectDeviceBoxVase", method = { RequestMethod.POST })
-	@ResponseBody
-	public ResultListModel<CollectDeviceBoxVaseModel> queryCollectDeviceBoxVase(
-			CollectDeviceBoxVaseModel collectDeviceBoxVaseModel, HttpSession httpsession) {
-		// 创建类
-		ResultListModel<CollectDeviceBoxVaseModel> resultListModel = new ResultListModel<CollectDeviceBoxVaseModel>();
-		
-		List<CollectDeviceBoxVaseModel> cdbvmList = new ArrayList<CollectDeviceBoxVaseModel>();
-		List<CollectDeviceBoxVase> cdbvList = new ArrayList<CollectDeviceBoxVase>();
-		CollectDeviceBoxVase cdbv = ConvertCollectDeviceBoxVase(collectDeviceBoxVaseModel,httpsession);
-		int count = collectDeviceBoxVaseService.getCollectDeviceBoxVaseCount(cdbv);
-		if (count > 0) {
-			cdbvList = collectDeviceBoxVaseService.getCollectDeviceBoxVase(cdbv);
-			// 依次转换成model
-			for (CollectDeviceBoxVase temp : cdbvList) {
-				CollectDeviceBoxVaseModel cdbvm = ConvertCollectDeviceBoxVaseModel(temp);
-				if (cdbvm != null) {
-					cdbvmList.add(cdbvm);
-				}
-			}
-			resultListModel.setRows(cdbvmList);
-		}
-		resultListModel.setTotal(count);
-		resultListModel.setResult(true);
-		return resultListModel;
-		
-	}
-	
-	/**
-	 * 
 	 * <p>
 	 * [功能描述]：获取实时数据计划
 	 * </p>

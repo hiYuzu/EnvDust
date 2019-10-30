@@ -27,63 +27,6 @@
 		<result property="optUser" column="opt_user" />
 		<result property="optTime" column="opt_time" />
 	</resultMap>
-
-	<!-- 获取超标采样记录个数 -->
-	<select id="getCollectDeviceBoxVaseCount" resultType="java.lang.Integer">
-		SELECT
-			COUNT(tcdbv.vase_id)
-		FROM
-			tbl_collect_device_box_vase tcdbv
-		INNER JOIN tbl_collect_device_box tcdb ON tcdbv.box_id = tcdb.box_id
-		<where>
-			<if test="collectDeviceBoxVase.collectDeviceBox != null and collectDeviceBoxVase.collectDeviceBox.boxId != ''
-					and collectDeviceBoxVase.collectDeviceBox.boxId != null">
-				tcdb.box_id = #{collectDeviceBoxVase.collectDeviceBox.boxId}
-			</if>
-			<if test="collectDeviceBoxVase.collectDeviceBox != null and collectDeviceBoxVase.collectDeviceBox.boxNo != ''
-					and collectDeviceBoxVase.collectDeviceBox.boxNo != null">
-				AND tcdb.box_no = #{collectDeviceBoxVase.collectDeviceBox.boxNo}
-			</if>
-			<if test="collectDeviceBoxVase.vaseNo != null and collectDeviceBoxVase.vaseNo != ''">
-				AND tcdbv.vase_no LIKE CONCAT('%',CONCAT(#{collectDeviceBoxVase.vaseNo},'%'))
-			</if>
-		</where>
-	</select>
-
-	<!-- 获取超标采样记录信息 -->
-	<select id="getCollectDeviceBoxVase" resultMap="collectDeviceBoxVaseResultMap">
-		SELECT
-			tcdbv.vase_id,
-			tcdbv.vase_no,
-			tcdbv.vase_time,
-			tcdbv.vase_qn,
-			tcdb.box_id,
-			tcdb.box_no,
-			tcdb.box_name,
-			tcdb.box_status,
-			tcdb.cd_id,
-			tcdbv.opt_user,
-			tcdbv.opt_time
-		FROM
-			tbl_collect_device_box_vase tcdbv
-		INNER JOIN tbl_collect_device_box tcdb ON tcdbv.box_id = tcdb.box_id
-		<where>
-			<if test="collectDeviceBoxVase.collectDeviceBox != null and collectDeviceBoxVase.collectDeviceBox.boxId != ''
-					and collectDeviceBoxVase.collectDeviceBox.boxId != null">
-				tcdb.box_id = #{collectDeviceBoxVase.collectDeviceBox.boxId}
-			</if>
-			<if test="collectDeviceBoxVase.collectDeviceBox != null and collectDeviceBoxVase.collectDeviceBox.boxNo != ''
-					and collectDeviceBoxVase.collectDeviceBox.boxNo != null">
-				AND tcdb.box_no = #{collectDeviceBoxVase.collectDeviceBox.boxNo}
-			</if>
-			<if test="collectDeviceBoxVase.vaseNo != null and collectDeviceBoxVase.vaseNo != ''">
-				AND tcdbv.vase_no LIKE CONCAT('%',CONCAT(#{collectDeviceBoxVase.vaseNo},'%'))
-			</if>
-		</where>
-		<if test="collectDeviceBoxVase.rowCount != -1 and collectDeviceBoxVase.rowIndex != -1">
-			LIMIT #{collectDeviceBoxVase.rowIndex, jdbcType = INTEGER},#{collectDeviceBoxVase.rowCount,jdbcType = INTEGER}
-		</if>
-	</select>
 	
 	<!-- 获取采样详细数据 -->
 	<select id="getVaseDataModel" resultMap="vaseDataModelResultMap">
