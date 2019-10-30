@@ -109,7 +109,8 @@
 	<select id="getWindDataByDay" resultType="java.util.Map">
 		SELECT
 		wind_deg AS windDeg,
-		wind_spd AS windSpeed
+		wind_spd AS windSpeed,
+		wind_sc AS windSc
 		FROM
 		tbl_weather tw
 		WHERE

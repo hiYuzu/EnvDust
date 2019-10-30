@@ -13,6 +13,8 @@ public class SourceAnalysisResultModel {
 
     private double windDegree;
 
+    private int windSc;
+
     public List<PollutionSourceModel> getPollutionSources() {
         return pollutionSources;
     }
@@ -54,5 +56,13 @@ public class SourceAnalysisResultModel {
 
     public void setWindRoseData(List<List<Integer>> windRoseData) {
         this.windRoseData = windRoseData;
+    }
+
+    public int getWindSc() {
+        return windSc;
+    }
+
+    public void setWindSc(int windSc) {
+        this.windSc = windSc;
     }
 }

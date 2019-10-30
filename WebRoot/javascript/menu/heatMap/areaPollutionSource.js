@@ -28,7 +28,7 @@ var areaPollutionSourceContent = '<div class="easyui-layout" data-options="fit:t
     + '</div>'
 
     + '<div style="height: 100px;width: 90px; position: absolute; top: 55px; left: 15px;">'
-    + '<img id="windArrow" src="../../../images/Minecraft_Arrow.png" style="display: none;">'
+    + '<img id="windArrow" src="../../../images/wind/wind_0.png" style="display: none;">'
     + '</div>'
 
     + '<div id="infoPanel" class="easyui-panel" data-options="style:{position:\'absolute\',right:0,top:42}"></div>'
@@ -214,7 +214,7 @@ function getSource() {
                 if (json.result) {
                     changeMarkerIcon(json.data.pollutionSources);
                     openPanel($("#pointCoordinate").val(), json.data.pollutionSources, json.data.windRoseData);
-                    showWindArrow(json.data.windDegree, json.data.windSpeed);
+                    showWindArrow(json.data.windDegree, json.data.windSpeed, json.data.windSc);
                 } else {
                     alert(json.detail);
                 }
@@ -512,9 +512,10 @@ function showSourceInfo(data) {// 显示溯源信息
     });
 }
 
-function showWindArrow(windDegree, windSpeed) {
+function showWindArrow(windDegree, windSpeed, windSc) {
     var windArrow = document.getElementById("windArrow");
-    windArrow.style.transform = "rotate(" + (windDegree + 45) + "deg)";
+    windArrow.src="../../../images/wind/wind_"+ windSc +".png";
+    windArrow.style.transform = "rotate(" + windDegree + "deg)";
     windArrow.title = "风速：" + windSpeed + "km/h";
     windArrow.style.display = "block";
 }

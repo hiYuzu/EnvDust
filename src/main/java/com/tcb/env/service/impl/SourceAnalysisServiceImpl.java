@@ -31,6 +31,7 @@ public class SourceAnalysisServiceImpl implements ISourceAnalysisService {
 
     private final static String WIND_SPEED = "windSpeed";
     private final static String WIND_DEGREE = "windDeg";
+    private final static String WIND_SC = "windSc";
     private final static int MAX_WIND_SC = 7;
 
     private static final String DATE_FORMAT = "yyyy-MM-dd HH:mm";
@@ -80,6 +81,7 @@ public class SourceAnalysisServiceImpl implements ISourceAnalysisService {
         result.setPollutionSources(calResultWithoutInterference(samplingPoints,longitude,latitude));//排除干扰的方法
         result.setWindDegree(windDeg);
         result.setWindSpeed(windData.get(WIND_SPEED));
+        result.setWindSc(windData.get(WIND_SC).intValue());
         result.setWindRoseData(windRoseData);
         return result;
     }
@@ -168,9 +170,11 @@ public class SourceAnalysisServiceImpl implements ISourceAnalysisService {
         if (resultList != null && resultList.size() > 0 && resultList.get(0) != null) {
             result.put(WIND_DEGREE, Double.parseDouble(resultList.get(0).get(WIND_DEGREE)+""));
             result.put(WIND_SPEED, Double.parseDouble(resultList.get(0).get(WIND_SPEED)+""));
+            result.put(WIND_SC, Double.parseDouble(resultList.get(0).get(WIND_SC)+""));
         } else {
             result.put(WIND_DEGREE, DEFAULT_VALUE);
             result.put(WIND_SPEED, DEFAULT_VALUE);
+            result.put(WIND_SC, DEFAULT_VALUE);
         }
         return result;
     }
