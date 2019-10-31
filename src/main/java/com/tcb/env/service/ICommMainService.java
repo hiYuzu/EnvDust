@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.tcb.env.model.CommResultModel;
 import com.tcb.env.pojo.CommMain;
-import com.tcb.env.pojo.CommPrepare;
 
 /**
  * 
@@ -112,18 +111,6 @@ public interface ICommMainService {
 	 * @return
 	 */
 	String getMainCommId(String cnCode, String deviceCode);
-	
-	/**
-	 * 
-	 * <p>[功能描述]：获取计划任务结果个数</p>
-	 * 
-	 * @author	王垒, 2018年1月17日上午9:17:18
-	 * @since	EnvDust 1.0.0
-	 *
-	 * @param commId
-	 * @return
-	 */
-	int getCommResultCount(String commId);
 	
 	/**
 	 * 

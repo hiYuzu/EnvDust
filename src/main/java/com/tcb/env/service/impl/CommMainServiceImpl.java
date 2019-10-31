@@ -73,11 +73,6 @@ public class CommMainServiceImpl implements ICommMainService {
 	public String getMainCommId(String cnCode, String deviceCode) {
 		return commMainDao.getMainCommId(cnCode, deviceCode);
 	}
-
-	@Override
-	public int getCommResultCount(String commId) {
-		return commMainDao.getCommResultCount(commId);
-	}
 	
 	@Override
 	public List<CommResultModel> getCommResult(String commId) {

@@ -238,19 +238,6 @@
 		LIMIT 0, 1
 	</select>
 	
-	<!-- 获取计划任务结果个数 -->
-	<select id="getCommResultCount" resultType="java.lang.Integer">
-		SELECT
-			COUNT(0)
-		FROM
-			tbl_comm_result tcr
-		INNER JOIN tbl_comm_main tcm ON tcr.qn = tcm.qn
-		INNER JOIN tbl_comm_cn tcc ON tcm.cn = tcc.cn_code
-		INNER JOIN tbl_device td ON tcm.device_code = td.device_code
-		WHERE
-			tcm.comm_id = #{commId}
-	</select>
-	
 	<!-- 获取计划任务结果 -->
 	<select id="getCommResult" resultMap="commResultModelResultMap">
 		SELECT

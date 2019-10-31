@@ -1,6 +1,3 @@
-//var stopajax = false;
-//var stopnetStatusajax = false;
-//var stopnetDataajax = false;
 var netStatustreeidList = [];
 var longconnselected = "";
 //存储点击的树节点
@@ -12,13 +9,6 @@ $(function () {
 
 
     $("#loginTime").html(formatterDate(new Date()));
-    /*var loginname = "";
-    loginname = getCookieValue('EnvDustusername');
-    if(loginname!=null && loginname!=""){
-        $("#username").html(loginname);
-    }else{
-        $("#username").html("");
-    }*/
     getUserPower();
     setMainLogoWeb("./../");
     var qcloud = {};
@@ -46,11 +36,6 @@ $(function () {
                 $('#' + _nav).stop(true, true).slideUp(200);
             }, 150);
         });
-    /*$('#manufacturer').textbox('textbox').keydown(function (e) {
-        if (e.keyCode == 13) {
-            searchStationFunc();
-        }
-    });*/
     $('#mytab').tabs({
         onBeforeClose: function (title, index) {
             if (title == "实时数据") {
@@ -73,8 +58,6 @@ $(function () {
         },
         onClose: function (title, index) {
             if (title == "实时数据") {
-//			   stopajax = true;
-//			   clearInterval(timer);
                 if ($("#realTimeCountDownTimer") != null && $("#realTimeCountDownTimer").TimeCircles() != null) {
                     $("#realTimeCountDownTimer").TimeCircles().destroy();
                 }
@@ -117,14 +100,8 @@ $(function () {
                 });
             }
             if (title != "实时数据" && title != "网络状态" && title != "网络数据") {
-//			   stopajax = true;
-//			   stopnetStatusajax = true;
-//			   stopnetDataajax = true;
             } else {
                 if (title == "实时数据") {
-//				   stopajax = false;
-//				   stopnetStatusajax = true;
-//				   stopnetDataajax = true;
                     if (realtreeid == -1) {
                         var nodeRoot = $("#mytree").tree('getRoot');
                         var node = $('#mytree').tree('find',
@@ -137,9 +114,6 @@ $(function () {
                     }
                 }
                 else if (title == "网络状态") {
-//				   stopnetStatusajax = false;
-//				   stopajax = true;
-//				   stopnetDataajax = true;
                     if (longconnselected != "") {
                         var node = $('#mytree').tree('find', longconnselected);
                         if (node != null) {
@@ -154,9 +128,6 @@ $(function () {
                     }
                 }
                 else if (title == "网络数据") {
-//				   stopnetDataajax = false;
-//				   stopajax = true;
-//				   stopnetStatusajax = true;
                     if (netDataSelected != "") {
                         var node = $('#mytree').tree('find', netDataSelected);
                         if (node != null) {
@@ -223,39 +194,12 @@ function searchDeviceProject() {
                 $("#deviceProjectId").combobox("setValue", comboxData[0]["projectId"]);
                 searchTreeStation();
             }
-            /* $.each(comboxData, function(i, item){
-                if(item["projectName"].indexOf("FID")>-1){
-                    $("#deviceProjectId").combobox("setValue", item["projectId"]);
-                }
-              });*/
         },
         error: function (e) {
             console.info("查询项目类型异常！" + e.error);
         }
     })
 }
-
-/*查询站点名称*/
-/*function searchStationFunc(){
-	if($("#manufacturer").val()!=""){
-		$.ajax({
-			url : '../TreeController/getAuthorityDevices',
-			type : "post",
-			dataType : "json",
-			data : {
-				"devicename":$("#manufacturer").val(),
-				"areaid":"-1"
-			},
-			success : function(json) {
-				$("#mytree").tree({
-					data:json
-				});
-			}
-		});
-	}else{
-		initTreeNoe("mytree",'../TreeController/getAreaTree',null,false);
-	}
-}*/
 
 /*初始化设备厂商*/
 function initManufacturer() {
@@ -420,56 +364,9 @@ function getUserPower() {
                 }
                 htmlArr.push('</div></div>');
             }
-            if (json.deviceManager) {// 站点管控
-                navDom.append('<li class="" _t_nav="deviceManager"><h2><a href="javascript:void(0)">站点管控</a></h2></li>');
-                htmlArr.push('<div id="deviceManager" class="nav-down-menu menu-1" style="display: none;" _t_nav="deviceManager">');
-                htmlArr.push('<div class="navigation-down-inner">');
-                if (json.alarmLineSet || json.dataIntervalSet) {
-                    htmlArr.push("<dl>");
-                    htmlArr.push('<dt>设置站点信息</dt>');
-                    if (json.alarmLineSet) {
-                        htmlArr.push('<dd><a class="link" href="javascript:void(0)" onclick="$.getScript(\'../javascript/menu/deviceManager/alarmLineSet.js\');">报警门限</a></dd>');
-                    }
-                    if (json.dataIntervalSet) {
-                        htmlArr.push('<dd><a class="link" href="javascript:void(0)" onclick="$.getScript(\'../javascript/menu/deviceManager/dataIntervalSet.js\');">数据间隔</a></dd>');
-                    }
-                    htmlArr.push("</dl>");
-                }
-                if (json.getSpanTimeData || json.getRldData) {
-                    htmlArr.push("<dl>");
-                    htmlArr.push('<dt>数据获取</dt>');
-                    if (json.getRldData) {
-                        htmlArr.push('<dd><a class="link" href="javascript:void(0)" onclick="$.getScript(\'../javascript/menu/deviceManager/getRldData.js\');">实时数据</a></dd>');
-                    }
-                    if (json.getSpanTimeData) {
-                        htmlArr.push('<dd><a class="link" href="javascript:void(0)" onclick="$.getScript(\'../javascript/menu/deviceManager/getSpanTimeData.js\');">分段数据</a></dd>');
-                    }
-                    htmlArr.push("</dl>");
-                }
-                if (json.voltageRange || json.extremumRange || json.temperatureControl) {
-                    htmlArr.push("<dl>");
-                    htmlArr.push('<dt>参数设置</dt>');
-                    if (json.voltageRange) {
-                        htmlArr.push('<dd><a class="link" href="javascript:void(0)" onclick="$.getScript(\'../javascript/menu/deviceManager/voltageRange.js\');">零点量程</a></dd>');
-                    }
-                    if (json.extremumRange) {
-                        htmlArr.push('<dd><a class="link" href="javascript:void(0)" onclick="$.getScript(\'../javascript/menu/deviceManager/extremumRange.js\');">极值范围</a></dd>');
-                    }
-//						if(json.calibrationPoint){
-//							htmlArr.push('<dd><a class="link" href="javascript:void(0)" onclick="$.getScript(\'../javascript/menu/deviceManager/calibrationPoint.js\');">校准点位</a></dd>');
-//						}
-                    if (json.temperatureControl) {
-                        htmlArr.push('<dd><a class="link" href="javascript:void(0)" onclick="$.getScript(\'../javascript/menu/deviceManager/temperatureControl.js\');">温度控制</a></dd>');
-                    }
-                    htmlArr.push("</dl>");
-                }
-                htmlArr.push('</div></div>');
-            }
         }
     });
     // 退出
-    /*navDom.append('<li class="" _t_nav="logOff"><h2><a href="javascript:void(0)" onclick="$.getScript(\'/EnvDust/javascript/menu/outSystem.js\');">退出系统</a></h2></li>');*/
-
     $(".navigation-down").append(htmlArr.join(""));
     $("#sysName").html(SYS_NAME);
 }
