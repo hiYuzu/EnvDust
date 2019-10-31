@@ -14,37 +14,6 @@
 		<result property="optTime" column="opt_time" />
 	</resultMap>
 	
-	<!-- 获取系统日志个数 -->
-	<select id="getSysLogCount" resultMap="sysLogModelResultMap">
-		SELECT COUNT(DISTINCT tsl.log_id)
-		  FROM tbl_sys_log tsl
-		  LEFT JOIN tbl_user tu ON tsl.opt_user = tu.user_id
-		  <where>
-		  	<if test="sysLog.logTitle != null and sysLog.logTitle != ''">
-		  		AND tsl.log_title LIKE CONCAT('%',CONCAT(#{sysLog.logTitle},'%'))
-		  	</if>
-		  </where>
-	</select>
-	
-	<!-- 获取系统日志 -->
-	<select id="getSysLog" resultMap="sysLogModelResultMap">
-		SELECT DISTINCT 
-			   tsl.log_id,
-			   tsl.log_title,
-			   tsl.log_content,
-			   tsl.log_memo,
-			   tsl.log_time,
-			   tu.user_name AS opt_user_name,
-			   tsl.opt_time
-		  FROM tbl_sys_log tsl
-		  LEFT JOIN tbl_user tu ON tsl.opt_user = tu.user_id
-		  <where>
-		  	<if test="sysLog.logTitle != null and sysLog.logTitle != ''">
-		  		AND tsl.log_title LIKE CONCAT('%',CONCAT(#{sysLog.logTitle},'%'))
-		  	</if>
-		  </where>
-	</select>
-	
 	<!-- 新增系统日志 -->
 	<insert id="insertSysLog" parameterType="com.tcb.env.pojo.SysLog">
 		INSERT INTO tbl_sys_log(

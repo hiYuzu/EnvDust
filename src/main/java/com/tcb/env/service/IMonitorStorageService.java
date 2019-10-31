@@ -383,35 +383,6 @@ public interface IMonitorStorageService {
 	List<MonitorStorageModel> getNetMonitorRecentTime(
 			List<String> listdevicecode,List<String> listthingcode,String statusCode);
 	
-	
-	/**
-	 * 
-	 * <p>[功能描述]：更新原始上传数据(数据修约)</p>
-	 * 
-	 * @author	王垒, 2018年5月28日下午4:08:58
-	 * @since	EnvDust 1.0.0
-	 *
-	 * @param originalDataModel
-	 * @param optUserId
-	 * @return
-	 * @throws Exception
-	 */
-	int updateOriginalDeviceData(OriginalDataModel originalDataModel,int optUserId) throws Exception;
-	
-	/**
-	 * 
-	 * <p>[功能描述]：删除原始上传数据(数据修约)</p>
-	 * 
-	 * @author	王垒, 2018年6月5日上午11:10:20
-	 * @since	EnvDust 1.0.0
-	 *
-	 * @param originalDataModel
-	 * @param optUserId
-	 * @return
-	 * @throws Exception
-	 */
-	int deleteOriginalDeviceData(OriginalDataModel originalDataModel,int optUserId) throws Exception;
-	
 	/**
 	 * 
 	 * <p>[功能描述]：通过状态筛选设备编码</p>

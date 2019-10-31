@@ -1,7 +1,5 @@
 package com.tcb.env.dao;
 
-import java.util.List;
-
 import org.apache.ibatis.annotations.Param;
 
 import com.tcb.env.pojo.SysLog;
@@ -17,30 +15,6 @@ import com.tcb.env.pojo.SysLog;
  *
  */
 public interface ISysLogDao {
-
-	/**
-	 * 
-	 * <p>[功能描述]：获取系统日志个数</p>
-	 * 
-	 * @author	王垒, 2018年5月28日下午3:44:46
-	 * @since	EnvDust 1.0.0
-	 *
-	 * @param sysLog
-	 * @return
-	 */
-	int getSysLogCount(@Param("sysLog")SysLog sysLog);
-	
-	/**
-	 * 
-	 * <p>[功能描述]：获取系统日志</p>
-	 * 
-	 * @author	王垒, 2018年5月28日下午3:45:07
-	 * @since	EnvDust 1.0.0
-	 *
-	 * @param sysLog
-	 * @return
-	 */
-	List<SysLog> getSysLog(@Param("sysLog")SysLog sysLog);
 	
 	/**
 	 * 

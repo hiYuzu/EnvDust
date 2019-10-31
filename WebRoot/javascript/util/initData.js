@@ -341,29 +341,6 @@ function getUserPower() {
                     if (json.configmonitorInfo) {
                         htmlArr.push('<dd><a class="link" href="javascript:void(0)" onclick="$.getScript(\'../javascript/menu/system/configmonitorInfo.js\');">设置监控物质信息</a></dd>');
                     }
-                    if (json.sampledeviceInfo) {
-                        htmlArr.push('<dd><a class="link" href="javascript:void(0)" onclick="$.getScript(\'../javascript/menu/system/sampledeviceInfo.js\');">设置采样设备信息</a></dd>');
-                    }
-                    if (json.sampledeviceboxInfo) {
-                        htmlArr.push('<dd><a class="link" href="javascript:void(0)" onclick="$.getScript(\'../javascript/menu/system/sampledeviceboxInfo.js\');">设置采样箱子信息</a></dd>');
-                    }
-                    if (json.deviceVideoInfo) {
-                        htmlArr.push('<dd><a class="link" href="javascript:void(0)" onclick="$.getScript(\'../javascript/menu/system/deviceVideoInfo.js\');">设置视频设备信息</a></dd>');
-                    }
-                    htmlArr.push("</dl>");
-                }
-                if (json.updateOriginalData) {
-                    htmlArr.push("<dl>");
-                    htmlArr.push('<dt>数据修约</dt>');
-                    if (json.alarm) {
-                        htmlArr.push('<dd><a class="link" href="javascript:void(0)" onclick="$.getScript(\'../javascript/menu/query/updateOriginalData.js\');">数据修约</a></dd>');
-                    }
-                    htmlArr.push("</dl>");
-                }
-                if (json.sms) {
-                    htmlArr.push("<dl>");
-                    htmlArr.push('<dt>通知设置</dt>');
-                    htmlArr.push('<dd><a class="link" href="javascript:void(0)" onclick="$.getScript(\'../javascript/menu/system/smsInfo.js\');">通知设置</a></dd>');
                     htmlArr.push("</dl>");
                 }
                 if (json.configipInfo) {
@@ -473,15 +450,9 @@ function getUserPower() {
                 htmlArr.push('</div></div>');
             }
             if (json.heatMap) {//热力分布图
-                navDom.append('<li class="" _t_nav="heatMap"><h2><a href="javascript:void(0)">热力分布图</a></h2></li>');
+                navDom.append('<li class="" _t_nav="heatMap"><h2><a href="javascript:void(0)">分布溯源</a></h2></li>');
                 htmlArr.push('<div id="heatMap" class="nav-down-menu menu-1" style="display: none;" _t_nav="heatMap">');
                 htmlArr.push('<div class="navigation-down-inner">');
-                if (json.realheatMap) {
-                    htmlArr.push('<dl><dd><a class="link" href="javascript:void(0)" onclick="$.getScript(\'../javascript/menu/heatMap/realheatMap.js\');">实时监控热力图</a></dd></dl>');
-                }
-                if (json.historyheatMap) {
-                    htmlArr.push('<dl><dd><a class="link" href="javascript:void(0)" onclick="$.getScript(\'../javascript/menu/heatMap/historyheatMap.js\');">历史监控热力图</a></dd></dl>');
-                }
                 if (json.areaWeatherMap) {
                     htmlArr.push('<dl><dd><a class="link" href="javascript:void(0)" onclick="$.getScript(\'../javascript/menu/heatMap/areaWeatherMap.js\');">区域气象分布图</a></dd></dl>');
                 }

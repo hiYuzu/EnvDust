@@ -35,40 +35,6 @@ public interface IDeviceVideoDao {
     List<DeviceVideo> getDeviceVideo(@Param("deviceVideo") DeviceVideo deviceVideo);
 
     /**
-     * 新增设备视频
-     *
-     * @param deviceVideo
-     * @return
-     */
-    int insertDeviceVideo(@Param("deviceVideo") DeviceVideo deviceVideo);
-
-    /**
-     * 更新设备视频
-     *
-     * @param deviceVideo
-     * @return
-     */
-    int updateDeviceVideo(@Param("deviceVideo") DeviceVideo deviceVideo);
-
-    /**
-     * 删除设备视频
-     *
-     * @param idList
-     * @return
-     */
-    int deleteDeviceVideo(@Param("idList") List<String> idList);
-
-
-    /**
-     * 判断是否存在（非videoId的videoCode）
-     *
-     * @param videoId
-     * @param videoCode
-     * @return
-     */
-    int getDeviceVideoExist(@Param("videoId") String videoId, @Param("videoCode") String videoCode);
-
-    /**
      * 查询报警抓拍
      *
      * @param videoId

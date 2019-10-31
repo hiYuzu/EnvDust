@@ -417,38 +417,6 @@ public interface IMonitorStorageDao {
 	
 	/**
 	 * 
-	 * <p>[功能描述]：更新原始数据(数据修约)</p>
-	 * 
-	 * @author	王垒, 2018年5月28日下午2:44:24
-	 * @since	EnvDust 1.0.0
-	 *
-	 * @param dbName
-	 * @param originalDataModel
-	 * @return
-	 */
-	int updateOriginalData(
-			@Param("dbName") String dbName,
-			@Param("originalDataModel") OriginalDataModel originalDataModel);
-	
-	/**
-	 * 
-	 * <p>[功能描述]：删除原始数据(数据修约)</p>
-	 * 
-	 * @author	王垒, 2018年5月28日下午2:44:24
-	 * @since	EnvDust 1.0.0
-	 *
-	 * @param dbName
-	 * @param storageId
-	 * @param deviceCode
-	 * @return
-	 */
-	int deleteOriginalData(
-			@Param("dbName") String dbName,
-			@Param("storageId") String storageId,
-			@Param("deviceCode") String deviceCode);
-	
-	/**
-	 * 
 	 * <p>[功能描述]：通过状态筛选设备编码</p>
 	 * 
 	 * @author	王垒, 2018年12月10日下午2:21:01

@@ -297,49 +297,6 @@ public interface IDeviceService {
                                                            String thingCode, String beginTime, String endTime, boolean wFlag);
 
     /**
-     * <p>[功能描述]：获取设备热力图最近数据</p>
-     *
-     * @param listDeviceCode
-     * @param thingCode
-     * @return
-     * @author 王垒, 2017年8月16日下午4:32:45
-     * @since EnvDust 1.0.0
-     */
-    Map<String, List<ThermodynamicModel>> getThermRecently(
-            List<String> listDeviceCode,
-            String thingCode);
-
-    /**
-     * <p>[功能描述]：获取设备扩散模型相关数据</p>
-     *
-     * @param listDeviceCode
-     * @param wd
-     * @param ws
-     * @param thingCode
-     * @return
-     * @author 王垒, 2017年8月16日下午4:32:45
-     * @since EnvDust 1.0.0
-     */
-    Map<String, List<LocationModel>> getSpreadRecently(
-            List<String> listDeviceCode, String wd, String ws,
-            String thingCode);
-
-    /**
-     * <p>[功能描述]：获取工地园区排放统计信息</p>
-     *
-     * @param areaId
-     * @param thingCode
-     * @param beginTime
-     * @param endTime
-     * @return
-     * @author 王垒, 2017年9月6日下午2:39:44
-     * @since EnvDust 1.0.0
-     */
-    AreaStatisticModel getAreaValue(
-            int areaId, String dataType, String thingCode,
-            String beginTime, String endTime);
-
-    /**
      * <p>[功能描述]：更新设备地图坐标</p>
      *
      * @param deviceCode

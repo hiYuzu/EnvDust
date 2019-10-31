@@ -34,26 +34,6 @@ public class DeviceVideoServiceImpl implements IDeviceVideoService {
     }
 
     @Override
-    public int insertDeviceVideo(DeviceVideo deviceVideo) {
-        return deviceVideoDao.insertDeviceVideo(deviceVideo);
-    }
-
-    @Override
-    public int updateDeviceVideo(DeviceVideo deviceVideo) {
-        return deviceVideoDao.updateDeviceVideo(deviceVideo);
-    }
-
-    @Override
-    public int deleteDeviceVideo(List<String> idList) {
-        return deviceVideoDao.deleteDeviceVideo(idList);
-    }
-
-    @Override
-    public int getDeviceVideoExist(String videoId, String videoCode) {
-        return deviceVideoDao.getDeviceVideoExist(videoId, videoCode);
-    }
-
-    @Override
     public List<VideoImageModel> getVideoAlarmImage(String videoId) {
         return deviceVideoDao.getVideoAlarmImage(videoId);
     }

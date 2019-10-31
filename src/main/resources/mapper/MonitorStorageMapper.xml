@@ -761,30 +761,6 @@
 			status_code
 	</select>
 	
-	<!-- 更新原始数据(数据修约) -->
-	<update id="updateOriginalData">
-		UPDATE ${dbName}.${originalDataModel.deviceCode}
-		   SET update_time = update_time
-		   <if test="originalDataModel.thingRtd != null and originalDataModel.thingRtd != ''">
-		   		,thing_rtd = #{originalDataModel.thingRtd}
-		   </if>
-   		   <if test="originalDataModel.thingAvg != null and originalDataModel.thingAvg != ''">
-		   		,thing_avg = #{originalDataModel.thingAvg}
-		   </if>
-   		   <if test="originalDataModel.thingMax != null and originalDataModel.thingMax != ''">
-		   		,thing_max = #{originalDataModel.thingMax}
-		   </if>
-   		   <if test="originalDataModel.thingMin != null and originalDataModel.thingMin != ''">
-		   		,thing_min = #{originalDataModel.thingMin}
-		   </if>
-		 WHERE storage_id = #{originalDataModel.storageId}
-	</update>
-	
-	<!-- 删除原始数据(数据修约) -->
-	<delete id="deleteOriginalData">
-		DELETE FROM ${dbName}.${deviceCode} WHERE storage_id = #{storageId}
-	</delete>
-	
 	<!-- 通过状态筛选设备编码 -->
 	<select id="getDeviceCodeByStatus" resultType="java.lang.String">
 		SELECT DISTINCT td.device_code

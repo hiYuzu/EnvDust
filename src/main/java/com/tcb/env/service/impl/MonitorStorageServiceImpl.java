@@ -556,13 +556,13 @@ public class MonitorStorageServiceImpl implements IMonitorStorageService {
 		List<MonitorStorageModel> list = new ArrayList<MonitorStorageModel>();
 		try {
 			for (String devicecode : listdevicecode) {
-				List<MonitorStorageModel> listtemp = monitorStorageDao.getNetMonitorRecentTime(devicecode, listthingcode,statusCode);
+				List<MonitorStorageModel> listtemp = monitorStorageDao.getNetMonitorRecentTime(devicecode, listthingcode, statusCode);
 				if (listtemp != null && listtemp.size() > 0) {
 					list.addAll(listtemp);
 				} else {
 					// 获取device基本数据参数
 					try {
-						if(statusCode == null || statusCode.isEmpty() || statusCode.equals("Z")){
+						if (statusCode == null || statusCode.isEmpty() || statusCode.equals("Z")) {
 							MonitorStorageModel monitorStorageModel = monitorStorageDao.getNetNoData(devicecode);
 							if (monitorStorageModel != null) {
 								list.add(monitorStorageModel);
@@ -577,107 +577,6 @@ public class MonitorStorageServiceImpl implements IMonitorStorageService {
 			logger.error(LOG + "：查询网络状态设备，信息为：" + e.getMessage());
 		}
 		return list;
-	}
-
-	@Override
-	public int updateOriginalDeviceData(OriginalDataModel originalDataModel,int optUserId)
-			throws Exception {
-		int result = 0;
-		String dataTime = "";
-		if(DefaultArgument.PRO_CN_REALBEGIN.equals(originalDataModel.getUpdateType())){
-			dataTime = originalDataModel.getRtdTime()+":00";
-		}else if(DefaultArgument.PRO_CN_GETMINUTE.equals(originalDataModel.getUpdateType())){
-			dataTime = originalDataModel.getBeginTime()+":00";
-		}else if(DefaultArgument.PRO_GET_HOUR.equals(originalDataModel.getUpdateType())){
-			dataTime = originalDataModel.getBeginTime()+":00";
-		}else if(DefaultArgument.PRO_GET_DAY.equals(originalDataModel.getUpdateType())){
-			dataTime = originalDataModel.getBeginTime()+":00";
-		}
-		String dbAllName = dom4jConfig.getDataBaseConfig().getDbName();
-		if(!DateUtil.isRecentlyData(DateUtil.StringToTimestampSecond(dataTime), DefaultArgument.RECENT_DAYS)){
-			dbAllName = dom4jConfig.getDataBaseConfig().getDbOldName();
-		}
-		String deviceCode = originalDataModel.getDeviceCode();
-		OriginalDataModel odmOriginal = monitorStorageDao.getOriginalDataById(
-				dbAllName,String.valueOf(originalDataModel.getStorageId()),deviceCode);
-		//更新数据
-		result = monitorStorageDao.updateOriginalData(dbAllName, originalDataModel);
-		if(result > 0){
-			//追加log
-			SysLog sysLog = new SysLog();
-			sysLog.setLogTitle("数据修约");
-			if(DefaultArgument.PRO_CN_REALBEGIN.equals(originalDataModel.getUpdateType())){
-				sysLog.setLogContent("设备编号："+originalDataModel.getDeviceCode()
-						+",监测物质："+originalDataModel.getThingName()
-						+",数据类型编码："+originalDataModel.getUpdateType()
-						+",数据时间："+odmOriginal.getRtdTime()
-						+",实时数据由'"+odmOriginal.getThingRtd()+"'改为'"+originalDataModel.getThingRtd());
-			}else{
-				sysLog.setLogContent("设备编号："+originalDataModel.getDeviceCode()
-						+",监测物质："+originalDataModel.getThingName()
-						+",数据类型编码："+originalDataModel.getUpdateType()
-						+",数据时间："+odmOriginal.getBeginTime()
-						+",最大值数据由'"+odmOriginal.getThingMax()+"'改为'"+originalDataModel.getThingMax()
-						+",最小值数据由'"+odmOriginal.getThingMin()+"'改为'"+originalDataModel.getThingMin()
-						+",平均值数据由'"+odmOriginal.getThingAvg()+"'改为'"+originalDataModel.getThingAvg());
-			}
-			sysLog.setLogTime(DateUtil.GetSystemDateTime(0));
-			sysLog.setLogMemo("数据修改");
-			sysLog.setOptUser(optUserId);
-			sysLogDao.insertSysLog(sysLog);
-		}
-		
-		return result;
-	}
-
-	@Override
-	public int deleteOriginalDeviceData(OriginalDataModel originalDataModel,
-			int optUserId) throws Exception {
-		int result = 0;
-		String dataTime = "";
-		if(DefaultArgument.PRO_CN_REALBEGIN.equals(originalDataModel.getUpdateType())){
-			dataTime = originalDataModel.getRtdTime()+":00";
-		}else if(DefaultArgument.PRO_CN_GETMINUTE.equals(originalDataModel.getUpdateType())){
-			dataTime = originalDataModel.getBeginTime()+":00";
-		}else if(DefaultArgument.PRO_GET_HOUR.equals(originalDataModel.getUpdateType())){
-			dataTime = originalDataModel.getBeginTime()+":00";
-		}else if(DefaultArgument.PRO_GET_DAY.equals(originalDataModel.getUpdateType())){
-			dataTime = originalDataModel.getBeginTime()+":00";
-		}
-		String dbAllName = dom4jConfig.getDataBaseConfig().getDbName();
-		if(!DateUtil.isRecentlyData(DateUtil.StringToTimestampSecond(dataTime), DefaultArgument.RECENT_DAYS)){
-			dbAllName = dom4jConfig.getDataBaseConfig().getDbOldName();
-		}
-		String deviceCode = originalDataModel.getDeviceCode();
-		String storageId = String.valueOf(originalDataModel.getStorageId());
-		//删除数据
-		result = monitorStorageDao.deleteOriginalData(dbAllName, storageId, deviceCode);
-		if(result > 0){
-			//追加log
-			SysLog sysLog = new SysLog();
-			sysLog.setLogTitle("数据修约");
-			if(DefaultArgument.PRO_CN_REALBEGIN.equals(originalDataModel.getUpdateType())){
-				sysLog.setLogContent("设备编号："+originalDataModel.getDeviceCode()
-						+",监测物质："+originalDataModel.getThingName()
-						+",数据类型编码："+originalDataModel.getUpdateType()
-						+",数据时间："+originalDataModel.getRtdTime()
-						+",实时数据为'"+originalDataModel.getThingRtd()+"'");
-			}else{
-				sysLog.setLogContent("设备编号："+originalDataModel.getDeviceCode()
-						+",监测物质："+originalDataModel.getThingName()
-						+",数据类型编码："+originalDataModel.getUpdateType()
-						+",数据时间："+originalDataModel.getBeginTime()
-						+",最大值数据为'"+originalDataModel.getThingMax()+"'"
-						+",最小值数据为'"+originalDataModel.getThingMin()+"'"
-						+",平均值数据为'"+originalDataModel.getThingAvg()+"'");
-			}
-			sysLog.setLogTime(DateUtil.GetSystemDateTime(0));
-			sysLog.setLogMemo("数据删除");
-			sysLog.setOptUser(optUserId);
-			sysLogDao.insertSysLog(sysLog);
-		}
-		
-		return result;
 	}
 
 	@Override

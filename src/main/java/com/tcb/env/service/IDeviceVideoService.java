@@ -33,40 +33,6 @@ public interface IDeviceVideoService {
      */
     List<DeviceVideo> getDeviceVideo(DeviceVideo deviceVideo);
 
-
-    /**
-     * 新增设备视频
-     *
-     * @param deviceVideo
-     * @return
-     */
-    int insertDeviceVideo(DeviceVideo deviceVideo);
-
-    /**
-     * 更新设备视频
-     *
-     * @param deviceVideo
-     * @return
-     */
-    int updateDeviceVideo(DeviceVideo deviceVideo);
-
-    /**
-     * 删除设备视频
-     *
-     * @param idList
-     * @return
-     */
-    int deleteDeviceVideo(List<String> idList);
-
-    /**
-     * 判断是否存在（非videoId的videoCode）
-     *
-     * @param videoId
-     * @param videoCode
-     * @return
-     */
-    int getDeviceVideoExist(String videoId, String videoCode);
-
     /**
      * 查询报警抓拍
      *
