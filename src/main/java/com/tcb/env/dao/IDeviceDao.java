@@ -336,16 +336,6 @@ public interface IDeviceDao {
     String getAreaName(@Param("deviceCode") String deviceCode);
 
     /**
-     * <p>[功能描述]：插入设备时间记录表</p>
-     *
-     * @param device
-     * @return
-     * @author 王垒, 2016年6月15日上午8:35:25
-     * @since EnvDust 1.0.0
-     */
-    int insertDeviceTime(@Param("device") Device device);
-
-    /**
      * <p>[功能描述]：获取设备热力图信息（分表数据）</p>
      *
      * @param dbName

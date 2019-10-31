@@ -872,18 +872,6 @@
 		LIMIT 0,1
 	</select>
 
-    <!-- 插入设备时间记录表 -->
-    <insert id="insertDeviceTime">
-		INSERT INTO tbl_device_time 
-		(
-			device_code
-		)
-		VALUES
-		(
-			#{device.deviceCode}
-		)
-	</insert>
-
     <!-- 获取设备热力图信息（分表数据） -->
     <select id="getThermodynamic" resultMap="thermodynamicResultMap">
         SELECT td.device_x AS lng,

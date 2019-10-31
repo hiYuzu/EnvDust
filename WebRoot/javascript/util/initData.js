@@ -395,50 +395,6 @@ function getUserPower() {
                     }
                     htmlArr.push("</dl>");
                 }
-                htmlArr.push('</div></div>');
-            }
-            if (json.statisticalAnalysis) {
-                navDom.append('<li class="" _t_nav="statisticalAnalysis"><h2><a href="javascript:void(0)">统计分析</a></h2></li>');
-                htmlArr.push('<div id="statisticalAnalysis" class="nav-down-menu menu-1" style="display: none;" _t_nav="statisticalAnalysis">');
-                htmlArr.push('<div class="navigation-down-inner">');
-                if (json.envStatisticalReport || json.olrStatisticalReport || json.envStatisticalRanking
-                    || json.dataCompare || json.overAlarmReport || json.dischargeTotal) {
-                    htmlArr.push("<dl>");
-                    htmlArr.push('<dt>统计报表</dt>');
-                    if (json.envStatisticalReport) {
-                        htmlArr.push('<dd><a class="link" href="javascript:void(0)" onclick="$.getScript(\'../javascript/menu/query/envStatisticalReport.js\');">年月日时统计报表</a></dd>');
-                    }
-                    if (json.olrStatisticalReport) {
-                        htmlArr.push('<dd><a class="link" href="javascript:void(0)" onclick="$.getScript(\'../javascript/menu/query/olrStatisticalReport.js\');">连续监控统计报表</a></dd>');
-                    }
-                    if (json.envStatisticalRanking) {
-                        htmlArr.push('<dd><a class="link" href="javascript:void(0)" onclick="$.getScript(\'../javascript/menu/query/envStatisticalRanking.js\');">站点排名统计报表</a></dd>');
-                    }
-                    if (json.dataCompare) {
-                        htmlArr.push('<dd><a class="link" href="javascript:void(0)" onclick="$.getScript(\'../javascript/menu/query/dataCompare.js\');">同比环比统计报表</a></dd>');
-                    }
-                    if (json.overAlarmReport) {
-                        htmlArr.push('<dd><a class="link" href="javascript:void(0)" onclick="$.getScript(\'../javascript/menu/query/overAlarmReport.js\');">超标数据统计报表</a></dd>');
-                    }
-                    if (json.dischargeTotal) {
-                        htmlArr.push('<dd><a class="link" href="javascript:void(0)" onclick="$.getScript(\'../javascript/menu/query/dischargeTotal.js\');">污染排放统计报表</a></dd>');
-                    }
-                    htmlArr.push("</dl>");
-                }
-                if (json.effectiveRate || json.onlineRate || json.weatherValueData) {
-                    htmlArr.push("<dl>");
-                    htmlArr.push('<dt>数据分析</dt>');
-                    if (json.effectiveRate) {
-                        htmlArr.push('<dd><a class="link" href="javascript:void(0)" onclick="$.getScript(\'../javascript/menu/query/effectiveRate.js\');">有效率分析</a></dd>');
-                    }
-                    if (json.onlineRate) {
-                        htmlArr.push('<dd><a class="link" href="javascript:void(0)" onclick="$.getScript(\'../javascript/menu/query/onlineRate.js\');">在线率分析</a></dd>');
-                    }
-                    if (json.weatherValueData) {
-                        htmlArr.push('<dd><a class="link" href="javascript:void(0)" onclick="$.getScript(\'../javascript/menu/query/weatherValueData.js\');">气象值分析</a></dd>');
-                    }
-                    htmlArr.push("</dl>");
-                }
                 if(json.filelist){
                     htmlArr.push("<dl>");
                     htmlArr.push('<dt>文件存储</dt>');
