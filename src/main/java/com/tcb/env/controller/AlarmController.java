@@ -1,8 +1,6 @@
 package com.tcb.env.controller;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -31,16 +29,8 @@ import com.tcb.env.util.DefaultArgument;
 import com.tcb.env.util.SessionManager;
 
 /**
- * <p>
  * [功能描述]：报警控制器
- * </p>
- * <p>
- * Copyright (c) 1993-2016 TCB Corporation
- * </p>
- *
- * @author 王垒
- * @version 1.0, 2016年4月26日下午2:58:55
- * @since EnvDust 1.0.0
+ * @author kyq
  */
 @Controller
 @RequestMapping("/AlarmController")
@@ -73,21 +63,7 @@ public class AlarmController {
     private ITreeService treeService;
 
     /**
-     * 声明控制类
-     */
-    @Resource
-    private DeviceController deviceController;
-
-    /**
-     * <p>
      * [功能描述]：查询报警信息
-     * </p>
-     *
-     * @param alarmmodel
-     * @param httpsession
-     * @return
-     * @author 王垒, 2016年4月26日下午3:30:59
-     * @since EnvDust 1.0.0
      */
     @RequestMapping(value = "/queryAlarms", method = {RequestMethod.POST})
     @ResponseBody
@@ -112,7 +88,7 @@ public class AlarmController {
         }
         if (listdevicecode != null && listdevicecode.size() > 0) {
             List<AlarmModel> listAlarMmodel = new ArrayList<AlarmModel>();
-            List<Alarm> listAlarm = new ArrayList<Alarm>();
+            List<Alarm> listAlarm;
             int count = alarmService.getAlarmCount(alarm, listdevicecode);
             if (count > 0) {
                 listAlarm = alarmService.getAlarm(alarm, listdevicecode);
@@ -131,46 +107,13 @@ public class AlarmController {
         return resultListModel;
     }
 
-    /**
-     * 查询报警信息（预处理）
-     *
-     * @param map
-     * @param session
-     * @return
-     */
-    @RequestMapping(value = "/preQueryAlarms", method = {RequestMethod.POST})
-    @ResponseBody
-    public ResultListModel<AlarmModel> preQueryAlarms(@RequestBody Map map, HttpSession session) {
-        int rows = (Integer) map.get("rows");
-        int page = (Integer) map.get("page");
-        String beginAlarmTime = (String) map.get("beginAlarmTime");
-        String endAlarmTime = (String) map.get("endAlarmTime");
-        String deviceName = null;
-        Object o = map.get("deviceName");
-        if (o != null) {
-            deviceName = (String) o;
-        }
-
-        AlarmModel alarmModel = new AlarmModel();
-        alarmModel.setRows(rows);
-        alarmModel.setPage(page);
-        alarmModel.setBeginAlarmTime(beginAlarmTime);
-        alarmModel.setEndAlarmTime(endAlarmTime);
-        if (deviceName != null) {
-            alarmModel.setDeviceName(deviceName);
-        }
-
-        return queryAlarms(null, alarmModel, session);
-    }
-
     @RequestMapping(value = "/updateAlarms", method = {RequestMethod.POST})
     @ResponseBody
     public ResultModel updateAlarms(AlarmModel alarmmodel, @RequestParam(value = "list[]") List<String> list, HttpSession httpsession) {
         ResultModel resultModel = new ResultModel();
         if (alarmmodel != null) {
             try {
-                Alarm alarm = new Alarm();
-                alarm = ConvertAlarm(alarmmodel, httpsession);
+                Alarm alarm = ConvertAlarm(alarmmodel, httpsession);
                 int intresult = alarmService.updateAlarm(alarm, list);
                 if (intresult > 0) {
                     resultModel.setResult(true);
@@ -188,14 +131,7 @@ public class AlarmController {
     }
 
     /**
-     * <p>
      * [功能描述]：删除报警信息
-     * </p>
-     *
-     * @param list
-     * @return
-     * @author 王垒, 2016年3月22日下午12:39:32
-     * @since EnvDust 1.0.0
      */
     @RequestMapping(value = "/deleteAlarms", method = {RequestMethod.POST})
     @ResponseBody
@@ -227,15 +163,7 @@ public class AlarmController {
     }
 
     /**
-     * <p>
      * [功能描述]：AlarmModel转换成Alarm
-     * </p>
-     *
-     * @param alarmModel
-     * @param httpsession
-     * @return
-     * @author 王垒, 2016年4月26日下午3:15:19
-     * @since EnvDust 1.0.0
      */
     private Alarm ConvertAlarm(AlarmModel alarmModel, HttpSession httpsession) {
         Alarm alarm = new Alarm();
@@ -276,14 +204,7 @@ public class AlarmController {
     }
 
     /**
-     * <p>
      * [功能描述]：Alarm转换成AlarmModel
-     * </p>
-     *
-     * @param alarm
-     * @return
-     * @author 王垒, 2016年4月26日下午3:15:19
-     * @since EnvDust 1.0.0
      */
     private AlarmModel ConvertAlarmModel(Alarm alarm) {
         AlarmModel alarmModel = new AlarmModel();
@@ -347,16 +268,7 @@ public class AlarmController {
     }
 
     /**
-     * <p>
      * [功能描述]：获取系统状态
-     * </p>
-     *
-     * @param status   ：状态值
-     * @param nostatus ：非状态值
-     * @param nostatus ：状态类型
-     * @return
-     * @author 王垒, 2016年4月28日下午12:36:49
-     * @since EnvDust 1.0.0
      */
     @RequestMapping(value = "/getStatus", method = {RequestMethod.POST})
     @ResponseBody

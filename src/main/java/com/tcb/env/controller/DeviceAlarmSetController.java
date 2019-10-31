@@ -19,16 +19,7 @@ import com.tcb.env.service.IMonitorService;
 import com.tcb.env.util.DefaultArgument;
 
 /**
- * <p>
- * [功能描述]：
- * </p>
- * <p>
- * Copyright (c) 1993-2016 TCB Corporation
- * </p>
- *
- * @author 王垒
- * @version 1.0, 2016年6月1日上午10:37:09
- * @since EnvDust 1.0.0
+ * @author kyq
  */
 @Controller
 @RequestMapping("/DeviceAlarmSetController")
@@ -50,15 +41,7 @@ public class DeviceAlarmSetController {
     @Resource
     private IDeviceService deviceService;
     /**
-     * <p>
      * [功能描述]：获取设备监测物报警门限(thingname)
-     * </p>
-     *
-     * @param listDeviceCode
-     * @param listThingCode
-     * @return
-     * @author 王垒, 2016年6月2日下午3:40:11
-     * @since EnvDust 1.0.0
      */
     @RequestMapping(value = "/getDeviceAlarmLineThgName", method = {RequestMethod.POST})
     public @ResponseBody
@@ -107,15 +90,7 @@ public class DeviceAlarmSetController {
     }
 
     /**
-     * <p>
      * [功能描述]：获取设备监测物报警门限(devicename-areaname)
-     * </p>
-     *
-     * @param listDeviceCode
-     * @param listThingCode
-     * @return
-     * @author 王垒, 2016年6月2日下午3:40:11
-     * @since EnvDust 1.0.0
      */
     @RequestMapping(value = "/getDeviceAlarmLineDevName", method = {RequestMethod.POST})
     public @ResponseBody

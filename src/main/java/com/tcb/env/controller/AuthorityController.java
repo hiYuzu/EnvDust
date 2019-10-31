@@ -1,9 +1,3 @@
-/**
- * Copyright (c) 1996-2016天津通广集团电子信息部，版权所有，复制必究。
- * 此程序版权归天津通广集团电子信息部所有，任何侵犯版权的行为将被追究
- * 法律责任。未经天津通广集团电子信息部的书面批准，不得将此程序的任何
- * 部分以任何形式、采用任何手段、或为任何目的，进行复制或扩散。
- */
 package com.tcb.env.controller;
 
 import java.util.ArrayList;
@@ -32,13 +26,7 @@ import com.tcb.env.util.DateUtil;
 import com.tcb.env.util.DefaultArgument;
 
 /**
- * <p>[功能描述]：权限控制</p>
- * <p>Copyright (c) 1996-2016 TCB Corporation</p>
- * 
- * @author	任崇彬
- * @version	1.0, 2016年4月6日上午10:40:51
- * @since	EnvDust 1.0.0
- * 
+ * [功能描述]：权限控制
  */
 @Controller
 @RequestMapping("/AuthorityController")
@@ -70,14 +58,7 @@ public class AuthorityController {
 	private Dom4jConfig dom4jConfig;
 	
 	/**
-	 * <p>[功能描述]：权限查询</p>
-	 * 
-	 * @author	任崇彬, 2016年4月6日上午11:39:04
-	 * @since	EnvDust 1.0.0
-	 *
-	 * @param manufacturerModel
-	 * @param httpsession
-	 * @return 
+	 * [功能描述]：权限查询
 	 */
 	@RequestMapping(value = "/queryAuthority", method = { RequestMethod.POST })
 	public @ResponseBody ResultListModel<AuthorityModel> queryAuthority(
@@ -85,7 +66,7 @@ public class AuthorityController {
 		//创建类
 		ResultListModel<AuthorityModel> resultListModel = new ResultListModel<AuthorityModel>();
 		List<AuthorityModel> listAuthorityModel = new ArrayList<AuthorityModel>();
-		List<Authority> listAuthority = new ArrayList<Authority>();
+		List<Authority> listAuthority;
 		//转换成组织
 		Authority authority = ConvertAuthority(authorityModel,httpsession);
 		int count = authorityService.getAuthorityCount(authority);
@@ -105,14 +86,7 @@ public class AuthorityController {
 		return resultListModel;
 	}
 	/**
-	 * <p>[功能描述]：新增权限数据</p>
-	 * 
-	 * @author	任崇彬, 2016年4月6日上午11:54:16
-	 * @since	EnvDust 1.0.0
-	 *
-	 * @param authorityModel
-	 * @param httpsession
-	 * @return 
+	 * [功能描述]：新增权限数据
 	 */
 	@RequestMapping(value = "/insertAuthority", method = { RequestMethod.POST })
 	public @ResponseBody ResultModel insertAuthority(AuthorityModel authorityModel,
@@ -150,13 +124,7 @@ public class AuthorityController {
 		return resultModel;
 	}
 	/**
-	 * <p>[功能描述]：删除数据</p>
-	 * 
-	 * @author	任崇彬, 2016年4月6日下午3:29:35
-	 * @since	EnvDust 1.0.0
-	 *
-	 * @param list
-	 * @return 
+	 * [功能描述]：删除数据
 	 */
 	@RequestMapping(value = "/deleteAuthority", method = { RequestMethod.POST })
 	public @ResponseBody ResultModel deleteAuthority(
@@ -194,14 +162,7 @@ public class AuthorityController {
 		return resultModel;
 	}
 	/**
-	 * <p>[功能描述]：更改权限组数据</p>
-	 * 
-	 * @author	任崇彬, 2016年4月6日下午3:51:15
-	 * @since	EnvDust 1.0.0
-	 *
-	 * @param authorityModel
-	 * @param httpsession
-	 * @return 
+	 * [功能描述]：更改权限组数据
 	 */
 	@RequestMapping(value = "/updateAuthority", method = { RequestMethod.POST })
 	public @ResponseBody ResultModel updateAuthority(AuthorityModel authorityModel,
@@ -234,14 +195,7 @@ public class AuthorityController {
 		return resultModel;
 	}
 	/**
-	 * <p>[功能描述]：model转成权限</p>
-	 * 
-	 * @author	任崇彬, 2016年4月6日上午11:07:05
-	 * @since	EnvDust 1.0.0
-	 *
-	 * @param authorityModel
-	 * @param httpsession
-	 * @return 
+	 * [功能描述]：model转成权限
 	 */
 	private Authority ConvertAuthority(AuthorityModel authorityModel, HttpSession httpsession){
 		Authority  authority = new Authority();
@@ -265,13 +219,7 @@ public class AuthorityController {
 		return authority;
 	}
 /**
- * <p>[功能描述]：将权限转换成model</p>
- * 
- * @author	任崇彬, 2016年4月6日上午11:00:10
- * @since	EnvDust 1.0.0
- *
- * @param authority
- * @return 
+ * [功能描述]：将权限转换成model
  */
 private AuthorityModel ConvertAuthorityModel(Authority authority){
 	AuthorityModel authorityModel = new AuthorityModel();

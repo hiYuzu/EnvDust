@@ -1,9 +1,3 @@
-/**
- * Copyright (c) 1996-2016天津通广集团电子信息部，版权所有，复制必究。
- * 此程序版权归天津通广集团电子信息部所有，任何侵犯版权的行为将被追究
- * 法律责任。未经天津通广集团电子信息部的书面批准，不得将此程序的任何
- * 部分以任何形式、采用任何手段、或为任何目的，进行复制或扩散。
- */
 package com.tcb.env.controller;
 
 import java.sql.Timestamp;
@@ -15,7 +9,6 @@ import javax.servlet.http.HttpSession;
 
 import com.tcb.env.pojo.*;
 import org.apache.log4j.Logger;
-//import org.springframework.core.task.TaskExecutor;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,16 +45,9 @@ import com.tcb.env.util.SessionManager;
 import com.tcb.env.util.SortListUtil;
 
 /**
- * <p>
  * [功能描述]：设备控制器
- * </p>
- * <p>
- * Copyright (c) 1996-2016 TCB Corporation
- * </p>
  *
- * @author 任崇彬
- * @version 1.0, 2016年3月28日上午9:46:07
- * @since EnvDust 1.0.0
+ * @author kyq
  */
 @Controller
 @RequestMapping("/DeviceController")
@@ -115,18 +101,6 @@ public class DeviceController {
     private ISysflagService sysflagService;
 
     /**
-     * 配置文件服务类
-     */
-    @Resource
-    private Dom4jConfig dom4jConfig;
-
-    /**
-     *
-     */
-    @Resource
-    private WebsocketHandler websocketHandler;
-
-    /**
      * 用来存储session对应的消息,并且用来停止线程
      */
     public static Map<String, MapMonitorData> monitorMap;
@@ -142,13 +116,7 @@ public class DeviceController {
 
 
     /**
-     * <p>[功能描述]：查询区域下权限设备</p>
-     *
-     * @param areaId
-     * @param httpsession
-     * @return
-     * @author 王垒, 2018年1月22日上午11:05:58
-     * @since EnvDust 1.0.0
+     * [功能描述]：查询区域下权限设备
      */
     @RequestMapping(value = "/queryAreaAuthDevice", method = {RequestMethod.POST})
     @ResponseBody
@@ -175,20 +143,7 @@ public class DeviceController {
     }
 
     /**
-     * <p>
      * [功能描述]：获取地图显示数据
-     * </p>
-     *
-     * @param projectId
-     * @param list
-     * @param levelflag
-     * @param nostatus
-     * @param select
-     * @param maxsize
-     * @param httpsession
-     * @return
-     * @author 王垒, 2016年4月20日上午9:17:25
-     * @since EnvDust 1.0.0
      */
     @RequestMapping(value = "/getDeviceMapData", method = {RequestMethod.POST})
     @ResponseBody
@@ -307,17 +262,7 @@ public class DeviceController {
     }
 
     /**
-     * <p>
      * [功能描述]：获取报警详细信息
-     * </p>
-     *
-     * @param projectId
-     * @param list
-     * @param nostatus
-     * @param httpsession
-     * @return
-     * @author 王垒, 2016年5月13日下午4:14:36
-     * @since EnvDust 1.0.0
      */
     @RequestMapping(value = "/getDeviceMapAlarmDetail", method = {RequestMethod.POST})
     @ResponseBody
@@ -372,10 +317,6 @@ public class DeviceController {
                     if (listMapDev != null && listMapDev.size() > 0) {
                         for (MapDeviceModel mapDeviceModel : listMapDev) {
                             if (mapDeviceModel != null) {
-//                                if (mapDeviceModel.getStatusInfo() == null || mapDeviceModel.getStatusInfo().isEmpty()
-//                                        || mapDeviceModel.getStatusCode() == "NT") {
-//
-//                                }
                                 List<String> statusInfoList = alarmService.getRcentlyAlarmInfo(mapDeviceModel.getDeviceCode(),
                                         mapDeviceModel.getStatusCode());
                                 if (statusInfoList != null && statusInfoList.size() > 0) {
@@ -399,146 +340,7 @@ public class DeviceController {
     }
 
     /**
-     * 获取24小时内报警信息
-     *
-     * @param projectId
-     * @param list
-     * @param levelFlag
-     * @param status
-     * @param noStatus
-     * @param rows
-     * @param page
-     * @param httpsession
-     * @return
-     */
-    @RequestMapping(value = "/getDeviceMapAlarmWithinDay", method = {RequestMethod.POST})
-    @ResponseBody
-    public ResultListModel<MapDeviceModel> getDeviceMapAlarmWithinDay(
-            @RequestParam(value = "projectId", required = false) String projectId,
-            @RequestParam(value = "list[]") List<String> list, String levelFlag,
-            String status, String noStatus, int rows, int page, HttpSession httpsession) {
-        ResultListModel<MapDeviceModel> resultListModel = new ResultListModel<MapDeviceModel>();
-        try {
-            if (SessionManager.isSessionValidate(httpsession, DefaultArgument.LOGIN_USER)) {
-                return resultListModel;
-            }
-            List<String> listdevicecode = new ArrayList<String>();
-            String usercode = null;
-            UserModel loginuser = (UserModel) httpsession.getAttribute(DefaultArgument.LOGIN_USER);
-            if (loginuser != null) {
-                usercode = loginuser.getUserCode();
-            }
-            if (String.valueOf(DefaultArgument.INT_DEFAULT).equals(list.get(0))) {
-                List<TreeModel> listDev = treeService.getAuthorityDevices(
-                        usercode, projectId, DefaultArgument.INT_DEFAULT, null, status, noStatus);
-                for (TreeModel treeModel : listDev) {
-                    if ("N".equals(treeModel.getState())) {
-                        //筛选掉正常设备
-                        continue;
-                    } else {
-                        listdevicecode.add(treeModel.getId());
-                    }
-                }
-            } else if (levelFlag != null && !levelFlag.isEmpty()) {
-                List<Integer> listareaid = new ArrayList<Integer>();
-                if (levelFlag.equals(DefaultArgument.BOTTOM_LEVEL_FALG)) {
-                    listareaid.add(Integer.valueOf(list.get(0)));
-                } else {
-                    listareaid = treeService.getAuthorityBottomArea(projectId, listareaid, Integer.valueOf(list.get(0)), usercode);
-                }
-                for (Integer areaid : listareaid) {
-                    List<TreeModel> listDev = treeService.getAuthorityDevices(usercode, projectId, areaid, null, status, noStatus);
-                    for (TreeModel treeModel : listDev) {
-                        if ("N".equals(treeModel.getState())) {
-                            //筛选掉正常设备
-                            continue;
-                        } else {
-                            listdevicecode.add(treeModel.getId());
-                        }
-                    }
-                }
-            } else {
-                for (String temp : list) {
-                    listdevicecode.add(temp);
-                }
-            }
-            int count = 0;
-            List<MapDeviceModel> listMapDev = new ArrayList<MapDeviceModel>();
-            if (listdevicecode != null && listdevicecode.size() > 0) {
-                Timestamp beginAlarmTime = DateUtil.GetSystemDateTime(24 * 60 * 60 * 1000);
-                Timestamp endAlarmTime = DateUtil.GetSystemDateTime(0);
-                count = deviceService.getMapDeviceCount(listdevicecode, status, noStatus, beginAlarmTime, endAlarmTime, null);
-                if (count > 0) {
-                    listMapDev = deviceService.getMapDevice(listdevicecode, status, noStatus, beginAlarmTime, endAlarmTime, null, (page - 1) * rows, rows);
-                    // 设置设备状态
-                    if (listMapDev != null && listMapDev.size() > 0) {
-                        for (MapDeviceModel mapDeviceModel : listMapDev) {
-                            if (mapDeviceModel != null) {
-                                List<String> statusInfoList = alarmService.getRcentlyAlarmInfo(mapDeviceModel.getDeviceCode(),
-                                        mapDeviceModel.getStatusCode());
-                                if (statusInfoList != null && statusInfoList.size() > 0) {
-                                    String statusInfo = "";
-                                    for (String tempInfo : statusInfoList) {
-                                        statusInfo += tempInfo + "\r\n";
-                                    }
-                                    mapDeviceModel.setStatusInfo(statusInfo);
-                                }
-                            }
-                        }
-                        resultListModel.setRows(listMapDev);
-                    }
-                }
-            }
-            resultListModel.setTotal(listMapDev.size());
-        } catch (Exception e) {
-            logger.error(LOG + ":查询报警信息失败，信息为：" + e.getMessage());
-        }
-        return resultListModel;
-    }
-
-    /**
-     * <p>
-     * [功能描述]：获取地图报警显示数据
-     * </p>
-     *
-     * @param httpsession
-     * @return
-     * @author 王垒, 2016年4月20日上午9:17:25
-     * @since EnvDust 1.0.0
-     */
-    public ResultAjaxPushModel getDeviceMapAlarmData(
-            List<String> listdevicecode, String nostatus, String select, int maxsize, HttpSession httpsession) {
-        ResultAjaxPushModel resultAjaxPushModel = new ResultAjaxPushModel();
-        resultAjaxPushModel.setSelect(select);
-        if (SessionManager.isSessionValidate(httpsession, DefaultArgument.LOGIN_USER)) {
-            return resultAjaxPushModel;
-        }
-        UserModel loginuser = (UserModel) httpsession.getAttribute(DefaultArgument.LOGIN_USER);
-        List<MapDeviceModel> listMapDev = new ArrayList<MapDeviceModel>();
-        if (listdevicecode != null && listdevicecode.size() > 0) {
-            try {
-                listMapDev = deviceService.getMapAlarmDevice(listdevicecode, null);
-                resultAjaxPushModel.setResult(listMapDev);
-            } catch (Exception e) {
-                logger.error(LOG + ":查询地图信息失败，信息为：" + e.getMessage());
-            } finally {
-                loginuser.setAlarmUpdateTime(DateUtil.StringToTimestampSecond(sysflagService
-                        .getSysFlagValue(DefaultArgument.ALARM_UPD)));// 赋值本次查询时间，以便于下次查询
-            }
-        }
-        return resultAjaxPushModel;
-    }
-
-    /**
-     * <p>
      * [功能描述]：新增设备
-     * </p>
-     *
-     * @param deviceModel
-     * @param httpsession
-     * @return
-     * @author 任崇彬, 2016年3月28日上午11:51:39
-     * @since EnvDust 1.0.0
      */
     @RequestMapping(value = "/insertDevice", method = {RequestMethod.POST})
     @ResponseBody

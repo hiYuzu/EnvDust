@@ -25,16 +25,8 @@ import com.tcb.env.util.DateUtil;
 import com.tcb.env.util.DefaultArgument;
 
 /**
- * <p>
  * [功能描述]：Area控制器
- * </p>
- * <p>
- * Copyright (c) 1993-2016 TCB Corporation
- * </p>
- *
- * @author 王垒
- * @version 1.0, 2016年3月23日上午11:14:21
- * @since EnvDust 1.0.0
+ * @author kyq
  */
 @Controller
 @RequestMapping("/AreaController")
@@ -72,19 +64,14 @@ public class AreaController {
     private ITreeService treeService;
 
     /**
-     * <p>[功能描述]：查询所有最底层区域</p>
-     *
-     * @param httpsession
-     * @return
-     * @author 王垒, 2018年1月22日上午10:32:32
-     * @since EnvDust 1.0.0
+     * [功能描述]：查询所有最底层区域
      */
     @RequestMapping(value = "/queryBottomAreas", method = {RequestMethod.POST})
     @ResponseBody
     public ResultListModel<AreaModel> queryBottomAreas(HttpSession httpsession) {
         ResultListModel<AreaModel> resultListModel = new ResultListModel<AreaModel>();
         List<AreaModel> listAreaModel = new ArrayList<AreaModel>();
-        List<Area> listArea = new ArrayList<Area>();
+        List<Area> listArea;
         String userCode = null;
         UserModel loginuser = (UserModel) httpsession.getAttribute(DefaultArgument.LOGIN_USER);
         if (loginuser != null) {
@@ -103,22 +90,14 @@ public class AreaController {
     }
 
     /**
-     * <p>
      * [功能描述]：查询区域信息
-     * </p>
-     *
-     * @param areamodel
-     * @param httpsession
-     * @return
-     * @author 王垒, 2016年3月24日上午9:26:00
-     * @since EnvDust 1.0.0
      */
     @RequestMapping(value = "/queryAreas", method = {RequestMethod.POST})
     @ResponseBody
     public ResultListModel<AreaModel> queryAreas(AreaModel areamodel, HttpSession httpsession) {
         ResultListModel<AreaModel> resultListModel = new ResultListModel<AreaModel>();
         List<AreaModel> listareamodel = new ArrayList<AreaModel>();
-        List<Area> listarea = new ArrayList<Area>();
+        List<Area> listarea;
         Area area = ConvertArea(areamodel, httpsession);
         boolean ignorecountry = false;
         int count = areaService.getCount(area, ignorecountry);
@@ -136,17 +115,6 @@ public class AreaController {
         return resultListModel;
     }
 
-    /**
-     * <p>
-     * [功能描述]：
-     * </p>
-     *
-     * @param areamodel
-     * @param httpsession
-     * @return
-     * @author 王垒, 2016年3月24日上午9:50:55
-     * @since EnvDust 1.0.0
-     */
     @RequestMapping(value = "insertAreas", method = {RequestMethod.POST})
     @ResponseBody
     public ResultModel insertAreas(AreaModel areamodel, HttpSession httpsession) {
@@ -154,8 +122,7 @@ public class AreaController {
         if (areamodel != null) {
             try {
                 if (areaService.getAreaExist(areamodel.getAreaId(), areamodel.getAreaName()) == 0) {
-                    Area insertArea = new Area();
-                    insertArea = ConvertArea(areamodel, httpsession);
+                    Area insertArea = ConvertArea(areamodel, httpsession);
                     int intresult = areaService.insertAreas(insertArea);
                     if (intresult > 0) {
                         resultModel.setResult(true);
@@ -239,14 +206,7 @@ public class AreaController {
     }
 
     /**
-     * <p>
      * [功能描述]：获取上级区域下拉框数据
-     * </p>
-     *
-     * @param id
-     * @return
-     * @author 王垒, 2016年3月23日下午2:34:03
-     * @since EnvDust 1.0.0
      */
     @RequestMapping(value = "/queryAreaDropDown", method = {RequestMethod.POST})
     @ResponseBody
@@ -263,11 +223,6 @@ public class AreaController {
 
     /**
      * 获取同级区域下拉框数据
-     *
-     * @param id
-     * @param levelFlag
-     * @param session
-     * @return
      */
     @RequestMapping(value = "/queryAreaDropDownEqual", method = {RequestMethod.POST})
     @ResponseBody
@@ -292,10 +247,6 @@ public class AreaController {
 
     /**
      * 获取下级区域下拉框数据
-     *
-     * @param id
-     * @return
-     * @author hiYuzu
      */
     @RequestMapping(value = "/queryAreaDropDownSub", method = {RequestMethod.POST})
     @ResponseBody
@@ -346,9 +297,6 @@ public class AreaController {
 
     /**
      * 获取最底层区域的上级区域
-     *
-     * @param httpSession
-     * @return
      */
     @RequestMapping(value = "/queryBottomAreasUpperDropDown", method = {RequestMethod.POST})
     @ResponseBody
@@ -388,20 +336,13 @@ public class AreaController {
     }
 
     /**
-     * <p>
      * [功能描述]：获取区域级别下拉框数据
-     * </p>
-     *
-     * @param id
-     * @return
-     * @author 王垒, 2016年3月23日下午2:34:22
-     * @since EnvDust 1.0.0
      */
     @RequestMapping(value = "/queryAreaLevelDropDown", method = {RequestMethod.POST})
     @ResponseBody
     public ResultListModel<MapModel> queryAreaLevelDropDown(int id) {
         ResultListModel<MapModel> resultListModel = new ResultListModel<MapModel>();
-        List<MapModel> listmapmodel = new ArrayList<MapModel>();
+        List<MapModel> listmapmodel;
         listmapmodel = mapService.getAreaLevelFlag(id);
         resultListModel.setTotal(listmapmodel.size());
         resultListModel.setRows(listmapmodel);
@@ -410,19 +351,7 @@ public class AreaController {
     }
 
     /**
-     * <p>[功能描述]：判断区域主风向</p>
-     *
-     * @param projectId
-     * @param areaId
-     * @param levelFlag
-     * @param dataType
-     * @param thingCode
-     * @param beginTime
-     * @param endTime
-     * @param httpsession
-     * @return
-     * @author 王垒, 2017年9月11日下午3:54:48
-     * @since envdust 1.0.0
+     * [功能描述]：判断区域主风向
      */
     @RequestMapping(value = "/queryAreaAvgValue", method = {RequestMethod.POST})
     @ResponseBody
@@ -438,7 +367,7 @@ public class AreaController {
         }
         if (areaId != null && !areaId.isEmpty()) {
             try {
-                String mainWd = "";
+                String mainWd;
                 String areaName = areaService.getAreaName(Integer.valueOf(areaId));
                 areaStatisticModel.setAreaId(areaId);
                 areaStatisticModel.setAreaName(areaName);
@@ -495,14 +424,7 @@ public class AreaController {
     }
 
     /**
-     * <p>
      * [功能描述]：将Area转换成AreaModel
-     * </p>
-     *
-     * @param areaModel
-     * @return
-     * @author 王垒, 2016年3月23日上午11:48:07
-     * @since EnvDust 1.0.0
      */
     private Area ConvertArea(AreaModel areaModel, HttpSession httpsession) {
         Area area = new Area();
@@ -528,14 +450,7 @@ public class AreaController {
     }
 
     /**
-     * <p>
      * [功能描述]：将AreaModel转换成Area
-     * </p>
-     *
-     * @param area
-     * @return
-     * @author 王垒, 2016年3月23日下午12:00:11
-     * @since EnvDust 1.0.0
      */
     private AreaModel ConvertAreaModel(Area area) {
         AreaModel areaModel = new AreaModel();

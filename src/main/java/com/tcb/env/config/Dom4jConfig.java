@@ -14,16 +14,8 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 
 /**
- * <p>
- * [功能描述]：解析XML配置信息帮助类
- * </p>
- * <p>
- * Copyright (c) 1993-2016 TCB Corporation
- * </p>
- *
- * @author 王垒
- * @version 1.0, 2016年3月22日下午2:23:59
- * @since EnvDust 1.0.0
+ * 解析XML配置信息帮助类
+ * @author kyq
  */
 public class Dom4jConfig implements ApplicationListener<ContextRefreshedEvent> {
 

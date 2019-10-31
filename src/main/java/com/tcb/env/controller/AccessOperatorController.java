@@ -25,16 +25,7 @@ import com.tcb.env.service.IAccessOperatorService;
 import com.tcb.env.util.DefaultArgument;
 
 /**
- * <p>
- * [功能描述]：AccessOperator控制器
- * </p>
- * <p>
- * Copyright (c) 1993-2016 TCB Corporation
- * </p>
- *
- * @author 王垒
- * @version 1.0, 2016年4月6日下午3:28:31
- * @since EnvDust 1.0.0
+ * @author kyq
  */
 @Controller
 @RequestMapping("/AccessOperatorController")
@@ -56,51 +47,33 @@ public class AccessOperatorController {
     private IAccessOperatorService accessOperatorService;
 
     /**
-     * <p>
      * [功能描述]：权限画面查询设备
-     * </p>
-     *
-     * @param deviceModel
-     * @param ahrCode
-     * @param httpsession
-     * @return
-     * @author 王垒, 2016年7月15日上午9:55:19
-     * @since EnvDust 1.0.0
      */
     @RequestMapping(value = "/queryAhrDevice", method = {RequestMethod.POST})
     @ResponseBody
     public ResultListModel<DeviceModel> queryAhrDevice(DeviceModel deviceModel, String ahrCode, HttpSession httpsession) {
         ResultListModel<DeviceModel> resultListModel = new ResultListModel<DeviceModel>();
-        List<DeviceModel> listusermodel = new ArrayList<DeviceModel>();
-        List<Device> listuser = new ArrayList<Device>();
+        List<DeviceModel> listUserModel = new ArrayList<DeviceModel>();
+        List<Device> listUser;
         Device device = ConvertAhrDevice(deviceModel, httpsession);
         int count = accessOperatorService.getJudgeAhrDeviceCount(device,
                 ahrCode);
         if (count > 0) {
-            listuser = accessOperatorService.getJudgeAhrDevice(device, ahrCode);
-            for (Device temp : listuser) {
-                DeviceModel deviceModell = ConvertAhrDeviceModel(temp);
-                if (deviceModell != null) {
-                    listusermodel.add(deviceModell);
+            listUser = accessOperatorService.getJudgeAhrDevice(device, ahrCode);
+            for (Device temp : listUser) {
+                DeviceModel deviceModel2 = ConvertAhrDeviceModel(temp);
+                if (deviceModel2 != null) {
+                    listUserModel.add(deviceModel2);
                 }
             }
-            resultListModel.setRows(listusermodel);
+            resultListModel.setRows(listUserModel);
         }
         resultListModel.setTotal(count);
         return resultListModel;
     }
 
     /**
-     * <p>
      * [功能描述]：更新权限组监测物数据
-     * </p>
-     *
-     * @param ahrCode
-     * @param listMonCode
-     * @param httpsession
-     * @return
-     * @author 王垒, 2016年4月7日上午12:44:24
-     * @since EnvDust 1.0.0
      */
     @RequestMapping(value = "/insertAccessMonitor", method = {RequestMethod.POST})
     @ResponseBody
@@ -108,8 +81,8 @@ public class AccessOperatorController {
         ResultModel resultModel = new ResultModel();
         if (ahrCode != null && !ahrCode.isEmpty()) {
             try {
-                UserModel loginuser = (UserModel) httpsession.getAttribute(DefaultArgument.LOGIN_USER);
-                int optUser = loginuser.getUserId();
+                UserModel loginUser = (UserModel) httpsession.getAttribute(DefaultArgument.LOGIN_USER);
+                int optUser = loginUser.getUserId();
                 if (listMonCode == null || listMonCode.size() == 0 || String.valueOf(DefaultArgument.INT_DEFAULT).equals(
                         listMonCode.get(0))) {
                     accessOperatorService.updateAccessMonitor(ahrCode, null, optUser);
@@ -127,16 +100,7 @@ public class AccessOperatorController {
     }
 
     /**
-     * <p>
      * [功能描述]：更新权限组设备数据
-     * </p>
-     *
-     * @param ahrCode
-     * @param listDevCode
-     * @param httpsession
-     * @return
-     * @author 王垒, 2016年4月7日上午12:44:00
-     * @since EnvDust 1.0.0
      */
     @RequestMapping(value = "/insertAccessDevice", method = {RequestMethod.POST})
     @ResponseBody
@@ -144,8 +108,8 @@ public class AccessOperatorController {
         ResultModel resultModel = new ResultModel();
         if (ahrCode != null && !ahrCode.isEmpty()) {
             try {
-                UserModel loginuser = (UserModel) httpsession.getAttribute(DefaultArgument.LOGIN_USER);
-                int optUser = loginuser.getUserId();
+                UserModel loginUser = (UserModel) httpsession.getAttribute(DefaultArgument.LOGIN_USER);
+                int optUser = loginUser.getUserId();
                 Device device = new Device();
                 device.setHaveAhr(DefaultArgument.IS_AHR_DEVICE);
                 int count = accessOperatorService.getJudgeAhrDeviceCount(device, ahrCode);
@@ -154,9 +118,6 @@ public class AccessOperatorController {
                     accessOperatorService.insertAccessDevice(ahrCode, listDevCode, optUser);
                     resultModel.setResult(true);
                 } else {
-                    if (surplusCount < 0) {
-                        surplusCount = 0;
-                    }
                     resultModel.setResult(false);
                     resultModel.setDetail("已超出权限组容量，最大容量为：" + DefaultArgument.MAX_AHR_COUNT);
                 }
@@ -195,15 +156,7 @@ public class AccessOperatorController {
     }
 
     /**
-     * <p>
      * [功能描述]：DeviceModel转换成Device
-     * </p>
-     *
-     * @param deviceModel
-     * @param httpsession
-     * @return
-     * @author 王垒, 2016年7月15日上午10:21:39
-     * @since EnvDust 1.0.0
      */
     private Device ConvertAhrDevice(DeviceModel deviceModel, HttpSession httpsession) {
         Device device = new Device();
@@ -212,17 +165,14 @@ public class AccessOperatorController {
             device.setDeviceCode(deviceModel.getDeviceCode());
             device.setDeviceMn(deviceModel.getDeviceMn());
             device.setDeviceName(deviceModel.getDeviceName());
-            // 设置外键mfrcode
             Manufacturer manufacturer = new Manufacturer();
             manufacturer.setMfrCode(deviceModel.getMfrCode());
             device.setManufacturer(manufacturer);
-            // 设置外键，areaid
             Area area = new Area();
             if (deviceModel.getAreaId() != null && !deviceModel.getAreaId().isEmpty()) {
                 area.setAreaId(Integer.valueOf(deviceModel.getAreaId()));
             }
             device.setArea(area);
-            // 设置外statuscode
             Status status = new Status();
             status.setStatusCode(deviceModel.getStatusCode());
             device.setStatus(status);
@@ -235,14 +185,7 @@ public class AccessOperatorController {
     }
 
     /**
-     * <p>
      * [功能描述]：Device转换成DeviceModel
-     * </p>
-     *
-     * @param device
-     * @return
-     * @author 王垒, 2016年7月15日上午10:21:14
-     * @since EnvDust 1.0.0
      */
     private DeviceModel ConvertAhrDeviceModel(Device device) {
         DeviceModel deviceModel = new DeviceModel();
@@ -270,8 +213,8 @@ public class AccessOperatorController {
             int userId = device.getUser().getUserId();
             if (userId != DefaultArgument.INT_DEFAULT) {
                 deviceModel.setUserId(String.valueOf(userId));
-                deviceModel.setUserName(device.getUser().getUserName());
                 deviceModel.setUserTel(device.getUser().getUserTel());
+                deviceModel.setUserName(device.getUser().getUserName());
                 deviceModel.setUserRemark(device.getUser().getUserRemark());
             }
             String haveAhr = device.getHaveAhr();
