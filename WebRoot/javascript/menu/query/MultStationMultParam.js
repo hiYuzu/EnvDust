@@ -240,7 +240,6 @@ function tabContent(title,id){
 			$("#dtStartTime"+id).datebox('setValue',formatterDate(new Date()));
 			$("#dtEndTime"+id).datebox('setValue',formatterDate(new Date()));
 	}
-    setCheckTitle();
 }
 
 /*查询数据*/

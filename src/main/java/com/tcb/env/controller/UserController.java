@@ -129,45 +129,6 @@ public class UserController {
     }
 
     /**
-     * <p>[功能描述]：：移动端验证登录信息</p>
-     *
-     * @param userModel
-     * @param httpsession
-     * @param mv
-     * @return
-     * @author 王垒, 2018年1月15日上午10:35:33
-     * @since EnvDust 1.0.0
-     */
-    @RequestMapping(value = "/toMobileMain", method = {RequestMethod.POST, RequestMethod.GET})
-    public ModelAndView toMobileMain(UserModel userModel, HttpSession httpsession, ModelAndView mv) {
-        //允许刷新
-        if (userModel != null && (userModel.getUserCode() == null || userModel.getUserCode().isEmpty())) {
-            UserModel sessionUser = (UserModel) httpsession.getAttribute(DefaultArgument.LOGIN_USER);
-            if (sessionUser != null) {
-                //跳转页面
-                String result = validateUserNative(sessionUser, false, httpsession);
-                if (SUCCESS.equals(result)) {
-                    mv.setViewName("/html/mainMobile");
-                    return mv;
-                } else {
-                    mv.addObject("error", result);
-                    mv.setViewName("redirect:/index.html");
-                    return mv;
-                }
-            }
-        }
-        String result = validateUserNative(userModel, true, httpsession);
-        if (result.equals(SUCCESS)) {
-            mv.setViewName("/html/mainMobile");
-            return mv;
-        } else {
-            mv.addObject("error", result);
-            mv.setViewName("redirect:/index.html");
-            return mv;
-        }
-    }
-
-    /**
      * <p>
      * [功能描述]：Ajax验证登录信息
      * </p>

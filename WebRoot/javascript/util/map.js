@@ -597,154 +597,6 @@ function bindMarkerEvent(marker, data) {
     }
 }
 
-///* 绑定click事件和鼠标移入移出事件 */
-//function bindMarkerEvent(marker, data) {
-//	marker.addEventListener("click",function(e){
-//		var turlvalue = "";
-//		var deviceData = getDeviceInfo(data.deviceCode);
-//		$.ajax({
-//			url : "./../DeviceController/getVideoDeviceProxyUrlByMn",
-//			type : "post",
-//			dataType : "json",
-//			async:false,
-//			data : {
-//				"deviceMn" : data.deviceMn
-//			},
-//			success : function(json) {
-//				if(json.result){
-//					turlvalue = json.detail;
-//				}
-//			}
-//		});
-//		getMapMonitorThings();
-//		getMapMonitorAlarmLine(data.deviceCode);
-//		$("#dialogModel").dialog(
-//		{
-//			width : 680,
-//			height : 410,
-//			title : data.deviceName,
-//			inline : true,
-//			modal : true,
-//			iconCls : 'icon-onlineorgan',
-//			maximized : false,
-//			collapsible : false,
-//			minimizable : false,
-//			maximizable : false,
-//			resizable : true,
-//			closed : true,
-//			content : '<div id="queryTab" class="easyui-tabs" data-options="fit:true,tabPosition:\'bottom\'">'
-//					+ '<div title="概况"  selected="true" style="padding:10px;overflow:hidden" id="deviceInfo">'
-//					+ '<form id="frmdialogModel" class="config-form"></form>'
-//					+ '</div>'
-//				
-//					+ '<div title="数据"  style="padding:10px;overflow:auto" id="deviceDatas">'
-//					+ '<div class="easyui-layout" data-options="fit:true">'
-//					+ '<div data-options="region:\'north\',border:false">'
-//					+ '<div id="tbQueryMap" style="padding:5px 8px;border-bottom:1px solid #ddd;">'
-//					+ '<a href="#" class="easyui-linkbutton" data-options="iconCls:\'icon-listtable\',plain:true" style="margin:0px 10px;"'
-//					+ 'onclick="searchMapDeviceDataFuc(\''
-//					+ data.deviceCode
-//					+ '\')">列表</a>'
-//					+ '<a href="#" class="easyui-linkbutton" data-options="iconCls:\'icon-chart\',plain:true" style="margin:0px 10px;" onclick="searchMapChartFunction(\''
-//					+ data.deviceCode
-//					+ '\')">图像</a>'
-//					+ '</div>'
-//					+ '</div>'
-//					+ '<div data-options="region:\'center\',border:false" id="centerContentMap">'
-//					+ '<div id="searchContentMap"  style="background:yellow;"></div>'
-//					+ '</div>'
-//					+ '</div>'
-//					+ '</div>'
-//					
-////					+ '<div title="实时监控"  style="padding:2px;overflow:hidden;background:#d3e0fc" id="deviceVideo">'
-////					+'<iframe  id="videopage" src="./../video.html" frameborder="0" height="100%"  width="100%" scrolling="no" style="top:0;left:0;" />'
-////					+ '</div>'
-//					
-//					+ '</div>'
-//		}).dialog('center');
-//		/* 初始化表单 */
-//		$("#frmdialogModel").html(function() {
-//			var htmlArr = [];
-//			htmlArr.push(createValidatebox({
-//				name : "areaName",
-//				title : "所属区域",
-//				readonly : true
-//			}));
-//			htmlArr.push(createValidatebox({
-//				name : "deviceKm",
-//				title : "面积",
-//				readonly : true
-//			}));
-//			htmlArr.push(createValidatebox({
-//				name : "buildFirm",
-//				title : "施工单位",
-//				readonly : true
-//			}));
-//			htmlArr.push(createValidatebox({
-//				name : "userName",
-//				title : "现场负责人",
-//				readonly : true
-//			}));
-//			htmlArr.push(createValidatebox({
-//				name : "userTel",
-//				title : "负责人电话",
-//				readonly : true
-//			}));
-//			htmlArr.push(createValidatebox({
-//				name : "userRemark",
-//				title : "负责人备注",
-//				readonly : true
-//			}));
-//			htmlArr.push(createValidatebox({
-//				name : "orgName",
-//				title : "监督单位",
-//				readonly : true
-//			}));
-//			htmlArr.push(createValidatebox({
-//				name : "orgLiaison",
-//				title : "监督人",
-//				readonly : true
-//			}));
-//			return htmlArr.join("");
-//		});
-////		var tab_option = $('#queryTab').tabs('getTab',"实时监控").panel('options').tab;  
-//		
-//		/* 重绘窗口 */
-//		$.parser.parse("#dialogModel");
-//		$("#frmdialogModel").form("reset");
-//		$("#frmdialogModel").form("load", deviceData.rows[0]);
-//		searchMapDeviceDataFuc(data.deviceCode);// 查询数据
-//		
-////		if(turlvalue!=""){
-////			tab_option.show();  
-////		}else{
-////			tab_option.hide();
-////		}
-////		$("#videopage")[0].contentWindow.hellobaby=turlvalue;//项video.html传递url
-//		
-//		$("#dialogModel").dialog("open");
-//	});
-////	var label = new BMap.Label(data.deviceName, {
-////		offset : new BMap.Size(20, -10)
-////	});
-////	label.setStyle({
-////		display : "none" // 给label设置样式，任意的CSS都是可以的
-////	});
-////	marker.setLabel(label);
-////	marker.addEventListener("mouseover", function() {
-////		label.setStyle({ // 给label设置样式，任意的CSS都是可以的
-////			display : "block"
-////		});
-////
-////	});
-////	marker.addEventListener("mouseout", function() {
-////		label.setStyle({ // 给label设置样式，任意的CSS都是可以的
-////			display : "none"
-////		});
-////	});
-//	marker.setTitle(data.deviceName);
-//}
-
 var singleclick = false;
 var clickPointData = {};
 
@@ -757,8 +609,6 @@ function selectedSearchMarkerData(marker, data) {
     clickPointData = {};
     var deviceData = getDeviceInfo(data.deviceCode);
     $("#seletedMapDeviceCode").val(data.deviceCode);
- /*   var ezopenurl = "ezopen://open.ys7.com/561961439/1.hd.live";
-    var accessToken = "at.afec1fh3cklad2wl4ez8f1cj0ub1ai18-5mlntasc0w-0fej1qe-ruym7fde6";*/
     getMapMonitorThings();			//获取监控物
     getMapMonitorAlarmLine(data.deviceCode);	//获取警报线
     $("#panelModel").panel(
@@ -786,7 +636,6 @@ function selectedSearchMarkerData(marker, data) {
     });
     searchMapDeviceDataFuc(data.deviceCode);	// 查询数据
     searchMapChartFunction(data.deviceCode);	// 查询图像
-    searchIsShowVideoFuc(data.deviceCode);
     clickPointData = data;
 }
 
@@ -1459,27 +1308,6 @@ function initMapChart(timelist, legendData, selectedlegendData, seriesData, ynam
 function displayAlarmInfo(deviceCode, statusCode) {
     return deviceCode + "：" + statusCode + "";
 }
-
-/**
- * 是否显示摄像头
- * @param deviceCode
- */
-function searchIsShowVideoFuc(deviceCode){
-    $.ajax({
-        type:"post",
-        dataType:'json',
-        url:"../DeviceVideoController/queryDeviceVideoCount",
-        data:{"deviceCode":deviceCode},
-        success:function(result){
-            if(result.total>0){
-                $("#vedioId").css("display","inline");
-            }else{
-                $("#vedioId").css("display","none");
-            }
-        }
-    });
-}
-
 var mfrCodeDataMap = {};
 var mfrCodeValueMap = null;
 // 状态

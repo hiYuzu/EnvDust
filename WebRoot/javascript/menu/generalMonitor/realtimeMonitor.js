@@ -19,7 +19,6 @@ var appendRealcontent = '<div class="easyui-layout" data-options="fit:true">'
 	+'</div>'
 	+'</div>'
 addPanel("实时数据", appendRealcontent);
-setCheckTitle();
 //是否从头加载
 var isrepeatFlag = false;
 //判断查看的是图表

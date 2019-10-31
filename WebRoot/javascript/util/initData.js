@@ -1,7 +1,5 @@
-var netStatustreeidList = [];
 var longconnselected = "";
 //存储点击的树节点
-var netDataList = [];
 var netDataSelected = "";
 var realtreeid = -1;//选择的站点
 var premultiStationFlag = false;//上一次tab页是否为多站
@@ -42,18 +40,6 @@ $(function () {
                 if ($("#realTimeCountDownTimer") != null && $("#realTimeCountDownTimer").TimeCircles() != null) {
                     $("#realTimeCountDownTimer").TimeCircles().destroy();
                 }
-            } else if (title == '网络状态') {
-                if ($("#netStatusCountDownTimer") != null && $("#netStatusCountDownTimer").TimeCircles() != null) {
-                    $("#netStatusCountDownTimer").TimeCircles().destroy();
-                }
-            } else if (title == "网络数据") {
-                if ($("#netDataCountDownTimer") != null && $("#netDataCountDownTimer").TimeCircles() != null) {
-                    $("#netDataCountDownTimer").TimeCircles().destroy();
-                }
-            } else if (title == "采样设备监控") {
-                if ($("#netSampleDeviceTimer") != null && $("#netSampleDeviceTimer").TimeCircles() != null) {
-                    $("#netSampleDeviceTimer").TimeCircles().destroy();
-                }
             }
         },
         onClose: function (title, index) {
@@ -61,22 +47,6 @@ $(function () {
                 if ($("#realTimeCountDownTimer") != null && $("#realTimeCountDownTimer").TimeCircles() != null) {
                     $("#realTimeCountDownTimer").TimeCircles().destroy();
                 }
-            } else if (title == "网络状态") {
-                selectStatusCode = "";
-                if ($("#netStatusCountDownTimer") != null && $("#netStatusCountDownTimer").TimeCircles() != null) {
-                    $("#netStatusCountDownTimer").TimeCircles().destroy();
-                }
-            } else if (title == "网络数据") {
-                dataStatusCode = "";
-                if ($("#netDataCountDownTimer") != null && $("#netDataCountDownTimer").TimeCircles() != null) {
-                    $("#netDataCountDownTimer").TimeCircles().destroy();
-                }
-            } else if (title == "采样设备监控") {
-                if ($("#netSampleDeviceTimer") != null && $("#netSampleDeviceTimer").TimeCircles() != null) {
-                    $("#netSampleDeviceTimer").TimeCircles().destroy();
-                }
-            } else if (title == "历史监控热力图") {
-                $('#panelModel').panel("close");
             }
         },
         onSelect: function (title) {
@@ -110,33 +80,6 @@ $(function () {
                     }
                     else {
                         var node = $('#mytree').tree('find', realtreeid);
-                        $('#mytree').tree('select', node.target);
-                    }
-                }
-                else if (title == "网络状态") {
-                    if (longconnselected != "") {
-                        var node = $('#mytree').tree('find', longconnselected);
-                        if (node != null) {
-                            $('#mytree').tree('select', node.target);
-                        }
-                    }
-                    else {
-                        var nodeRoot = $("#mytree").tree('getRoot');
-                        var node = $('#mytree').tree('find',
-                            nodeRoot.id);
-                        $('#mytree').tree('select', node.target);
-                    }
-                }
-                else if (title == "网络数据") {
-                    if (netDataSelected != "") {
-                        var node = $('#mytree').tree('find', netDataSelected);
-                        if (node != null) {
-                            $('#mytree').tree('select', node.target);
-                        }
-                    } else {
-                        var nodeRoot = $("#mytree").tree('getRoot');
-                        var node = $('#mytree').tree('find',
-                            nodeRoot.id);
                         $('#mytree').tree('select', node.target);
                     }
                 }
@@ -201,30 +144,6 @@ function searchDeviceProject() {
     })
 }
 
-/*初始化设备厂商*/
-function initManufacturer() {
-    $.ajax({
-        url: "../ManufacturerController/queryManufacturer",
-        type: "post",
-        dataType: "json",
-        async: false,
-        success: function (json) {
-            var datajson = [];
-            if (json.total > 0) {
-                for (var i = 0; i < json.total; i++) {
-                    datajson.push({"mfrId": json.rows[i].mfrId, "mfrName": json.rows[i].mfrName});
-                }
-            } else {
-                datajson = [{"mfrId": "-1", "mfrName": "无"}];
-            }
-            $("#manufacturer").combobox({
-                data: datajson,
-                valueField: 'mfrId',
-                textField: 'mfrName'
-            });
-        }
-    });
-}
 
 /*菜单权限*/
 function getUserPower() {

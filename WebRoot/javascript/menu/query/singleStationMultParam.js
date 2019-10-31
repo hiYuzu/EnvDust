@@ -281,7 +281,6 @@ function tabContent(title,id){
 			$("#dtStartTime"+id).datebox('setValue',formatterDate(new Date()));
 			$("#dtEndTime"+id).datebox('setValue',formatterDate(new Date()));
 	}
-    setCheckTitle();
 }
 var myChart = null;
 /*查询列表信息*/

@@ -6,11 +6,7 @@
 	
     <meta name="keywords" content="keyword1,keyword2,keyword3">
     <meta name="description" content="this is my page">
-    
-    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
-
   </head>
-  
   <body>
     	网页正在跳转中... <br>
   </body>
@@ -18,7 +14,6 @@
 	 function IsPC()
 	  {
 	      var userAgentInfo = navigator.userAgent;
-	      //alert(userAgentInfo);//Mozilla/5.0 (Windows NT 6.1; WOW64; rv:46.0) Gecko/20100101 Firefox/46.0
 	      var Agents = new Array("Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod");
 	      var flag = true;
 	      for (var v = 0; v < Agents.length; v++) {
@@ -27,7 +22,7 @@
 	      return flag;
 	  }
 	  if(!IsPC()){
-	      window.location.href='../loginPhone.html';
+	      window.location.href='../login.html';
 	  }else{
 	  	window.location.href='../login.html';
 	  }

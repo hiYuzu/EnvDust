@@ -26,7 +26,6 @@ addPanel("原始监测数据查询", appendcontent);
 var initEndTime = formatterDate(new Date());
 $("#dtOrnBeginTime").datetimebox('setValue', initEndTime);
 $("#dtOrnEndTime").datetimebox('setValue', initEndTime + " 23:59:59");
-setCheckTitle();
 var comboboxJsonOriginal = [];
 //监控物
 $.ajax({
