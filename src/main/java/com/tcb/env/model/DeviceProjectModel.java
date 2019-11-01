@@ -2,12 +2,8 @@ package com.tcb.env.model;
 
 /**
  * <p>[功能描述]：DeviceProjectModel</p>
- * <p>Copyright (c) 1996-2016 TCB Corporation</p>
  *
- * @author	王垒
- * @version	1.0, 2019年2月19日上午10:19:20
- * @since	EnvDust 1.0.0
- *
+ * @author kyq
  */
 public class DeviceProjectModel extends BaseModel {
 

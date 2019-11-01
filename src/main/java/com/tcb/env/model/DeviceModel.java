@@ -10,12 +10,9 @@ package com.tcb.env.model;
 import com.tcb.env.util.DefaultArgument;
 
 /**
- * <p>[功能描述]：DeviceModel</p>
- * <p>Copyright (c) 1996-2016 TCB Corporation</p>
+ * [功能描述]：DeviceModel
  *
- * @author 任崇彬
- * @version 1.0, 2016年3月28日上午9:57:20
- * @since EnvDust 1.0.0
+ * @author kyq
  */
 public class DeviceModel extends BaseModel {
     private int deviceId = DefaultArgument.INT_DEFAULT;//递增id

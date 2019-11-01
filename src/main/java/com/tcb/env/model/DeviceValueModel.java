@@ -1,12 +1,9 @@
 package com.tcb.env.model;
 
 /**
- * <p>[功能描述]：设备数据值模板</p>
- * <p>Copyright (c) 1997-2017 TCB Corporation</p>
+ * [功能描述]：设备数据值模板
  *
- * @author 王垒
- * @version 1.0, 2017年12月22日上午10:32:51
- * @since EnvDust 1.0.0
+ * @author kyq
  */
 public class DeviceValueModel extends BaseModel {
 

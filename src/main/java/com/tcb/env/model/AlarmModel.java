@@ -2,12 +2,9 @@ package com.tcb.env.model;
 
 
 /**
- * <p>[功能描述]：页面传递报警映射类</p>
- * <p>Copyright (c) 1993-2016 TCB Corporation</p>
+ * [功能描述]：页面传递报警映射类
  *
- * @author 王垒
- * @version 1.0, 2016年4月26日下午1:30:37
- * @since EnvDust 1.0.0
+ * @author kyq
  */
 public class AlarmModel extends BaseModel {
 
