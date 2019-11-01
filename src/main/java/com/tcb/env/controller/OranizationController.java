@@ -1,9 +1,3 @@
-/**
- * Copyright (c) 1996-2016天津通广集团电子信息部，版权所有，复制必究。
- * 此程序版权归天津通广集团电子信息部所有，任何侵犯版权的行为将被追究
- * 法律责任。未经天津通广集团电子信息部的书面批准，不得将此程序的任何
- * 部分以任何形式、采用任何手段、或为任何目的，进行复制或扩散。
- */
 package com.tcb.env.controller;
 
 import java.util.ArrayList;
@@ -31,17 +25,8 @@ import com.tcb.env.util.DateUtil;
 import com.tcb.env.util.DefaultArgument;
 
 /**
- * <p>
  * [功能描述]：处理前台传过来的数据控制器
- * </p>
- * <p>
- * Copyright (c) 1996-2016 TCB Corporation
- * </p>
- * 
- * @author 任崇彬
- * @version 1.0, 2016年3月22日上午9:23:19
- * @since EnvDust 1.0.0
- * 
+ *
  */
 @Controller
 @RequestMapping("/OranizationController")
@@ -72,15 +57,7 @@ public class OranizationController {
 	private IUserService userService;
 
 	/**
-	 * <p>
 	 * [功能描述]：查询Oranization数据
-	 * </p>
-	 * 
-	 * @author 任崇彬, 2016年3月22日上午10:42:05
-	 * @since EnvDust 1.0.0
-	 *
-	 * @param usermodel
-	 * @return
 	 */
 	@RequestMapping(value = "/queryOranization", method = { RequestMethod.POST })
 	public @ResponseBody ResultListModel<OranizationModel> queryOranization(
@@ -110,16 +87,7 @@ public class OranizationController {
 	}
 
 	/**
-	 * <p>
 	 * [功能描述]：新增组织数据
-	 * </p>
-	 * 
-	 * @author 任崇彬, 2016年3月22日下午2:20:16
-	 * @since EnvDust 1.0.0
-	 *
-	 * @param usermodel
-	 * @param httpsession
-	 * @return
 	 */
 	@RequestMapping(value = "/insertOranization", method = { RequestMethod.POST })
 	public @ResponseBody ResultModel insertOranization(
@@ -161,15 +129,7 @@ public class OranizationController {
 	}
 
 	/**
-	 * <p>
 	 * [功能描述]：删除组织数据
-	 * </p>
-	 * 
-	 * @author 任崇彬, 2016年3月22日下午2:49:26
-	 * @since EnvDust 1.0.0
-	 *
-	 * @param list
-	 * @return
 	 */
 	@RequestMapping(value = "/deleteOranization", method = { RequestMethod.POST })
 	public @ResponseBody ResultModel deleteOranization(
@@ -208,16 +168,7 @@ public class OranizationController {
 	}
 
 	/**
-	 * <p>
 	 * [功能描述]：更改组织数据
-	 * </p>
-	 * 
-	 * @author 任崇彬, 2016年3月22日下午3:44:16
-	 * @since EnvDust 1.0.0
-	 *
-	 * @param usermodel
-	 * @param httpsession
-	 * @return
 	 */
 	@RequestMapping(value = "/updatetOranization", method = { RequestMethod.POST })
 	public @ResponseBody ResultModel updatetOranization(
@@ -255,15 +206,7 @@ public class OranizationController {
 	}
 
 	/**
-	 * <p>
 	 * [功能描述]：orgnizationmodel转换成orgnization 接收页面传来的数据准备存入数据库
-	 * </p>
-	 * 
-	 * @author 任崇彬, 2016年3月22日上午9:45:28
-	 * @since EnvDust 1.0.0
-	 *
-	 * @param oranizationModel
-	 * @return
 	 */
 	private Oranization ConvertOranization(OranizationModel oranizationModel,
 			HttpSession httpsession) {
@@ -304,15 +247,7 @@ public class OranizationController {
 	}
 
 	/**
-	 * <p>
 	 * [功能描述]：orgnization转换成orgnizationmodel
-	 * </p>
-	 * 
-	 * @author 任崇彬, 2016年3月22日上午10:37:18
-	 * @since EnvDust 1.0.0
-	 *
-	 * @param oranization
-	 * @return
 	 */
 	private OranizationModel ConvertOranizationModel(Oranization oranization) {
 		OranizationModel oranizationModel = new OranizationModel();
@@ -342,14 +277,7 @@ public class OranizationController {
 	}
 
 	/**
-	 * <p>
 	 * [功能描述]：显示怎么显示Path方法
-	 * </p>
-	 * 
-	 * @author 任崇彬, 2016年3月25日上午10:44:32
-	 * @since EnvDust 1.0.0
-	 *
-	 * @return
 	 */
 	private String showOrgPath(String str) {
 		String show;

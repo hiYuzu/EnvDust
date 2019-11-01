@@ -18,17 +18,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * <p>
  * [功能描述]：设备项目控制器
- * </p>
- * <p>
- * Copyright (c) 1996-2016 TCB Corporation
- * </p>
- *
- * @author 王垒
- * @version 1.0, 2019年2月19日上午09:02:31
- * @since EnvDust 1.0.0
- *
+ * @author kyq
  */
 @Controller
 @RequestMapping("/DeviceProjectController")
@@ -62,15 +53,7 @@ public class DeviceProjectController {
     }
 
     /**
-     * <p>
      * [功能描述]：DeviceProject转成DeviceProjectModel
-     * </p>
-     *
-     * @author 王垒, 2019年2月19日上午10:28:23
-     * @since EnvDust 1.0.0
-     *
-     * @param deviceProject
-     * @return
      */
     private DeviceProjectModel ConvertDeviceProjectModel(DeviceProject deviceProject) {
         DeviceProjectModel deviceProjectModel = new DeviceProjectModel();

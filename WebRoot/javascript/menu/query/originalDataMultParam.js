@@ -16,8 +16,6 @@ var appendcontent = '<div id="dgGetOriginalDataInfo"></div>'
         +'<a href="#" class="easyui-linkbutton" data-options="iconCls:\'icon-listtable\',plain:true" style="margin:0px 10px;" onclick="searchOrnDataFunc()" ">列表</a>'
 		+'<a href="#" class="easyui-linkbutton" data-options="iconCls:\'icon-chart\',plain:true" style="margin:0px 10px 0px 10px;" onclick="searchOrnChartFunc()">图像</a>'
 		+ '&nbsp;&nbsp;&nbsp'
-//		+ '<a href="#" class="easyui-linkbutton" data-options="iconCls:\'icon-cut\',plain:true" onclick="delRldDataFunc()">删除</a>'
-		+'<a href="#" class="easyui-linkbutton" data-options="iconCls:\'icon-download\',plain:true" style="margin:0px 10px;"  onclick="exportOrgFunction()">导出</a>'
 		+ '</div>'
 		+'<div data-options="region:\'center\',border:false" style="height:80%" id="centerOrnChartContent">'
 		+'<div id="searchOrnChartContent"></div>'
@@ -822,54 +820,4 @@ function initOriginalChart(timelist,legendData,seriesData,yname){
 	mychart.clear();
 	mychart.setOption(option,true);
 	mychart.resize(); 
-}
-
-/*导出*/
-function exportOrgFunction() {
-	var treeid = -1;
-	var station = $('#mytree').tree('getSelected');
-	if(station==null || station==undefined){
-		treeid = -1;
-		$.messager.alert("提示", "请选择一个站点进行查询！", "error");
-		return false;
-	}else{
-		if(station.isDevice){
-			treeid = station.id;
-		}else{
-			$.messager.alert("提示", "请选择一个监控站点进行查询！", "warning");
-			return false;
-		}
-	}
-	var beginTime = $("#dtOrnBeginTime").datetimebox('getValue');
-	var endTime = $("#dtOrnEndTime").datetimebox('getValue');
-	var cnCode = $("#ornCnCodeCombox").combobox("getValue");
-	if(beginTime == null || beginTime == ''){
-		$.messager.alert("提示", "请填写开始时间！", "warning");
-		return false;
-	}
-	if(endTime == null || endTime == ''){
-		$.messager.alert("提示", "请填写结束时间！", "warning");
-		return false;
-	}
-	if(cnCode == null || cnCode == ''){
-		$.messager.alert("提示", "请选择数据类型！", "warning");
-		return false;
-	}
-	var dtBegin = new Date(Date.parse(beginTime));
-	var dtEnd= new Date(Date.parse(endTime));
-	var diffDay = parseInt((dtEnd.getTime() - dtBegin.getTime()) / (1000 * 60 * 60 * 24));
-	if(cnCode == '2011' && diffDay>2){
-		$.messager.alert("提示", "只能查询2天内的实时数据！", "warning");
-		return false;
-	}
-	if(cnCode == '2051' && diffDay>7){
-		$.messager.alert("提示", "只能查询7天内的分钟数据！", "warning");
-		return false;
-	}
-    var zsFlag = false;
-    if($('#zVauleChekboxId').is(':checked')){
-        zsFlag = true;
-    }
-	var thingValue = $("#monitorThingsOriginal").combobox('getValues');
-	location.href = "../ExportController/exportOriginalData?deviceCode="+treeid+"&beginTime="+beginTime+"&endTime="+endTime+"&updateType="+cnCode+"&list="+thingValue+"&zsFlag="+zsFlag;
 }

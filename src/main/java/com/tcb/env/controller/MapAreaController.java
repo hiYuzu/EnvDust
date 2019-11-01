@@ -26,14 +26,7 @@ import com.tcb.env.util.DateUtil;
 import com.tcb.env.util.DefaultArgument;
 
 /**
- * 
- * <p>[功能描述]：百度地图覆盖区域确定Controller</p>
- * <p>Copyright (c) 1997-2017 TCB Corporation</p>
- * 
- * @author	王坤
- * @version	1.0, 2018年8月31日 上午8:57:56
- * @since	EnvDust 1.0.0
- *
+ * [功能描述]：百度地图覆盖区域确定Controller
  */
 @Controller
 @RequestMapping("/MapAreaController")
@@ -55,12 +48,7 @@ public class MapAreaController {
 	private IMapAreaService mapAreaService;
 	
 	/**
-	 * 
-	 * <p>[功能描述]：获取所有覆盖区域</p>
-	 * 
-	 * @author	王坤, 2018年8月31日 上午 9:01:35
-	 * @since	EnvDust 1.0.0
-	 *
+	 * [功能描述]：获取所有覆盖区域
 	 */
 	@RequestMapping("/getMapArea")
 	@ResponseBody
@@ -84,12 +72,7 @@ public class MapAreaController {
 	}
 	
 	/**
-	 * 
-	 * <p>[功能描述]：获取特定覆盖区域的坐标点信息</p>
-	 * 
-	 * @author	王坤, 2018年8月31日 上午 9:34:35
-	 * @since	EnvDust 1.0.0
-	 *
+	 * [功能描述]：获取特定覆盖区域的坐标点信息
 	 */
 	@RequestMapping("/getMapAreaPoint")
 	@ResponseBody
@@ -120,12 +103,7 @@ public class MapAreaController {
 	}
 	
 	/**
-	 * 
-	 * <p>[功能描述]：获取所有覆盖区域的坐标点信息</p>
-	 * 
-	 * @author	王坤, 2018年9月5日 上午 11:23:35
-	 * @since	EnvDust 1.0.0
-	 *
+	 * [功能描述]：获取所有覆盖区域的坐标点信息
 	 */
 	@RequestMapping("/getAllPoints")
 	@ResponseBody
@@ -152,43 +130,7 @@ public class MapAreaController {
 	}
 	
 	/**
-	 * 
-	 * <p>[功能描述]：添加覆盖区域信息</p>
-	 * 
-	 * @author	王坤, 2018年9月3日  上午 11:04:35
-	 * @since	EnvDust 1.0.0
-	 *
-	 */
-	@RequestMapping("/addMapArea")
-	@ResponseBody
-	public ResultModel addMapArea(MapAreaModel mapAreaModel,HttpSession httpSession){
-		ResultModel resultModel = new ResultModel();
-		try{
-			MapArea mapArea = ConvertMapArea(mapAreaModel,httpSession);
-			int success = this.mapAreaService.addMapArea(mapArea);
-			if(success != -1){
-				resultModel.setResult(true);
-				resultModel.setDetail("覆盖区域添加成功!");
-			}else{
-				resultModel.setResult(false);
-				resultModel.setDetail("覆盖区域添加失败!");
-			}
-			
-		}catch(Exception e){
-			resultModel.setResult(false);
-			resultModel.setDetail("覆盖区域添加异常!");
-			logger.error(LOG + "覆盖区域添加异常警报  :" + e.getMessage());
-		}
-		return resultModel;
-	}
-	
-	/**
-	 * 
-	 * <p>[功能描述]：修改覆盖区域信息</p>
-	 * 
-	 * @author	王坤, 2018年9月3日  上午 11:06:35
-	 * @since	EnvDust 1.0.0
-	 *
+	 * [功能描述]：修改覆盖区域信息
 	 */
 	@RequestMapping("/editMapArea")
 	@ResponseBody
@@ -214,12 +156,7 @@ public class MapAreaController {
 	}
 	
 	/**
-	 * 
-	 * <p>[功能描述]：删除覆盖区域信息</p>
-	 * 
-	 * @author	王坤, 2018年9月3日  上午 11:07:35
-	 * @since	EnvDust 1.0.0
-	 *
+	 * [功能描述]：删除覆盖区域信息
 	 */
 	@RequestMapping("/deleteMapArea")
 	@ResponseBody
@@ -243,12 +180,7 @@ public class MapAreaController {
 	}
 	
 	/**
-	 * 
-	 * <p>[功能描述]：添加特定覆盖区域坐标信息</p>
-	 * 
-	 * @author	王坤, 2018年9月3日  上午 11:09:25
-	 * @since	EnvDust 1.0.0
-	 *
+	 * [功能描述]：添加特定覆盖区域坐标信息
 	 */
 	@RequestMapping("/addMapAreaPoint")
 	@ResponseBody
@@ -299,42 +231,9 @@ public class MapAreaController {
 	}
 	
 	/**
-	 * 
-	 * <p>[功能描述]：删除覆盖区域信息</p>
-	 * 
-	 * @author	王坤, 2018年9月3日  上午 11:07:35
-	 * @since	EnvDust 1.0.0
-	 *
+	 * [功能描述]：mapArea.pojo向mapArea.model转换
 	 */
-	@RequestMapping("/deleteMapAreaPoint")
-	@ResponseBody
-	public ResultModel deleteMapAreaPoint(int maId){
-		ResultModel resultModel = new ResultModel();
-		try{
-			boolean success = this.mapAreaService.deleteMapAreaPoint(maId);
-			if(success){
-				resultModel.setResult(true);
-				resultModel.setDetail("覆盖区域坐标删除成功!");
-			}else{
-				resultModel.setResult(false);
-				resultModel.setDetail("覆盖区域坐标删除失败!");
-			}
-		}catch(Exception e){
-			resultModel.setResult(false);
-			resultModel.setDetail("覆盖区域坐标删除异常!");
-			logger.error(LOG + "覆盖区域坐标删除异常警报  :" + e.getMessage());
-		}
-		return resultModel;
-	}
-	/**
-	 * 
-	 * <p>[功能描述]：mapArea.pojo向mapArea.model转换 </p>
-	 * 
-	 * @author	王坤, 2018年9月3日 上午 8:46:35
-	 * @since	EnvDust 1.0.0
-	 *
-	 */
-	public MapAreaModel ConvertMapAreaModel(MapArea mapArea){
+	private MapAreaModel ConvertMapAreaModel(MapArea mapArea){
 		MapAreaModel mapAreaModel = new MapAreaModel();
 		mapAreaModel.setMaId(String.valueOf(mapArea.getMaId()));
 		mapAreaModel.setMaVisible(mapArea.isMaVisible());
@@ -354,14 +253,9 @@ public class MapAreaController {
 	}
 	
 	/**
-	 * 
-	 * <p>[功能描述]：MapArea.Model 和 MapArea.Pojo 之间的转换 </p>
-	 * 
-	 * @author	王坤, 2018年9月3日 上午 8:50:25
-	 * @since	EnvDust 1.0.0
-	 *
+	 * [功能描述]：MapArea.Model 和 MapArea.Pojo 之间的转换
 	 */
-	public MapArea ConvertMapArea(MapAreaModel mapAreaModel,HttpSession httpSession){
+	private MapArea ConvertMapArea(MapAreaModel mapAreaModel,HttpSession httpSession){
 		MapArea mapArea = new MapArea();
 		if(mapAreaModel.getMaId() != null && !mapAreaModel.getMaId().equals("")){
 			mapArea.setMaId(Integer.valueOf(mapAreaModel.getMaId()));
@@ -378,14 +272,9 @@ public class MapAreaController {
 	}
 	
 	/**
-	 * 
-	 * <p>[功能描述]：mapAreaPoint.pojo向mapAreaPoint.model转换 </p>
-	 * 
-	 * @author	王坤, 2018年9月3日 上午 9:00:35
-	 * @since	EnvDust 1.0.0
-	 *
+	 * [功能描述]：mapAreaPoint.pojo向mapAreaPoint.model转换
 	 */
-	public MapAreaPointModel ConvertMapAreaPointModel(MapAreaPoint mapAreaPoint){
+	private MapAreaPointModel ConvertMapAreaPointModel(MapAreaPoint mapAreaPoint){
 		MapAreaPointModel mapAreaPointModel = new MapAreaPointModel();
 		mapAreaPointModel.setMaId(String.valueOf(mapAreaPoint.getMaId()));
 		mapAreaPointModel.setLat(String.valueOf(mapAreaPoint.getLat()));
@@ -394,14 +283,9 @@ public class MapAreaController {
 	}
 	
 	/**
-	 * 
-	 * <p>[功能描述]：MapAreaPoint.Model 和 MapAreaPoint.Pojo 之间的转换 </p>
-	 * 
-	 * @author	王坤, 2018年9月3日 上午 9:09:35
-	 * @since	EnvDust 1.0.0
-	 *
+	 * [功能描述]：MapAreaPoint.Model 和 MapAreaPoint.Pojo 之间的转换
 	 */
-	public MapAreaPoint ConvertMapAreaPoint(MapAreaPointModel mapAreaPointModel,HttpSession httpSession){
+	private MapAreaPoint ConvertMapAreaPoint(MapAreaPointModel mapAreaPointModel,HttpSession httpSession){
 		MapAreaPoint mapAreaPoint = new MapAreaPoint();
 		if( mapAreaPointModel.getMaId() != null && !mapAreaPointModel.equals("") ){
 			mapAreaPoint.setMaId(Integer.valueOf(mapAreaPointModel.getMaId()));

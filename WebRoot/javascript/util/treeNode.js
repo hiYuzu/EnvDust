@@ -26,31 +26,7 @@ function initTreeNoe(id,url,data,ischeckbox,loadingid){
 			var t = $("#"+id);
 			t.tree({
 				data:json,
-			    checkbox:ischeckbox/*,
-			    onBeforeExpand:function(node){
-			    	if(node.state=="closed" && node.children==undefined){
-			    		var id = node.target.id;
-			    		$("#"+id).after('<ul style="display:block"></ul>');
-			    	}
-			    },
-			    onExpand: function(node){
-			    	if(node.children==undefined){
-			    		$.ajax({
-			    			url : "../TreeController/getAuthorityDevices",
-			    			type : "post",
-			    			dataType : "json",
-			    			data : {
-			    				"areaid" : node.id
-			    			},
-			    			success:function(json){
-			    				t.tree('append', {
-			    					parent: (node?node.target:null),
-			    					data: json
-			    				});
-			    			}
-		    			});
-			    	}
-			    }*/
+			    checkbox:ischeckbox
 			});
 
 		}

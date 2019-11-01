@@ -12,11 +12,6 @@ var appendcontent = '<div id="querySingleTab" class="easyui-tabs" data-options="
 addPanel("单站点多物质查询", appendcontent);
 var singlecurrTab =$('#mytab').tabs('getSelected'); 
 var singletitle = singlecurrTab.panel('options').title;
-/*if(singletitle=="单站多参数查询"){
-	$("#mytree").tree({
-		checkbox:false
-	});
-}*/
 var singleMonitorList = [];
 var comboboxJson = [];
 var preStationSingle = null;
@@ -146,7 +141,6 @@ function getContent(title,id){
                 +'<span style="margin-left:8px;"><input type="checkbox"  id="zVauleChekbox'+id+'" style="vertical-align:middle; margin-top:0;"/><span style="vertical-align:middle; margin-top:0;" class="vauleCheckTitle"></span></span>'
 				+'<a href="#" class="easyui-linkbutton" data-options="iconCls:\'icon-listtable\',plain:true" style="margin:0px 10px;" onclick="searchSingleBtnFunction()" id="singleList'+id+'">列表</a>'
 				+'<a href="#" class="easyui-linkbutton" data-options="iconCls:\'icon-chart\',plain:true" style="margin:0px 10px;" onclick="searchChartFunction()" id="singleChart'+id+'">图像</a>'
-				+'<a href="#" class="easyui-linkbutton" data-options="iconCls:\'icon-download\',plain:true" style="margin:0px 10px;"  onclick="exportFunction()">导出</a>'
 				+'</div>'
 			+'</div>'
 			+'<div data-options="region:\'center\',border:false" id="centerContent'+id+'">'
@@ -169,7 +163,6 @@ function getContent(title,id){
             +'<span style="margin-left:8px;"><input type="checkbox"  id="zVauleChekbox'+id+'" style="vertical-align:middle; margin-top:0;"/><span style="vertical-align:middle; margin-top:0;" class="vauleCheckTitle"></span></span>'
 			+'<a href="#" class="easyui-linkbutton" data-options="iconCls:\'icon-listtable\',plain:true" style="margin:0px 10px;" onclick="searchSingleBtnFunction()" id="singleList'+id+'">列表</a>'
 			+'<a href="#" class="easyui-linkbutton" data-options="iconCls:\'icon-chart\',plain:true" style="margin:0px 10px;" onclick="searchChartFunction()" id="singleChart'+id+'">图像</a>'
-			+'<a href="#" class="easyui-linkbutton" data-options="iconCls:\'icon-download\',plain:true" onclick="exportFunction()">导出</a>'
 			+'</div>'
 			+'</div>'
 			+'<div data-options="region:\'center\',border:false" id="centerContent'+id+'">'
@@ -690,59 +683,4 @@ function initsingleStationList(id){
    		$("#searchContent"+id).datagrid("loaded");
 	 }
     }).datagrid('loading');
-}
-
-/*导出*/
-function exportFunction() {
-	var datajson = [];
-	var devicecode = -1;
-	var station = $('#mytree').tree('getSelected');
-	if(station==null || station==undefined){
-		$.messager.alert("提示", "请选择一个站点进行查询！", "error");
-		return false;
-	}
-	var currTab =$('#querySingleTab').tabs('getSelected'); 
-	var title = currTab.panel('options').title;
-	var id="perminute";
-	if(title=="按分钟统计"){
-		id="perminute";
-	}else if(title=="按小时统计"){
-		id="perhour";
-	}else if(title=="按日统计"){
-		id="perday";
-	}else if(title=="按月统计"){
-		id="permonth";
-	}else{
-		id="perquarter";
-	}
-	var thingcode = $('#monitorThings'+id).combobox('getValues');
-	if(thingcode.length<=0){
-		$.messager.alert("提示", "请选择一个监控物！！", "error");
-		return false;
-	}
-	var startTime = null;
-	var endTime = null;
-	var thingcodeTexts = ($('#monitorThings'+id).combobox('getText')).split(",");
-	if(id=="perquarter"){
-		startTime = $("#dtStartTimeperquarter").combobox("getValue") + "-0" +  $("#startperquarterdt").combobox("getValue");
-		endTime = $("#dtEndTimeperquarter").combobox("getValue") + "-0" + $("#endperquarterdt").combobox("getValue");
-	}else{
-		startTime = $('#dtStartTime'+id).datebox("getValue");
-		endTime = $('#dtEndTime'+id).datebox("getValue");
-	}
-    var zsFlag = false;
-    if($('#zVauleChekbox'+id).is(':checked')){
-        zsFlag = true;
-    }
-	if(station==null || station==undefined){
-		devicecode = -1;
-	}else{
-		if(station.isDevice){
-			devicecode = station.id
-		}else{
-			$.messager.alert("提示", "请选择一个监控站点进行查询！", "warning");
-			return false;
-		}
-	}
-	location.href = "../ExportController/exportMultiThings?devicecode="+devicecode+"&thingcode="+thingcode+"&starttime="+startTime+"&endtime="+endTime+"&freque="+id+"&zsFlag="+zsFlag;
 }

@@ -997,21 +997,6 @@ function getDeviceInfo(deviceCode) {
 
 // 存储监控物的范围值
 var alarmMapRange = {};
-//$.ajax({
-//	url : "../MonitorStorageController/getAthorityMonitors",
-//	type : "post",
-//	dataType : "json",
-//	async : false,
-//	success : function(json) {
-//		for (var i = 0; i < json.length; i++) {
-//			alarmMapRange[json[i].name] = {
-//				"max" : json[i].max,
-//				"min" : json[i].min
-//			};
-//		}
-//	}
-//});
-
 /* 查询设备24小时内的监控数据 */
 function searchMapDeviceDataFuc(deviceCode) {
     var colums = [];// 存储列内容

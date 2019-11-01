@@ -206,12 +206,6 @@ function getUserPower() {
                     }
                     htmlArr.push("</dl>");
                 }
-                if (json.configipInfo) {
-                    htmlArr.push("<dl>");
-                    htmlArr.push('<dt>IP信息</dt>');
-                    htmlArr.push('<dd><a class="link" href="javascript:void(0)" onclick="$.getScript(\'../javascript/menu/system/configipInfo.js\');">设置IP信息</a></dd>');
-                    htmlArr.push("</dl>");
-                }
                 htmlArr.push('</div></div>');
             }
             if (json.generalMonitor) {// 实时监控

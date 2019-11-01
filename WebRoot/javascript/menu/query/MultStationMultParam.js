@@ -138,7 +138,6 @@ function getContent(title,id){
                 +'<span style="margin-left:8px;"><input type="checkbox"  id="zVauleChekbox'+id+'" style="vertical-align:middle; margin-top:0;"/><span style="vertical-align:middle; margin-top:0;" class="vauleCheckTitle"></span></span>'
 			    +'<a href="#" class="easyui-linkbutton" data-options="iconCls:\'icon-listtable\',plain:true" style="margin:0px 0px 0px 10px;" onclick="searchBtnMulFunction()">列表</a>'
 				+'<a href="#" class="easyui-linkbutton" data-options="iconCls:\'icon-chart\',plain:true" style="margin:0px 10px 0px 10px;" onclick="searchChartMulFunction()">图像</a>'
-				+'<a href="#" class="easyui-linkbutton" data-options="iconCls:\'icon-download\',plain:true" onclick="exportMulFunction()">导出</a>'
 				+'</div>'
 			+'</div>'
 			+'<div data-options="region:\'center\',border:false" id="centerContent'+id+'">'
@@ -159,7 +158,6 @@ function getContent(title,id){
 			+'<span style="margin-left:8px;"><input type="checkbox"  id="zVauleChekbox'+id+'" style="vertical-align:middle; margin-top:0;"/><span style="vertical-align:middle; margin-top:0;" class="vauleCheckTitle"></span></span>'
 		+'<a href="#" class="easyui-linkbutton" data-options="iconCls:\'icon-listtable\',plain:true" style="margin:0px 10px;" onclick="searchBtnMulFunction()">列表</a>'
 		+'<a href="#" class="easyui-linkbutton" data-options="iconCls:\'icon-chart\',plain:true" style="margin:0px 10px;" onclick="searchChartMulFunction()">图像</a>'
-		+'<a href="#" class="easyui-linkbutton" data-options="iconCls:\'icon-download\',plain:true" onclick="exportMulFunction()">导出</a>'
 		+'</div>'
 		+'</div>'
 		+'<div data-options="region:\'center\',border:false" id="centerContent'+id+'">'
@@ -663,62 +661,4 @@ function initChart(timelist,legendData,seriesData,id,MulmonitorThings,Mulmonitor
 		    series:seriesData
 		};
 	myChart.setOption(option);
-}
-
-/*导出*/
-function exportMulFunction() {
-	var datajson = [];
-	var treeid = "";
-	var station = $('#mytree').tree('getChecked');
-	if(station==null || station==undefined || station==""){
-		$.messager.alert("提示", "请勾选站点信息！", "error");
-		return false;
-	}
-	var currTab =$('#queryMultTab').tabs('getSelected'); 
-	var title = currTab.panel('options').title;
-	var id="Mulperminute";
-	if(title=="按分钟统计"){
-		id="Mulperminute";
-	}else if(title=="按小时统计"){
-		id="Mulperhour";
-	}else if(title=="按日统计"){
-		id="Mulperday";
-	}else if(title=="按月统计"){
-		id="Mulpermonth";
-	}else{
-		id="Mulperquarter";
-	}
-	var MulmonitorThings = $('#MulmonitorThings'+id).combobox('getValue');
-	var startTime = null;
-	var endTime = null;
-	var MulmonitorThingsTexts = $('#MulmonitorThings'+id).combobox('getText');
-	if(id=="Mulperquarter"){
-		startTime = $("#dtStartTime"+id).combobox("getValue") + "-0" +  $("#startMulperquarterdt").combobox("getValue");
-		endTime = $("#dtEndTime"+id).combobox("getValue") + "-0" + $("#endMulperquarterdt").combobox("getValue");
-	}else{
-		startTime = $('#dtStartTime'+id).datebox("getValue");
-		endTime = $('#dtEndTime'+id).datebox("getValue");
-	}
-	if(station==null || station==undefined || station==""){
-		treeid = "-1";
-	}else{
-		for(var i=0;i<station.length;i++){
-			if(station[i].isDevice){//判断是监控点
-				treeid = treeid + "," + station[i].id;
-			}
-		}
-		if(treeid!=""){
-			treeid = treeid.substr(1,treeid.length);
-		}
-	}
-    var zsFlag = false;
-    if($('#zVauleChekbox'+id).is(':checked')){
-        zsFlag = true;
-    }
-	var len = treeid.split(",").length;
-	if(len>10){
-		$.messager.alert("提示", "最多导出10个站点的监控物含量！", "warning");
-		return false;
-	}
-	location.href = "../ExportController/exportMultiDevices?devicecode="+treeid+"&thingcode="+MulmonitorThings+"&starttime="+startTime+"&endtime="+endTime+"&freque="+id.substr(3,id.length-1)+"&zsFlag="+zsFlag;
 }

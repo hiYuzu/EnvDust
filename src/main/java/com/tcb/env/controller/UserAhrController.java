@@ -23,18 +23,7 @@ import com.tcb.env.service.IUserAhrService;
 import com.tcb.env.util.DefaultArgument;
 
 /**
- * 
- * <p>
  * [功能描述]：用户权限组控制器
- * </p>
- * <p>
- * Copyright (c) 1993-2016 TCB Corporation
- * </p>
- * 
- * @author 王垒
- * @version 1.0, 2016年4月18日上午10:40:58
- * @since EnvDust 1.0.0
- *
  */
 @Controller
 @RequestMapping("/UserAhrController")
@@ -62,16 +51,7 @@ public class UserAhrController {
 	private UserController userController;
 
 	/**
-	 * 
-	 * <p>
 	 * [功能描述]：查询非权限组用户信息
-	 * </p>
-	 * 
-	 * @author 王垒, 2016年3月18日下午1:31:31
-	 * @since EnvDust 1.0.0
-	 *
-	 * @param ahrCode
-	 * @return
 	 */
 	@RequestMapping(value = "/queryOtherUserAhrs", method = { RequestMethod.POST })
 	public @ResponseBody ResultListModel<UserModel> queryOtherUserAhrs(
@@ -81,7 +61,6 @@ public class UserAhrController {
 		if (ahrCode != null && !ahrCode.isEmpty()) {
 			List<UserModel> listusermodel = new ArrayList<UserModel>();
 			Authority authority = new Authority();
-//			authority.setAuthorityCode(ahrCode);//一个用户只能属于一个	权限组，所以不赋值
 			User user = new User();
 			user.setUserName(userName);
 			UserAhr userAhr = new UserAhr();
@@ -109,18 +88,7 @@ public class UserAhrController {
 	}
 
 	/**
-	 * 
-	 * <p>
 	 * [功能描述]：插入权限组用户
-	 * </p>
-	 * 
-	 * @author 王垒, 2016年4月18日上午10:50:55
-	 * @since EnvDust 1.0.0
-	 *
-	 * @param ahrCode
-	 * @param list
-	 * @param httpsession
-	 * @return
 	 */
 	@RequestMapping(value = "/insertUserAhrs", method = { RequestMethod.POST })
 	public @ResponseBody ResultModel insertUserAhrs(String ahrCode,
@@ -180,18 +148,7 @@ public class UserAhrController {
 	}
 
 	/**
-	 * 
-	 * <p>
 	 * [功能描述]：删除权限组用户
-	 * </p>
-	 * 
-	 * @author 王垒, 2016年4月18日上午11:12:27
-	 * @since EnvDust 1.0.0
-	 *
-	 * @param ahrCode
-	 * @param list
-	 * @param httpsession
-	 * @return
 	 */
 	@RequestMapping(value = "/deleteUserAhrs", method = { RequestMethod.POST })
 	public @ResponseBody ResultModel deleteUserAhrs(String ahrCode,
@@ -223,5 +180,4 @@ public class UserAhrController {
 		}
 		return resultModel;
 	}
-
 }

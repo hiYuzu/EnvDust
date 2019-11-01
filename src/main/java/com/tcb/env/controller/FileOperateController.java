@@ -30,14 +30,7 @@ import com.tcb.env.service.IUploadFileService;
 import com.tcb.env.util.DateUtil;
 import com.tcb.env.util.DefaultArgument;
 /**
- * 
- * <p>[功能描述]：文件操作控制器（查询、上传、下载）</p>
- * <p>Copyright (c) 1997-2017 TCB Corporation</p>
- * 
- * @author	王垒
- * @version	1.0, 2017年3月14日上午9:12:04
- * @since	EnvDust 1.0.0
- *
+ * [功能描述]：文件操作控制器（查询、上传、下载）
  */
 @Controller
 @RequestMapping("/FileOperateController")
@@ -108,16 +101,7 @@ public class FileOperateController {
 	}
 	
 	/**
-	 * 
-	 * <p>[功能描述]：单个获取上传文件信息</p>
-	 * 
-	 * @author	王垒, 2017年4月1日上午11:43:47
-	 * @since	EnvDust 1.0.0
-	 *
-	 * @param fileId
-	 * @param request
-	 * @param response
-	 * @return
+	 * [功能描述]：单个获取上传文件信息
 	 */
 	@RequestMapping(value = "/queryUploadFile", method = { RequestMethod.POST, RequestMethod.GET})
 	public @ResponseBody UploadFileModel queryUploadFile(
@@ -132,15 +116,7 @@ public class FileOperateController {
 	}
 	
 	/**
-	 * 
-	 * <p>[功能描述]：是否存在相同的文件名称</p>
-	 * 
-	 * @author	王垒, 2018年12月6日上午9:21:10
-	 * @since	EnvDust 1.0.0
-	 *
-	 * @param fileType
-	 * @param fileName
-	 * @return
+	 * [功能描述]：是否存在相同的文件名称
 	 */
 	@RequestMapping(value = "/queryExsitFile", method = { RequestMethod.POST, RequestMethod.GET})
 	public @ResponseBody ResultModel queryExsitFile(
@@ -239,14 +215,7 @@ public class FileOperateController {
     }
     
     /**
-     * 
-     * <p>[功能描述]：删除任务上传文件</p>
-     * 
-     * @author	王垒, 2017年4月10日下午2:02:28
-     * @since	EnvDust 1.0.0
-     *
-     * @param fileId
-     * @return
+     * [功能描述]：删除任务上传文件
      */
     @RequestMapping(value = "/deleteUploadFile", method = { RequestMethod.POST })
     public @ResponseBody ResultModel deleteUploadFile(String fileId){
@@ -268,14 +237,7 @@ public class FileOperateController {
  
     /**
      * 
-     * <p>[功能描述]：将UploadFile转换为UploadFileModel</p>
-     * 
-     * @author	王垒, 2017年4月1日下午12:28:12
-     * @since	EnvDust 1.0.0
-     *
-     * @param uploadFile
-     * @param requestUrl
-     * @return
+     * [功能描述]：将UploadFile转换为UploadFileModel
      */
     public UploadFileModel ConvertUploadFileModel(UploadFile uploadFile,String requestUrl){
     	UploadFileModel uploadFileModel = new UploadFileModel();

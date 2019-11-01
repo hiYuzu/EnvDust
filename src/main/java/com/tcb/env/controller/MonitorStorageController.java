@@ -10,12 +10,8 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.TreeMap;
-
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
-import com.sun.management.VMOption;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
@@ -28,12 +24,10 @@ import com.tcb.env.model.NetMonitorTimeModel;
 import com.tcb.env.model.OriginalDataModel;
 import com.tcb.env.model.ResultAjaxPushModel;
 import com.tcb.env.model.ResultListModel;
-import com.tcb.env.model.ResultModel;
 import com.tcb.env.model.TreeModel;
 import com.tcb.env.model.UserModel;
 import com.tcb.env.pojo.Area;
 import com.tcb.env.pojo.Device;
-import com.tcb.env.pojo.HeWeather;
 import com.tcb.env.pojo.NetStatusCount;
 import com.tcb.env.service.IAreaService;
 import com.tcb.env.service.IDeviceService;
@@ -43,17 +37,13 @@ import com.tcb.env.service.ITreeService;
 import com.tcb.env.service.IWeatherService;
 import com.tcb.env.util.DateUtil;
 import com.tcb.env.util.DefaultArgument;
-import com.tcb.env.util.EnumUtil;
 import com.tcb.env.util.EnumUtil.TimeFreque;
 import com.tcb.env.util.SessionManager;
 
 /**
- * <p>[功能描述]：数据查询控制器</p>
- * <p>Copyright (c) 1997-2018 TCB Corporation</p>
+ * [功能描述]：数据查询控制器
  *
- * @author 王垒
- * @version 1.0, 2018年5月5日下午5:50:47
- * @since EnvDust 1.0.0
+ * @author kyq
  */
 @Controller
 @RequestMapping("/MonitorStorageController")
@@ -63,11 +53,6 @@ public class MonitorStorageController {
      * 日志输出标记
      */
     private static final String LOG = "MonitorStorageController";
-
-    /**
-     * 实时查询标识
-     */
-    private static boolean haveTimelyResult = false;
 
     /**
      * 声明日志对象
@@ -89,40 +74,13 @@ public class MonitorStorageController {
     @Resource
     private IMapService mapService;
     /**
-     * 声明天气服务类
-     */
-    @Resource
-    private IWeatherService weatherService;
-    /**
-     * 声明区域服务类
-     */
-    @Resource
-    private IAreaService areaService;
-    /**
      * 声明设备服务类
      */
     @Resource
     private IDeviceService deviceService;
 
     /**
-     * 声明线程管理（带join不适用）
-     */
-    // @Resource(name = "taskExecutor")
-    // private TaskExecutor taskExecutor;
-
-    /**
-     * <p>
      * [功能描述]：获取单站点多参数历史数据(列表)
-     * </p>
-     *
-     * @param zsFlag     ：折算标志
-     * @param devicecode ：站点
-     * @param list       ：参数列表
-     * @param starttime  ：查询开始时间
-     * @param endtime    ：查询结束时间
-     * @return
-     * @author 王垒, 2016年3月30日下午1:40:33
-     * @since EnvDust 1.0.0
      */
     @RequestMapping(value = "/getPerStatisticsData", method = {RequestMethod.POST})
     public @ResponseBody
@@ -200,18 +158,7 @@ public class MonitorStorageController {
     }
 
     /**
-     * <p>
      * [功能描述]：获取单站点多参数历史数据(图形)
-     * </p>
-     *
-     * @param zsFlag     : 折算标识
-     * @param devicecode ：站点
-     * @param list       ：参数列表
-     * @param starttime  ：查询开始时间
-     * @param endtime    ：查询结束时间
-     * @return
-     * @author 王垒, 2016年3月30日下午1:40:33
-     * @since EnvDust 1.0.0
      */
     @RequestMapping(value = "/getSingleDeviceStatisticsChartData", method = {RequestMethod.POST})
     public @ResponseBody
@@ -297,18 +244,7 @@ public class MonitorStorageController {
     }
 
     /**
-     * <p>
      * [功能描述]：获取多站点单参数历史数据(列表)
-     * </p>
-     *
-     * @param zsFlag    : 折算标识
-     * @param list      ：站点列表
-     * @param thingcode ：参数
-     * @param starttime ：查询开始时间
-     * @param endtime   ：查询结束时间
-     * @return
-     * @author 王垒, 2016年3月30日下午1:41:47
-     * @since EnvDust 1.0.0
      */
     @RequestMapping(value = "/getSingleThingStatisticsData", method = {RequestMethod.POST})
     public @ResponseBody
@@ -388,18 +324,7 @@ public class MonitorStorageController {
     }
 
     /**
-     * <p>
      * [功能描述]：获取多站点单参数历史数据(图形)
-     * </p>
-     *
-     * @param zsFlag    : 折算标识
-     * @param list      ：站点列表
-     * @param thingcode ：参数
-     * @param starttime ：查询开始时间
-     * @param endtime   ：查询结束时间
-     * @return
-     * @author 王垒, 2016年3月30日下午1:41:47
-     * @since EnvDust 1.0.0
      */
     @RequestMapping(value = "/getSingleThingStatisticsChartData", method = {RequestMethod.POST})
     public @ResponseBody
@@ -413,7 +338,6 @@ public class MonitorStorageController {
         }
         try {
             List<String> listDevicecode = list;
-//			List<String> listName = monitorStorageService.getDeviceNamebyCode(listDevicecode);
             List<String> listThingcode = new ArrayList<String>();
             listThingcode.add(thingcode);
             Map<Integer, List<MonitorStorageModel>> mapMonitor = getStatisticsDataByFreque(
@@ -495,18 +419,7 @@ public class MonitorStorageController {
     }
 
     /**
-     * <p>
      * [功能描述]：判断查询的频率周期
-     * </p>
-     *
-     * @param listdevicecode
-     * @param listthingcode
-     * @param starttime
-     * @param endtime
-     * @param freque
-     * @return
-     * @author 王垒, 2016年3月31日上午11:31:34
-     * @since EnvDust 1.0.0
      */
     private Map<Integer, List<MonitorStorageModel>> getStatisticsDataByFreque(
             List<String> listdevicecode, List<String> listthingcode,
@@ -629,16 +542,7 @@ public class MonitorStorageController {
     }
 
     /**
-     * <p>
      * [功能描述]：查询实时监测物数据(图形)
-     * </p>
-     *
-     * @param devicecode  ：设备编号
-     * @param isrepeat    ：true:查询最新数据，false:重新查询所有数据
-     * @param httpsession
-     * @return
-     * @author 王垒, 2016年3月31日下午12:28:04
-     * @since EnvDust 1.0.0
      */
     @RequestMapping(value = "/getTimelyMonitorChartData", method = {RequestMethod.POST})
     @ResponseBody
@@ -665,23 +569,7 @@ public class MonitorStorageController {
                     }
                     List<String> listName = monitorStorageService
                             .getMonNamebyCode(listThingcode);
-                    List<MonitorStorageModel> mapMonitor = new ArrayList<MonitorStorageModel>();
-                    //				if (DefaultArgument.SYS_STA_RLD) {
-                    //					mapMonitor = monitorStorageService
-                    //							.getTimelyMonitorData(
-                    //									listDevicecode,
-                    //									listThingcode,
-                    //									nowtime,
-                    //									DateUtil.GetSystemDateTime(DefaultArgument.TIMELY_DEFAULT));
-                    //				} else {
-                    //					mapMonitor = monitorStorageService
-                    //							.getHourMonitorData(
-                    //									listDevicecode,
-                    //									listThingcode,
-                    //									nowtime,
-                    //									DateUtil.GetSystemDateTime(DefaultArgument.TIMELY_DEFAULT));
-                    //				}
-                    mapMonitor = monitorStorageService.getTimelyMonitorData(
+                    List<MonitorStorageModel> mapMonitor = monitorStorageService.getTimelyMonitorData(
                             listDevicecode,
                             listThingcode,
                             nowtime,
@@ -757,17 +645,7 @@ public class MonitorStorageController {
     }
 
     /**
-     * <p>
      * [功能描述]：查询实时监测物数据(列表)
-     * </p>
-     *
-     * @param zsFlag      : 折算值
-     * @param devicecode  ：设备编号
-     * @param isrepeat    ：true:查询最新数据，false:重新查询所有数据
-     * @param httpsession
-     * @return
-     * @author 王垒, 2016年3月31日下午12:28:04
-     * @since EnvDust 1.0.0
      */
     @RequestMapping(value = "/getTimelyMonitorData", method = {RequestMethod.POST})
     @ResponseBody
@@ -809,21 +687,7 @@ public class MonitorStorageController {
                             listThingcode.add(mapModel.getCode());
                         }
                         // 查询24小时内数据
-                        List<MonitorStorageModel> mapMonitor = new ArrayList<MonitorStorageModel>();
-                        //					if (DefaultArgument.SYS_STA_RLD) {
-                        //						mapMonitor = monitorStorageService.getTimelyMonitorData(
-                        //										listDevicecode,
-                        //										listThingcode,
-                        //										nowtime,
-                        //										DateUtil.GetSystemDateTime(DefaultArgument.TIMELY_DEFAULT));
-                        //					} else {
-                        //						mapMonitor = monitorStorageService.getHourMonitorData(
-                        //										listDevicecode,
-                        //										listThingcode,
-                        //										nowtime,
-                        //										DateUtil.GetSystemDateTime(DefaultArgument.TIMELY_DEFAULT));
-                        //					}
-                        mapMonitor = monitorStorageService.getTimelyMonitorData(
+                        List<MonitorStorageModel> mapMonitor = monitorStorageService.getTimelyMonitorData(
                                 listDevicecode,
                                 listThingcode,
                                 nowtime,
@@ -876,15 +740,7 @@ public class MonitorStorageController {
     }
 
     /**
-     * <p>
      * [功能描述]：获取权限监测物
-     * </p>
-     *
-     * @param deviceCodeList
-     * @param httpsession
-     * @return
-     * @author 王垒, 2016年3月31日下午2:02:13
-     * @since EnvDust 1.0.0
      */
     @RequestMapping(value = "/getAthorityMonitors", method = {RequestMethod.POST})
     @ResponseBody
@@ -910,15 +766,7 @@ public class MonitorStorageController {
     }
 
     /**
-     * <p>
      * [功能描述]：获取权限设备监测物
-     * </p>
-     *
-     * @param deviceCode
-     * @param httpsession
-     * @return
-     * @author 王垒, 2016年3月31日下午2:02:13
-     * @since EnvDust 1.0.0
      */
     @RequestMapping(value = "/getAthorityDeviceMonitors", method = {RequestMethod.POST})
     public @ResponseBody
@@ -946,323 +794,7 @@ public class MonitorStorageController {
     }
 
     /**
-     * <p>
-     * [功能描述]：查询实时监测物数据(ajax长链接方式)
-     * </p>
-     *
-     * @param zsFlag
-     * @param devicecode
-     * @param isrepeat
-     * @param httpsession
-     * @return
-     * @author 王垒, 2016年4月8日上午11:10:14
-     * @since EnvDust 1.0.0
-     */
-    @RequestMapping(value = "/getTimelyMonitorDataConn", method = {RequestMethod.POST})
-    public @ResponseBody
-    ResultAjaxPushModel getTimelyMonitorDataConn(
-            @RequestParam(value = "zsFlag", defaultValue = "false") boolean zsFlag,
-            String devicecode, boolean isrepeat, HttpSession httpsession) {
-        try {
-            ResultAjaxPushModel resultTimelyModel = new ResultAjaxPushModel();
-            if (!haveTimelyResult) {
-                resultTimelyModel = waittingTimely(zsFlag, devicecode, isrepeat, httpsession);
-
-            } else {
-                Thread.sleep(DefaultArgument.TIMELY_TIME);
-            }
-            return resultTimelyModel;
-        } catch (Exception e) {
-            logger.error(LOG + ":实时数据连接查询失败，原因：" + e.getMessage());
-            return null;
-        }
-    }
-
-    /**
-     * <p>
-     * [功能描述]：实时查询数据线程
-     * </p>
-     *
-     * @param zsFlag
-     * @param devicecode
-     * @param isrepeat
-     * @param httpsession
-     * @return
-     * @throws Exception
-     * @author 王垒, 2016年4月11日下午3:05:29
-     * @since EnvDust 1.0.0
-     */
-    private ResultAjaxPushModel waittingTimely(
-            @RequestParam(value = "zsFlag", defaultValue = "false") boolean zsFlag,
-            String devicecode, boolean isrepeat, HttpSession httpsession) throws Exception {
-        Timestamp selecttime = DateUtil.GetSystemDateTime(0);
-        Thread timely = new Thread("timely") {
-            public void run() {
-                while (!isInterrupted() && !haveTimelyResult) {
-                    try {
-                        if (SessionManager.isSessionValidate(httpsession,
-                                DefaultArgument.LOGIN_USER)) {
-                            return;
-                        }
-                        UserModel loginuser = new UserModel();
-                        Timestamp nowtime = DateUtil.GetSystemDateTime(0);
-                        loginuser = (UserModel) httpsession.getAttribute(DefaultArgument.LOGIN_USER);
-                        nowtime = DateUtil.GetSystemDateTime(0);
-                        if (loginuser != null) {
-                            Timestamp lastselecttime = loginuser.getSelectTime();
-                            if (!isrepeat || lastselecttime == null) {
-                                lastselecttime = DateUtil.GetSystemDateTime(DefaultArgument.TIMELY_DEFAULT);
-                            }
-                            if (!StringUtils.isEmpty(devicecode)) {
-                                List<String> listDevicecode = new ArrayList<String>();
-                                listDevicecode.add(devicecode);
-                                List<MapModel> listMap = getAthorityMonitors(listDevicecode, httpsession);
-                                if (listMap != null && listMap.size() > 0) {
-                                    List<String> listThingcode = new ArrayList<String>();
-                                    for (MapModel mapModel : listMap) {
-                                        listThingcode.add(mapModel.getCode());
-                                    }
-
-                                    if (DefaultArgument.SYS_STA_RLD) {
-                                        if (monitorStorageService
-                                                .getTimelyMonitorDataCount(
-                                                        listDevicecode,
-                                                        listThingcode, nowtime,
-                                                        lastselecttime) > 0) {
-                                            haveTimelyResult = true;
-                                            break;
-                                        }
-                                    } else if (monitorStorageService
-                                            .getHourMonitorDataCount(
-                                                    listDevicecode, listThingcode,
-                                                    nowtime, selecttime) > 0) {
-                                        haveTimelyResult = true;
-                                        break;
-                                    }
-                                    if (DateUtil.GetSystemDateTime(
-                                            DefaultArgument.OUT_TIME).compareTo(
-                                            selecttime) == 1) { // 连接超时
-                                        break;
-                                    }
-                                }
-                            }
-                        }
-                        Thread.sleep(DefaultArgument.TIMELY_TIME);
-
-                    } catch (Exception e) {
-                        logger.info(LOG + ":timely线程终止,信息为：" + e);
-                        return;
-                    }
-                }
-            }
-        };
-        timely.start();
-        timely.join(); // 保证当线程t执行完后在执行后续任务
-        if (haveTimelyResult) {
-            haveTimelyResult = false;
-            return getTimelyMonitorData(zsFlag, devicecode, isrepeat, httpsession);
-        } else {
-            return null;
-        }
-    }
-
-
-    /**
-     * <p>[功能描述]：查询网络监控数据(状态)</p>
-     *
-     * @param projectId
-     * @param list
-     * @param levelFlag
-     * @param select
-     * @param statusCode
-     * @param rows
-     * @param page
-     * @param httpsession
-     * @return
-     * @author 王垒, 2017年11月30日上午9:51:30
-     * @since EnvDust 1.0.0
-     */
-    @RequestMapping(value = "/getNetMonitorTime", method = {RequestMethod.POST})
-    @ResponseBody
-    public String getNetMonitorTime(
-            @RequestParam(value = "projectId", required = false) String projectId,
-            @RequestParam(value = "list[]", required = false) List<String> list,
-            @RequestParam(value = "levelFlag", required = false) String levelFlag,
-            @RequestParam(value = "select", required = false) String select,
-            String statusCode, int rows, int page, HttpSession httpsession) {
-        ResultAjaxPushModel resultAjaxPushModel = new ResultAjaxPushModel();
-        resultAjaxPushModel.setSelect(select);
-        resultAjaxPushModel.setRows(rows);
-        resultAjaxPushModel.setPage(page);
-        List<NetMonitorTimeModel> listMonitorTime = new ArrayList<NetMonitorTimeModel>();
-        int rowTotal = 0;
-        int normalCount = 0;
-        int overLineCount = 0;
-        int outLinkCount = 0;
-        int noCountCount = 0;
-        int otherCount = 0;
-        String userCode = null;
-        try {
-            if (SessionManager.isSessionValidate(httpsession, DefaultArgument.LOGIN_USER)) {
-                return "[]";
-            } else {
-                UserModel loginuser = (UserModel) httpsession.getAttribute(DefaultArgument.LOGIN_USER);
-                if (loginuser != null) {
-                    userCode = loginuser.getUserCode();
-                }
-            }
-            List<NetStatusCount> listNSCount = new ArrayList<NetStatusCount>();
-            List<String> listdevicecode = new ArrayList<String>();
-            if (DefaultArgument.NONE_DEFAULT.equals(list.get(0))) {
-                return "[]";
-            } else if (list == null || list.size() == 0) {
-                return "[]";
-            } else {
-                List<Integer> listareaid = new ArrayList<Integer>();
-                if (levelFlag != null && !levelFlag.isEmpty()) {
-                    listareaid = treeService.getAuthorityBottomArea(projectId, listareaid,
-                            Integer.valueOf(list.get(0)), userCode);
-                }
-                if (String.valueOf(DefaultArgument.INT_DEFAULT).equals(
-                        list.get(0))) {
-                    List<MapModel> listDev = getAuthorityDevices(projectId,
-                            DefaultArgument.INT_DEFAULT, null, httpsession);
-                    for (MapModel mapModel : listDev) {
-                        listdevicecode.add(mapModel.getCode());
-                    }
-                    listNSCount = monitorStorageService.getNetStatusCount(
-                            userCode, new ArrayList<String>());
-                } else if (listareaid != null && listareaid.size() > 0) {
-                    for (Integer areaid : listareaid) {
-                        List<MapModel> listDev = getAuthorityDevices(projectId, areaid, null, httpsession);
-                        for (MapModel mapModel : listDev) {
-                            listdevicecode.add(mapModel.getCode());
-                        }
-                    }
-                    listNSCount = monitorStorageService.getNetStatusCount(
-                            userCode, listdevicecode);
-                } else {
-                    for (String temp : list) {
-                        listdevicecode.add(temp);
-                    }
-                    listNSCount = monitorStorageService.getNetStatusCount(
-                            userCode, listdevicecode);
-                }
-
-            }
-            if (listNSCount != null && listNSCount.size() > 0) {
-                for (NetStatusCount netStatusCount : listNSCount) {
-                    switch (netStatusCount.getStatusCode()) {
-                        case "N":
-                            normalCount += netStatusCount.getStatusCount();
-                            break;
-                        case "NT":
-                            overLineCount += netStatusCount.getStatusCount();
-                            break;
-                        case "O":
-                            outLinkCount += netStatusCount.getStatusCount();
-                            break;
-                        case "Z":
-                            noCountCount += netStatusCount.getStatusCount();
-                            break;
-                        default:
-                            otherCount += netStatusCount.getStatusCount();
-                            break;
-                    }
-                }
-                rowTotal = normalCount + overLineCount + outLinkCount
-                        + noCountCount + otherCount;
-                resultAjaxPushModel.setRowTotal(rowTotal);
-                resultAjaxPushModel.setNormalCount(normalCount);
-                resultAjaxPushModel.setOverLineCount(overLineCount);
-                resultAjaxPushModel.setOutLinkCount(outLinkCount);
-                resultAjaxPushModel.setNoCountCount(noCountCount);
-                resultAjaxPushModel.setOtherCount(otherCount);
-            }
-            if (listdevicecode != null && listdevicecode.size() > 0) {
-                List<MapModel> listAhr = getAthorityMonitors(listdevicecode, httpsession);
-                if (listAhr != null && listAhr.size() > 0) {
-                    List<String> listThingcode = new ArrayList<String>();
-                    for (MapModel mapModel : listAhr) {
-                        listThingcode.add(mapModel.getCode());
-                    }
-                    //筛选符合状态的设备
-                    if (statusCode != null && !statusCode.isEmpty()) {
-                        listdevicecode = monitorStorageService.getDeviceCodeByStatus(listdevicecode, statusCode);
-                    }
-                    // 取分页后的设备
-                    List<String> listDevCode = new ArrayList<String>();
-                    if (rows != DefaultArgument.INT_DEFAULT && page != DefaultArgument.INT_DEFAULT) {
-                        for (int i = (page - 1) * rows; i < page * rows; i++) {
-                            if (i < listdevicecode.size()) {
-                                listDevCode.add(listdevicecode.get(i));
-                            } else {
-                                break;
-                            }
-                        }
-                    }
-                    List<MonitorStorageModel> mapMonitor = monitorStorageService
-                            .getNetMonitorRecentTime(listDevCode, listThingcode, statusCode);
-                    Map<String, NetMonitorTimeModel> mapResult = new TreeMap<String, NetMonitorTimeModel>();
-                    if (mapMonitor != null && mapMonitor.size() > 0) {
-                        for (MonitorStorageModel tempMonitor : mapMonitor) {
-                            NetMonitorTimeModel netMonitorTimeModel = new NetMonitorTimeModel();
-                            String deviceCode = tempMonitor.getDeviceCode();
-                            String deviceMn = tempMonitor.getDeviceMn();
-                            String deviceName = tempMonitor.getDeviceName();
-                            String thingName = tempMonitor.getThingName();
-                            String deviceStatus = tempMonitor.getDeviceStatus();
-                            String deviceStatusInfo = tempMonitor.getDeviceStatusInfo();
-                            String frequeTime = tempMonitor.getFrequeTime();
-                            String areaName = tempMonitor.getAreaName();
-                            netMonitorTimeModel.setDeviceCode(deviceCode);
-                            netMonitorTimeModel.setDeviceMn(deviceMn);
-                            netMonitorTimeModel.setDeviceName(deviceName);
-                            netMonitorTimeModel.setDeviceStatus(deviceStatus);
-                            netMonitorTimeModel.setDeviceStatusInfo(deviceStatusInfo);
-                            netMonitorTimeModel.setAreaName(areaName);
-                            if (deviceCode != null && !deviceCode.isEmpty()) {
-                                if (mapResult.containsKey(deviceCode)) {
-                                    if (!mapResult.get(deviceCode).getMapList().containsKey(thingName)) {
-                                        mapResult.get(deviceCode).getMapList().put(thingName, frequeTime);
-                                    } else {
-                                        logger.warn(LOG + ":网络状态监控存在相同键值的对象：" + thingName + "-" + frequeTime);
-                                    }
-                                } else {
-                                    TreeMap<String, String> treeMap = new TreeMap<String, String>();
-                                    treeMap.put(thingName, frequeTime);
-                                    netMonitorTimeModel.setMapList(treeMap);
-                                    mapResult.put(deviceCode, netMonitorTimeModel);
-                                }
-                            }
-                        }
-                        for (Map.Entry<String, NetMonitorTimeModel> tempMonitor : mapResult.entrySet()) {
-                            listMonitorTime.add(tempMonitor.getValue());
-                        }
-                        resultAjaxPushModel.setResult(listMonitorTime);
-                    }
-                }
-            } else {
-                return ConvertResultAjaxPushModel(resultAjaxPushModel, "time");
-            }
-        } catch (Exception e) {
-            logger.error(LOG + ":查询网络监控状态错误，错误信息为：" + e.getMessage());
-        }
-        return ConvertResultAjaxPushModel(resultAjaxPushModel, "time");
-    }
-
-    /**
-     * <p>
      * [功能描述]：获取权限设备数据
-     * </p>
-     *
-     * @param projectId
-     * @param areaid
-     * @param statusCode
-     * @param httpsession
-     * @return
-     * @author 王垒, 2016年3月31日下午9:58:18
-     * @since EnvDust 1.0.0
      */
     @RequestMapping(value = "/getAuthorityDevices", method = {RequestMethod.POST})
     public @ResponseBody
@@ -1293,16 +825,9 @@ public class MonitorStorageController {
     }
 
     /**
-     * <p>
      * [功能描述]：将treeMap结果集转换成json字符串
-     * </p>
-     *
-     * @param treeMap
-     * @return
-     * @author 王垒, 2016年5月6日下午1:29:36
-     * @since EnvDust 1.0.0
      */
-    public String ConvertToJson(TreeMap<String, HashMap<String, Double>> treeMap) {
+    private String ConvertToJson(TreeMap<String, HashMap<String, Double>> treeMap) {
         String reJson = "[";
         try {
             for (Entry<String, HashMap<String, Double>> tempTreeMap : treeMap
@@ -1327,197 +852,7 @@ public class MonitorStorageController {
     }
 
     /**
-     * <p>
-     * [功能描述]：网络监控数据转换成json
-     * </p>
-     *
-     * @param resultAjaxPushModel
-     * @return
-     * @author 王垒, 2016年7月11日上午10:22:45
-     * @since EnvDust 1.0.0
-     */
-    public String ConvertResultAjaxPushModel(
-            ResultAjaxPushModel resultAjaxPushModel, String type) {
-        String reJson = "";
-        try {
-            reJson += "{\"select\":";
-            reJson += "\"" + resultAjaxPushModel.getSelect() + "\"";
-            reJson += ",\"rows\":";
-            reJson += "\"" + resultAjaxPushModel.getRows() + "\"";
-            reJson += ",\"page\":";
-            reJson += "\"" + resultAjaxPushModel.getPage() + "\"";
-            reJson += ",\"result\":";
-            if (type != null && type.equals("time")) {
-                reJson += ""
-                        + ConvertToJsonNMT(resultAjaxPushModel.getResult())
-                        + "";
-            } else {
-                reJson += ""
-                        + ConvertToJsonNMD(resultAjaxPushModel.getResult())
-                        + "";
-            }
-            // reJson += ",\"alarmLine\":";
-            // reJson += "\"" + resultAjaxPushModel.getAlarmLine() + "\"";
-            reJson += ",\"normalCount\":";
-            reJson += "\"" + resultAjaxPushModel.getNormalCount() + "\"";
-            reJson += ",\"overLineCount\":";
-            reJson += "\"" + resultAjaxPushModel.getOverLineCount() + "\"";
-            reJson += ",\"outLinkCount\":";
-            reJson += "\"" + resultAjaxPushModel.getOutLinkCount() + "\"";
-            reJson += ",\"noCountCount\":";
-            reJson += "\"" + resultAjaxPushModel.getNoCountCount() + "\"";
-            reJson += ",\"otherCount\":";
-            reJson += "\"" + resultAjaxPushModel.getOtherCount() + "\"";
-            reJson += ",\"rowTotal\":";
-            reJson += "\"" + resultAjaxPushModel.getRowTotal() + "\"";
-            reJson += "}";
-        } catch (Exception e) {
-            logger.error(LOG + "：转换成json字符串失败，信息：" + e.getMessage());
-        }
-        return reJson;
-    }
-
-    /**
-     * <p>
-     * [功能描述]：将List《NetMonitorTimeModel》结果集转换成json字符串
-     * </p>
-     *
-     * @param object
-     * @return
-     * @author 王垒, 2016年5月6日下午1:29:36
-     * @since EnvDust 1.0.0
-     */
-    public String ConvertToJsonNMT(Object object) {
-        String reJson = "[";
-        try {
-            @SuppressWarnings("unchecked")
-            List<NetMonitorTimeModel> list = (List<NetMonitorTimeModel>) object;
-            if (list != null && list.size() > 0) {
-                for (NetMonitorTimeModel netMonitorTimeModel : list) {
-                    reJson += "{\"deviceCode\":";
-                    reJson += "\"" + netMonitorTimeModel.getDeviceCode() + "\"";
-                    reJson += ",\"deviceMn\":";
-                    reJson += "\"" + netMonitorTimeModel.getDeviceMn() + "\"";
-                    reJson += ",\"deviceName\":";
-                    reJson += "\"" + netMonitorTimeModel.getDeviceName() + "\"";
-                    reJson += ",\"areaName\":";
-                    reJson += "\"" + netMonitorTimeModel.getAreaName() + "\"";
-                    reJson += ",\"deviceStatus\":";
-                    reJson += "\"" + netMonitorTimeModel.getDeviceStatus() + "\"";
-                    reJson += ",\"deviceStatusInfo\":";
-                    reJson += "\"" + netMonitorTimeModel.getDeviceStatusInfo()
-                            + "\"";
-                    Map<String, String> mapList = netMonitorTimeModel.getMapList();
-                    if (mapList != null && mapList.size() > 0) {
-                        for (Entry<String, String> tempMap : mapList.entrySet()) {
-                            reJson += ",\"" + tempMap.getKey() + "\":";
-                            reJson += "\"" + String.valueOf(tempMap.getValue())
-                                    + "\"";
-                        }
-                    }
-                    reJson += "},";
-                }
-            }
-            if (reJson.lastIndexOf(",") >= 0) {
-                reJson = reJson.substring(0, reJson.lastIndexOf(","));
-            }
-        } catch (Exception e) {
-            logger.error(LOG + "：转换成json字符串失败，信息：" + e.getMessage());
-        }
-        reJson += "]";
-        return reJson;
-    }
-
-    /**
-     * <p>
-     * [功能描述]：将List《NetMonitorDataModel》结果集转换成json字符串
-     * </p>
-     *
-     * @param object
-     * @return
-     * @author 王垒, 2016年5月6日下午1:29:36
-     * @since EnvDust 1.0.0
-     */
-    public String ConvertToJsonNMD(Object object) {
-        String reJson = "[";
-        try {
-            @SuppressWarnings("unchecked")
-            List<NetMonitorDataModel> list = (List<NetMonitorDataModel>) object;
-            if (list != null && list.size() > 0) {
-                for (NetMonitorDataModel netMonitorDataModel : list) {
-                    reJson += "{\"deviceCode\":";
-                    reJson += "\"" + netMonitorDataModel.getDeviceCode() + "\"";
-                    reJson += ",\"deviceMn\":";
-                    reJson += "\"" + netMonitorDataModel.getDeviceMn() + "\"";
-                    reJson += ",\"deviceName\":";
-                    reJson += "\"" + netMonitorDataModel.getDeviceName() + "\"";
-                    reJson += ",\"areaName\":";
-                    reJson += "\"" + netMonitorDataModel.getAreaName() + "\"";
-                    reJson += ",\"deviceStatus\":";
-                    reJson += "\"" + netMonitorDataModel.getDeviceStatus() + "\"";
-                    reJson += ",\"deviceStatusInfo\":";
-                    reJson += "\"" + netMonitorDataModel.getDeviceStatusInfo()
-                            + "\"";
-                    Map<String, String> mapList = netMonitorDataModel.getMapList();
-                    if (mapList != null && mapList.size() > 0) {
-                        for (Entry<String, String> tempMap : mapList.entrySet()) {
-                            reJson += ",\"" + tempMap.getKey() + "\":";
-                            reJson += String.valueOf(tempMap.getValue());
-                        }
-                    }
-                    reJson += "},";
-                }
-            }
-            if (reJson.lastIndexOf(",") >= 0) {
-                reJson = reJson.substring(0, reJson.lastIndexOf(","));
-            }
-        } catch (Exception e) {
-            logger.error(LOG + "：转换成json字符串失败，信息：" + e.getMessage());
-        }
-        reJson += "]";
-        return reJson;
-    }
-
-    /**
-     * 查询原始上传数据（中转）
-     * 指向"/getOriginalData"
-     */
-    @RequestMapping(value = "/preGetOriginalData", method = RequestMethod.POST)
-    @ResponseBody
-    public ResultListModel<OriginalDataModel> preGetOriginalData(@RequestBody Map map, HttpSession session) {
-        int rows = (Integer) map.get("rows");
-        int page = (Integer) map.get("page");
-        String deviceCode = (String) map.get("deviceCode");
-        int updateType = (Integer) map.get("updateType");
-        String select = (String) map.get("select");
-        String thingCode = (String) map.get("thingCode");
-        String beginTime = (String) map.get("beginTime");
-        String endTime = (String) map.get("endTime");
-
-        OriginalDataModel originalDataModel = new OriginalDataModel();
-        originalDataModel.setPage(page);
-        originalDataModel.setRows(rows);
-        originalDataModel.setDeviceCode(deviceCode);
-        originalDataModel.setUpdateType(String.valueOf(updateType));
-        originalDataModel.setThingCode(thingCode);
-        originalDataModel.setBeginTime(beginTime);
-        originalDataModel.setEndTime(endTime);
-
-        return getOriginalData(null, originalDataModel, select, session);
-    }
-
-    /**
-     * <p>
      * [功能描述]：查询原始上传数据(列表)
-     * </p>
-     *
-     * @param list
-     * @param originalDataModel
-     * @param select
-     * @param httpsession
-     * @return
-     * @author 王垒, 2016年6月22日下午2:11:25
-     * @since EnvDust 1.0.0
      */
     @RequestMapping(value = "/getOriginalData", method = {RequestMethod.POST})
     @ResponseBody
@@ -1587,15 +922,7 @@ public class MonitorStorageController {
     }
 
     /**
-     * <p>[功能描述]：查询原始上传数据(图形)</p>
-     *
-     * @param zsFlag
-     * @param list
-     * @param originalDataModel
-     * @param httpsession
-     * @return
-     * @author 王垒, 2018年1月29日上午8:31:56
-     * @since EnvDust 1.0.0
+     * [功能描述]：查询原始上传数据(图形)
      */
     @RequestMapping(value = "/getOriginalChartData", method = {RequestMethod.POST})
     @ResponseBody
@@ -1725,62 +1052,4 @@ public class MonitorStorageController {
         }
         return treeMap;
     }
-
-    /**
-     * <p>[功能描述]：获取城市编码</p>
-     *
-     * @param deviceCode
-     * @return
-     * @author 王垒, 2017年12月8日上午9:15:39
-     * @since EnvDust 1.0.0
-     */
-    private String getCid(String deviceCode) {
-        String cid = null;
-        try {
-            if (deviceCode != null && !deviceCode.isEmpty()) {
-                Device device = new Device();
-                device.setDeviceCode(deviceCode);
-                List<Device> deviceList = deviceService.getDevice(device);
-                if (deviceList != null && deviceList.size() > 0 && deviceList.get(0).getArea() != null) {
-                    Area area = new Area();
-                    area.setAreaId(deviceList.get(0).getArea().getAreaId());
-                    List<Area> areaList = areaService.getAreas(area, true);
-                    if (areaList != null && areaList.size() > 0) {
-                        cid = areaList.get(0).getCityId();
-                        if (cid == null || cid.isEmpty()) {
-                            cid = getCid(areaList.get(0).getParentId());
-                        }
-                    }
-                }
-            }
-        } catch (Exception e) {
-            logger.error(LOG + ":查询CID失败，错误信息为：" + e.getMessage());
-        }
-        return cid;
-    }
-
-    /**
-     * <p>[功能描述]：获取城市编码</p>
-     *
-     * @param areaId
-     * @return
-     * @author 王垒, 2017年12月8日上午9:16:05
-     * @since EnvDust 1.0.0
-     */
-    private String getCid(int areaId) {
-        String cid = null;
-        if (areaId > 0) {
-            Area area = new Area();
-            area.setAreaId(areaId);
-            List<Area> areaList = areaService.getAreas(area, true);
-            if (areaList != null && areaList.size() > 0) {
-                cid = areaList.get(0).getCityId();
-                if (cid == null || cid.isEmpty()) {
-                    cid = getCid(areaList.get(0).getParentId());
-                }
-            }
-        }
-        return cid;
-    }
-
 }

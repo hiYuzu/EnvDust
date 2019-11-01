@@ -1,6 +1,5 @@
 package com.tcb.env.controller;
 
-import java.sql.Timestamp;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -17,11 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
-import com.tcb.env.Handler.WebsocketHandler;
-import com.tcb.env.config.Dom4jConfig;
-import com.tcb.env.model.AreaStatisticModel;
 import com.tcb.env.model.DeviceModel;
-import com.tcb.env.model.LocationModel;
 import com.tcb.env.model.MapDeviceModel;
 import com.tcb.env.model.MapModel;
 import com.tcb.env.model.MapMonitorData;
@@ -35,14 +30,11 @@ import com.tcb.env.model.UserModel;
 import com.tcb.env.service.IAlarmService;
 import com.tcb.env.service.IDeviceService;
 import com.tcb.env.service.IMapService;
-import com.tcb.env.service.ISysflagService;
 import com.tcb.env.service.ITreeService;
 import com.tcb.env.service.IUserService;
 import com.tcb.env.util.DateUtil;
 import com.tcb.env.util.DefaultArgument;
-import com.tcb.env.util.OriginSpreadLocation;
 import com.tcb.env.util.SessionManager;
-import com.tcb.env.util.SortListUtil;
 
 /**
  * [功能描述]：设备控制器
@@ -95,12 +87,6 @@ public class DeviceController {
     private IAlarmService alarmService;
 
     /**
-     * 声明系统标识服务
-     */
-    @Resource
-    private ISysflagService sysflagService;
-
-    /**
      * 用来存储session对应的消息,并且用来停止线程
      */
     public static Map<String, MapMonitorData> monitorMap;
@@ -112,34 +98,6 @@ public class DeviceController {
      */
     static {
         monitorMap = new ConcurrentHashMap<>(20);
-    }
-
-
-    /**
-     * [功能描述]：查询区域下权限设备
-     */
-    @RequestMapping(value = "/queryAreaAuthDevice", method = {RequestMethod.POST})
-    @ResponseBody
-    public ResultListModel<PhoneDeviceModel> queryAreaAuthDevice(
-            String areaId, HttpSession httpsession) {
-        ResultListModel<PhoneDeviceModel> resultListModel = new ResultListModel<PhoneDeviceModel>();
-        List<PhoneDeviceModel> listPhoneDeviceModel = new ArrayList<PhoneDeviceModel>();
-        List<Device> listDevice = new ArrayList<Device>();
-        String userCode = null;
-        UserModel loginuser = (UserModel) httpsession.getAttribute(DefaultArgument.LOGIN_USER);
-        if (loginuser != null) {
-            userCode = loginuser.getUserCode();
-        }
-        listDevice = deviceService.getAreaAuthDevice(areaId, userCode);
-        for (Device temp : listDevice) {
-            PhoneDeviceModel phoneDeviceModell = ConvertPhoneDeviceModel(temp);
-            if (phoneDeviceModell != null) {
-                listPhoneDeviceModel.add(phoneDeviceModell);
-            }
-        }
-        resultListModel.setRows(listPhoneDeviceModel);
-        resultListModel.setTotal(listPhoneDeviceModel.size());
-        return resultListModel;
     }
 
     /**
@@ -171,7 +129,7 @@ public class DeviceController {
         if (loginuser != null) {
             usercode = loginuser.getUserCode();
         }
-        List<MapDeviceModel> listMapDev = new ArrayList<MapDeviceModel>();
+        List<MapDeviceModel> listMapDev;
         if (list != null && list.size() > 0) {
             try {
                 if (DefaultArgument.NONE_DEFAULT.equals(list.get(0))) {
@@ -308,7 +266,7 @@ public class DeviceController {
                 }
             }
             int count = 0;
-            List<MapDeviceModel> listMapDev = new ArrayList<MapDeviceModel>();
+            List<MapDeviceModel> listMapDev;
             if (listdevicecode != null && listdevicecode.size() > 0) {
                 count = deviceService.getMapDeviceCount(listdevicecode, null, nostatus, null, null, null);
                 if (count > 0) {
@@ -392,15 +350,7 @@ public class DeviceController {
     }
 
     /**
-     * <p>
      * [功能描述]：查询设备
-     * </p>
-     *
-     * @param deviceModel
-     * @param httpsession
-     * @return
-     * @author 任崇彬, 2016年3月29日上午10:44:57
-     * @since EnvDust 1.0.0
      */
     @RequestMapping(value = "/queryDevice", method = {RequestMethod.POST})
     @ResponseBody
@@ -426,14 +376,7 @@ public class DeviceController {
     }
 
     /**
-     * <p>
      * [功能描述]：删除设备
-     * </p>
-     *
-     * @param list
-     * @return
-     * @author 任崇彬, 2016年3月29日上午11:14:19
-     * @since EnvDust 1.0.0
      */
     @RequestMapping(value = "/deleteDevice", method = {RequestMethod.POST})
     @ResponseBody
@@ -488,15 +431,7 @@ public class DeviceController {
     }
 
     /**
-     * <p>
      * [功能描述]：更新设备
-     * </p>
-     *
-     * @param deviceModel
-     * @param httpsession
-     * @return
-     * @author 任崇彬, 2016年3月30日上午9:00:50
-     * @since EnvDust 1.0.0
      */
     @RequestMapping(value = "/updateDevice", method = {RequestMethod.POST})
     @ResponseBody
@@ -533,13 +468,7 @@ public class DeviceController {
     }
 
     /**
-     * <p>[功能描述]：更新站点地图位置</p>
-     *
-     * @param deviceModel
-     * @param httpsession
-     * @return
-     * @author 王垒, 2018年1月10日上午11:48:35
-     * @since EnvDust 1.0.0
+     * [功能描述]：更新站点地图位置
      */
     @RequestMapping(value = "/updateDeviceLocation", method = {RequestMethod.POST})
     @ResponseBody
@@ -573,14 +502,7 @@ public class DeviceController {
     }
 
     /**
-     * <p>
      * [功能描述]：下拉框查询，设备厂商code-name
-     * </p>
-     *
-     * @param mfrCode
-     * @return
-     * @author 任崇彬, 2016年3月29日上午8:43:34
-     * @since EnvDust 1.0.0
      */
     @RequestMapping(value = "/queryDevicemfrCodeDropDown", method = {RequestMethod.POST})
     @ResponseBody
@@ -594,14 +516,7 @@ public class DeviceController {
     }
 
     /**
-     * <p>
      * [功能描述]：下拉框查询，设备状态code-name
-     * </p>
-     *
-     * @param statusCode
-     * @return
-     * @author 任崇彬, 2016年3月29日上午8:45:14
-     * @since EnvDust 1.0.0
      */
     @RequestMapping(value = "/queryDevicestatusCodeDropDown", method = {RequestMethod.POST})
     @ResponseBody
@@ -615,15 +530,7 @@ public class DeviceController {
     }
 
     /**
-     * <p>
      * [功能描述]：下拉框查询，设备区域id-name
-     * </p>
-     *
-     * @param id
-     * @param levelFlag
-     * @return
-     * @author 任崇彬, 2016年3月29日上午9:00:07
-     * @since EnvDust 1.0.0
      */
     @RequestMapping(value = "/queryDeviceAreaDropDown", method = {RequestMethod.POST})
     @ResponseBody
@@ -637,14 +544,7 @@ public class DeviceController {
     }
 
     /**
-     * <p>
      * [功能描述]：下拉框查询，负责人id-name
-     * </p>
-     *
-     * @param devicePrinciple
-     * @return
-     * @author 任崇彬, 2016年3月31日上午11:34:56
-     * @since EnvDust 1.0.0
      */
     @RequestMapping(value = "/queryDevicePrincipleDropDown", method = {RequestMethod.POST})
     @ResponseBody
@@ -658,14 +558,7 @@ public class DeviceController {
     }
 
     /**
-     * <p>
      * [功能描述]：下拉框查询，监督单位id-name
-     * </p>
-     *
-     * @param orgId
-     * @return
-     * @author 任崇彬, 2016年3月31日上午11:50:13
-     * @since EnvDust 1.0.0
      */
     @RequestMapping(value = "/queryDeviceOversightUnit", method = {RequestMethod.POST})
     @ResponseBody
@@ -679,15 +572,7 @@ public class DeviceController {
     }
 
     /**
-     * <p>
      * [功能描述]：model转成device
-     * </p>
-     *
-     * @param deviceModel
-     * @param httpsession
-     * @return
-     * @author 任崇彬, 2016年3月28日上午11:05:57
-     * @since EnvDust 1.0.0
      */
     private Device ConvertDevice(DeviceModel deviceModel, HttpSession httpsession) {
         Device device = new Device();
@@ -780,14 +665,7 @@ public class DeviceController {
     }
 
     /**
-     * <p>
      * [功能描述]：device转成model
-     * </p>
-     *
-     * @param device
-     * @return
-     * @author 任崇彬, 2016年3月28日上午11:49:23
-     * @since EnvDust 1.0.0
      */
     private DeviceModel ConvertDeviceModel(Device device) {
         DeviceModel deviceModel = new DeviceModel();
@@ -866,79 +744,7 @@ public class DeviceController {
     }
 
     /**
-     * <p>
-     * [功能描述]：Device转成PhoneDeviceModel
-     * </p>
-     *
-     * @param device
-     * @return
-     * @author 任崇彬, 2016年3月28日上午11:49:23
-     * @since EnvDust 1.0.0
-     */
-    private PhoneDeviceModel ConvertPhoneDeviceModel(Device device) {
-        PhoneDeviceModel phoneDeviceModel = new PhoneDeviceModel();
-        if (device != null) {
-            phoneDeviceModel.setDeviceId(device.getDeviceId());
-            phoneDeviceModel.setDeviceCode(device.getDeviceCode());
-            phoneDeviceModel.setDeviceMn(device.getDeviceMn());
-            phoneDeviceModel.setDeviceName(device.getDeviceName());
-            // 操作者
-            phoneDeviceModel.setOptUserName(userService.getUserNameById(device.getOptUser(), null));
-            phoneDeviceModel.setOptTime(DateUtil.TimestampToString(device.getOptTime(), DateUtil.DATA_TIME));
-        }
-        return phoneDeviceModel;
-    }
-
-    /**
-     * <p>
-     * [功能描述]：获取权限监测物
-     * </p>
-     *
-     * @param deviceCodeList
-     * @param httpsession
-     * @return
-     * @author 王垒, 2016年3月31日下午2:02:13
-     * @since EnvDust 1.0.0
-     */
-    public List<MapModel> getAthorityMonitors(List<String> deviceCodeList, HttpSession httpsession) {
-        List<MapModel> listMap = new ArrayList<MapModel>();
-        try {
-            String usercode = null;
-            if (SessionManager.isSessionValidate(httpsession,
-                    DefaultArgument.LOGIN_USER)) {
-                return listMap;
-            }
-            UserModel loginuser = (UserModel) httpsession
-                    .getAttribute(DefaultArgument.LOGIN_USER);
-            if (loginuser != null) {
-                usercode = loginuser.getUserCode();
-            }
-            listMap = mapService.getAuthorityMonitors(usercode,
-                    DefaultArgument.INT_DEFAULT, null, deviceCodeList);
-
-        } catch (Exception e) {
-            logger.error(LOG + ":查询权限监测物数据错误，错误信息为：" + e.getMessage());
-        }
-        return listMap;
-    }
-
-    /**
-     * <p>
      * [功能描述]：获取热力图显示数据
-     * </p>
-     *
-     * @param projectId
-     * @param list
-     * @param levelflag
-     * @param dataType
-     * @param thingCode
-     * @param beginTime
-     * @param endTime
-     * @param wFlag
-     * @param httpsession
-     * @return
-     * @author 王垒, 2016年4月20日上午9:17:25
-     * @since EnvDust 1.0.0
      */
     @RequestMapping(value = "/getThermodynamicData", method = {RequestMethod.POST})
     @ResponseBody
@@ -994,10 +800,7 @@ public class DeviceController {
     }
 
     /**
-     * <p>[功能描述]：用来得到session的sessionId</p>
-     *
-     * @author 王坤, 2018年9月5日 下午15:44:34
-     * @since EnvDust 1.0.0
+     * [功能描述]：用来得到session的sessionId
      */
     public String getSessionId(HttpSession httpSession) {
         String sessionId = null;
@@ -1008,10 +811,7 @@ public class DeviceController {
     }
 
     /**
-     * <p>[功能描述]：用来剔除监控map的sessionId</p>
-     *
-     * @author 王坤, 2018年9月5日 下午16:02:34
-     * @since EnvDust 1.0.0
+     * [功能描述]：用来剔除监控map的sessionId
      */
     public void removeSessionId(String sessionId) {
         if (sessionId != null && !sessionId.isEmpty() && monitorMap.containsKey(sessionId)) {

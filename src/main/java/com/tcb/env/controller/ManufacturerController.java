@@ -1,9 +1,3 @@
-/**
- * Copyright (c) 1996-2016天津通广集团电子信息部，版权所有，复制必究。
- * 此程序版权归天津通广集团电子信息部所有，任何侵犯版权的行为将被追究
- * 法律责任。未经天津通广集团电子信息部的书面批准，不得将此程序的任何
- * 部分以任何形式、采用任何手段、或为任何目的，进行复制或扩散。
- */
 package com.tcb.env.controller;
 
 import java.util.ArrayList;
@@ -30,15 +24,6 @@ import com.tcb.env.service.IUserService;
 import com.tcb.env.util.DateUtil;
 import com.tcb.env.util.DefaultArgument;
 
-/**
- * <p>[功能描述]：</p>
- * <p>Copyright (c) 1996-2016 TCB Corporation</p>
- * 
- * @author	任崇彬
- * @version	1.0, 2016年3月24日上午9:50:27
- * @since	EnvDust 1.0.0
- * 
- */
 @Controller
 @RequestMapping("/ManufacturerController")
 public class ManufacturerController {
@@ -63,14 +48,7 @@ public class ManufacturerController {
 	@Resource
 	private IManufacturerService manufacturerService;
 	/**
-	 * <p>[功能描述]：查询manufa数据</p>
-	 * 
-	 * @author	任崇彬, 2016年3月24日上午11:02:46
-	 * @since	EnvDust 1.0.0
-	 *
-	 * @param oranizationModel
-	 * @param httpsession
-	 * @return 
+	 * [功能描述]：查询manufacture数据
 	 */
 	@RequestMapping(value = "/queryManufacturer", method = { RequestMethod.POST })
 	public @ResponseBody ResultListModel<ManufacturerModel> queryManufacturer(
@@ -78,7 +56,7 @@ public class ManufacturerController {
 		//创建类
 		ResultListModel<ManufacturerModel> resultListModel = new ResultListModel<ManufacturerModel>();
 		List<ManufacturerModel> listManufacturerModel = new ArrayList<ManufacturerModel>();
-		List<Manufacturer> listManufacturer = new ArrayList<Manufacturer>();
+		List<Manufacturer> listManufacturer;
 		//转换成组织
 		Manufacturer manufacturer = ConvertManufacturer(manufacturerModel,httpsession);
 		int count = manufacturerService.getCount(manufacturer, true);
@@ -98,14 +76,7 @@ public class ManufacturerController {
 		return resultListModel;
 	}
 	/**
-	 * <p>[功能描述]：新增厂商信息</p>
-	 * 
-	 * @author	任崇彬, 2016年3月24日上午11:57:00
-	 * @since	EnvDust 1.0.0
-	 *
-	 * @param oranizationModel
-	 * @param httpsession
-	 * @return 
+	 * [功能描述]：新增厂商信息
 	 */
 	@RequestMapping(value = "/insertManufacturer", method = { RequestMethod.POST })
 	public @ResponseBody ResultModel insertManufacturer(ManufacturerModel manufacturerModel,
@@ -143,13 +114,7 @@ public class ManufacturerController {
 		return resultModel;
 	}
 	/**
-	 * <p>[功能描述]：删除厂商信息</p>
-	 * 
-	 * @author	任崇彬, 2016年3月24日下午2:16:43
-	 * @since	EnvDust 1.0.0
-	 *
-	 * @param list
-	 * @return 
+	 * [功能描述]：删除厂商信息
 	 */
 	@RequestMapping(value = "/deleteManufacturer", method = { RequestMethod.POST })
 	public @ResponseBody ResultModel deleteManufacturer(
@@ -186,14 +151,7 @@ public class ManufacturerController {
 		return resultModel;
 	}
 	/**
-	 * <p>[功能描述]：更新厂商信息</p>
-	 * 
-	 * @author	任崇彬, 2016年3月24日下午3:43:21
-	 * @since	EnvDust 1.0.0
-	 *
-	 * @param manufacturerModel
-	 * @param httpsession
-	 * @return 
+	 * [功能描述]：更新厂商信息
 	 */
 	@RequestMapping(value = "/updatetManufacturer", method = { RequestMethod.POST })
 	public @ResponseBody ResultModel updatetManufacturer(ManufacturerModel manufacturerModel,
@@ -226,15 +184,7 @@ public class ManufacturerController {
 		return resultModel;
 	}
 	/**
-	
- * <p>[功能描述]：model转成Manufacture</p>
-	 * 
-	 * @author	任崇彬, 2016年3月24日上午10:36:15
-	 * @since	EnvDust 1.0.0
-	 *
-	 * @param manufacturerModel
-	 * @param httpsession
-	 * @return 
+	 * [功能描述]：model转成Manufacture
 	 */
 	private Manufacturer ConvertManufacturer(ManufacturerModel manufacturerModel, HttpSession httpsession){
 		Manufacturer manufacturer = new Manufacturer();
@@ -259,13 +209,7 @@ public class ManufacturerController {
 		return manufacturer;
 	}
 	/**
-	 * <p>[功能描述]：manufacture转换成model</p>
-	 * 
-	 * @author	任崇彬, 2016年3月22日上午10:37:18
-	 * @since	EnvDust 1.0.0
-	 *
-	 * @param oranization
-	 * @return 
+	 * [功能描述]：manufacture转换成model
 	 */
 	private ManufacturerModel ConvertManufacturerModel(Manufacturer manufacturer){
 		ManufacturerModel manufacturerModel = new ManufacturerModel();

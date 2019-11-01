@@ -31,16 +31,7 @@ import com.tcb.env.util.DefaultArgument;
 import com.tcb.env.util.SHAUtil;
 
 /**
- * <p>
  * [功能描述]：User控制器
- * </p>
- * <p>
- * Copyright (c) 1993-2016 TCB Corporation
- * </p>
- *
- * @author 王垒
- * @version 1.0, 2016年3月17日上午11:35:08
- * @since EnvDust 1.0.0
  */
 @Controller
 @RequestMapping("/UserController")
@@ -54,10 +45,6 @@ public class UserController {
      * 声明日志对象
      */
     private static Logger logger = Logger.getLogger(UserController.class);
-    /**
-     * 声明gson对象
-     */
-    Gson gson = new Gson();
     /**
      * 声明User服务
      */
@@ -87,17 +74,7 @@ public class UserController {
     private WebsocketHandler websocketHandler;
 
     /**
-     * <p>
      * [功能描述]：验证登录信息
-     * </p>
-     *
-     * @param userModel
-     * @param httpsession
-     * @param mv
-     * @return
-     * @throws Exception
-     * @author 王垒, 2016年3月17日上午11:41:25
-     * @since EnvDust 1.0.0
      */
     @RequestMapping(value = "/toMain", method = {RequestMethod.POST, RequestMethod.GET})
     public ModelAndView toMain(UserModel userModel, HttpSession httpsession, ModelAndView mv) {
@@ -129,14 +106,7 @@ public class UserController {
     }
 
     /**
-     * <p>
      * [功能描述]：Ajax验证登录信息
-     * </p>
-     *
-     * @param userModel
-     * @return
-     * @author 王垒, 2016年3月17日上午11:40:49
-     * @since EnvDust 1.0.0
      */
     @RequestMapping(value = "/validateUser", method = {RequestMethod.POST})
     @ResponseBody
@@ -158,8 +128,6 @@ public class UserController {
                 resultModel.setResult(false);
                 resultModel.setDetail("登录失败");
             }
-            // }
-
         } else {
             resultModel.setResult(false);
         }
@@ -167,15 +135,7 @@ public class UserController {
     }
 
     /**
-     * <p>
      * [功能描述]：验证登录是否成功
-     * </p>
-     *
-     * @param userModel
-     * @param encryFlag
-     * @return
-     * @author 王垒, 2016年3月17日上午11:38:55
-     * @since EnvDust 1.0.0
      */
     private String validateUserNative(UserModel userModel, boolean encryFlag, HttpSession httpsession) {
         String result = null;
@@ -201,14 +161,7 @@ public class UserController {
     }
 
     /**
-     * <p>
      * [功能描述]：查询用户信息
-     * </p>
-     *
-     * @param usermodel
-     * @return
-     * @author 王垒, 2016年3月18日下午1:31:31
-     * @since EnvDust 1.0.0
      */
     @RequestMapping(value = "/queryUsers", method = {RequestMethod.POST})
     @ResponseBody
@@ -234,14 +187,7 @@ public class UserController {
     }
 
     /**
-     * <p>
      * [功能描述]：Ajax插入User数据
-     * </p>
-     *
-     * @param usermodel
-     * @return
-     * @author 王垒, 2016年3月18日上午9:44:18
-     * @since EnvDust 1.0.0
      */
     @RequestMapping(value = "/insertUsers", method = {RequestMethod.POST})
     @ResponseBody
@@ -296,15 +242,7 @@ public class UserController {
     }
 
     /**
-     * <p>
      * [功能描述]：修改用户信息
-     * </p>
-     *
-     * @param usermodel
-     * @param httpsession
-     * @return
-     * @author 王垒, 2016年3月22日下午12:38:40
-     * @since EnvDust 1.0.0
      */
     @RequestMapping(value = "/updatetUsers", method = {RequestMethod.POST})
     @ResponseBody
@@ -337,14 +275,7 @@ public class UserController {
     }
 
     /**
-     * <p>
      * [功能描述]：重置密码
-     * </p>
-     *
-     * @param usermodel
-     * @return
-     * @author 王垒, 2016年3月22日上午11:14:04
-     * @since EnvDust 1.0.0
      */
     @RequestMapping(value = "/resetUsersPwd", method = {RequestMethod.POST})
     @ResponseBody
@@ -372,16 +303,7 @@ public class UserController {
     }
 
     /**
-     * <p>
      * [功能描述]：修改密码
-     * </p>
-     *
-     * @param oldPwd
-     * @param newPwd
-     * @param httpsession
-     * @return
-     * @author 王垒, 2016年3月22日下午12:36:59
-     * @since EnvDust 1.0.0
      */
     @RequestMapping(value = "/updateUsersPwd", method = {RequestMethod.POST})
     @ResponseBody
@@ -427,14 +349,7 @@ public class UserController {
     }
 
     /**
-     * <p>
      * [功能描述]：删除用户
-     * </p>
-     *
-     * @param list
-     * @return
-     * @author 王垒, 2016年3月22日下午12:39:32
-     * @since EnvDust 1.0.0
      */
     @RequestMapping(value = "/deleteUsers", method = {RequestMethod.POST})
     @ResponseBody
@@ -470,15 +385,7 @@ public class UserController {
     }
 
     /**
-     * <p>
      * [功能描述]：更新用户删除标识
-     * </p>
-     *
-     * @param userId
-     * @param userDelete
-     * @return
-     * @author 王垒, 2016年3月22日下午12:39:32
-     * @since EnvDust 1.0.0
      */
     @RequestMapping(value = "/updateUserDelete", method = {RequestMethod.POST})
     @ResponseBody
@@ -513,15 +420,7 @@ public class UserController {
     }
 
     /**
-     * <p>
      * [功能描述]：将UserModel转换成User
-     * </p>
-     *
-     * @param userModel
-     * @param encryFlag
-     * @return
-     * @author 王垒, 2016年3月18日上午10:09:40
-     * @since EnvDust 1.0.0
      */
     private User ConvertUser(UserModel userModel, boolean encryFlag, HttpSession httpsession) {
         User user = new User();
@@ -563,14 +462,7 @@ public class UserController {
     }
 
     /**
-     * <p>
      * [功能描述]：将User转换成UserModel
-     * </p>
-     *
-     * @param user
-     * @return
-     * @author 王垒, 2016年3月18日下午12:59:33
-     * @since EnvDust 1.0.0
      */
     public UserModel ConvertUserModel(User user) {
         UserModel userModel = new UserModel();
@@ -599,14 +491,7 @@ public class UserController {
     }
 
     /**
-     * <p>
      * [功能描述]：退出系统
-     * </p>
-     *
-     * @param httpsession
-     * @return
-     * @author 王垒, 2016年3月22日下午12:39:47
-     * @since EnvDust 1.0.0
      */
     @RequestMapping(value = "/toLogout", method = {RequestMethod.POST,
             RequestMethod.GET})

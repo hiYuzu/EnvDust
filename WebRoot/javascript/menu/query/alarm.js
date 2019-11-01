@@ -14,7 +14,6 @@ var appendAlarmcontent = '<div id="dgalarmData"></div>'
     + '&nbsp;&nbsp;&nbsp;<a href="#" class="easyui-linkbutton" data-options="iconCls:\'icon-search\',plain:true" onclick="searchAlarmDataFunc()">查询</a>'
     + '&nbsp;&nbsp;&nbsp;<a href="#" class="easyui-linkbutton" data-options="iconCls:\'icon-edit\',plain:true" onclick="editAlarmDataFunc(\'报警处理\',\'icon-edit\',\'updatetOranization\')">处理</a>'
     + '&nbsp;&nbsp;&nbsp;<a href="#" class="easyui-linkbutton" data-options="iconCls:\'icon-cut\',plain:true" onclick="delAlarmDataFunc()">删除</a>'
-    + '&nbsp;&nbsp;&nbsp;<a href="#" class="easyui-linkbutton" data-options="iconCls:\'icon-download\',plain:true" onclick="exportAlarmDataFunc()">导出</a>'
     + '</div>';
 addPanel("报警数据", appendAlarmcontent);
 
@@ -386,17 +385,4 @@ function editAlarmDataFunc(title, icon, action) {
         $("#frmdialogModel").form("reset");
         $("#frmdialogModel").form("load", selectrow);
     }
-}
-
-/* 导出数据 */
-function exportAlarmDataFunc() {
-    var alarmType = $("#alarmType").combobox('getValue');
-    var deviceName = $("#deviceName").val();
-    var alarmStatus = $("#alarmStatus").combobox('getValue');
-    var beginAlarmTime = $("#dtAlarmStartTime").datetimebox('getValue');
-    var endAlarmTime = $("#dtAlarmEndTime").datetimebox('getValue');
-    location.href = "../ExportController/exportAlarms?alarmtype=" + alarmType
-        + "&devicename=" + deviceName + "&alarmstatus=" + alarmStatus
-        + "&startalarmtime=" + beginAlarmTime + "&endalarmtime="
-        + endAlarmTime + "";
 }
