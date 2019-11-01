@@ -8,17 +8,15 @@ import javax.annotation.Resource;
 
 import com.kyq.env.pojo.DeviceAlarmSet;
 import com.kyq.env.util.DefaultArgument;
-import com.tcb.env.pojo.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.tcb.env.service.IDeviceAlarmSetService;
-import com.tcb.env.service.IDeviceService;
-import com.tcb.env.service.IMonitorService;
-import com.tcb.env.util.DefaultArgument;
+import com.kyq.env.service.IDeviceAlarmSetService;
+import com.kyq.env.service.IDeviceService;
+import com.kyq.env.service.IMonitorService;
 
 /**
  * @author kyq

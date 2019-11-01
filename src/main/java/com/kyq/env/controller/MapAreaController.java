@@ -20,16 +20,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.tcb.env.model.MapAreaModel;
-import com.tcb.env.model.MapAreaPointModel;
-import com.tcb.env.model.ResultListModel;
-import com.tcb.env.model.ResultModel;
-import com.tcb.env.model.UserModel;
-import com.tcb.env.pojo.MapArea;
-import com.tcb.env.pojo.MapAreaPoint;
-import com.tcb.env.service.IMapAreaService;
-import com.tcb.env.util.DateUtil;
-import com.tcb.env.util.DefaultArgument;
+import com.kyq.env.model.MapAreaModel;
+import com.kyq.env.model.MapAreaPointModel;
+import com.kyq.env.model.ResultListModel;
+import com.kyq.env.service.IMapAreaService;
 
 /**
  * [功能描述]：百度地图覆盖区域确定Controller

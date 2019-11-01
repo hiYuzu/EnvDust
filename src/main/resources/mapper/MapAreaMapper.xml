@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.tcb.env.dao.IMapAreaDao" >
-	<resultMap type="com.tcb.env.pojo.MapArea" id="mapArea">
+<mapper namespace="com.kyq.env.dao.IMapAreaDao" >
+	<resultMap type="com.kyq.env.pojo.MapArea" id="mapArea">
 		<id property="maId" column="ma_id" />
 		<result property="maVisible" column="ma_visible" javaType="boolean" jdbcType="TINYINT" />
 		<result property="maName" column="ma_name" />
 		<result property="optUser" column="opt_user" />
 		<result property="optTime" column="opt_time" />
-		<collection property="pointList" ofType="com.tcb.env.pojo.MapAreaPoint" resultMap="mapAreaPoint" ></collection>
+		<collection property="pointList" ofType="com.kyq.env.pojo.MapAreaPoint" resultMap="mapAreaPoint" ></collection>
 	</resultMap>
 	
-	<resultMap type="com.tcb.env.pojo.MapAreaPoint" id="mapAreaPoint">
+	<resultMap type="com.kyq.env.pojo.MapAreaPoint" id="mapAreaPoint">
 		<id property="pointId" column="point_id" />
 		<result property="lat" column="lat" />
 		<result property="lng" column="lng" />
@@ -83,7 +83,7 @@
 	</select>
 	
 	<!-- 添加覆盖区域 -->
-	<insert id="addMapArea" useGeneratedKeys="true" keyProperty="addMapArea.maId" keyColumn="ma_id" parameterType="com.tcb.env.pojo.MapArea" >
+	<insert id="addMapArea" useGeneratedKeys="true" keyProperty="addMapArea.maId" keyColumn="ma_id" parameterType="com.kyq.env.pojo.MapArea" >
 		INSERT INTO
 		   tbl_map_area(ma_visible,ma_name,opt_user,opt_time) 
 		VALUES(#{addMapArea.maVisible},#{addMapArea.maName},#{addMapArea.optUser},#{addMapArea.optTime})

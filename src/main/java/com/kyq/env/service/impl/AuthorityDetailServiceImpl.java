@@ -9,16 +9,10 @@ import com.kyq.env.dao.IAuthorityDetailDao;
 import com.kyq.env.model.TreeModel;
 import com.kyq.env.pojo.Authority;
 import com.kyq.env.pojo.AuthorityDetail;
+import com.kyq.env.service.IAuthorityDetailService;
 import com.kyq.env.util.DefaultArgument;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.tcb.env.dao.IAuthorityDetailDao;
-import com.tcb.env.model.TreeModel;
-import com.tcb.env.pojo.Authority;
-import com.tcb.env.pojo.AuthorityDetail;
-import com.tcb.env.service.IAuthorityDetailService;
-import com.tcb.env.util.DefaultArgument;
 
 /**
  * [功能描述]：权限组控件明细操作服务类接口实现类

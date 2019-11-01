@@ -6,7 +6,8 @@
  */
 package com.kyq.env.model;
 
-import com.tcb.env.util.DefaultArgument;
+
+import com.kyq.env.util.DefaultArgument;
 
 /**
  * <p>[功能描述]：</p>

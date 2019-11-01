@@ -19,14 +19,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.tcb.env.model.ResultListModel;
-import com.tcb.env.model.ResultModel;
-import com.tcb.env.model.UserModel;
-import com.tcb.env.pojo.Authority;
-import com.tcb.env.pojo.User;
-import com.tcb.env.pojo.UserAhr;
-import com.tcb.env.service.IUserAhrService;
-import com.tcb.env.util.DefaultArgument;
+import com.kyq.env.model.ResultListModel;
+import com.kyq.env.service.IUserAhrService;
 
 /**
  * [功能描述]：用户权限组控制器

@@ -5,8 +5,6 @@ import java.util.Map;
 
 import com.kyq.env.pojo.Area;
 import com.kyq.env.pojo.HeWeather;
-import com.tcb.env.pojo.Area;
-import com.tcb.env.pojo.HeWeather;
 
 /**
  * [功能描述]：Area操作服务类接口

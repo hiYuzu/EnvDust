@@ -1,26 +1,14 @@
 package com.kyq.env.service.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
 
 import com.kyq.env.dao.IDeviceAlarmSetDao;
 import com.kyq.env.pojo.DeviceAlarmSet;
+import com.kyq.env.service.IDeviceAlarmSetService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.tcb.env.dao.IDeviceAlarmSetDao;
-import com.tcb.env.pojo.CommCn;
-import com.tcb.env.pojo.CommMain;
-import com.tcb.env.pojo.CommStatus;
-import com.tcb.env.pojo.Device;
-import com.tcb.env.pojo.DeviceAlarmSet;
-import com.tcb.env.pojo.Monitor;
-import com.tcb.env.service.IDeviceAlarmSetService;
-import com.tcb.env.util.DateUtil;
-import com.tcb.env.util.DefaultArgument;
-import org.springframework.util.StringUtils;
 
 /**
  * <p>

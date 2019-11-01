@@ -1,9 +1,7 @@
 package com.kyq.env.pojo;
 
 
-
 import com.kyq.env.util.DefaultArgument;
-import com.tcb.env.util.DefaultArgument;
 
 /**
  * 

@@ -7,9 +7,6 @@ import com.kyq.env.pojo.Area;
 import com.kyq.env.pojo.HeWeather;
 import org.apache.ibatis.annotations.Param;
 
-import com.tcb.env.pojo.Area;
-import com.tcb.env.pojo.HeWeather;
-
 /**
  * [功能描述]：区域数据库操作接口
  */

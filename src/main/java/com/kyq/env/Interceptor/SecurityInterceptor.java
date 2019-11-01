@@ -11,8 +11,6 @@ import com.kyq.env.util.SessionManager;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.tcb.env.util.DefaultArgument;
-import com.tcb.env.util.SessionManager;
 
 /**
  * [功能描述]：安全拦截器

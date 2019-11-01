@@ -14,8 +14,7 @@ import com.kyq.env.util.DateUtil;
 import com.kyq.env.util.DefaultArgument;
 import com.kyq.env.util.DesUtil;
 import com.kyq.env.util.SHAUtil;
-import com.tcb.env.service.ISysflagService;
-import com.tcb.env.util.DesUtil;
+import com.kyq.env.service.ISysflagService;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
@@ -25,18 +24,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.google.gson.Gson;
-import com.tcb.env.Handler.WebsocketHandler;
-import com.tcb.env.config.Dom4jConfig;
-import com.tcb.env.model.ResultListModel;
-import com.tcb.env.model.ResultModel;
-import com.tcb.env.model.UserModel;
-import com.tcb.env.pojo.Oranization;
-import com.tcb.env.pojo.User;
-import com.tcb.env.service.IUserService;
-import com.tcb.env.util.DateUtil;
-import com.tcb.env.util.DefaultArgument;
-import com.tcb.env.util.SHAUtil;
+import com.kyq.env.Handler.WebsocketHandler;
+import com.kyq.env.config.Dom4jConfig;
+import com.kyq.env.model.ResultListModel;
+import com.kyq.env.service.IUserService;
 
 /**
  * [功能描述]：User控制器

@@ -20,15 +20,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
-import com.tcb.env.model.ManufacturerModel;
-import com.tcb.env.model.ResultListModel;
-import com.tcb.env.model.ResultModel;
-import com.tcb.env.model.UserModel;
-import com.tcb.env.pojo.Manufacturer;
-import com.tcb.env.service.IManufacturerService;
-import com.tcb.env.service.IUserService;
-import com.tcb.env.util.DateUtil;
-import com.tcb.env.util.DefaultArgument;
+import com.kyq.env.model.ResultListModel;
+import com.kyq.env.service.IManufacturerService;
+import com.kyq.env.service.IUserService;
 
 @Controller
 @RequestMapping("/ManufacturerController")

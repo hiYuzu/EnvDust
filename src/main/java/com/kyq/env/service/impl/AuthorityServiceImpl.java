@@ -6,12 +6,9 @@ import javax.annotation.Resource;
 
 import com.kyq.env.dao.IAuthorityDao;
 import com.kyq.env.pojo.Authority;
+import com.kyq.env.service.IAuthorityService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.tcb.env.dao.IAuthorityDao;
-import com.tcb.env.pojo.Authority;
-import com.tcb.env.service.IAuthorityService;
 
 /**
  * [功能描述]：权限组操作服务类接口实现

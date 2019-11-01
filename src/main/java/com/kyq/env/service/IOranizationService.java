@@ -3,7 +3,6 @@ package com.kyq.env.service;
 import java.util.List;
 
 import com.kyq.env.pojo.Oranization;
-import com.tcb.env.pojo.Oranization;
 
 
 

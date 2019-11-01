@@ -9,10 +9,7 @@ package com.kyq.env.dao;
 import java.util.List;
 
 import com.kyq.env.pojo.Monitor;
-import com.tcb.env.model.MonitorLevelModel;
 import org.apache.ibatis.annotations.Param;
-
-import com.tcb.env.pojo.Monitor;
 
 /**
  * <p>

@@ -1,9 +1,8 @@
 package com.kyq.env.gateway.udp;
 
 import com.kyq.env.gateway.filter.SplitPacketAbstract;
-import com.tcb.env.gateway.NetSessionManager;
-import com.tcb.env.gateway.ProcessorI;
-import com.tcb.env.gateway.filter.SplitPacketAbstract;
+import com.kyq.env.gateway.NetSessionManager;
+import com.kyq.env.gateway.ProcessorI;
 
 public class UpdGateWayManager {
 

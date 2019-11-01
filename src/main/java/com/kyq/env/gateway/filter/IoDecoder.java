@@ -1,7 +1,4 @@
 package com.kyq.env.gateway.filter;
-//
-//import org.apache.log4j.LogManager;
-//import org.apache.log4j.Logger;
 import org.apache.mina.core.buffer.IoBuffer;
 import org.apache.mina.core.session.IoSession;
 import org.apache.mina.filter.codec.CumulativeProtocolDecoder;

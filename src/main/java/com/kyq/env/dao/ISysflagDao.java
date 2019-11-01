@@ -4,8 +4,6 @@ import java.util.List;
 import com.kyq.env.pojo.Sysflag;
 import org.apache.ibatis.annotations.Param;
 
-import com.tcb.env.pojo.Sysflag;
-
 /**
  * @author kkyq
  */

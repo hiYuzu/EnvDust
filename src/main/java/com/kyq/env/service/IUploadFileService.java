@@ -4,8 +4,6 @@ import java.util.List;
 
 import com.kyq.env.model.ResultModel;
 import com.kyq.env.pojo.UploadFile;
-import com.tcb.env.model.ResultModel;
-import com.tcb.env.pojo.UploadFile;
 
 /**
  * [功能描述]：上传文件服务接口

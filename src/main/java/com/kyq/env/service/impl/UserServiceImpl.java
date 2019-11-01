@@ -6,12 +6,9 @@ import javax.annotation.Resource;
 
 import com.kyq.env.dao.IUserDao;
 import com.kyq.env.pojo.User;
+import com.kyq.env.service.IUserService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.tcb.env.dao.IUserDao;
-import com.tcb.env.pojo.User;
-import com.tcb.env.service.IUserService;
 
 /**
  * [功能描述]：User操作服务类实现

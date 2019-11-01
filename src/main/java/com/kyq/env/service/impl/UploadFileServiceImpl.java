@@ -7,14 +7,9 @@ import javax.annotation.Resource;
 import com.kyq.env.dao.IUploadFileDao;
 import com.kyq.env.model.ResultModel;
 import com.kyq.env.pojo.UploadFile;
+import com.kyq.env.service.IUploadFileService;
 import com.kyq.env.util.FunctionUtil;
 import org.springframework.stereotype.Service;
-
-import com.tcb.env.dao.IUploadFileDao;
-import com.tcb.env.model.ResultModel;
-import com.tcb.env.pojo.UploadFile;
-import com.tcb.env.service.IUploadFileService;
-import com.tcb.env.util.FunctionUtil;
 
 /**
  * [功能描述]：上传文件服务接口实现类

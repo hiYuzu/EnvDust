@@ -4,8 +4,6 @@ import java.util.List;
 
 import com.kyq.env.pojo.User;
 import com.kyq.env.pojo.UserAhr;
-import com.tcb.env.pojo.User;
-import com.tcb.env.pojo.UserAhr;
 
 /**
  * [功能描述]：用户与权限组关系查询服务类接口

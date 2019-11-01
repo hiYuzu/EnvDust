@@ -8,15 +8,10 @@ import javax.annotation.Resource;
 import com.kyq.env.dao.IAccessDeviceDao;
 import com.kyq.env.dao.IAccessMonitorDao;
 import com.kyq.env.pojo.Device;
+import com.kyq.env.service.IAccessOperatorService;
 import com.kyq.env.util.DefaultArgument;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.tcb.env.dao.IAccessDeviceDao;
-import com.tcb.env.dao.IAccessMonitorDao;
-import com.tcb.env.pojo.Device;
-import com.tcb.env.service.IAccessOperatorService;
-import com.tcb.env.util.DefaultArgument;
 
 /**
  * [功能描述]：权限组访问数据操作接口实现类

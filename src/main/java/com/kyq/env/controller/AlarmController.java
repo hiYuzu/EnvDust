@@ -2,7 +2,6 @@ package com.kyq.env.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -22,21 +21,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
-import com.tcb.env.model.AlarmModel;
-import com.tcb.env.model.MapModel;
-import com.tcb.env.model.ResultListModel;
-import com.tcb.env.model.ResultModel;
-import com.tcb.env.model.TreeModel;
-import com.tcb.env.model.UserModel;
-import com.tcb.env.pojo.Alarm;
-import com.tcb.env.pojo.Device;
-import com.tcb.env.pojo.Status;
-import com.tcb.env.service.IAlarmService;
-import com.tcb.env.service.IMapService;
-import com.tcb.env.service.ITreeService;
-import com.tcb.env.util.DateUtil;
-import com.tcb.env.util.DefaultArgument;
-import com.tcb.env.util.SessionManager;
+import com.kyq.env.model.MapModel;
+import com.kyq.env.model.ResultListModel;
+import com.kyq.env.service.IAlarmService;
+import com.kyq.env.service.IMapService;
+import com.kyq.env.service.ITreeService;
 
 /**
  * [功能描述]：报警控制器

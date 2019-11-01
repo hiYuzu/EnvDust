@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.tcb.env.dao.IManufacturerDao">
+<mapper namespace="com.kyq.env.dao.IManufacturerDao">
 	<!-- 类名和数据库中表的属性名一一对应 -->
-	<resultMap type="com.tcb.env.pojo.Manufacturer" id="mfrResultMap">
+	<resultMap type="com.kyq.env.pojo.Manufacturer" id="mfrResultMap">
 		<!-- 属性名和数据库列名映射 -->
 		<id property="mfrId" column="mfr_id" />
 		<result property="mfrCode" column="mfr_code" />
@@ -36,7 +36,7 @@
 		</if>
 	</select>
 	<!-- 查询数据库 -->
-	<select id="getManufacturer" parameterType="com.tcb.env.pojo.Manufacturer"
+	<select id="getManufacturer" parameterType="com.kyq.env.pojo.Manufacturer"
 		resultMap="mfrResultMap">
 		SELECT
 		tbl_manufacturer.mfr_id,

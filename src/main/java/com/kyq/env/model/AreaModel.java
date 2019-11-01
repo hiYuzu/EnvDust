@@ -1,6 +1,6 @@
 package com.kyq.env.model;
 
-import com.tcb.env.util.DefaultArgument;
+import com.kyq.env.util.DefaultArgument;
 
 /**
  * [功能描述]：页面传递Area

@@ -11,7 +11,7 @@ import com.kyq.env.model.UserModel;
 import com.kyq.env.pojo.NetStatusCount;
 import com.kyq.env.util.DefaultArgument;
 import com.kyq.env.util.SessionManager;
-import com.tcb.env.service.*;
+import com.kyq.env.service.*;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,14 +19,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.tcb.env.model.DeviceValueModel;
-import com.tcb.env.model.GeneralMonitorCountModel;
-import com.tcb.env.model.MapModel;
-import com.tcb.env.model.ResultListModel;
-import com.tcb.env.model.UserModel;
-import com.tcb.env.pojo.NetStatusCount;
-import com.tcb.env.util.DefaultArgument;
-import com.tcb.env.util.SessionManager;
+import com.kyq.env.model.DeviceValueModel;
+import com.kyq.env.model.MapModel;
+import com.kyq.env.model.ResultListModel;
 
 /**
  * [功能描述]：查询面板数据控制器

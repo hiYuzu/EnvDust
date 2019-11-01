@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.tcb.env.dao.IMonitorStorageDao">
+<mapper namespace="com.kyq.env.dao.IMonitorStorageDao">
 
 	<parameterMap type="java.util.HashMap" id="paramMonitor">
 		<parameter property="dboldname" jdbcType="VARCHAR" mode="IN" />
@@ -14,7 +14,7 @@
 		<parameter property="allcount" jdbcType="INTEGER" mode="OUT" />
 	</parameterMap>
 
-	<resultMap type="com.tcb.env.model.MonitorStorageModel" id="monitorResultMap">
+	<resultMap type="com.kyq.env.model.MonitorStorageModel" id="monitorResultMap">
 		<result property="deviceCode" column="devcode" javaType="java.lang.String" jdbcType="VARCHAR" />
 		<result property="deviceName" column="devname" javaType="java.lang.String" jdbcType="VARCHAR" />
 		<result property="deviceMn" column="devMn" javaType="java.lang.String" jdbcType="VARCHAR" />
@@ -29,7 +29,7 @@
 		<result property="frequeTime" column="frequetime" javaType="java.lang.String" jdbcType="VARCHAR" />
 	</resultMap>
 	
-	<resultMap type="com.tcb.env.model.OriginalDataModel" id="originalDataResultMap">
+	<resultMap type="com.kyq.env.model.OriginalDataModel" id="originalDataResultMap">
 		<id property="storageId" column="storageId" javaType="java.lang.Integer" jdbcType="INTEGER"/>
 		<result property="deviceCode" column="deviceCode" javaType="java.lang.String" jdbcType="VARCHAR" />
 		<result property="deviceName" column="deviceName" javaType="java.lang.String" jdbcType="VARCHAR" />
@@ -56,7 +56,7 @@
 			
 	</resultMap>
 	
-	<resultMap type="com.tcb.env.pojo.NetStatusCount" id="netStatusCountResultMap">
+	<resultMap type="com.kyq.env.pojo.NetStatusCount" id="netStatusCountResultMap">
 		<result property="statusCode" column="status_code" javaType="java.lang.String" jdbcType="VARCHAR" />
 		<result property="statusCount" column="status_count" javaType="java.lang.Integer" jdbcType="INTEGER" />
 	</resultMap>

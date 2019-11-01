@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.kyq.env.pojo.Oranization;
 import org.apache.ibatis.annotations.Param;
-import com.tcb.env.pojo.Oranization;
 
 /**
  * [功能描述]：组织dao

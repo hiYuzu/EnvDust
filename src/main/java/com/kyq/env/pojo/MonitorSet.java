@@ -6,12 +6,11 @@
  */
 package com.kyq.env.pojo;
 
-import java.sql.Timestamp;
 
 import com.kyq.env.util.DateUtil;
 import com.kyq.env.util.DefaultArgument;
-import com.tcb.env.util.DateUtil;
-import com.tcb.env.util.DefaultArgument;
+
+import java.sql.Timestamp;
 
 /**
  * <p>[功能描述]：</p>

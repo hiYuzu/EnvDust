@@ -3,7 +3,6 @@ package com.kyq.env.service;
 import java.util.List;
 
 import com.kyq.env.pojo.Authority;
-import com.tcb.env.pojo.Authority;
 
 /**
  * [功能描述]：权限组操作服务类接口

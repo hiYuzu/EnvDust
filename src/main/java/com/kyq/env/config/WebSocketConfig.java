@@ -11,9 +11,6 @@ import org.springframework.web.socket.config.annotation.EnableWebSocket;
 import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
 import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
 
-import com.tcb.env.Handler.WebsocketHandler;
-import com.tcb.env.Interceptor.WebSocketIntercepor;
-
 /**
  * WebSocket拦截器
  *

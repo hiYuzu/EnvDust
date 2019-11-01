@@ -2,9 +2,9 @@ package com.kyq.env.dao;
 
 import java.util.List;
 
+import com.kyq.env.model.MapModel;
 import org.apache.ibatis.annotations.Param;
 
-import com.tcb.env.model.MapModel;
 
 /**
  * [功能描述]：查询id-name值

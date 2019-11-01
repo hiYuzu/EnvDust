@@ -1,9 +1,9 @@
 package com.kyq.env.controller;
 
-import com.tcb.env.model.PollutionSourceModel;
-import com.tcb.env.model.ResultDataModel;
-import com.tcb.env.model.SourceAnalysisResultModel;
-import com.tcb.env.service.ISourceAnalysisService;
+import com.kyq.env.model.PollutionSourceModel;
+import com.kyq.env.model.ResultDataModel;
+import com.kyq.env.model.SourceAnalysisResultModel;
+import com.kyq.env.service.ISourceAnalysisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

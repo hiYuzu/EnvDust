@@ -6,24 +6,18 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import com.kyq.env.config.Dom4jConfig;
 import com.kyq.env.dao.IAlarmDao;
 import com.kyq.env.dao.IDeviceDao;
 import com.kyq.env.pojo.Alarm;
 import com.kyq.env.pojo.Device;
+import com.kyq.env.service.IAlarmService;
 import com.kyq.env.util.DateUtil;
 import com.kyq.env.util.DefaultArgument;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.tcb.env.config.Dom4jConfig;
-import com.tcb.env.dao.IAlarmDao;
-import com.tcb.env.dao.IDeviceDao;
-import com.tcb.env.pojo.Alarm;
-import com.tcb.env.pojo.Device;
-import com.tcb.env.service.IAlarmService;
-import com.tcb.env.util.DateUtil;
-import com.tcb.env.util.DefaultArgument;
 import org.springframework.util.StringUtils;
 
 /**

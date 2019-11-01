@@ -7,9 +7,6 @@ import java.util.Map;
 import com.kyq.env.model.MapDeviceModel;
 import com.kyq.env.model.ThermodynamicModel;
 import com.kyq.env.pojo.Device;
-import com.tcb.env.model.MapDeviceModel;
-import com.tcb.env.model.ThermodynamicModel;
-import com.tcb.env.pojo.Device;
 
 /**
  * [功能描述]：设备服务接口

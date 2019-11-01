@@ -8,27 +8,18 @@ import java.util.TreeMap;
 
 import javax.annotation.Resource;
 
+import com.kyq.env.config.Dom4jConfig;
 import com.kyq.env.dao.IDeviceDao;
 import com.kyq.env.model.MapDeviceModel;
 import com.kyq.env.model.ThermodynamicModel;
 import com.kyq.env.pojo.Device;
+import com.kyq.env.service.IDeviceService;
 import com.kyq.env.util.DateUtil;
 import com.kyq.env.util.DefaultArgument;
 import com.kyq.env.util.SortListUtil;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.tcb.env.config.Dom4jConfig;
-import com.tcb.env.dao.IAreaDao;
-import com.tcb.env.dao.IDeviceDao;
-import com.tcb.env.model.MapDeviceModel;
-import com.tcb.env.model.ThermodynamicModel;
-import com.tcb.env.pojo.Device;
-import com.tcb.env.service.IDeviceService;
-import com.tcb.env.util.DateUtil;
-import com.tcb.env.util.DefaultArgument;
-import com.tcb.env.util.SortListUtil;
 
 /**
  * [功能描述]：

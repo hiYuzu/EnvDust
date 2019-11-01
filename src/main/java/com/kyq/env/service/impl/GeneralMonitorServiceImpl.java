@@ -5,11 +5,9 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import com.kyq.env.dao.IGeneralMonitorDao;
+import com.kyq.env.model.DeviceValueModel;
+import com.kyq.env.service.IGeneralMonitorService;
 import org.springframework.stereotype.Service;
-
-import com.tcb.env.dao.IGeneralMonitorDao;
-import com.tcb.env.model.DeviceValueModel;
-import com.tcb.env.service.IGeneralMonitorService;
 
 /**
  * [功能描述]：获取各物质浓度值接口实现类

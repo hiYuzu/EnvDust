@@ -1,6 +1,7 @@
 package com.kyq.env.service;
 
-import com.tcb.env.model.SourceAnalysisResultModel;
+
+import com.kyq.env.model.SourceAnalysisResultModel;
 
 public interface ISourceAnalysisService {
 

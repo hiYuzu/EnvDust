@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import com.kyq.env.model.TreeModel;
 import org.apache.ibatis.annotations.Param;
-import com.tcb.env.model.TreeModel;
 
 /**
  * [功能描述]：树形结构操作接口

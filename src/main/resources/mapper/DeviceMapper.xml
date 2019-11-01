@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.tcb.env.dao.IDeviceDao">
+<mapper namespace="com.kyq.env.dao.IDeviceDao">
 
-    <resultMap type="com.tcb.env.pojo.Device" id="deviceResultMap">
+    <resultMap type="com.kyq.env.pojo.Device" id="deviceResultMap">
         <id property="deviceId" column="device_id"/>
         <result property="deviceCode" column="device_code"/>
         <result property="deviceMn" column="device_mn"/>
@@ -37,19 +37,19 @@
         <result property="statusCode" column="status_code" />
         <result property="statusName" column="status_name" />
         <!-- 级联表 -->
-        <association property="manufacturer" javaType="com.tcb.env.pojo.Manufacturer"
-                     resultMap="com.tcb.env.dao.IManufacturerDao.mfrResultMap"></association>
-        <association property="area" javaType="com.tcb.env.pojo.Area"
-                     resultMap="com.tcb.env.dao.IAreaDao.areaResultMap"></association>
-        <association property="user" javaType="com.tcb.env.pojo.User"
-                     resultMap="com.tcb.env.dao.IUserDao.userResultMap"></association>
-        <association property="oranization" javaType="com.tcb.env.pojo.Oranization"
-                     resultMap="com.tcb.env.dao.IOranizationDao.orgResultMap"></association>
-        <association property="deviceProject" javaType="com.tcb.env.pojo.DeviceProject"
-                     resultMap="com.tcb.env.dao.IDeviceProjectDao.deviceProjectResultMap"></association>
+        <association property="manufacturer" javaType="com.kyq.env.pojo.Manufacturer"
+                     resultMap="com.kyq.env.dao.IManufacturerDao.mfrResultMap"></association>
+        <association property="area" javaType="com.kyq.env.pojo.Area"
+                     resultMap="com.kyq.env.dao.IAreaDao.areaResultMap"></association>
+        <association property="user" javaType="com.kyq.env.pojo.User"
+                     resultMap="com.kyq.env.dao.IUserDao.userResultMap"></association>
+        <association property="oranization" javaType="com.kyq.env.pojo.Oranization"
+                     resultMap="com.kyq.env.dao.IOranizationDao.orgResultMap"></association>
+        <association property="deviceProject" javaType="com.kyq.env.pojo.DeviceProject"
+                     resultMap="com.kyq.env.dao.IDeviceProjectDao.deviceProjectResultMap"></association>
     </resultMap>
 
-    <resultMap type="com.tcb.env.model.MapDeviceModel" id="mapDevResultMap">
+    <resultMap type="com.kyq.env.model.MapDeviceModel" id="mapDevResultMap">
         <id property="deviceCode" column="device_code"/>
         <result property="deviceName" column="device_name"/>
         <result property="deviceMn" column="device_mn"/>
@@ -63,7 +63,7 @@
         <result property="userTel" column="user_tel"/>
     </resultMap>
 
-    <resultMap type="com.tcb.env.model.ThermodynamicModel" id="thermodynamicResultMap">
+    <resultMap type="com.kyq.env.model.ThermodynamicModel" id="thermodynamicResultMap">
         <result property="lng" column="lng"/>
         <result property="lat" column="lat"/>
         <result property="count" column="count"/>
@@ -71,7 +71,7 @@
         <result property="deviceName" column="device_name"/>
     </resultMap>
 
-    <resultMap type="com.tcb.env.model.LocationModel" id="locationModelResultMap">
+    <resultMap type="com.kyq.env.model.LocationModel" id="locationModelResultMap">
         <result property="code" column="code"/>
         <result property="lng" column="lng"/>
         <result property="lat" column="lat"/>
@@ -79,7 +79,7 @@
         <result property="info" column="info"/>
     </resultMap>
 
-    <resultMap type="com.tcb.env.model.AreaDeviceValueModel" id="areaDeviceValueResultMap">
+    <resultMap type="com.kyq.env.model.AreaDeviceValueModel" id="areaDeviceValueResultMap">
         <result property="areaId" column="area_id"/>
         <result property="areaName" column="area_name"/>
         <result property="deviceCode" column="device_code"/>

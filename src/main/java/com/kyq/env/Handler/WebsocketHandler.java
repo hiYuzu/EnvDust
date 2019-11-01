@@ -15,8 +15,6 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.AbstractWebSocketHandler;
 
-import com.tcb.env.controller.DeviceController;
-import com.tcb.env.util.DefaultArgument;
 
 /**
  * [功能描述]：WebSocket处理器

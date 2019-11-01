@@ -19,13 +19,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.tcb.env.model.ResultModel;
-import com.tcb.env.model.TreeModel;
-import com.tcb.env.model.UserModel;
-import com.tcb.env.pojo.AuthorityDetail;
-import com.tcb.env.service.IAuthorityDetailService;
-import com.tcb.env.service.IUserAhrService;
-import com.tcb.env.util.DefaultArgument;
+import com.kyq.env.service.IAuthorityDetailService;
+import com.kyq.env.service.IUserAhrService;
 
 /**
  * [功能描述]：AuthorityDetail控制器

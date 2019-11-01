@@ -5,8 +5,6 @@ import java.util.List;
 import com.kyq.env.pojo.Authority;
 import org.apache.ibatis.annotations.Param;
 
-import com.tcb.env.pojo.Authority;
-
 /**
  * [功能描述]：权限组数据库操作接口
  *

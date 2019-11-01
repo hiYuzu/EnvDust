@@ -14,7 +14,7 @@ import com.kyq.env.pojo.Area;
 import com.kyq.env.pojo.AreaLevel;
 import com.kyq.env.util.DateUtil;
 import com.kyq.env.util.DefaultArgument;
-import com.tcb.env.model.*;
+import com.kyq.env.model.*;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,14 +22,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.tcb.env.pojo.Area;
-import com.tcb.env.pojo.AreaLevel;
-import com.tcb.env.service.IAreaService;
-import com.tcb.env.service.IMapService;
-import com.tcb.env.service.ITreeService;
-import com.tcb.env.service.IUserService;
-import com.tcb.env.util.DateUtil;
-import com.tcb.env.util.DefaultArgument;
+import com.kyq.env.service.IAreaService;
+import com.kyq.env.service.IMapService;
+import com.kyq.env.service.ITreeService;
+import com.kyq.env.service.IUserService;
 
 /**
  * [功能描述]：Area控制器

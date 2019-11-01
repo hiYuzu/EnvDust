@@ -5,8 +5,6 @@ import java.util.List;
 import com.kyq.env.pojo.Alarm;
 import org.apache.ibatis.annotations.Param;
 
-import com.tcb.env.pojo.Alarm;
-
 /**
  * <p>
  * [功能描述]：报警数据库操作接口

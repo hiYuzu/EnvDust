@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.tcb.env.dao.IAlarmDao">
+<mapper namespace="com.kyq.env.dao.IAlarmDao">
 
-    <resultMap type="com.tcb.env.pojo.Alarm" id="alarmResultMap">
+    <resultMap type="com.kyq.env.pojo.Alarm" id="alarmResultMap">
         <id property="alarmId" column="alarm_id"/>
         <result property="alarmInfo" column="alarm_info"/>
         <result property="alarmAction" column="alarm_action"/>
@@ -21,11 +21,11 @@
         <result property="statusCode" column="status_code"/>
         <result property="statusName" column="status_name"/>
         <!-- 级联设备表 -->
-        <association property="device" javaType="com.tcb.env.pojo.Device"
-                     resultMap="com.tcb.env.dao.IDeviceDao.deviceResultMap"></association>
+        <association property="device" javaType="com.kyq.env.pojo.Device"
+                     resultMap="com.kyq.env.dao.IDeviceDao.deviceResultMap"></association>
         <!-- 级联监测物表 -->
-        <association property="monitor" javaType="com.tcb.env.pojo.Monitor"
-                     resultMap="com.tcb.env.dao.IMonitorDao.monitorResultMap"></association>
+        <association property="monitor" javaType="com.kyq.env.pojo.Monitor"
+                     resultMap="com.kyq.env.dao.IMonitorDao.monitorResultMap"></association>
     </resultMap>
 
     <!-- 获取报警信息个数 -->

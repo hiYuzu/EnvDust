@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.tcb.env.dao.IAreaDao">
-	<resultMap type="com.tcb.env.pojo.AreaLevel" id="areaLevelResultMap">
+<mapper namespace="com.kyq.env.dao.IAreaDao">
+	<resultMap type="com.kyq.env.pojo.AreaLevel" id="areaLevelResultMap">
 		<id property="levelId" column="level_id" />
 		<result property="levelName" column="level_name" />
 		<result property="levelFlag" column="level_flag" />
 	</resultMap>
-	<!-- <resultMap type="com.tcb.env.pojo.AreaB" id="parentAreaResultMap"> 
+	<!-- <resultMap type="com.kyq.env.pojo.AreaB" id="parentAreaResultMap"> 
 		<id property="areaId" column="area_id" /> <result property="areaName" column="area_name" 
 		/> <result property="areaPath" column="area_path_b" /> <result property="optUser" 
 		column="opt_user_b" /> <result property="optTime" column="opt_time_b" /> 
 		</resultMap> -->
-	<resultMap type="com.tcb.env.pojo.Area" id="areaResultMap">
+	<resultMap type="com.kyq.env.pojo.Area" id="areaResultMap">
 		<id property="areaId" column="area_id" />
 		<result property="areaName" column="area_name" />
 		<result property="areaPath" column="area_path" />
@@ -20,10 +20,10 @@
 		<result property="cityId" column="city_id" />
 		<result property="optUser" column="opt_user" />
 		<result property="optTime" column="opt_time" />
-		<!-- 级联组织表 <association property="parentArea" column="parent_id" javaType="com.tcb.env.pojo.Area" 
-			resultMap="com.tcb.env.dao.IAreaDao.parentAreaResultMap"></association> -->
+		<!-- 级联组织表 <association property="parentArea" column="parent_id" javaType="com.kyq.env.pojo.Area" 
+			resultMap="com.kyq.env.dao.IAreaDao.parentAreaResultMap"></association> -->
 		<association property="areaLevel" column="level_id"
-			javaType="com.tcb.env.pojo.AreaLevel" resultMap="com.tcb.env.dao.IAreaDao.areaLevelResultMap"></association>
+			javaType="com.kyq.env.pojo.AreaLevel" resultMap="com.kyq.env.dao.IAreaDao.areaLevelResultMap"></association>
 	</resultMap>
 
 	<!-- 查询个数（国家） -->
@@ -147,7 +147,7 @@
 	</select>
 
 	<!-- 插入区域数据 -->
-	<insert id="insertAreas" parameterType="com.tcb.env.pojo.Area">
+	<insert id="insertAreas" parameterType="com.kyq.env.pojo.Area">
 		INSERT INTO tbl_area(
 		area_name,
 		<if test="area.parentId != -1">
@@ -221,7 +221,7 @@
 	</select>
 
 	<!-- 插入区域天气信息 -->
-	<insert id="insertAreaWeather" parameterType="com.tcb.env.pojo.HeWeather">
+	<insert id="insertAreaWeather" parameterType="com.kyq.env.pojo.HeWeather">
 		INSERT INTO
 		tbl_weather(
 			cid,

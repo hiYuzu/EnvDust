@@ -1,8 +1,9 @@
 package com.kyq.env.model;
 
+import com.kyq.env.util.DefaultArgument;
+
 import java.sql.Timestamp;
 
-import com.tcb.env.util.DefaultArgument;
 
 /**
  * 

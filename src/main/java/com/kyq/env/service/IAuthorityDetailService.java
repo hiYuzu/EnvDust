@@ -4,8 +4,6 @@ import java.util.List;
 
 import com.kyq.env.model.TreeModel;
 import com.kyq.env.pojo.AuthorityDetail;
-import com.tcb.env.model.TreeModel;
-import com.tcb.env.pojo.AuthorityDetail;
 
 /**
  * [功能描述]：权限组控件明细操作服务类接口

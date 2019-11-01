@@ -3,7 +3,6 @@ package com.kyq.env.service;
 import java.util.List;
 
 import com.kyq.env.pojo.Device;
-import com.tcb.env.pojo.Device;
 
 /**
  * [功能描述]：权限组访问数据操作接口

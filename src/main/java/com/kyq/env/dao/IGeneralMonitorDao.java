@@ -2,9 +2,8 @@ package com.kyq.env.dao;
 
 import java.util.List;
 
+import com.kyq.env.model.DeviceValueModel;
 import org.apache.ibatis.annotations.Param;
-
-import com.tcb.env.model.DeviceValueModel;
 
 /**
  * [功能描述]：监控数据库接口

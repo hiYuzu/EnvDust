@@ -1,10 +1,8 @@
 package com.kyq.env.gateway.tcp;
 
+import com.kyq.env.gateway.NetSessionManager;
 import com.kyq.env.gateway.ProcessorI;
 import com.kyq.env.gateway.filter.SplitPacketAbstract;
-import com.tcb.env.gateway.NetSessionManager;
-import com.tcb.env.gateway.ProcessorI;
-import com.tcb.env.gateway.filter.SplitPacketAbstract;
 
 public class TcpGateWayManager {
 

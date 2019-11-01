@@ -5,11 +5,9 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import com.kyq.env.dao.IMapDao;
+import com.kyq.env.model.MapModel;
+import com.kyq.env.service.IMapService;
 import org.springframework.stereotype.Service;
-
-import com.tcb.env.dao.IMapDao;
-import com.tcb.env.model.MapModel;
-import com.tcb.env.service.IMapService;
 
 /**
  * [功能描述]：查询id-name形式操作类实现

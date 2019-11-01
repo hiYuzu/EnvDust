@@ -10,7 +10,7 @@ import com.kyq.env.model.TreeModel;
 import com.kyq.env.model.UserModel;
 import com.kyq.env.util.DefaultArgument;
 import com.kyq.env.util.EnumUtil;
-import com.tcb.env.service.IAlarmService;
+import com.kyq.env.service.IAlarmService;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,11 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
-import com.tcb.env.model.TreeModel;
-import com.tcb.env.model.UserModel;
-import com.tcb.env.service.ITreeService;
-import com.tcb.env.util.DefaultArgument;
-import com.tcb.env.util.EnumUtil;
+import com.kyq.env.service.ITreeService;
 
 @Controller
 @RequestMapping("/TreeController")

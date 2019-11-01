@@ -5,8 +5,6 @@ import java.util.List;
 import com.kyq.env.pojo.DeviceAlarmSet;
 import org.apache.ibatis.annotations.Param;
 
-import com.tcb.env.pojo.DeviceAlarmSet;
-
 /**
  * [功能描述]：设备报警门限信息Dao
  *

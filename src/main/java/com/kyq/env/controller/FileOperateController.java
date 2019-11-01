@@ -25,15 +25,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.Gson;
-import com.tcb.env.config.Dom4jConfig;
-import com.tcb.env.model.ResultListModel;
-import com.tcb.env.model.ResultModel;
-import com.tcb.env.model.UploadFileModel;
-import com.tcb.env.model.UserModel;
-import com.tcb.env.pojo.UploadFile;
-import com.tcb.env.service.IUploadFileService;
-import com.tcb.env.util.DateUtil;
-import com.tcb.env.util.DefaultArgument;
+import com.kyq.env.config.Dom4jConfig;
+import com.kyq.env.model.ResultListModel;
+import com.kyq.env.model.UploadFileModel;
+import com.kyq.env.service.IUploadFileService;
 /**
  * [功能描述]：文件操作控制器（查询、上传、下载）
  */

@@ -2,9 +2,7 @@ package com.kyq.env.service.impl;
 
 import com.kyq.env.dao.IDeviceProjectDao;
 import com.kyq.env.pojo.DeviceProject;
-import com.tcb.env.dao.IDeviceProjectDao;
-import com.tcb.env.pojo.DeviceProject;
-import com.tcb.env.service.IDeviceProjectService;
+import com.kyq.env.service.IDeviceProjectService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

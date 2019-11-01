@@ -6,11 +6,8 @@ import javax.annotation.Resource;
 
 import com.kyq.env.dao.ISysflagDao;
 import com.kyq.env.pojo.Sysflag;
+import com.kyq.env.service.ISysflagService;
 import org.springframework.stereotype.Service;
-
-import com.tcb.env.dao.ISysflagDao;
-import com.tcb.env.pojo.Sysflag;
-import com.tcb.env.service.ISysflagService;
 
 /**
  * @author kyq

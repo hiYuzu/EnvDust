@@ -6,12 +6,9 @@ import javax.annotation.Resource;
 
 import com.kyq.env.dao.IManufacturerDao;
 import com.kyq.env.pojo.Manufacturer;
+import com.kyq.env.service.IManufacturerService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.tcb.env.dao.IManufacturerDao;
-import com.tcb.env.pojo.Manufacturer;
-import com.tcb.env.service.IManufacturerService;
 
 /**
  * @author kyq

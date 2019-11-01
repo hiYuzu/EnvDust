@@ -4,11 +4,9 @@ import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
 
+import com.kyq.env.model.MonitorStorageModel;
 import com.kyq.env.model.OriginalDataModel;
 import com.kyq.env.pojo.NetStatusCount;
-import com.tcb.env.model.MonitorStorageModel;
-import com.tcb.env.model.OriginalDataModel;
-import com.tcb.env.pojo.NetStatusCount;
 
 /**
  * [功能描述]：监测物查询服务类接口

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.tcb.env.dao.ITreeDao">
+<mapper namespace="com.kyq.env.dao.ITreeDao">
 
-	<resultMap type="com.tcb.env.model.TreeModel" id="areatreeResultMap">
+	<resultMap type="com.kyq.env.model.TreeModel" id="areatreeResultMap">
 		<id property="id" column="area_id" />
 		<result property="text" column="area_name" />
 		<result property="iconCls" column="level_icon" />
@@ -11,44 +11,44 @@
 		<result property="checked" column="device_checked" />
 	</resultMap>
 	
-	<resultMap type="com.tcb.env.model.TreeModel" id="devtreeResultMap">
+	<resultMap type="com.kyq.env.model.TreeModel" id="devtreeResultMap">
 		<id property="id" column="device_code" />
 		<result property="text" column="device_name" />
 		<result property="state" column="status_code" />
 		<result property="checked" column="device_checked" />
 	</resultMap>
 	
-	<resultMap type="com.tcb.env.model.TreeModel" id="montreeResultMap">
+	<resultMap type="com.kyq.env.model.TreeModel" id="montreeResultMap">
 		<id property="id" column="thing_code" />
 		<result property="text" column="thing_name" />
 		<result property="checked" column="monitor_checked" />
 	</resultMap>
 	
-	<resultMap type="com.tcb.env.model.TreeModel" id="ahrTreeResultMap">
+	<resultMap type="com.kyq.env.model.TreeModel" id="ahrTreeResultMap">
 		<id property="id" column="authority_code" />
 		<result property="text" column="authority_name" />
 	</resultMap>
 	
-	<resultMap type="com.tcb.env.model.TreeModel" id="userAhrTreeResultMap">
+	<resultMap type="com.kyq.env.model.TreeModel" id="userAhrTreeResultMap">
 		<id property="id" column="user_code" />
 		<result property="text" column="user_name" />
 	</resultMap>
 	
-	<resultMap type="com.tcb.env.model.TreeModel" id="modtreeResultMap">
+	<resultMap type="com.kyq.env.model.TreeModel" id="modtreeResultMap">
 		<id property="id" column="module_id" />
 		<result property="text" column="module_remark" />
 		<result property="levelFlag" column="level_flag" />
 		<result property="checked" column="module_checked" />
 	</resultMap>
 	
-	<resultMap type="com.tcb.env.model.TreeModel" id="pagetreeResultMap">
+	<resultMap type="com.kyq.env.model.TreeModel" id="pagetreeResultMap">
 		<id property="id" column="page_id" />
 		<result property="text" column="page_remark" />
 		<result property="levelFlag" column="level_flag" />
 		<result property="checked" column="page_checked" />
 	</resultMap>
 	
-	<resultMap type="com.tcb.env.model.TreeModel" id="controltreeResultMap">
+	<resultMap type="com.kyq.env.model.TreeModel" id="controltreeResultMap">
 		<id property="id" column="control_id" />
 		<result property="text" column="control_remark" />
 		<result property="levelFlag" column="level_flag" />

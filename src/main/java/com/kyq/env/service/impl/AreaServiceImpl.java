@@ -5,19 +5,14 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import com.kyq.env.config.Dom4jConfig;
 import com.kyq.env.dao.IAreaDao;
 import com.kyq.env.pojo.Area;
 import com.kyq.env.pojo.HeWeather;
+import com.kyq.env.service.IAreaService;
 import com.kyq.env.util.DefaultArgument;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.tcb.env.config.Dom4jConfig;
-import com.tcb.env.dao.IAreaDao;
-import com.tcb.env.pojo.Area;
-import com.tcb.env.pojo.HeWeather;
-import com.tcb.env.service.IAreaService;
-import com.tcb.env.util.DefaultArgument;
 
 /**
  * [功能描述]：Area操作服务类实现

@@ -5,8 +5,6 @@ import java.util.List;
 import com.kyq.env.pojo.Device;
 import org.apache.ibatis.annotations.Param;
 
-import com.tcb.env.pojo.Device;
-
 /**
  * [功能描述]：权限设备数据库操作接口
  *

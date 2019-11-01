@@ -5,8 +5,6 @@ import java.util.List;
 import com.kyq.env.pojo.Manufacturer;
 import org.apache.ibatis.annotations.Param;
 
-import com.tcb.env.pojo.Manufacturer;
-
 /**
  * @author	kyq
  */

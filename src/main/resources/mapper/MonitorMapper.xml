@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.tcb.env.dao.IMonitorDao">
+<mapper namespace="com.kyq.env.dao.IMonitorDao">
 	<!-- 类名和数据库中表的属性名一一对应 -->
-	<resultMap type="com.tcb.env.pojo.Monitor" id="monitorResultMap">
+	<resultMap type="com.kyq.env.pojo.Monitor" id="monitorResultMap">
 		<!-- 属性名和数据库列名映射 -->
 		<id property="thingId" column="thing_id" />
 		<result property="thingCode" column="thing_code" />
@@ -14,7 +14,7 @@
 		<result property="optTime" column="opt_time" />
 	</resultMap>
 
-	<resultMap type="com.tcb.env.model.MonitorLevelModel" id="monitorLevelModelResultMap">
+	<resultMap type="com.kyq.env.model.MonitorLevelModel" id="monitorLevelModelResultMap">
 		<id property="tlId" column="tl_id" />
 		<result property="thingCode" column="thing_code" />
 		<result property="thingName" column="thing_name" />
@@ -43,7 +43,7 @@
 		</if>
 	</select>
 	<!-- 查询数据库 -->
-	<select id="getMonitor" parameterType="com.tcb.env.pojo.Monitor" resultMap="monitorResultMap">
+	<select id="getMonitor" parameterType="com.kyq.env.pojo.Monitor" resultMap="monitorResultMap">
 		SELECT
 			tbl_monitor.thing_id,
 			tbl_monitor.thing_code,
@@ -67,7 +67,7 @@
 		</if>
 	</select>
 	<!-- 插入语句 valuse为要传入的参数 数据库自动生成主键值 -->
-	<insert id="insertMonitor" parameterType="com.tcb.env.pojo.Monitor">
+	<insert id="insertMonitor" parameterType="com.kyq.env.pojo.Monitor">
 		insert into tbl_monitor
 		(
 			thing_code,

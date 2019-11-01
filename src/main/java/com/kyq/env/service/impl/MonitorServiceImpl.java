@@ -1,9 +1,3 @@
-/**
- * Copyright (c) 1996-2016天津通广集团电子信息部，版权所有，复制必究。
- * 此程序版权归天津通广集团电子信息部所有，任何侵犯版权的行为将被追究
- * 法律责任。未经天津通广集团电子信息部的书面批准，不得将此程序的任何
- * 部分以任何形式、采用任何手段、或为任何目的，进行复制或扩散。
- */
 package com.kyq.env.service.impl;
 
 import java.util.List;
@@ -12,25 +6,13 @@ import javax.annotation.Resource;
 
 import com.kyq.env.dao.IMonitorDao;
 import com.kyq.env.pojo.Monitor;
-import com.tcb.env.model.MonitorLevelModel;
+import com.kyq.env.service.IMonitorService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.tcb.env.dao.IMonitorDao;
-import com.tcb.env.pojo.Monitor;
-import com.tcb.env.service.IMonitorService;
 
 /**
- * <p>
  * [功能描述]：监测物服务接口实现类
- * </p>
- * <p>
- * Copyright (c) 1996-2016 TCB Corporation
- * </p>
- *
- * @author 任崇彬
- * @version 1.0, 2016年3月30日上午11:37:09
- * @since EnvDust 1.0.0
  */
 @Service("monitorService")
 @Transactional(rollbackFor = Exception.class)

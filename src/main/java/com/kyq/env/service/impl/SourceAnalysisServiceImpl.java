@@ -2,16 +2,12 @@ package com.kyq.env.service.impl;
 
 import com.kyq.env.dao.IDeviceDao;
 import com.kyq.env.dao.IWeatherDao;
+import com.kyq.env.model.LocationModel;
+import com.kyq.env.model.PollutionSourceModel;
+import com.kyq.env.model.SourceAnalysisResultModel;
+import com.kyq.env.service.ISourceAnalysisService;
 import com.kyq.env.util.algorithm.diffusion.LatLngUtils;
 import com.kyq.env.util.algorithm.diffusion.SamplingPoint;
-import com.tcb.env.dao.IDeviceDao;
-import com.tcb.env.dao.IWeatherDao;
-import com.tcb.env.model.LocationModel;
-import com.tcb.env.model.PollutionSourceModel;
-import com.tcb.env.model.SourceAnalysisResultModel;
-import com.tcb.env.service.ISourceAnalysisService;
-import com.tcb.env.util.algorithm.diffusion.LatLngUtils;
-import com.tcb.env.util.algorithm.diffusion.SamplingPoint;
 import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.stereotype.Service;
 
@@ -56,7 +52,7 @@ public class SourceAnalysisServiceImpl implements ISourceAnalysisService {
 
 
     @Override
-    public SourceAnalysisResultModel getPollutionSourceData(int areaId, double longitude, double latitude, String datetime,double radius) {
+    public SourceAnalysisResultModel getPollutionSourceData(int areaId, double longitude, double latitude, String datetime, double radius) {
         Date date = getDateFromDateStr(datetime);
         Map<String, Double> cloudData = getCloudData(areaId, date);
         Map<String, Double> windData = getWindData(areaId, datetime);

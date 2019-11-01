@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.tcb.env.dao.IDeviceAlarmSetDao">
+<mapper namespace="com.kyq.env.dao.IDeviceAlarmSetDao">
 
-    <resultMap type="com.tcb.env.pojo.DeviceAlarmSet" id="deviceAlarmSetResultMap">
+    <resultMap type="com.kyq.env.pojo.DeviceAlarmSet" id="deviceAlarmSetResultMap">
         <id property="dasId" column="das_id"/>
         <result property="maxValue" column="max_value"/>
         <result property="minValue" column="min_value"/>
@@ -18,12 +18,12 @@
         <result property="statusId" column="status_id"/>
         <result property="statusName" column="status_name"/>
         <!-- 级联表 -->
-        <association property="device" javaType="com.tcb.env.pojo.Device"
-                     resultMap="com.tcb.env.dao.IDeviceDao.deviceResultMap"></association>
-        <association property="monitor" javaType="com.tcb.env.pojo.Monitor"
-                     resultMap="com.tcb.env.dao.IMonitorDao.monitorResultMap"></association>
-        <association property="deviceProject" javaType="com.tcb.env.pojo.DeviceProject"
-                     resultMap="com.tcb.env.dao.IDeviceProjectDao.deviceProjectResultMap"></association>
+        <association property="device" javaType="com.kyq.env.pojo.Device"
+                     resultMap="com.kyq.env.dao.IDeviceDao.deviceResultMap"></association>
+        <association property="monitor" javaType="com.kyq.env.pojo.Monitor"
+                     resultMap="com.kyq.env.dao.IMonitorDao.monitorResultMap"></association>
+        <association property="deviceProject" javaType="com.kyq.env.pojo.DeviceProject"
+                     resultMap="com.kyq.env.dao.IDeviceProjectDao.deviceProjectResultMap"></association>
     </resultMap>
 
     <!-- 获取单个报警门限信息（设备编码和监测物编码） -->

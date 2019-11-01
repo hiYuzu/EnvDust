@@ -5,8 +5,6 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
-import com.tcb.env.pojo.HeWeather;
-
 /**
  * <p>[功能描述]：天气数据库操作接口</p>
  * <p>Copyright (c) 1997-2017 TCB Corporation</p>

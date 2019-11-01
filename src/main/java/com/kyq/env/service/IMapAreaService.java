@@ -6,9 +6,6 @@ import com.kyq.env.pojo.MapArea;
 import com.kyq.env.pojo.MapAreaPoint;
 import org.apache.ibatis.annotations.Param;
 
-import com.tcb.env.pojo.MapArea;
-import com.tcb.env.pojo.MapAreaPoint;
-
 /**
  * [功能描述]：百度地图覆盖区域确定 Service
  *

@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.tcb.env.dao.IMapDao">
-	<resultMap type="com.tcb.env.model.MapModel" id="areaResultMap">
+<mapper namespace="com.kyq.env.dao.IMapDao">
+	<resultMap type="com.kyq.env.model.MapModel" id="areaResultMap">
 		<id property="id" column="area_id" />
 		<result property="name" column="area_name" />
 		<result property="levelFlag" column="level_flag" />
 	</resultMap>
-	<resultMap type="com.tcb.env.model.MapModel" id="areaLevelFlagResultMap">
+	<resultMap type="com.kyq.env.model.MapModel" id="areaLevelFlagResultMap">
 		<id property="id" column="level_flag" />
 		<result property="name" column="level_name" />
 	</resultMap>
 
-	<resultMap type="com.tcb.env.model.MapModel" id="areaLevelIdResultMap">
+	<resultMap type="com.kyq.env.model.MapModel" id="areaLevelIdResultMap">
 		<id property="id" column="level_id" />
 		<result property="name" column="level_name" />
 	</resultMap>
 	<!-- 设备：厂商code-name映射 -->
-	<resultMap type="com.tcb.env.model.MapModel" id="devicemfrcodeResultMap">
+	<resultMap type="com.kyq.env.model.MapModel" id="devicemfrcodeResultMap">
 		<id property="code" column="mfr_code" />
 		<result property="name" column="mfr_name" />
 	</resultMap>
 	<!-- 设备：状态code-name映射 -->
-	<resultMap type="com.tcb.env.model.MapModel" id="devicestatuscodeResultMap">
+	<resultMap type="com.kyq.env.model.MapModel" id="devicestatuscodeResultMap">
 		<id property="code" column="status_code" />
 		<result property="name" column="status_name" />
 	</resultMap>
 	<!-- 监测物：状态code-name映射 -->
-	<resultMap type="com.tcb.env.model.MapModel" id="monitorResultMap">
+	<resultMap type="com.kyq.env.model.MapModel" id="monitorResultMap">
 		<id property="code" column="thing_code" />
 		<result property="name" column="thing_name" />
 		<result property="describe" column="thing_describe"/>
@@ -36,18 +36,18 @@
 		<result property="dataFlag" column="data_flag"/>
 	</resultMap>
 	<!-- 设备：负责人id-name映射 -->
-	<resultMap type="com.tcb.env.model.MapModel" id="deviceprincipleResultMap">
+	<resultMap type="com.kyq.env.model.MapModel" id="deviceprincipleResultMap">
 		<id property="id" column="user_id" />
 		<result property="name" column="user_name" />
 	</resultMap>
 	<!-- 设备：单位id-name映射 -->
-	<resultMap type="com.tcb.env.model.MapModel" id="deviceorgResultMap">
+	<resultMap type="com.kyq.env.model.MapModel" id="deviceorgResultMap">
 		<id property="id" column="org_id" />
 		<result property="name" column="org_name" />
 	</resultMap>
 	
 	<!-- 系统状态映射 -->
-	<resultMap type="com.tcb.env.model.MapModel" id="statusResultMap">
+	<resultMap type="com.kyq.env.model.MapModel" id="statusResultMap">
 		<id property="id" column="status_id" />
 		<id property="code" column="status_code" />
 		<result property="name" column="status_name" />

@@ -3,7 +3,6 @@ package com.kyq.env.pojo;
 import java.sql.Timestamp;
 
 import com.kyq.env.util.DefaultArgument;
-import com.tcb.env.util.DefaultArgument;
 
 /**
  * <p>[功能描述]：报警pojo</p>

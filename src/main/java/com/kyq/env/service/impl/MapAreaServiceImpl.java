@@ -5,24 +5,17 @@ import java.util.List;
 import com.kyq.env.dao.IMapAreaDao;
 import com.kyq.env.pojo.MapArea;
 import com.kyq.env.pojo.MapAreaPoint;
+import com.kyq.env.service.IMapAreaService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.tcb.env.dao.IMapAreaDao;
-import com.tcb.env.pojo.MapArea;
-import com.tcb.env.pojo.MapAreaPoint;
-import com.tcb.env.service.IMapAreaService;
 
 import javax.annotation.Resource;
 
 /**
  * 
- * <p>[功能描述]：百度地图覆盖区域确定 ServiceImpl </p>
- * <p>Copyright (c) 1997-2017 TCB Corporation</p>
- * 
- * @author	王坤
- * @version	1.0, 2018年8月31日 上午9:40:56
- * @since	EnvDust 1.0.0
+ * [功能描述]：百度地图覆盖区域确定 ServiceImpl
+ *
+ * @author	kyq
  *
  */
 @Service("mapAreaService")

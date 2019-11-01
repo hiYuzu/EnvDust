@@ -6,9 +6,6 @@ import com.kyq.env.pojo.User;
 import com.kyq.env.pojo.UserAhr;
 import org.apache.ibatis.annotations.Param;
 
-import com.tcb.env.pojo.User;
-import com.tcb.env.pojo.UserAhr;
-
 /**
  * [功能描述]：用户与权限组关系数据库操作接口
  * 

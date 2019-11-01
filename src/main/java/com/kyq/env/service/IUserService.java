@@ -3,7 +3,6 @@ package com.kyq.env.service;
 import java.util.List;
 
 import com.kyq.env.pojo.User;
-import com.tcb.env.pojo.User;
 
 /**
  * [功能描述]：User操作服务类接口

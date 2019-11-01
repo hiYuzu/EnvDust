@@ -19,15 +19,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
-import com.tcb.env.model.MonitorModel;
-import com.tcb.env.model.ResultListModel;
-import com.tcb.env.model.ResultModel;
-import com.tcb.env.model.UserModel;
-import com.tcb.env.pojo.Monitor;
-import com.tcb.env.service.IMonitorService;
-import com.tcb.env.service.IUserService;
-import com.tcb.env.util.DateUtil;
-import com.tcb.env.util.DefaultArgument;
+import com.kyq.env.model.MonitorModel;
+import com.kyq.env.model.ResultListModel;
+import com.kyq.env.service.IMonitorService;
+import com.kyq.env.service.IUserService;
 
 /**
  * [功能描述]：监控物控制

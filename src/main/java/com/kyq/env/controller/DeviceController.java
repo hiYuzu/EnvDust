@@ -6,12 +6,10 @@ import java.util.concurrent.ConcurrentHashMap;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
-import com.kyq.env.model.*;
 import com.kyq.env.pojo.*;
 import com.kyq.env.util.DateUtil;
 import com.kyq.env.util.DefaultArgument;
 import com.kyq.env.util.SessionManager;
-import com.tcb.env.pojo.*;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
@@ -21,25 +19,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
-import com.tcb.env.model.DeviceModel;
-import com.tcb.env.model.MapDeviceModel;
-import com.tcb.env.model.MapModel;
-import com.tcb.env.model.MapMonitorData;
-import com.tcb.env.model.PhoneDeviceModel;
-import com.tcb.env.model.ResultAjaxPushModel;
-import com.tcb.env.model.ResultListModel;
-import com.tcb.env.model.ResultModel;
-import com.tcb.env.model.ThermodynamicModel;
-import com.tcb.env.model.TreeModel;
-import com.tcb.env.model.UserModel;
-import com.tcb.env.service.IAlarmService;
-import com.tcb.env.service.IDeviceService;
-import com.tcb.env.service.IMapService;
-import com.tcb.env.service.ITreeService;
-import com.tcb.env.service.IUserService;
-import com.tcb.env.util.DateUtil;
-import com.tcb.env.util.DefaultArgument;
-import com.tcb.env.util.SessionManager;
+import com.kyq.env.model.DeviceModel;
+import com.kyq.env.model.MapDeviceModel;
+import com.kyq.env.model.MapModel;
+import com.kyq.env.model.MapMonitorData;
+import com.kyq.env.model.ResultAjaxPushModel;
+import com.kyq.env.model.ResultListModel;
+import com.kyq.env.model.ResultModel;
+import com.kyq.env.model.ThermodynamicModel;
+import com.kyq.env.model.TreeModel;
+import com.kyq.env.model.UserModel;
+import com.kyq.env.service.IAlarmService;
+import com.kyq.env.service.IDeviceService;
+import com.kyq.env.service.IMapService;
+import com.kyq.env.service.ITreeService;
+import com.kyq.env.service.IUserService;
 
 /**
  * [功能描述]：设备控制器

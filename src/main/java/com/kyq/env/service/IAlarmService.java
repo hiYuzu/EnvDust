@@ -3,7 +3,6 @@ package com.kyq.env.service;
 import java.util.List;
 
 import com.kyq.env.pojo.Alarm;
-import com.tcb.env.pojo.Alarm;
 
 /**
  * [功能描述]：报警操作服务类接口

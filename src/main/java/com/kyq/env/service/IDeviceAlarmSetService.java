@@ -3,7 +3,6 @@ package com.kyq.env.service;
 import java.util.List;
 
 import com.kyq.env.pojo.DeviceAlarmSet;
-import com.tcb.env.pojo.DeviceAlarmSet;
 
 /**
  * [功能描述]：报警门限服务类接口

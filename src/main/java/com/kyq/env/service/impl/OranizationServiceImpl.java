@@ -6,12 +6,9 @@ import javax.annotation.Resource;
 
 import com.kyq.env.dao.IOranizationDao;
 import com.kyq.env.pojo.Oranization;
+import com.kyq.env.service.IOranizationService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.tcb.env.dao.IOranizationDao;
-import com.tcb.env.pojo.Oranization;
-import com.tcb.env.service.IOranizationService;
 
 /**
  * [功能描述]：组织服务接口实现类

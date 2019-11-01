@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.tcb.env.dao.IOranizationDao">
+<mapper namespace="com.kyq.env.dao.IOranizationDao">
 	<!-- 类名和数据库中表的属性名一一对应 -->
-	<resultMap type="com.tcb.env.pojo.Oranization" id="orgResultMap">
+	<resultMap type="com.kyq.env.pojo.Oranization" id="orgResultMap">
 		<!-- 属性名和数据库列名映射 -->
 		<id property="orgId" column="org_id" />
 		<result property="orgName" column="org_name" />
@@ -39,7 +39,7 @@
 		</if>
 	</select>
 	<!-- 查询数据库 -->
-	<select id="getOranization" parameterType="com.tcb.env.pojo.Oranization"
+	<select id="getOranization" parameterType="com.kyq.env.pojo.Oranization"
 		resultMap="orgResultMap">
 		SELECT
 		tbl_oranization.org_id,
@@ -70,7 +70,7 @@
 		</if>
 	</select>
 	<!-- 插入语句 valuse为要传入的参数 数据库自动生成主键值 插入成功会将返回1 useGeneratedKeys="true" keyProperty="orgId" -->
-	<insert id="insertOranization" parameterType="com.tcb.env.pojo.Oranization">
+	<insert id="insertOranization" parameterType="com.kyq.env.pojo.Oranization">
 		insert into tbl_oranization
 		(
 			org_name,

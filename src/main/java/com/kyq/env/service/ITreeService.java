@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.kyq.env.model.TreeModel;
-import com.tcb.env.model.TreeModel;
 
 /**
  * [功能描述]：Tree操作服务类接口

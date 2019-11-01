@@ -1,8 +1,9 @@
 package com.kyq.env.service;
 
+import com.kyq.env.model.MapModel;
+
 import java.util.List;
 
-import com.tcb.env.model.MapModel;
 
 /**
  * [功能描述]：查询id-name形式操作类接口

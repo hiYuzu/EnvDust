@@ -21,16 +21,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.tcb.env.model.DeviceModel;
-import com.tcb.env.model.ResultListModel;
-import com.tcb.env.model.ResultModel;
-import com.tcb.env.model.UserModel;
-import com.tcb.env.pojo.Area;
-import com.tcb.env.pojo.Device;
-import com.tcb.env.pojo.Manufacturer;
-import com.tcb.env.pojo.Status;
-import com.tcb.env.service.IAccessOperatorService;
-import com.tcb.env.util.DefaultArgument;
+import com.kyq.env.model.ResultListModel;
+import com.kyq.env.service.IAccessOperatorService;
 
 /**
  * @author kyq

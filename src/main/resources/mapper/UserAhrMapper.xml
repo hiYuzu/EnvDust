@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.tcb.env.dao.IUserAhrDao">
-	<resultMap type="com.tcb.env.pojo.User" id="userForAhrResultMap">
+<mapper namespace="com.kyq.env.dao.IUserAhrDao">
+	<resultMap type="com.kyq.env.pojo.User" id="userForAhrResultMap">
 		<id property="userId" column="user_id" />
 		<result property="userCode" column="user_code" />
 		<result property="userName" column="user_name" />
 	</resultMap>
-	<resultMap type="com.tcb.env.pojo.UserAhr" id="userAhrResultMap">
+	<resultMap type="com.kyq.env.pojo.UserAhr" id="userAhrResultMap">
 		<id property="authorityUserId" column="authority_user_id" />
 		<result property="optUser" column="opt_user" />
 		<result property="optTime" column="opt_time" />
 		<!-- 级联表 -->
-		<association property="authority" javaType="com.tcb.env.pojo.Authority"
-			resultMap="com.tcb.env.dao.IAuthorityDao.authotiryResultMap"></association>
-		<association property="user" javaType="com.tcb.env.pojo.Authority"
+		<association property="authority" javaType="com.kyq.env.pojo.Authority"
+			resultMap="com.kyq.env.dao.IAuthorityDao.authotiryResultMap"></association>
+		<association property="user" javaType="com.kyq.env.pojo.Authority"
 			resultMap="userForAhrResultMap"></association>
 	</resultMap>
 
@@ -66,7 +66,7 @@
 	</select>
 
 	<!-- 获取权限组外用户数据 -->
-	<select id="getOtherUserAhr" resultMap="com.tcb.env.dao.IUserDao.userResultMap">
+	<select id="getOtherUserAhr" resultMap="com.kyq.env.dao.IUserDao.userResultMap">
 		SELECT
 		tbl_user.user_id,
 		tbl_user.user_code,

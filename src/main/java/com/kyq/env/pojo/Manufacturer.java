@@ -7,7 +7,6 @@
 package com.kyq.env.pojo;
 
 import com.kyq.env.util.DefaultArgument;
-import com.tcb.env.util.DefaultArgument;
 
 /**
  * <p>[功能描述]：manufacturer  pojo</p>

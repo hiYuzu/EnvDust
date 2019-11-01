@@ -1,7 +1,7 @@
 package com.kyq.env.model;
 
+
 import com.kyq.env.util.DefaultArgument;
-import com.tcb.env.util.DefaultArgument;
 
 /**
  * 

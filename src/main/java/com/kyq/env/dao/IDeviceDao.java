@@ -8,10 +8,7 @@ import com.kyq.env.model.ThermodynamicModel;
 import com.kyq.env.pojo.Device;
 import org.apache.ibatis.annotations.Param;
 
-import com.tcb.env.model.LocationModel;
-import com.tcb.env.model.MapDeviceModel;
-import com.tcb.env.model.ThermodynamicModel;
-import com.tcb.env.pojo.Device;
+import com.kyq.env.model.LocationModel;
 
 /**
  * [功能描述]：设备dao

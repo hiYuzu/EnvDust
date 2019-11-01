@@ -1,7 +1,6 @@
 package com.kyq.env.service;
 
 import com.kyq.env.pojo.DeviceProject;
-import com.tcb.env.pojo.DeviceProject;
 
 import java.util.List;
 

@@ -7,13 +7,9 @@ import javax.annotation.Resource;
 import com.kyq.env.dao.IUserAhrDao;
 import com.kyq.env.pojo.User;
 import com.kyq.env.pojo.UserAhr;
+import com.kyq.env.service.IUserAhrService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.tcb.env.dao.IUserAhrDao;
-import com.tcb.env.pojo.User;
-import com.tcb.env.pojo.UserAhr;
-import com.tcb.env.service.IUserAhrService;
 
 /**
  * [功能描述]：用户与权限组关系查询服务类接口实现类

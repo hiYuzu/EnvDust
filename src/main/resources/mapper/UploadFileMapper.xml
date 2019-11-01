@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.tcb.env.dao.IUploadFileDao">
+<mapper namespace="com.kyq.env.dao.IUploadFileDao">
 
-	<resultMap type="com.tcb.env.pojo.UploadFile" id="uploadFileResultMap">
+	<resultMap type="com.kyq.env.pojo.UploadFile" id="uploadFileResultMap">
 		<!-- 属性名和数据库列名映射 -->
 		<id property="fileId" column="file_id" />
 		<result property="fileType" column="file_type" />

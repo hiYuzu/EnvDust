@@ -5,10 +5,6 @@ import java.util.List;
 import com.kyq.env.pojo.User;
 import org.apache.ibatis.annotations.Param;
 
-
-
-import com.tcb.env.pojo.User;
-
 /**
  * [功能描述]：用户数据库操作接口
  * 

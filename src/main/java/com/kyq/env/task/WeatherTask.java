@@ -6,6 +6,8 @@ import javax.annotation.Resource;
 
 import com.kyq.env.model.HeWeatherModel;
 import com.kyq.env.model.WeatherModel;
+import com.kyq.env.pojo.HeWeather;
+import com.kyq.env.service.IAreaService;
 import com.kyq.env.util.DefaultArgument;
 import com.kyq.env.util.GetWeatherUtil;
 import org.apache.log4j.Logger;
@@ -15,12 +17,6 @@ import org.springframework.stereotype.Component;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import com.tcb.env.model.HeWeatherModel;
-import com.tcb.env.model.WeatherModel;
-import com.tcb.env.pojo.HeWeather;
-import com.tcb.env.service.IAreaService;
-import com.tcb.env.util.DefaultArgument;
-import com.tcb.env.util.GetWeatherUtil;
 
 /**
  * [功能描述]：获取天气计划

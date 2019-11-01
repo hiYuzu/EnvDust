@@ -3,7 +3,6 @@ package com.kyq.env.service;
 import java.util.List;
 
 import com.kyq.env.pojo.Monitor;
-import com.tcb.env.pojo.Monitor;
 
 /**
  * [功能描述]：J检测服务接口

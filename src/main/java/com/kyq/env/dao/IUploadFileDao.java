@@ -5,8 +5,6 @@ import java.util.List;
 import com.kyq.env.pojo.UploadFile;
 import org.apache.ibatis.annotations.Param;
 
-import com.tcb.env.pojo.UploadFile;
-
 /**
  * [功能描述]：上传文件数据库接口
  * 
