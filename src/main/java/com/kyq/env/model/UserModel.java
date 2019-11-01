@@ -7,16 +7,7 @@ import java.sql.Timestamp;
 
 /**
  * 
- * <p>
  * [功能描述]：页面传递User
- * </p>
- * <p>
- * Copyright (c) 1993-2016 TCB Corporation
- * </p>
- * 
- * @author 王垒
- * @version 1.0, 2016年3月18日上午10:02:20
- * @since EnvDust 1.0.0
  *
  */
 public class UserModel extends BaseModel {

@@ -4,14 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 
  * <p>[功能描述]：查询数据返回结果</p>
- * <p>Copyright (c) 1993-2016 TCB Corporation</p>
- * 
- * @author	王垒
- * @version	1.0, 2016年3月18日下午2:13:35
- * @since	EnvDust 1.0.0
- *
  */
 public class ResultListModel<T> extends ResultModel{
 

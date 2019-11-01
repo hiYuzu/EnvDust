@@ -3,12 +3,6 @@ package com.kyq.env.model;
 /**
  * 
  * <p>[功能描述]：返回结果类</p>
- * <p>Copyright (c) 1993-2016 TCB Corporation</p>
- * 
- * @author	王垒
- * @version	1.0, 2016年3月18日上午11:56:00
- * @since	EnvDust 1.0.0
- *
  */
 public class ResultModel {
 

@@ -6,11 +6,6 @@ import com.kyq.env.util.DefaultArgument;
 
 /**
  * <p>[功能描述]：报警pojo</p>
- * <p>Copyright (c) 1993-2016 TCB Corporation</p>
- *
- * @author 王垒
- * @version 1.0, 2016年4月26日下午1:50:39
- * @since EnvDust 1.0.0
  */
 public class Alarm extends BasePojo {
 

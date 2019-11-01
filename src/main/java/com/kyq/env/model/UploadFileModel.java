@@ -3,11 +3,6 @@ package com.kyq.env.model;
 /**
  * 
  * <p>[功能描述]：页面传递File</p>
- * <p>Copyright (c) 1997-2017 TCB Corporation</p>
- * 
- * @author	王垒
- * @version	1.0, 2017年4月1日上午11:34:18
- * @since	EnvDust 1.0.0
  *
  */
 public class UploadFileModel extends BaseModel {

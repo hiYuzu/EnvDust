@@ -3,11 +3,6 @@ package com.kyq.env.model;
 /**
  * 
  * <p>[功能描述]：热力图-百度</p>
- * <p>Copyright (c) 1997-2017 TCB Corporation</p>
- * 
- * @author	王垒
- * @version	1.0, 2017年8月10日下午1:54:27
- * @since	envdust 1.0.0
  *
  */
 public class ThermodynamicModel {

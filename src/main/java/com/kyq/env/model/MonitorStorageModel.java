@@ -2,11 +2,6 @@ package com.kyq.env.model;
 
 /**
  * <p>[功能描述]：监测物页面传递类</p>
- * <p>Copyright (c) 1993-2016 TCB Corporation</p>
- *
- * @author 王垒
- * @version 1.0, 2016年3月29日下午2:43:24
- * @since EnvDust 1.0.0
  */
 public class MonitorStorageModel extends BaseModel {
 

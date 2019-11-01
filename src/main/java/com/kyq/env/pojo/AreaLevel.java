@@ -5,11 +5,6 @@ import com.kyq.env.util.DefaultArgument;
 /**
  * 
  * <p>[功能描述]：区域级别pojo</p>
- * <p>Copyright (c) 1993-2016 TCB Corporation</p>
- * 
- * @author	王垒
- * @version	1.0, 2016年3月23日上午10:20:17
- * @since	EnvDust 1.0.0
  *
  */
 public class AreaLevel {

@@ -1,14 +1,7 @@
 package com.kyq.env.model;
 
 /**
- * 
- * <p>[功能描述]：坐标信息</p>
- * <p>Copyright (c) 1997-2017 TCB Corporation</p>
- * 
- * @author	王垒
- * @version	1.0, 2017年8月28日下午2:25:13
- * @since	EnvDust 1.0.0
- *
+ * [功能描述]：坐标信息
  */
 public class LocationModel {
 

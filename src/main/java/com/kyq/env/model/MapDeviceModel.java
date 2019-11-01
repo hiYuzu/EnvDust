@@ -2,12 +2,7 @@ package com.kyq.env.model;
 
 
 /**
- * <p>[功能描述]：地图数据映射类</p>
- * <p>Copyright (c) 1993-2016 TCB Corporation</p>
- *
- * @author 王垒
- * @version 1.0, 2016年4月20日下午2:08:56
- * @since EnvDust 1.0.0
+ * [功能描述]：地图数据映射类
  */
 public class MapDeviceModel extends BaseModel {
     private String deviceCode;

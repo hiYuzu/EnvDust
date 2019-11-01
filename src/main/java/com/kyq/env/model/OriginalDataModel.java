@@ -5,11 +5,6 @@ import com.kyq.env.util.DefaultArgument;
 
 /**
  * <p>[功能描述]：原始数据页面传递类</p>
- * <p>Copyright (c) 1993-2016 TCB Corporation</p>
- *
- * @author 王垒
- * @version 1.0, 2016年6月22日上午11:14:29
- * @since EnvDust 1.0.0
  */
 public class OriginalDataModel extends BaseModel {
 

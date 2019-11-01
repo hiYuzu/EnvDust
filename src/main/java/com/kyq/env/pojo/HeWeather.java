@@ -3,11 +3,6 @@ package com.kyq.env.pojo;
 /**
  * 
  * <p>[功能描述]：天气pojo</p>
- * <p>Copyright (c) 1993-2016 TCB Corporation</p>
- * 
- * @author	王垒
- * @version	1.0, 2016年5月20日上午9:16:56
- * @since	EnvDust 1.0.0
  *
  */
 public class HeWeather extends BasePojo {

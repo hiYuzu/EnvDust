@@ -1,11 +1,5 @@
 package com.kyq.env.model;
 
-/**
- * @Author: WangLei
- * @Description: 监测物等级模板类
- * @Date: Create in 2019/4/13 14:22
- * @Modify by WangLei
- */
 public class MonitorLevelModel extends BaseModel{
 
     private String tlId;

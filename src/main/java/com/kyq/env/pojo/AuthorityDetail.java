@@ -2,16 +2,7 @@ package com.kyq.env.pojo;
 
 /**
  * 
- * <p>
  * [功能描述]：权限组控件明细pojo
- * </p>
- * <p>
- * Copyright (c) 1993-2016 TCB Corporation
- * </p>
- * 
- * @author 王垒
- * @version 1.0, 2016年4月6日下午1:39:19
- * @since EnvDust 1.0.0
  *
  */
 public class AuthorityDetail extends BasePojo {

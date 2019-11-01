@@ -5,11 +5,6 @@ import com.kyq.env.util.DefaultArgument;
 /**
  * 
  * <p>[功能描述]：映射数据库监测物表</p>
- * <p>Copyright (c) 1993-2016 TCB Corporation</p>
- * 
- * @author	王垒
- * @version	1.0, 2016年3月29日下午1:44:01
- * @since	EnvDust 1.0.0
  *
  */
 public class Monitor extends BasePojo {

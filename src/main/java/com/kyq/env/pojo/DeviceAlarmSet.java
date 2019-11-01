@@ -4,11 +4,6 @@ import com.kyq.env.util.DefaultArgument;
 
 /**
  * <p>[功能描述]：设备报警pojo</p>
- * <p>Copyright (c) 1993-2016 TCB Corporation</p>
- *
- * @author 王垒
- * @version 1.0, 2016年5月31日下午2:04:33
- * @since EnvDust 1.0.0
  */
 public class DeviceAlarmSet extends BasePojo {
 

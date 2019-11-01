@@ -4,16 +4,7 @@ import java.sql.Timestamp;
 
 /**
  * 
- * <p>
  * [功能描述]：上传文件pojo
- * </p>
- * <p>
- * Copyright (c) 1998-2018 TCB Corporation
- * </p>
- * 
- * @author 王垒
- * @version 1.0, 2018年12月13日上午10:14:26
- * @since EnvDust 1.0.0
  *
  */
 public class UploadFile extends BasePojo {

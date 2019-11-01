@@ -4,11 +4,6 @@ import java.sql.Timestamp;
 /**
  * 
  * <p>[功能描述]：覆盖区域的坐标点pojo</p>
- * <p>Copyright (c) 1993-2016 TCB Corporation</p>
- * 
- * @author	王坤
- * @version	1.0, 2018年8月31日  下午 16:11:21
- * @since	EnvDust 1.0.0
  *
  */
 public class MapAreaPoint extends BasePojo {

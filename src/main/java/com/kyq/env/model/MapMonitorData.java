@@ -7,11 +7,6 @@ import javax.servlet.http.HttpSession;
 /**
  * 
  * <p>[功能描述]：用来暂存报警数据的信息</p>
- * <p>Copyright (c) 1993-2016 TCB Corporation</p>
- * 
- * @author	王坤
- * @version	1.0, 2018年8月28日下午3:26:37
- * @since	EnvDust 1.0.0
  *
  */
 public class MapMonitorData {
@@ -21,10 +16,6 @@ public class MapMonitorData {
 	private String select;
 	private int maxSize;
 	private HttpSession httpSession;
-	
-	public MapMonitorData(){
-		
-	}
 	
 	public MapMonitorData(List<String> list, String levelFlag, String noStatus,
 			String select, int maxSize, HttpSession httpSession) {

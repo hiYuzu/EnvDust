@@ -9,15 +9,6 @@ package com.kyq.env.model;
 
 import com.kyq.env.util.DefaultArgument;
 
-/**
- * <p>[功能描述]：</p>
- * <p>Copyright (c) 1996-2016 TCB Corporation</p>
- * 
- * @author	任崇彬
- * @version	1.0, 2016年3月30日上午11:28:45
- * @since	EnvDust 1.0.0
- * 
- */
 public class MonitorModel extends BaseModel{
 	
 	private int thingId = DefaultArgument.INT_DEFAULT;//递增ID

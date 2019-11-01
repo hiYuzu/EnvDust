@@ -5,11 +5,6 @@ import com.kyq.env.util.DefaultArgument;
 /**
  * 
  * <p>[功能描述]：权限组pojo</p>
- * <p>Copyright (c) 1993-2016 TCB Corporation</p>
- * 
- * @author	王垒
- * @version	1.0, 2016年4月1日上午11:26:27
- * @since	EnvDust 1.0.0
  *
  */
 public class Authority extends BasePojo {

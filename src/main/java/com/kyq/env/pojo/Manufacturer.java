@@ -10,12 +10,7 @@ import com.kyq.env.util.DefaultArgument;
 
 /**
  * <p>[功能描述]：manufacturer  pojo</p>
- * <p>Copyright (c) 1996-2016 TCB Corporation</p>
- * 
- * @author	任崇彬
- * @version	1.0, 2016年3月24日上午9:15:08
- * @since	EnvDust 1.0.0
- * 
+ *
  */
 public class Manufacturer extends BasePojo{
 	private int mfrId = DefaultArgument.INT_DEFAULT;//递增ID

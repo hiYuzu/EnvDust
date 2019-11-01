@@ -4,14 +4,7 @@ package com.kyq.env.model;
 import com.kyq.env.util.DefaultArgument;
 
 /**
- * 
- * <p>[功能描述]：设备连接状态数量模板</p>
- * <p>Copyright (c) 1993-2016 TCB Corporation</p>
- * 
- * @author	王垒
- * @version	1.0, 2016年4月8日下午4:18:40
- * @since	EnvDust 1.0.0
- *
+ * [功能描述]：设备连接状态数量模板
  */
 public class GeneralMonitorCountModel extends ResultModel {
 

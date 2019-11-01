@@ -2,11 +2,6 @@ package com.kyq.env.pojo;
 
 /**
  * <p>[功能描述]：设备项目pojo</p>
- * <p>Copyright (c) 1996-2016 TCB Corporation</p>
- *
- * @author	王垒
- * @version	1.0, 2019年2月19日上午09:02:31
- * @since	EnvDust 1.0.0
  *
  */
 public class DeviceProject extends BasePojo {

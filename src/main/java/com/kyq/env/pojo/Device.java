@@ -6,11 +6,6 @@ import com.kyq.env.util.DefaultArgument;
 
 /**
  * <p>[功能描述]：设备pojo</p>
- * <p>Copyright (c) 1996-2016 TCB Corporation</p>
- *
- * @author 任崇彬
- * @version 1.0, 2016年3月25日上午11:07:42
- * @since EnvDust 1.0.0
  */
 public class Device extends BasePojo {
     private int deviceId = DefaultArgument.INT_DEFAULT;//递增id

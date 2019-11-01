@@ -1,14 +1,7 @@
 package com.kyq.env.model;
 
 /**
- * 
- * <p>[功能描述]：天气信息明细类</p>
- * <p>Copyright (c) 1993-2016 TCB Corporation</p>
- * 
- * @author	王垒
- * @version	1.0, 2016年5月19日下午7:12:51
- * @since	EnvDust 1.0.0
- *
+ * [功能描述]：天气信息明细类
  */
 public class HeWeatherModel {
 
