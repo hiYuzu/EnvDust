@@ -32,13 +32,15 @@
         <result property="staFlow" column="sta_flow"/>
         <result property="pipeArea" column="pipe_area"/>
         <result property="hourCount" column="hour_count"/>
+
+        <result property="statusId" column="status_id" />
+        <result property="statusCode" column="status_code" />
+        <result property="statusName" column="status_name" />
         <!-- 级联表 -->
         <association property="manufacturer" javaType="com.tcb.env.pojo.Manufacturer"
                      resultMap="com.tcb.env.dao.IManufacturerDao.mfrResultMap"></association>
         <association property="area" javaType="com.tcb.env.pojo.Area"
                      resultMap="com.tcb.env.dao.IAreaDao.areaResultMap"></association>
-        <association property="status" javaType="com.tcb.env.pojo.Status"
-                     resultMap="com.tcb.env.dao.IStatusDao.statusResultMap"></association>
         <association property="user" javaType="com.tcb.env.pojo.User"
                      resultMap="com.tcb.env.dao.IUserDao.userResultMap"></association>
         <association property="oranization" javaType="com.tcb.env.pojo.Oranization"
@@ -86,98 +88,6 @@
         <result property="dataTime" column="data_time"/>
         <result property="dataValue" column="data_value"/>
     </resultMap>
-
-    <!-- 查询数据个数 -->
-    <select id="getAreaAuthDevice" resultMap="deviceResultMap">
-		SELECT
-			DISTINCT tbl_device.device_id,
-			tbl_device.device_code,
-			tbl_device.device_mn,
-			tbl_device.device_name,
-			tbl_device.device_ip,
-			tbl_device.device_port,
-			tbl_device.device_pwd,
-			tbl_device.device_x,
-			tbl_device.device_y,
-			tbl_device.gps_x,
-			tbl_device.gps_y,
-			tbl_device.system_version,
-			tbl_device.inspect_time,
-			tbl_device.build_firm,
-			tbl_device.device_address,
-			tbl_device.device_km,
-			tbl_device.sta_minute,
-			tbl_device.sta_hour,
-			tbl_device.sta_day,
-			tbl_device.reply_flag,
-			tbl_device.force_reply,
-			tbl_device.sms_flag,
-			tbl_device.sta_flow,
-			tbl_device.pipe_area,
-			tbl_device.hour_count,
-			tbl_device.opt_user,
-			tbl_device.opt_time,
-			tbl_manufacturer.mfr_id,
-			tbl_manufacturer.mfr_code,
-			tbl_manufacturer.mfr_name,
-			tbl_manufacturer.mfr_address,
-			tbl_manufacturer.mfr_remark,
-			tbl_manufacturer.opt_user,
-			tbl_manufacturer.opt_time,
-			tbl_status.status_id,
-			tbl_status.status_code,
-			tbl_status.status_name,
-			tbl_area.area_id,
-			tbl_area.area_name,
-			tbl_area.parent_id,
-			tbl_area.level_id,
-			tbl_area.area_path,
-			tbl_area.opt_user,
-			tbl_area.opt_time,
-			tbl_user.user_id,
-			tbl_user.user_code,
-			tbl_user.user_password,
-			tbl_user.user_name,
-			tbl_user.user_tel,
-			tbl_user.user_email,
-			tbl_user.user_delete,
-			tbl_user.user_remark,
-			tbl_user.opt_user,
-			tbl_user.opt_time,
-			tbl_oranization.org_id,
-			tbl_oranization.org_id_parent,
-			tbl_oranization.org_name,
-			tbl_oranization.level_type,
-			tbl_oranization.org_address,
-			tbl_oranization.org_path,
-			tbl_oranization.org_telephone,
-			tbl_oranization.org_fax,
-			tbl_oranization.org_liaison,
-			tbl_oranization.opt_user,
-			tbl_oranization.opt_time,
-            tbl_device_project.project_id,
-            tbl_device_project.project_code,
-            tbl_device_project.project_name,
-            tbl_device_project.project_order,
-            tbl_device_project.opt_user,
-            tbl_device_project.opt_time
-		FROM
-			tbl_device
-		INNER JOIN tbl_status ON tbl_device.status_code = tbl_status.status_code
-		INNER JOIN tbl_area ON tbl_device.area_id = tbl_area.area_id
-		LEFT JOIN tbl_oranization ON tbl_device.oversight_unit = tbl_oranization.org_id
-		LEFT JOIN tbl_manufacturer ON tbl_device.mfr_code = tbl_manufacturer.mfr_code
-		LEFT JOIN tbl_user ON tbl_device.device_principal = tbl_user.user_id
-		LEFT JOIN tbl_device_project ON tbl_device.project_id = tbl_device_project.project_id
-		WHERE tbl_area.area_id= #{areaId}
-		AND tbl_device.device_code IN (
-			SELECT DISTINCT tad.device_code
-			FROM tbl_access_device tad
-			INNER JOIN tbl_user_ahr tua ON tad.authority_code = tua.authority_code
-			WHERE tua.user_code = #{userCode}
-		)
-		AND tbl_device.device_type = '1'
-	</select>
 
     <!-- 查询数据个数 -->
     <select id="getCount" resultType="java.lang.Integer">
@@ -575,24 +485,6 @@
         );
     </update>
 
-    <!-- ：创建采样设备物质存储表-->
-    <update id="createSampleTable">
-		CREATE TABLE ${tableName} (
-		  sample_id bigint(20) NOT NULL AUTO_INCREMENT COMMENT '递增字段',
-		  thing_code varchar(100) DEFAULT NULL COMMENT '采样物质',
-		  thing_value double(14,3) DEFAULT NULL COMMENT '采样物质数值',
-		  thing_limit double(14,3) DEFAULT NULL COMMENT '物质限制',
-		  thing_flag varchar(10) DEFAULT NULL COMMENT '数据标识',
-		  vase_no varchar(50) DEFAULT NULL COMMENT '采样编码',
-		  simple_mode varchar(2) DEFAULT NULL COMMENT '采样方式(0平台 1手动采样 2在线监测触发 3开关量模拟量触发)',
-		  opt_user int(11) DEFAULT NULL COMMENT '操作者',
-		  opt_time datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '操作时间',
-		  PRIMARY KEY (sample_id),
-		  KEY in_${tableName}_vaseno(vase_no) USING BTREE,
-		  CONSTRAINT fk_${tableName}_vaseno FOREIGN KEY (vase_no) REFERENCES tbl_collect_device_box_vase(vase_no) ON DELETE CASCADE ON UPDATE CASCADE
-		) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
-	</update>
-
     <!-- 判断是否存在表 -->
     <select id="extStorageTable" resultType="java.lang.String">
 		SELECT
@@ -690,154 +582,6 @@
         </if>
     </select>
 
-    <!-- 查询地图是否有新的报警(非statusCode) -->
-    <select id="getMapAlarmDeviceCount" resultType="java.lang.Integer">
-        SELECT
-        COUNT(0)
-        FROM
-        tbl_alarm ta
-        INNER JOIN tbl_device td ON ta.device_code = td.device_code AND (ta.alarm_type = td.status_code OR
-        td.status_code = 'N')
-        <where>
-            <if test="originalUpdateTime != null">
-                ta.update_time
-                BETWEEN (
-                #{originalUpdateTime}
-                )
-                AND NOW()
-            </if>
-            <choose>
-                <when test="listDevCode != null and listDevCode.size()>0">
-                    AND td.device_code IN
-                    <foreach collection="listDevCode" item="item" open="(" separator="," close=")">
-                        #{item,jdbcType = VARCHAR}
-                    </foreach>
-                </when>
-                <otherwise>
-                    AND td.device_code IS NULL
-                </otherwise>
-            </choose>
-            <if test="statusCode != null and statusCode != ''">
-                AND td.status_code != #{statusCode,jdbcType = VARCHAR}
-            </if>
-        </where>
-    </select>
-
-    <!-- 查询地图报警数据信息(非statusCode) -->
-    <select id="getMapAlarmDevice" resultMap="mapDevResultMap">
-        SELECT
-        DISTINCT td.device_code,
-        td.device_name,
-        td.status_code,
-        td.device_x,
-        td.device_y,
-        CASE
-        WHEN ts.status_code IS NOT NULL THEN
-        ts.status_name
-        ELSE
-        '未知原因'
-        END AS status_info
-        FROM
-        tbl_alarm ta
-        INNER JOIN tbl_device td ON ta.device_code = td.device_code AND (ta.alarm_type = td.status_code OR
-        td.status_code = 'N')
-        LEFT JOIN tbl_status ts ON ta.alarm_type = ts.status_code
-        WHERE (ta.alarm_status='1' OR (ta.alarm_status='2' AND ta.action_time = (SELECT
-        sys_value
-        FROM
-        tbl_sys_flag
-        WHERE
-        sys_flag_code = 'alarmupd'
-        LIMIT 0,1 )))
-        AND td.device_code IN
-        <foreach collection="listDevCode" item="item" open="(" separator="," close=")">
-            #{item,jdbcType = VARCHAR}
-        </foreach>
-        <if test="statusCode != null and statusCode != ''">
-            AND td.status_code != #{statusCode,jdbcType = VARCHAR}
-        </if>
-    </select>
-
-    <!-- 查询设备监测物报警信息 -->
-    <select id="getDeviceOverThingAvg" resultType="java.lang.String">
-        SELECT
-        DISTINCT
-        CASE
-        WHEN tda.max_value &lt;= tms.thing_avg THEN
-        CONCAT(
-        tm.thing_name,
-        '(',
-        tms.thing_avg,
-        ')'
-        )
-        WHEN tda.min_value &gt;= tms.thing_avg THEN
-        CONCAT(
-        tm.thing_name,
-        '(',
-        tms.thing_avg,
-        ')'
-        )
-        ELSE
-        ''
-        END AS overstatus
-        FROM
-        ${deviceCode} tms
-        INNER JOIN tbl_monitor tm ON tms.thing_code = tm.thing_code
-        INNER JOIN tbl_device_alarmset tda ON tms.device_code = tda.device_code AND tda.thing_code = tm.thing_code AND
-        tda.device_code = #{deviceCode}
-        INNER JOIN tbl_device_time tdt ON (tms.update_time = tdt.hour_time OR tms.update_time = tdt.update_time) AND
-        tdt.device_code = #{deviceCode}
-        WHERE 1=1
-        <if test="listThingCode.size()>0">
-            AND tm.thing_code IN
-            <foreach collection="listThingCode" item="item" open="(" separator="," close=")">
-                #{item,jdbcType = VARCHAR}
-            </foreach>
-        </if>
-        <if test="listThingCode.size()==0">
-            AND tm.thing_code IS NULL
-        </if>
-    </select>
-
-    <!-- 查询设备监测物报警信息 -->
-    <select id="getDeviceOverThing" resultType="java.lang.String">
-        SELECT
-        CASE
-        WHEN tm.thing_max &lt;= tms.thing_rtd THEN
-        CONCAT(
-        tm.thing_name,
-        '(',
-        tms.thing_rtd,
-        ')'
-        )
-        WHEN tm.thing_min &gt;= tms.thing_rtd THEN
-        CONCAT(
-        tm.thing_name,
-        '(',
-        tms.thing_rtd,
-        ')'
-        )
-        ELSE
-        ''
-        END AS overstatus
-        FROM
-        ${deviceCode} tms
-        INNER JOIN tbl_monitor tm ON tms.thing_code = tm.thing_code
-        WHERE
-        tm.thing_code IN
-        <foreach collection="listThingCode" item="item" open="(" separator="," close=")">
-            #{item,jdbcType = VARCHAR}
-        </foreach>
-        AND tms.update_time = (
-        SELECT
-        MAX(update_time)
-        FROM
-        ${deviceCode}
-        WHERE
-        thing_code = tms.thing_code
-        )
-    </select>
-
     <!-- 通过设备编码获取名称 -->
     <select id="getDeviceName" resultType="java.lang.String">
 		SELECT
@@ -847,18 +591,7 @@
 		WHERE
 			td.device_code = #{deviceCode,jdbcType = VARCHAR}
 		LIMIT 0,1
-	</select>
-
-    <!-- 通过设备ID获取编码 -->
-    <select id="getDeviceCode" resultType="java.lang.String">
-		SELECT
-			td.device_code
-		FROM
-			tbl_device td
-		WHERE
-			td.device_id = #{deviceId}
-		LIMIT 0,1
-	</select>
+    </select>
 
     <!-- 通过设备编码获取所属区域名称 -->
     <select id="getAreaName" resultType="java.lang.String">

@@ -77,45 +77,11 @@ public class SourceAnalysisServiceImpl implements ISourceAnalysisService {
             }
         }
         SourceAnalysisResultModel result = new SourceAnalysisResultModel();
-        //result.setPollutionSources(calResult(samplingPoints,longitude,latitude));
         result.setPollutionSources(calResultWithoutInterference(samplingPoints,longitude,latitude));//排除干扰的方法
         result.setWindDegree(windDeg);
         result.setWindSpeed(windData.get(WIND_SPEED));
         result.setWindSc(windData.get(WIND_SC).intValue());
         result.setWindRoseData(windRoseData);
-        return result;
-    }
-
-    /**
-     * 计算并生成结果
-     * @param samplingPoints
-     * @param longitude
-     * @param latitude
-     * @return PollutionSourceModel实体的集合
-     */
-    private List<PollutionSourceModel> calResult(List<SamplingPoint> samplingPoints, double longitude, double latitude){
-        List<PollutionSourceModel> result = new ArrayList<>();
-        double totalDensity = 0.0;
-        for(SamplingPoint point:samplingPoints){
-            try {
-                double density = point.toPointDensity(longitude,latitude,DEFAULT_HEIGHT);
-                if(density > THRESHOLD_DENSITY) {
-                    PollutionSourceModel model = new PollutionSourceModel();
-                    model.setDeviceCode(point.getDeviceCode());
-                    model.setDeviceName(point.getDeviceName());
-                    model.setLatitude(point.getLatitude());
-                    model.setLongitude(point.getLongitude());
-                    totalDensity += density;
-                    model.setDensity(density);
-                    result.add(model);
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        for(int i=0;i<result.size();i++){
-            result.get(i).calculatePercent(totalDensity);
-        }
         return result;
     }
 
@@ -215,18 +181,6 @@ public class SourceAnalysisServiceImpl implements ISourceAnalysisService {
             e.printStackTrace();
         }
         return date;
-    }
-
-    /**
-     * 时间往前倒退一小时
-     *
-     * @param datetime
-     * @return
-     * @throws ParseException
-     */
-    private String timeMinusOneHour(Date datetime) {
-        Date date = DateUtils.addHours(datetime, -1);
-        return sdf.format(date);
     }
 
     /**

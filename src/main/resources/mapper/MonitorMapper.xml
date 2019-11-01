@@ -158,38 +158,4 @@
 		AND tm.thing_code = #{thingCode, jdbcType = VARCHAR}
 		LIMIT 0,1
 	</select>
-
-	<!-- 查询监测物等级信息 -->
-	<select id="getMonitorLevel" resultMap="monitorLevelModelResultMap">
-		SELECT DISTINCT
-			tml.tl_id,
-			tml.thing_code,
-			tm.thing_name,
-			tml.level_min,
-			tml.level_max,
-			tml.level_no,
-			tml.level_name,
-			tml.level_color,
-			tml.level_visible
-		FROM
-			tbl_monitor_level tml
-			INNER JOIN tbl_monitor tm ON tml.thing_code = tm.thing_code
-		WHERE
-			tml.thing_code = #{thingCode}
-	</select>
-
-	<!-- 查询监测物等级信息(根据数值) -->
-	<select id="getMonitorValueLevel" resultMap="monitorLevelModelResultMap">
-		SELECT DISTINCT
-			tml.tl_id,
-			tml.thing_code,
-			tm.thing_name,
-			tml.level_no,
-			tml.level_name,
-			tml.level_color
-		FROM tbl_monitor_level tml
-		INNER JOIN tbl_monitor tm ON tm.thing_code = tml.thing_code
-        WHERE #{thingValue} >= bml.level_min AND #{thingValue} &lt; bml.level_max
-	</select>
-	
 </mapper>

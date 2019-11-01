@@ -15,7 +15,6 @@ import com.tcb.env.pojo.CommStatus;
 import com.tcb.env.pojo.Device;
 import com.tcb.env.pojo.DeviceAlarmSet;
 import com.tcb.env.pojo.Monitor;
-import com.tcb.env.service.ICommMainService;
 import com.tcb.env.service.IDeviceAlarmSetService;
 import com.tcb.env.util.DateUtil;
 import com.tcb.env.util.DefaultArgument;

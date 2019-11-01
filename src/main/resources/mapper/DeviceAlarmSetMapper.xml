@@ -1,71 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tcb.env.dao.IDeviceAlarmSetDao">
 
-	<resultMap type="com.tcb.env.pojo.DeviceAlarmSet" id="deviceAlarmSetResultMap">
-		<id property="dasId" column="das_id" />
-		<result property="maxValue" column="max_value" />
-		<result property="minValue" column="min_value" />
-		<result property="dataFlag" column="data_flag" />
-		<result property="levelNo" column="level_no" />
-		<result property="optUser" column="opt_user" />
-		<result property="optTime" column="opt_time" />
-		<!-- 级联表 -->
-		<association property="device" javaType="com.tcb.env.pojo.Device"
-			resultMap="com.tcb.env.dao.IDeviceDao.deviceResultMap"></association>
-		<association property="monitor" javaType="com.tcb.env.pojo.Monitor"
-			resultMap="com.tcb.env.dao.IMonitorDao.monitorResultMap"></association>
-		<association property="commMain" javaType="com.tcb.env.pojo.CommMain"
-			resultMap="com.tcb.env.dao.ICommMainDao.commMainResultMap"></association>
-		<association property="deviceProject" javaType="com.tcb.env.pojo.DeviceProject"
-					 resultMap="com.tcb.env.dao.IDeviceProjectDao.deviceProjectResultMap"></association>
-	</resultMap>
+    <resultMap type="com.tcb.env.pojo.DeviceAlarmSet" id="deviceAlarmSetResultMap">
+        <id property="dasId" column="das_id"/>
+        <result property="maxValue" column="max_value"/>
+        <result property="minValue" column="min_value"/>
+        <result property="dataFlag" column="data_flag"/>
+        <result property="levelNo" column="level_no"/>
+        <result property="optUser" column="opt_user"/>
+        <result property="optTime" column="opt_time"/>
 
-	<!-- 获取单个报警门限信息（设备编码和监测物编码） -->
-	<select id="getDeviceAlarmSetSingle" resultMap="deviceAlarmSetResultMap">
-		SELECT DISTINCT
-			tda.das_id,
-			td.device_code,
-			td.device_mn,
-			td.device_name,
-			tm.thing_code,
-			tm.thing_name,
-			tda.max_value,
-			tda.min_value,
-			tda.data_flag,
-			tda.level_no,
-			tcm.qn,
-			tcm.excute_time,
-			tcs.status_id,
-			tcs.status_name,
-            tdp.project_id,
-            tdp.project_code,
-            tdp.project_name,
-            tdp.project_order,
-			tda.opt_user,
-			tda.opt_time
-		FROM
-			tbl_device_alarmset tda
-		INNER JOIN tbl_device td ON tda.device_code = td.device_code
-		INNER JOIN tbl_monitor tm ON tda.thing_code = tm.thing_code
-		LEFT JOIN tbl_comm_main tcm ON tda.comm_qn = tcm.qn
-		LEFT JOIN tbl_comm_status tcs ON tcm.status_id = tcs.status_id
+        <result property="qn" column="qn"/>
+        <result property="excuteTime" column="excute_time"/>
+
+        <result property="statusId" column="status_id"/>
+        <result property="statusName" column="status_name"/>
+        <!-- 级联表 -->
+        <association property="device" javaType="com.tcb.env.pojo.Device"
+                     resultMap="com.tcb.env.dao.IDeviceDao.deviceResultMap"></association>
+        <association property="monitor" javaType="com.tcb.env.pojo.Monitor"
+                     resultMap="com.tcb.env.dao.IMonitorDao.monitorResultMap"></association>
+        <association property="deviceProject" javaType="com.tcb.env.pojo.DeviceProject"
+                     resultMap="com.tcb.env.dao.IDeviceProjectDao.deviceProjectResultMap"></association>
+    </resultMap>
+
+    <!-- 获取单个报警门限信息（设备编码和监测物编码） -->
+    <select id="getDeviceAlarmSetSingle" resultMap="deviceAlarmSetResultMap">
+        SELECT DISTINCT
+        tda.das_id,
+        td.device_code,
+        td.device_mn,
+        td.device_name,
+        tm.thing_code,
+        tm.thing_name,
+        tda.max_value,
+        tda.min_value,
+        tda.data_flag,
+        tda.level_no,
+        tcm.qn,
+        tcm.excute_time,
+        tcs.status_id,
+        tcs.status_name,
+        tdp.project_id,
+        tdp.project_code,
+        tdp.project_name,
+        tdp.project_order,
+        tda.opt_user,
+        tda.opt_time1
+        FROM
+        tbl_device_alarmset tda
+        INNER JOIN tbl_device td ON tda.device_code = td.device_code
+        INNER JOIN tbl_monitor tm ON tda.thing_code = tm.thing_code
+        LEFT JOIN tbl_comm_main tcm ON tda.comm_qn = tcm.qn
+        LEFT JOIN tbl_comm_status tcs ON tcm.status_id = tcs.status_id
         LEFT JOIN tbl_device_project tdp ON td.project_id = tdp.project_id
-		WHERE
-			1 = 1
-		AND td.device_code = #{deviceCode,jdbcType=VARCHAR}
-		<choose>
-			<when test="thingCodeList != null and thingCodeList.size()>0">
-				AND tm.thing_code IN
-			<foreach collection="thingCodeList" item="item"  open="(" separator="," close=")">
-				#{item}
-			</foreach>
-			</when>
-			<otherwise>
-				AND tm.thing_code IS NULL
-			</otherwise>
-		</choose>
-	</select>
+        WHERE
+        1 = 1
+        AND td.device_code = #{deviceCode,jdbcType=VARCHAR}
+        <choose>
+            <when test="thingCodeList != null and thingCodeList.size()>0">
+                AND tm.thing_code IN
+                <foreach collection="thingCodeList" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </when>
+            <otherwise>
+                AND tm.thing_code IS NULL
+            </otherwise>
+        </choose>
+    </select>
 
 </mapper>

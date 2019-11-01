@@ -215,65 +215,6 @@
 		</if>
 	</select>
 	
-	<!-- 获取所有设备信息(数量) -->
-	<select id="getAllDeviceCount" resultType="java.lang.Integer">
-		SELECT
-			COUNT(0)
-		FROM
-			tbl_device
-		LEFT JOIN tbl_access_device ON tbl_device.device_code = tbl_access_device.device_code
-		AND tbl_access_device.device_code IN (
-			SELECT
-				device_code
-			FROM
-				tbl_access_device TD,
-				tbl_authority TA
-			WHERE
-				TD.authority_code = TA.authority_code
-			AND TA.authority_code =  #{ahrcode,jdbcType = VARCHAR}
-		)
-		WHERE 1=1
-		<if test="areaid != -1">
-			AND tbl_device.area_id IN (#{areaid,jdbcType = INTEGER})
-		</if>
-		<if test="devicename != null and devicename != ''">
-			AND tbl_device.device_name LIKE CONCAT('%',CONCAT(#{devicename,jdbcType = VARCHAR},'%'))
-		</if>
-	</select>
-	
-	<!-- 获取所有设备信息 -->
-	<select id="getAllDevice" resultMap="devtreeResultMap">
-		SELECT
-			DISTINCT(tbl_device.device_code),
-			tbl_device.device_name,
-			CASE
-		WHEN tbl_access_device.device_code IS NULL THEN
-			'false'
-		ELSE
-			'true'
-		END AS device_checked
-		FROM
-			tbl_device
-		LEFT JOIN tbl_access_device ON tbl_device.device_code = tbl_access_device.device_code
-		AND tbl_access_device.device_code IN (
-			SELECT
-				device_code
-			FROM
-				tbl_access_device TD,
-				tbl_authority TA
-			WHERE
-				TD.authority_code = TA.authority_code
-			AND TA.authority_code =  #{ahrcode,jdbcType = VARCHAR}
-		)
-		WHERE 1=1
-		<if test="areaid != -1">
-			AND tbl_device.area_id IN (#{areaid,jdbcType = INTEGER})
-		</if>
-		<if test="devicename != null and devicename != ''">
-			AND tbl_device.device_name LIKE CONCAT('%',CONCAT(#{devicename,jdbcType = VARCHAR},'%'))
-		</if>
-	</select>
-	
 	<!-- 获取所有监测物信息 -->
 	<select id="getAllMonitor" resultMap="montreeResultMap">
 		SELECT
@@ -397,34 +338,4 @@
 		AND TP.page_id = #{pageid,jdbcType = VARCHAR}
 	</select>
 
-	<!-- 获取在线设备第一个 -->
-	<select id="getDeviceFirst" resultMap="devtreeResultMap">
-		SELECT DISTINCT
-			td.device_code,
-			td.device_name,
-			td.status_code
-		FROM
-			tbl_device td
-		WHERE td.device_code IN
-							(
-								SELECT
-									device_code
-								FROM
-									tbl_access_device TD,
-									tbl_user_ahr TUH
-								WHERE TD.authority_code = TUH.authority_code
-								AND TUH.user_code = #{userCode,jdbcType = VARCHAR}
-							)
-		<if test="statusCodeList != null and statusCodeList.size()>0">
-			AND td.status_code IN
-			<foreach collection="statusCodeList" item="item" open="(" separator="," close=")">
-				#{item}
-			</foreach>
-		</if>
-		<if test="deviceName != null and deviceName != ''">
-			AND td.device_name LIKE CONCAT('%',CONCAT(#{deviceName,jdbcType = VARCHAR},'%'))
-		</if>
-		LIMIT 0,1
-	</select>
-	
 </mapper>

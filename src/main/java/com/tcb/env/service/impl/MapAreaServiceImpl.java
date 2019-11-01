@@ -71,24 +71,6 @@ public class MapAreaServiceImpl implements IMapAreaService {
 	}
 
 	@Override
-	public boolean addMapAreaPoint(MapAreaPoint mapAreaPoint) {
-		int n = this.mapAreaDao.addMapAreaPoint(mapAreaPoint);
-		if(n > 0){
-			return true;
-		}
-		return false;
-	}
-
-	@Override
-	public boolean deleteMapAreaPoint(int pointId) {
-		int n = this.mapAreaDao.deleteMapAreaPoint(pointId);
-		if(n > 0){
-			return true;
-		}
-		return false;
-	}
-
-	@Override
 	public boolean addBatchMapAreaPoint(List<MapAreaPoint> mapAreaPointList) {
 		int n = this.mapAreaDao.addBatchMapAreaPoint(mapAreaPointList);
 		if(n > 0){
@@ -101,5 +83,4 @@ public class MapAreaServiceImpl implements IMapAreaService {
 	public List<MapArea> getAllMapAreaPoint() {
 		return this.mapAreaDao.getAllMapAreaPoint();
 	}
-	
 }

@@ -2,6 +2,8 @@ package com.tcb.env.util.algorithm.diffusion;
 
 /**
  * 用于计算 太阳倾斜角，太阳高度角，大气等级，扩散浓度
+ *
+ * @author kyq
  */
 public class DiffusionAlgorithm {
 
@@ -127,7 +129,7 @@ public class DiffusionAlgorithm {
      */
     public double getSolarElevationAngle() {
         double sunDip = getSunDip();
-        double sunAngle = (Math.abs(hour - 12) * 15)*Math.PI/180;
+        double sunAngle = (Math.abs(hour - 12) * 15) * Math.PI / 180;
         double hs = Math.asin(
                 Math.sin(sunDip) * Math.sin(latitude) + Math.cos(sunDip) * Math.cos(latitude) * Math.cos(sunAngle));
         return hs;
@@ -135,6 +137,7 @@ public class DiffusionAlgorithm {
 
     /**
      * 根据云量，获取 查表 对应的下标
+     *
      * @return
      */
     private int getIndexByCloudAmount() {
@@ -164,6 +167,7 @@ public class DiffusionAlgorithm {
 
     /**
      * 根据太阳高度角，返回 查表对应的下标
+     *
      * @param sunAngle
      * @return index
      */
@@ -179,6 +183,7 @@ public class DiffusionAlgorithm {
 
     /**
      * 幅度 转为 度
+     *
      * @param rad
      * @return
      */
@@ -188,6 +193,7 @@ public class DiffusionAlgorithm {
 
     /**
      * 计算大气等级，对应 ATMOSPHERIC_STABILITY_LEVEL_LIST
+     *
      * @return
      */
     private int getAtmosphericStabilityLevel() {
@@ -199,6 +205,7 @@ public class DiffusionAlgorithm {
 
     /**
      * 计算大气等级
+     *
      * @return 返回大气等级名
      */
     public String getAtmosphericStabilityLevelName() {
@@ -232,7 +239,8 @@ public class DiffusionAlgorithm {
 
     /**
      * 根据下风向距离，获取 Z 参数对应的查表 index
-     * @param distance 距离
+     *
+     * @param distance                 距离
      * @param indexStabilityLevelIndex 大气等级Index
      * @return index
      */
@@ -275,6 +283,7 @@ public class DiffusionAlgorithm {
     public void setQ(double q) {
         this.q = q;
     }
+
     @Override
     public String toString() {
         return "DiffusionAlgorithm{" +

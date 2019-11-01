@@ -15,18 +15,9 @@ import com.tcb.env.service.IAccessOperatorService;
 import com.tcb.env.util.DefaultArgument;
 
 /**
- * 
- * <p>
  * [功能描述]：权限组访问数据操作接口实现类
- * </p>
- * <p>
- * Copyright (c) 1993-2016 TCB Corporation
- * </p>
- * 
- * @author 王垒
- * @version 1.0, 2016年4月6日上午9:34:43
- * @since EnvDust 1.0.0
  *
+ * @author kyq
  */
 @Service("accessOperator")
 @Transactional(rollbackFor = Exception.class)
@@ -50,29 +41,6 @@ public class AccessOperatorServiceImpl implements IAccessOperatorService {
 	}
 
 	@Override
-	public int insertAccessMonitor(String ahrCode, List<String> listMonCode,
-			int optUser) throws Exception {
-		return accessMonitorDao.insertAccessMonitor(ahrCode, listMonCode,
-				optUser);
-	}
-
-	@Override
-	public int deleteAccessMonitor(List<String> listAhrCode) throws Exception {
-		return accessMonitorDao.deleteAccessMonitor(listAhrCode);
-	}
-
-	@Override
-	public void updateAccessDevice(String ahrCode, List<String> listDevCode,
-			int optUser) throws Exception {
-		List<String> listAhrCode = new ArrayList<String>();
-		listAhrCode.add(ahrCode);
-		accessDeviceDao.deleteAccessDevice(listAhrCode);
-		if (listDevCode != null && listDevCode.size() > 0) {
-			accessDeviceDao.insertAccessDevice(ahrCode, listDevCode, optUser);
-		}
-	}
-
-	@Override
 	public void updateAccessMonitor(String ahrCode, List<String> listMonCode,
 			int optUser) throws Exception {
 		List<String> listAhrCode = new ArrayList<String>();
@@ -81,16 +49,6 @@ public class AccessOperatorServiceImpl implements IAccessOperatorService {
 		if (listMonCode != null && listMonCode.size() > 0) {
 			accessMonitorDao.insertAccessMonitor(ahrCode, listMonCode, optUser);
 		}
-	}
-
-	@Override
-	public int getAhrDeviceCount(Device device, String ahrCode, String flag) {
-		return accessDeviceDao.getAhrDeviceCount(device, ahrCode, flag);
-	}
-
-	@Override
-	public List<Device> getAhrDevice(Device device, String ahrCode, String flag) {
-		return accessDeviceDao.getAhrDevice(device, ahrCode, flag);
 	}
 
 	@Override

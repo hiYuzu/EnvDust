@@ -9,16 +9,9 @@ import java.util.Date;
 import org.apache.log4j.Logger;
 
 /**
- * <p>
  * [功能描述]：日期转换工具
- * </p>
- * <p>
- * Copyright (c) 1993-2016 TCB Corporation
- * </p>
  *
- * @author 王垒
- * @version 1.0, 2016年3月18日下午2:50:54
- * @since EnvDust 1.0.0
+ * @author kyq
  */
 public class DateUtil {
 
@@ -57,15 +50,7 @@ public class DateUtil {
     public static String DATA_TIME_SER = "yyyyMMddHHmmss";
 
     /**
-     * <p>
      * [功能描述]：将时间戳转换为标准时间
-     * </p>
-     *
-     * @param timestamp
-     * @param format
-     * @return
-     * @author 王垒, 2016年3月18日下午2:57:37
-     * @since EnvDust 1.0.0
      */
     public static String TimestampToString(Timestamp timestamp, String format) {
         try {
@@ -82,14 +67,7 @@ public class DateUtil {
     }
 
     /**
-     * <p>
      * [功能描述]：将字符串转换成时间戳（yyyy-MM-dd）
-     * </p>
-     *
-     * @param datetime
-     * @return
-     * @author 王垒, 2016年3月30日下午3:08:50
-     * @since EnvDust 1.0.0
      */
     public static Timestamp StringToTimestamp(String datetime) {
         try {
@@ -107,14 +85,7 @@ public class DateUtil {
     }
 
     /**
-     * <p>
      * [功能描述]：将字符串转换成时间戳（yyyy-MM-dd HH:mm:ss）
-     * </p>
-     *
-     * @param datetime
-     * @return
-     * @author 王垒, 2016年3月30日下午3:08:50
-     * @since EnvDust 1.0.0
      */
     public static Timestamp StringToTimestampSecond(String datetime) {
         try {
@@ -132,62 +103,14 @@ public class DateUtil {
     }
 
     /**
-     * 按指定参数将字符串转换成时间戳
-     *
-     * @param datetime
-     * @param format
-     * @return
-     */
-    public static Timestamp StringToTimestampFormat(String datetime, String format) {
-        try {
-            if (datetime != null && !datetime.isEmpty()) {
-                SimpleDateFormat sdf = new SimpleDateFormat(format);
-                Date date = sdf.parse(datetime);
-                return new Timestamp(date.getTime());
-            } else {
-                return null;
-            }
-        } catch (Exception e) {
-            logger.error(LOG + ":" + "转换日期失败，失败原因：" + e.getMessage());
-            return null;
-        }
-    }
-
-    /**
-     * <p>
      * [功能描述]：获取系统时间
-     * </p>
-     *
-     * @param millionsecond ：当前系统时间减去此参数
-     * @return
-     * @author 王垒, 2016年4月1日上午9:29:05
-     * @since EnvDust 1.0.0
      */
     public static Timestamp GetSystemDateTime(int millionsecond) {
         return new Timestamp(Calendar.getInstance().getTimeInMillis() - millionsecond);
     }
 
     /**
-     * <p>[功能描述]：获取17位时间字符串</p>
-     *
-     * @return
-     * @author 王垒, 2016年6月1日下午2:47:47
-     * @since EnvDust 1.0.0
-     */
-    public static String GetSystemDateTime() {
-        SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmssSSS");
-        String strTime = fmt.format(new Date());
-        return strTime;
-    }
-
-    /**
-     * <p>[功能描述]：判断是否在最近时间内</p>
-     *
-     * @param timestamp
-     * @param days
-     * @return
-     * @author 王垒, 2017年8月8日下午2:39:22
-     * @since envdust 1.0.0
+     * [功能描述]：判断是否在最近时间内
      */
     public static boolean isRecentlyData(Timestamp timestamp, int days) {
         boolean flag = false;

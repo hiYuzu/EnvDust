@@ -77,15 +77,4 @@ public class MonitorServiceImpl implements IMonitorService {
     public String getMonitorName(String thingCode) {
         return monitorDao.getMonitorName(thingCode);
     }
-
-    @Override
-    public List<MonitorLevelModel> getMonitorLevel(String thingCode) {
-        return monitorDao.getMonitorLevel(thingCode);
-    }
-
-    @Override
-    public MonitorLevelModel getMonitorValueLevel(String thingCode, Double thingValue) {
-        return monitorDao.getMonitorValueLevel(thingCode, thingValue);
-    }
-
 }

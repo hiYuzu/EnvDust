@@ -68,15 +68,6 @@
 		</if>
 	</select>
 
-	<!--查询下级区域id-name-->
-	<select id="getSubAreaMap" resultMap="areaResultMap">
-		SELECT tbl_area.area_id,tbl_area.area_name,tbl_area_level.level_flag
-		FROM tbl_area,tbl_area_level
-		WHERE
-		tbl_area.level_id = tbl_area_level.level_id
-			AND tbl_area.parent_id = #{id}
-	</select>
-
 	<!-- 查询区域级别flag-name -->
 	<select id="getAreaLevelFlag" resultMap="areaLevelFlagResultMap">
 		SELECT level_flag,level_name

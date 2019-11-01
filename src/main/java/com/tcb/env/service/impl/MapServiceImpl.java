@@ -11,12 +11,9 @@ import com.tcb.env.model.MapModel;
 import com.tcb.env.service.IMapService;
 
 /**
- * <p>[功能描述]：查询id-name形式操作类实现</p>
- * <p>Copyright (c) 1993-2016 TCB Corporation</p>
+ * [功能描述]：查询id-name形式操作类实现
  *
- * @author 王垒
- * @version 1.0, 2016年3月23日下午2:17:53
- * @since EnvDust 1.0.0
+ * @author kyq
  */
 @Service("mapService")
 public class MapServiceImpl implements IMapService {
@@ -81,10 +78,4 @@ public class MapServiceImpl implements IMapService {
                                                      String devicecode, int thingid, String thingname) {
         return mapDao.getAuthorityDeviceMonitors(usercode, devicecode, thingid, thingname);
     }
-
-    @Override
-    public List<MapModel> getSubAreaMap(int id) {
-        return mapDao.getSubAreaMap(id);
-    }
-
 }

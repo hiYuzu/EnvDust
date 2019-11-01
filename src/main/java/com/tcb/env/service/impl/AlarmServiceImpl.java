@@ -21,16 +21,9 @@ import com.tcb.env.util.DefaultArgument;
 import org.springframework.util.StringUtils;
 
 /**
- * <p>
  * [功能描述]：报警操作服务类接口实现类
- * </p>
- * <p>
- * Copyright (c) 1993-2016 TCB Corporation
- * </p>
  *
- * @author 王垒
- * @version 1.0, 2016年4月26日下午2:53:53
- * @since EnvDust 1.0.0
+ * @author kyq
  */
 @Service("alarmService")
 @Transactional(rollbackFor = Exception.class)
@@ -166,42 +159,6 @@ public class AlarmServiceImpl implements IAlarmService {
             list = alarmDao.getRcentlyAlarmInfo(dbOldName, deviceCode, alarmType);
         }
         return list;
-    }
-
-    @Override
-    public List<Alarm> getRecentlyAlarmIdInfo(String deviceCode, String alarmType) {
-        List<Alarm> list = new ArrayList<Alarm>();
-        String dbName = dom4jConfig.getDataBaseConfig().getDbName();
-        list = alarmDao.getRecentlyAlarmIdInfo(dbName, deviceCode, alarmType);
-        if (list == null || list.size() == 0) {
-            String dbOldName = dom4jConfig.getDataBaseConfig().getDbOldName();
-            list = alarmDao.getRecentlyAlarmIdInfo(dbOldName, deviceCode, alarmType);
-        }
-        return list;
-    }
-
-    @Override
-    public List<Alarm> getSmsAlarmInfo() {
-        String dbName = dom4jConfig.getDataBaseConfig().getDbName();
-        return alarmDao.getSmsAlarmInfo(dbName);
-    }
-
-    @Override
-    public int updateSmsAlarmFlag(String alarmId, boolean sendFlag) {
-        String dbName = dom4jConfig.getDataBaseConfig().getDbName();
-        return alarmDao.updateSmsAlarmFlag(dbName, alarmId, sendFlag);
-    }
-
-    @Override
-    public List<String> getSmsPhone(String deviceId, String statusCode, String thingCode) {
-        String dbName = dom4jConfig.getDataBaseConfig().getDbName();
-        return alarmDao.getSmsPhone(dbName, deviceId, statusCode, thingCode);
-    }
-
-    @Override
-    public List<String> getSmsMail(String deviceId, String statusCode, String thingCode) {
-        String dbName = dom4jConfig.getDataBaseConfig().getDbName();
-        return alarmDao.getSmsMail(dbName, deviceId, statusCode, thingCode);
     }
 
     @Override

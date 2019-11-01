@@ -116,13 +116,6 @@
 		</where>
 	</delete>
 	
-	<!-- 添加某覆盖区域的坐标 -->
-	<insert id="addMapAreaPoint">
-		INSERT INTO 
-			tbl_map_area_point(ma_id,lat,lng,opt_user,opt_time)
-		VALUES(#{mapAreaPoint.maId},#{mapAreaPoint.lat},#{mapAreaPoint.lng},#{mapAreaPoint.optUser},#{mapAreaPoint.optTime});
-	</insert>
-	
 	<!-- 批量添加特定某个区域的坐标 -->
 	<insert id="addBatchMapAreaPoint" parameterType="java.util.List">
 		INSERT INTO 
@@ -132,15 +125,4 @@
 				(#{point.maId},#{point.lat},#{point.lng},#{point.optUser},#{point.optTime})
 			</foreach>
 	</insert>
-	
-	<!-- 删除某覆盖区域的坐标 -->
-	<delete id="deleteMapAreaPoint">
-		DELETE 
-		FROM tbl_map_area_point
-		<where>
-			<if test="pointId">
-				tbl_map_area_point = #{pointId}
-			</if>
-		</where>
-	</delete>
 </mapper>

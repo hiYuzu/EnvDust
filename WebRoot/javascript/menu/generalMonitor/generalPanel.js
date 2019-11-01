@@ -14,7 +14,6 @@ var appendRealPanelcontent = '<div class="easyui-layout" data-options="fit:true"
 		+'<div class="flex-container" style="flex-wrap:wrap;justify-content:space-around">'
 			+'<div id="box1" class="flex-item" style="width:35%">'
 				+'<div class="flex-itemfilter">'
-//					+'<a id="realchart"  class="easyui-linkbutton" data-options="iconCls:\'icon-chart\',plain:true" style="margin:0px 10px;" onclick="queryGenaralMonitorCount()" href="#" >刷新</a>'
 				+'</div>'
 				+'<div id="chart_msc" class="flex-itemcontent"></div>'
 			+'</div>'
@@ -29,10 +28,8 @@ var appendRealPanelcontent = '<div class="easyui-layout" data-options="fit:true"
 			+'<div id="box4" class="flex-item" style="width:35%">'
 				+'<div class="flex-itemfilter">'
 				+'<input id="genMonitorThings" class="easyui-combobox" style="width:120px;">'
-//				+ '&nbsp;&nbsp;&nbsp;<input class="easyui-combobox" id="genCnCodeCombox" style="width:80px;"/>'
 				+ '&nbsp;&nbsp;&nbsp;<input class="easyui-combobox" id="genOrderCombox" style="width:80px;"/>'
 				+ '&nbsp;&nbsp;&nbsp;<input class="easyui-combobox" id="genLimitCombox" style="width:50px;"/>'
-//					+'<a id="realchart"  class="easyui-linkbutton" data-options="iconCls:\'icon-chart\',plain:true" style="margin:0px 10px;" onclick="queryGenaralMonitorValueRanking()" href="#" >刷新</a>'
 				+'</div>'
 				+'<div id="chart_mvr" class="flex-itemcontent"></div>'
 			+'</div>'
@@ -89,16 +86,6 @@ function initComboxs(){
 				}
 			}
 	});
-	/*
-	var cnCodeValueGen = "2061";
-	$("#genCnCodeCombox").combobox({
-		data : ornCnCode,
-		method : 'post',
-		valueField : 'id',
-		textField : 'name',
-		panelHeight : 'auto',
-		value : cnCodeValueGen
-	});*/
 	$("#genOrderCombox").combobox({
 		data : orderArrayGen,
 		method : 'post',

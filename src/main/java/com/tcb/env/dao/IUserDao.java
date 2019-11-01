@@ -9,139 +9,60 @@ import org.apache.ibatis.annotations.Param;
 import com.tcb.env.pojo.User;
 
 /**
- * <p>[功能描述]：用户数据库操作接口</p>
- * <p>Copyright (c) 1996-2016 TCB Corporation</p>
+ * [功能描述]：用户数据库操作接口
  * 
- * @author	任崇彬
- * @version	1.0, 2016年3月16日下午2:09:13
- * @since	EnvDust 1.0.0
- * 
+ * @author	kyq
  */
 public interface IUserDao {
 	
 	/**
-	 * 
-	 * <p>[功能描述]：查询结果个数</p>
-	 * 
-	 * @author	王垒, 2016年3月18日下午1:45:31
-	 * @since	EnvDust 1.0.0
-	 *
-	 * @param user
-	 * @return
+	 * [功能描述]：查询结果个数
 	 */
-	public int getCount(@Param("user")User user,@Param("ignoredel")boolean ignoredel);
+	int getCount(@Param("user")User user,@Param("ignoredel")boolean ignoredel);
 	
 	/**
-	 * 
-	 * <p>[功能描述]：查询User数据</p>
-	 * 
-	 * @author	王垒, 2016年3月18日上午8:42:16
-	 * @since	EnvDust 1.0.0
-	 *
-	 * @param user：对象参数
-	 * @param ignoredel：是否忽略删除标记
-	 * @return
+	 * [功能描述]：查询User数据
 	 */
-	public List<User> getUser(@Param("user")User user,@Param("ignoredel")boolean ignoredel);
+	List<User> getUser(@Param("user")User user,@Param("ignoredel")boolean ignoredel);
 	
 	/**
-	 * 
-	 * <p>[功能描述]：新增User数据</p>
-	 * 
-	 * @author	王垒, 2016年3月18日上午8:42:56
-	 * @since	EnvDust 1.0.0
-	 *
-	 * @param user：对象参数
-	 * @param ignoredel：是否忽略删除标记
-	 * @return
+	 * [功能描述]：新增User数据
 	 */
-	public int insertUser(@Param("listuser")List<User> listuser);
+	int insertUser(@Param("listuser")List<User> listuser);
 	
 	/**
-	 * 
-	 * <p>[功能描述]：更新User数据</p>
-	 * 
-	 * @author	王垒, 2016年3月18日上午8:43:34
-	 * @since	EnvDust 1.0.0
-	 *
-	 * @param user
-	 * @return
+	 * [功能描述]：更新User数据
 	 */
-	public int updateUser(@Param("listuser")List<User> listuser);
+	int updateUser(@Param("listuser")List<User> listuser);
 	
 	/**
-	 * 
-	 * <p>[功能描述]：物理删除User数据</p>
-	 * 
-	 * @author	王垒, 2016年3月18日上午8:44:05
-	 * @since	EnvDust 1.0.0
-	 *
-	 * @param idList
-	 * @return
+	 * [功能描述]：物理删除User数据
 	 */
-	public int deleteUser(@Param("idList")List<String> idList);
+	int deleteUser(@Param("idList")List<String> idList);
 	
 	/**
-	 * 
-	 * <p>[功能描述]：更新用户删除标识</p>
-	 * 
-	 * @author	王垒, 2016年3月21日下午2:24:56
-	 * @since	EnvDust 1.0.0
-	 *
-	 * @param userId
-	 * @param userDelete
-	 * @return
+	 * [功能描述]：更新用户删除标识
 	 */
-	public int updateUserDelete(@Param("userId")String userId,@Param("userDelete")String userDelete);
+	int updateUserDelete(@Param("userId")String userId,@Param("userDelete")String userDelete);
 	
 	/**
-	 * 
-	 * <p>[功能描述]：通过条件获取名称</p>
-	 * 
-	 * @author	王垒, 2016年3月21日下午3:35:26
-	 * @since	EnvDust 1.0.0
-	 *
-	 * @param userId
-	 * @return
+	 * [功能描述]：通过条件获取名称
 	 */
-	public String getUserNameById(@Param("userid")int userid,@Param("usercode")String usercode);
+	String getUserNameById(@Param("userid")int userid,@Param("usercode")String usercode);
 	
 	/**
-	 * 
-	 * <p>[功能描述]：通过ID获取用户编码</p>
-	 * 
-	 * @author	王垒, 2016年3月21日下午3:35:26
-	 * @since	EnvDust 1.0.0
-	 *
-	 * @param userId
-	 * @return
+	 * [功能描述]：通过ID获取用户编码
 	 */
-	public String getUserCodeById(@Param("userId")String userId);
+	String getUserCodeById(@Param("userId")String userId);
 	
 	/**
-	 * 
-	 * <p>[功能描述]：通过条件（非ID的）获取符合结果个数</p>
-	 * 
-	 * @author	王垒, 2016年3月22日上午8:52:40
-	 * @since	EnvDust 1.0.0
-	 *
-	 * @param userid：不等于条件
-	 * @param usercode：等于条件
-	 * @return
+	 * [功能描述]：通过条件（非ID的）获取符合结果个数
 	 */
-	public int getUserExist(@Param("userid")int userid,@Param("usercode")String usercode);
+	int getUserExist(@Param("userid")int userid,@Param("usercode")String usercode);
 	
 	/**
-	 * 
-	 * <p>[功能描述]：更新用户密码</p>
-	 * 
-	 * @author	王垒, 2016年3月22日上午11:05:19
-	 * @since	EnvDust 1.0.0
-	 *
-	 * @param userid
-	 * @param userpwd
-	 * @return
+	 * [功能描述]：更新用户密码
 	 */
-	public int updateUserPwd(@Param("userid")int userid,@Param("userpwd")String userpwd);
+	int updateUserPwd(@Param("userid")int userid,@Param("userpwd")String userpwd);
 	
 }

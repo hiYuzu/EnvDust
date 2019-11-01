@@ -1,9 +1,3 @@
-/**
- * Copyright (c) 1996-2016天津通广集团电子信息部，版权所有，复制必究。
- * 此程序版权归天津通广集团电子信息部所有，任何侵犯版权的行为将被追究
- * 法律责任。未经天津通广集团电子信息部的书面批准，不得将此程序的任何
- * 部分以任何形式、采用任何手段、或为任何目的，进行复制或扩散。
- */
 package com.tcb.env.service.impl;
 
 import java.sql.Timestamp;
@@ -21,9 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.tcb.env.config.Dom4jConfig;
 import com.tcb.env.dao.IAreaDao;
 import com.tcb.env.dao.IDeviceDao;
-import com.tcb.env.model.AreaDeviceValueModel;
-import com.tcb.env.model.AreaStatisticModel;
-import com.tcb.env.model.LocationModel;
 import com.tcb.env.model.MapDeviceModel;
 import com.tcb.env.model.ThermodynamicModel;
 import com.tcb.env.pojo.Device;
@@ -33,16 +24,9 @@ import com.tcb.env.util.DefaultArgument;
 import com.tcb.env.util.SortListUtil;
 
 /**
- * <p>
  * [功能描述]：
- * </p>
- * <p>
- * Copyright (c) 1996-2016 TCB Corporation
- * </p>
  *
- * @author 任崇彬
- * @version 1.0, 2016年3月25日上午11:55:07
- * @since EnvDust 1.0.0
+ * @author kyq
  */
 @Service("deviceService")
 @Transactional(rollbackFor = Exception.class)
@@ -59,9 +43,6 @@ public class DeviceServiceImpl implements IDeviceService {
 
     @Resource
     private IDeviceDao deviceDao;
-
-    @Resource
-    private IAreaDao areaDao;
 
     /**
      * 配置文件服务类
@@ -129,24 +110,7 @@ public class DeviceServiceImpl implements IDeviceService {
     }
 
     @Override
-    public void dropSampleTable(String deviceCode) throws Exception {
-        String dbName = dom4jConfig.getDataBaseConfig().getDbName();
-        String dbOldName = dom4jConfig.getDataBaseConfig().getDbOldName();
-        if (dbName != null && !dbName.isEmpty() && deviceCode != null && !deviceCode.isEmpty()
-                && deviceDao.extStorageTable(dbName, deviceCode) != null
-                && !deviceDao.extStorageTable(dbName, deviceCode).isEmpty()) {
-            deviceDao.dropStorageTable(dbName, deviceCode);
-        }
-        if (dbOldName != null && !dbOldName.isEmpty() && deviceCode != null && !deviceCode.isEmpty()
-                && deviceDao.extStorageTable(dbOldName, deviceCode) != null
-                && !deviceDao.extStorageTable(dbOldName, deviceCode).isEmpty()) {
-            deviceDao.dropStorageTable(dbOldName, deviceCode);
-        }
-    }
-
-    @Override
     public int getDeviceCodeExist(int deviceId, String deviceCode) {
-
         return deviceDao.getDeviceCodeExist(deviceId, deviceCode);
     }
 
@@ -186,94 +150,8 @@ public class DeviceServiceImpl implements IDeviceService {
     }
 
     @Override
-    public int getMapAlarmDeviceCount(List<String> listDevCode, Timestamp originalUpdateTime, String statusCode) {
-        try {
-            if (listDevCode != null && listDevCode.size() > 0) {
-                return deviceDao.getMapAlarmDeviceCount(listDevCode, originalUpdateTime, statusCode);
-            } else {
-                return 0;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            return 0;
-        }
-    }
-
-    @Override
-    public List<MapDeviceModel> getMapAlarmDevice(List<String> listDevCode,
-                                                  String statusCode) {
-        try {
-            if (listDevCode != null && listDevCode.size() > 0) {
-                return deviceDao.getMapAlarmDevice(listDevCode, statusCode);
-            } else {
-                return null;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-    @Override
-    public String getDeviceOverThing(String deviceCode,
-                                     List<String> listThingCode) {
-        String result = "";
-        try {
-            if (deviceCode != null && !deviceCode.isEmpty()
-                    && listThingCode != null && listThingCode.size() > 0) {
-                List<String> list = deviceDao.getDeviceOverThing(deviceCode,
-                        listThingCode);
-                if (list != null && list.size() > 0) {
-                    for (String string : list) {
-                        if (string != null && !string.isEmpty()) {
-                            result += string + ",";
-                        }
-                    }
-                    if (result.length() > 0) {
-                        result = result.substring(0, result.length() - 1);
-                    }
-                }
-            }
-        } catch (Exception e) {
-            logger.error(LOG + ":获取设备状态失败，信息：" + e.getMessage());
-        }
-        return result;
-    }
-
-    @Override
-    public String getDeviceOverThingAvg(String deviceCode,
-                                        List<String> listThingCode) {
-        String result = "";
-        try {
-            if (deviceCode != null && !deviceCode.isEmpty()
-                    && listThingCode != null && listThingCode.size() > 0) {
-                List<String> list = deviceDao.getDeviceOverThingAvg(deviceCode,
-                        listThingCode);
-                if (list != null && list.size() > 0) {
-                    for (String string : list) {
-                        if (string != null && !string.isEmpty()) {
-                            result += string + ",";
-                        }
-                    }
-                    if (result.length() > 0) {
-                        result = result.substring(0, result.length() - 1);
-                    }
-                }
-            }
-        } catch (Exception e) {
-            logger.error(LOG + ":获取设备状态失败，信息：" + e.getMessage());
-        }
-        return result;
-    }
-
-    @Override
     public String getDeviceName(String deviceCode) {
         return deviceDao.getDeviceName(deviceCode);
-    }
-
-    @Override
-    public String getDeviceCode(String deviceId) {
-        return deviceDao.getDeviceCode(deviceId);
     }
 
     @Override
@@ -303,11 +181,9 @@ public class DeviceServiceImpl implements IDeviceService {
                                 if (wFlag) {
                                     //获取风速
                                     String wsValue = deviceDao.getDeviceAppointValue(dbName, temp.getDeviceCode(), dataType, DefaultArgument.PRO_2017_WS_CODE, beginStampTime);
-                                    //String wsValue = String.valueOf(Math.random()*20);
                                     temp.setWs(wsValue);
                                     //获取风向
                                     String wdValue = deviceDao.getDeviceAppointValue(dbName, temp.getDeviceCode(), dataType, DefaultArgument.PRO_2017_WD_CODE, beginStampTime);
-                                    //String wdValue = String.valueOf(Math.random()*360);
                                     temp.setWd(wdValue);
                                 }
                                 thermList.add(temp);
@@ -365,26 +241,7 @@ public class DeviceServiceImpl implements IDeviceService {
     }
 
     @Override
-    public List<Device> getAreaAuthDevice(String areaId, String userCode) {
-        return deviceDao.getAreaAuthDevice(areaId, userCode);
-    }
-
-    @Override
     public String getAreaName(String deviceCode) {
         return deviceDao.getAreaName(deviceCode);
     }
-
-    @Override
-    public boolean createSampleTable(Device device) {
-        boolean flag = false;
-        try {
-            deviceDao.createSampleTable(device.getDeviceCode());
-            flag = true;
-        } catch (Exception e) {
-            flag = false;
-            logger.error(LOG + "：创建表失败，原因：" + e.getMessage());
-        }
-        return flag;
-    }
-
 }

@@ -1,6 +1,5 @@
 package com.tcb.env.service.impl;
 
-import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
 
@@ -14,20 +13,12 @@ import com.tcb.env.dao.IAreaDao;
 import com.tcb.env.pojo.Area;
 import com.tcb.env.pojo.HeWeather;
 import com.tcb.env.service.IAreaService;
-import com.tcb.env.util.DateUtil;
 import com.tcb.env.util.DefaultArgument;
 
 /**
- * <p>
  * [功能描述]：Area操作服务类实现
- * </p>
- * <p>
- * Copyright (c) 1993-2016 TCB Corporation
- * </p>
  *
- * @author 王垒
- * @version 1.0, 2016年3月23日上午11:10:14
- * @since EnvDust 1.0.0
+ * @author kyq
  */
 @Service("areaService")
 @Transactional(rollbackFor = Exception.class)
@@ -109,58 +100,8 @@ public class AreaServiceImpl implements IAreaService {
     }
 
     @Override
-    public List<HeWeather> getAreaWeather(HeWeather weather) {
-        return areaDao.getAreaWeather(weather);
-    }
-
-    @Override
-    public double getAreaAvgValue(List<Integer> listAreaId, String dataType,
-                                  String thingCode, String beginTime, String endTime) {
-        double avgValue = 0;
-        try {
-            //TODO 需要计算，目前采用简单平均算法
-            double totalWd = 0;//总计
-            int i = 0;//时间个数
-            Timestamp beginStampTime = DateUtil.StringToTimestampSecond(beginTime);
-            Timestamp endStampTime = DateUtil.StringToTimestampSecond(endTime);
-            while (endStampTime.compareTo(beginStampTime) >= 0) {
-                i++;
-                String dbName = dom4jConfig.getDataBaseConfig().getDbName();
-                String dbOldName = "";
-                if (!DateUtil.isRecentlyData(beginStampTime, DefaultArgument.RECENT_DAYS)) {
-                    dbOldName = dom4jConfig.getDataBaseConfig().getDbOldName();
-                }
-                double value = areaDao.getAreaAvgValue(dbName, dbOldName, listAreaId, dataType, thingCode, beginStampTime);
-                totalWd += value;
-                beginStampTime = DateUtil.getAddTime(beginStampTime, dataType);
-            }
-            if (i > 0) {
-                avgValue = totalWd / i;
-            }
-        } catch (Exception e) {
-
-        }
-        return avgValue;
-    }
-
-    @Override
-    public String getAreaName(int areaId) {
-        return areaDao.getAreaName(areaId);
-    }
-
-    @Override
-    public String getAreaLevelFlag(int areaid) {
-        return areaDao.getAreaLevelFlag(areaid);
-    }
-
-    @Override
     public List<String> getAreaCityId() {
         return areaDao.getAreaCityId();
-    }
-
-    @Override
-    public List<Area> getBottomAuthorityAreas(String userCode, String levelFlag) {
-        return areaDao.getBottomAuthorityAreas(userCode, levelFlag);
     }
 
     @Override

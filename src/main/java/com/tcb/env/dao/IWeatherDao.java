@@ -16,28 +16,6 @@ import com.tcb.env.pojo.HeWeather;
  * @since EnvDust 1.0.0
  */
 public interface IWeatherDao {
-
-    /**
-     * <p>[功能描述]：查询区域天气信息个数</p>
-     *
-     * @param weather
-     * @return
-     * @author 王垒, 2016年5月20日上午11:39:20
-     * @since EnvDust 1.0.0
-     */
-    int getWeatherCount(@Param("weather") HeWeather weather);
-
-    /**
-     * <p>[功能描述]：查询区域天气信息</p>
-     *
-     * @param weather
-     * @return
-     * @author 王垒, 2016年5月20日上午11:39:20
-     * @since EnvDust 1.0.0
-     */
-    List<HeWeather> getWeather(@Param("weather") HeWeather weather);
-
-
     /**
      * 获取天气最低云量和最大云量数据
      *

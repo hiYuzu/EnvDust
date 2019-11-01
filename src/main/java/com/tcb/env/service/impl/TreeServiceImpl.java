@@ -16,16 +16,9 @@ import com.tcb.env.service.ITreeService;
 import com.tcb.env.util.DefaultArgument;
 
 /**
- * <p>
  * [功能描述]：Tree操作服务类实现
- * </p>
- * <p>
- * Copyright (c) 1993-2016 TCB Corporation
- * </p>
  *
- * @author 王垒
- * @version 1.0, 2016年3月25日上午9:16:14
- * @since EnvDust 1.0.0
+ * @author kyq
  */
 @Service("treeService")
 public class TreeServiceImpl implements ITreeService {
@@ -69,19 +62,6 @@ public class TreeServiceImpl implements ITreeService {
     public ArrayList<TreeModel> getAuthorityDeviceByAhrCode(String ahrCode,
                                                             int areaid, String devicename) {
         return treeDao.getAuthorityDeviceByAhrCode(ahrCode, areaid, devicename);
-    }
-
-    ;
-
-    @Override
-    public int getAllDevicesCount(String ahrcode, int areaid, String devicename) {
-        return treeDao.getAllDeviceCount(ahrcode, areaid, devicename);
-    }
-
-    @Override
-    public ArrayList<TreeModel> getAllDevices(String ahrcode, int areaid,
-                                              String devicename) {
-        return treeDao.getAllDevice(ahrcode, areaid, devicename);
     }
 
     @Override
@@ -164,20 +144,4 @@ public class TreeServiceImpl implements ITreeService {
         }
         return listAreaId;
     }
-
-    @Override
-    public List<Integer> getAuthorityAreaId(String userCode) {
-        return areaDao.getAuthorityAreaId(userCode);
-    }
-
-    @Override
-    public TreeModel getDeviceFirst(String userCode, String deviceName,List<String> statusCodeList) {
-        List<TreeModel> treeModelList = treeDao.getDeviceFirst(userCode, deviceName,statusCodeList);
-        if (treeModelList != null && treeModelList.size() > 0) {
-            return treeModelList.get(0);
-        } else {
-            return null;
-        }
-    }
-
 }

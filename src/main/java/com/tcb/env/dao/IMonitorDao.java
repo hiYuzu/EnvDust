@@ -114,24 +114,4 @@ public interface IMonitorDao {
      * @since EnvDust 1.0.0
      */
     String getMonitorName(@Param("thingCode") String thingCode);
-
-    /**
-     * 查询监测物等级信息
-     *
-     * @param thingCode
-     * @return
-     */
-    List<MonitorLevelModel> getMonitorLevel(@Param("thingCode") String thingCode);
-
-    /**
-     * 查询监测物等级信息(根据数值)
-     *
-     * @param thingCode
-     * @param thingValue
-     * @return
-     */
-    MonitorLevelModel getMonitorValueLevel(
-            @Param("thingCode") String thingCode,
-            @Param("thingValue") Double thingValue);
-
 }

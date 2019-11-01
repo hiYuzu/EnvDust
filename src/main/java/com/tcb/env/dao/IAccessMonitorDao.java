@@ -21,37 +21,16 @@ import org.apache.ibatis.annotations.Param;
 public interface IAccessMonitorDao {
 
 	/**
-	 * 
-	 * <p>
 	 * [功能描述]：添加权限组监测物
-	 * </p>
-	 * 
-	 * @author 王垒, 2016年4月6日上午8:53:48
-	 * @since EnvDust 1.0.0
-	 *
-	 * @param ahrCode
-	 * @param listMonCode
-	 * @param optUser
-	 * @return
 	 */
-	public int insertAccessMonitor(@Param("ahrCode") String ahrCode,
+	int insertAccessMonitor(@Param("ahrCode") String ahrCode,
 			@Param("listMonCode") List<String> listMonCode,
 			@Param("optUser") int optUser);
 
 	/**
-	 * 
-	 * <p>
 	 * [功能描述]：删除权限组监测物
-	 * </p>
-	 * 
-	 * @author 王垒, 2016年4月6日上午8:54:34
-	 * @since EnvDust 1.0.0
-	 *
-	 * @param ahrCode
-	 * @param listAhrCode
-	 * @return
 	 */
-	public int deleteAccessMonitor(
+	int deleteAccessMonitor(
 			@Param("listAhrCode") List<String> listAhrCode);
 
 }
