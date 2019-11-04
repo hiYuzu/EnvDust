@@ -1,15 +1,7 @@
 package com.kyq.env.util;
 
-import java.sql.Timestamp;
-import java.util.Calendar;
-
 /**
- * <p>[功能描述]：默认参数值</p>
- * <p>Copyright (c) 1993-2016 TCB Corporation</p>
- *
- * @author 王垒
- * @version 1.0, 2016年3月18日下午3:51:32
- * @since EnvDust 1.0.0
+ * [功能描述]：默认参数值
  */
 public class DefaultArgument {
 
@@ -46,11 +38,6 @@ public class DefaultArgument {
     public static final boolean DEL_DEFAULT = false;
 
     /**
-     * 系统时间
-     */
-    public static Timestamp LOGIN_DATETIME = new Timestamp(Calendar.getInstance().getTimeInMillis());
-
-    /**
      * 系统最底层级别
      */
     public static final String BOTTOM_LEVEL_FALG = "4";
@@ -66,34 +53,9 @@ public class DefaultArgument {
     public static final String STA_TIME = "time";
 
     /**
-     * 实时查询数据间隔时间（毫秒）
-     */
-    public static final int TIMELY_TIME = 10000;
-
-    /**
-     * 长连接超时（毫秒），需要测试是够还会出现长链接502错误
-     */
-    public static final int OUT_TIME = 60000;
-
-    /**
-     * 网络监控间隔（毫秒）
-     */
-    public static final int NET_TIME = 60000;
-
-    /**
-     * 地图设备状态间隔（毫秒）
-     */
-    public static final int MAP_TIME = 10000;
-
-    /**
      * 请求天气时间间隔（毫秒）
      */
     public static final int WEATHER_TIME = 10000;
-
-    /**
-     * 发送短信（毫秒）
-     */
-    public static final int SMS_TIME = 5000;
 
     /**
      * 查询控件级别：1（模块）
@@ -112,11 +74,6 @@ public class DefaultArgument {
      * 控件处理方式：可用
      */
     public static final int DEAL_TYPE = 1;
-
-    /**
-     * 是否服务器计算统计实时数据：true,false
-     */
-    public static final boolean SYS_STA_RLD = true;
 
     /**
      * 是否服务器计算统计小时数据：true,false
@@ -169,64 +126,9 @@ public class DefaultArgument {
     public static String DEV_UNLINK = "icon-stationunlink";
 
     /**
-     * 报警更新系统标识
-     */
-    public static String ALARM_UPD = "alarmupd";
-
-    /**
-     * 系统交互
-     */
-    public static String PRO_ST_SYSTEM = "91";
-
-    /**
-     * 空气质量监测
-     */
-    public static String PRO_ST_WEV = "22";
-
-    /**
-     * 大气环境污染源
-     */
-    public static String PRO_ST_ATM = "31";
-
-    /**
-     * 设置监测参数报警门限值
-     */
-    public static String PRO_CN_ALARMSET = "1022";
-
-    /**
-     * 设置实时数据间隔
-     */
-    public static String PRO_CN_REALINTERVAL = "1062";
-
-    /**
      * 取监测参数实时数据
      */
     public static String PRO_CN_REALBEGIN = "2011";
-
-    /**
-     * 停止查看实时数据
-     */
-    public static String PRO_CN_REALSTOP = "2012";
-
-    /**
-     * 取监测参数分钟数据
-     */
-    public static String PRO_CN_GETMINUTE = "2051";
-
-    /**
-     * 取监测参数小时数据
-     */
-    public static String PRO_GET_HOUR = "2061";
-
-    /**
-     * 取监测参数日数据
-     */
-    public static String PRO_GET_DAY = "2031";
-
-    /**
-     * 超标采样
-     */
-    public static String PRO_NET_SAMPLE = "3015";
 
     /**
      * 权限组最大容量
@@ -259,104 +161,19 @@ public class DefaultArgument {
     public static double ONE_DEGREE = 111322.2222;
 
     /**
-     * 烟气流量编码
-     */
-    public static String GAS_FLOW_CODE = "a19003";
-
-    /**
-     * 风速编码
-     */
-    public static String WS = "WS";
-
-    /**
-     * 风向编码
-     */
-    public static String WD = "WD";
-
-    /**
-     * 小时数据编码
-     */
-    public static String HOUR_CODE = "2061";
-
-    /**
      * 请求天气正确编码:ok
      */
     public static final String HE_OK = "ok";
 
     /**
-     * 年月日时报表模板
-     */
-    public static final String REPORT_ENVSTA_DMY = "envstaDMY";
-
-    /**
-     * 时间段报表模板
-     */
-    public static final String REPORT_ENVSTA_TIMES = "envstaTimes";
-
-    /**
-     * 连续监测报表日模板
-     */
-    public static final String REPORT_ENVSTA_OLRD = "envstaOLRD";
-
-    /**
-     * 连续监测报表月模板
-     */
-    public static final String REPORT_ENVSTA_OLRM = "envstaOLRM";
-
-    /**
-     * 连续监测报表年模板
-     */
-    public static final String REPORT_ENVSTA_OLRY = "envstaOLRY";
-
-    /**
-     * 连续监测报表时间段模板
-     */
-    public static final String REPORT_ENVSTA_OLRT = "envstaOLRT";
-
-    /**
-     * 同比环比报表模板
-     */
-    public static final String REPORT_ENVSTA_COMPARE = "compare";
-
-    /**
-     * 超标统计报表模板
-     */
-    public static final String REPORT_ENVSTA_OVER = "overAlarm";
-
-    /**
-     * 污染排放量统计报表模板
-     */
-    public static final String REPORT_ENVSTA_DIS = "discharge";
-
-    /**
-     * 212协议废气编码
-     */
-    public static final String PRO_EXHOUST_GAS_CODE = "a00000";//a00000//B02
-
-    /**
-     * 212协议烟气流速编码
-     */
-    public static final String PRO_GAS_VELOCITY_CODE = "a01011";//a01011//S02
-
-    /**
-     * 212协议烟气温度编码
-     */
-    public static final String PRO_GAS_TEMPERATURE_CODE = "a01012";//a01012//S03
-
-    /**
-     * 212协议烟气湿度编码
-     */
-    public static final String PRO_GAS_HUMIDITY_CODE = "a01014";//a01014//S05
-
-    /**
      * 212协议风向编码
      */
-    public static final String PRO_2017_WD_CODE = "a01008";//a01008
+    public static final String PRO_2017_WD_CODE = "a01008";
 
     /**
      * 212协议风速编码
      */
-    public static final String PRO_2017_WS_CODE = "a01007";//a01007
+    public static final String PRO_2017_WS_CODE = "a01007";
 
     /**
      * 上传文件夹名称

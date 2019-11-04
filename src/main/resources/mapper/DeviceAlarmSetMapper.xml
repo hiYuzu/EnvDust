@@ -11,19 +11,46 @@
         <result property="levelNo" column="level_no"/>
         <result property="optUser" column="opt_user"/>
         <result property="optTime" column="opt_time"/>
-
-        <result property="qn" column="qn"/>
-        <result property="excuteTime" column="excute_time"/>
-
-        <result property="statusId" column="status_id"/>
-        <result property="statusName" column="status_name"/>
         <!-- 级联表 -->
         <association property="device" javaType="com.kyq.env.pojo.Device"
                      resultMap="com.kyq.env.dao.IDeviceDao.deviceResultMap"></association>
         <association property="monitor" javaType="com.kyq.env.pojo.Monitor"
                      resultMap="com.kyq.env.dao.IMonitorDao.monitorResultMap"></association>
+        <association property="commMain" javaType="com.kyq.env.pojo.CommMain"
+                     resultMap="commMainResultMap"></association>
         <association property="deviceProject" javaType="com.kyq.env.pojo.DeviceProject"
                      resultMap="com.kyq.env.dao.IDeviceProjectDao.deviceProjectResultMap"></association>
+    </resultMap>
+
+    <resultMap type="com.kyq.env.pojo.CommMain" id="commMainResultMap">
+        <id property="commId" column="comm_id" />
+        <result property="qn" column="qn" />
+        <result property="st" column="st" />
+        <result property="flag" column="flag" />
+        <result property="cp" column="cp" />
+        <result property="excuteTime" column="excute_time" />
+        <result property="optUser" column="opt_user" />
+        <result property="optTime" column="opt_time" />
+        <!-- 级联表 -->
+        <association property="device" javaType="com.kyq.env.pojo.Device"
+                     resultMap="com.kyq.env.dao.IDeviceDao.deviceResultMap"></association>
+        <association property="commCn" javaType="com.kyq.env.pojo.CommCn"
+                     resultMap="commCnResultMap"></association>
+        <association property="commStatus" javaType="com.kyq.env.pojo.CommStatus"
+                     resultMap="commStatusResultMap"></association>
+    </resultMap>
+
+    <resultMap type="com.kyq.env.pojo.CommCn" id="commCnResultMap">
+        <id property="cnId" column="cn_id" />
+        <result property="cnCode" column="cn_code" />
+        <result property="cnName" column="cn_name" />
+    </resultMap>
+
+    <resultMap type="com.kyq.env.pojo.CommStatus" id="commStatusResultMap">
+        <id property="statusId" column="status_id" />
+        <result property="statusType" column="status_type" />
+        <result property="statusCode" column="status_code" />
+        <result property="statusName" column="status_name" />
     </resultMap>
 
     <!-- 获取单个报警门限信息（设备编码和监测物编码） -->
@@ -48,7 +75,7 @@
         tdp.project_name,
         tdp.project_order,
         tda.opt_user,
-        tda.opt_time1
+        tda.opt_time
         FROM
         tbl_device_alarmset tda
         INNER JOIN tbl_device td ON tda.device_code = td.device_code

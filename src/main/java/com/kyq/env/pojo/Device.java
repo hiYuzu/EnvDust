@@ -8,38 +8,38 @@ import com.kyq.env.util.DefaultArgument;
  * <p>[功能描述]：设备pojo</p>
  */
 public class Device extends BasePojo {
-    private int deviceId = DefaultArgument.INT_DEFAULT;//递增id
-    private String deviceCode;//设备编号
-    private String deviceMn;//设备mn号
-    private String deviceName;//设备名称
-    private Manufacturer manufacturer;//所属厂商编号,外键
-    private Status status;//设备状态，外键
-    private String deviceIp;//设备IP
-    private int devicePort = DefaultArgument.INT_DEFAULT;//设备端口
-    private String devicePwd;//设备访问密码
-    private double deviceX = DefaultArgument.DOUBLE_DEFAULT;//百度设备坐标X
-    private double deviceY = DefaultArgument.DOUBLE_DEFAULT;//百度设备坐标Y
-    private double gpsX = DefaultArgument.DOUBLE_DEFAULT;//上传设备坐标X
-    private double gpsY = DefaultArgument.DOUBLE_DEFAULT;//上传设备坐标Y
-    private Area area;//区域id，外键
-    private String systemVersion;//系统版本
-    private Timestamp inspectTime;//巡检时间
-    private String buildFirm;//施工单位
-    private User user;//负责人,外键
-    private String deviceAddress;//设备地址
-    private Oranization oranization;//监督单位,外键
-    private String deviceKm;//设备辐射面积
-    private boolean staMinute = DefaultArgument.DEL_DEFAULT;//平台统计分钟数据（10分钟）
-    private boolean staHour = DefaultArgument.DEL_DEFAULT;//平台统计小时数据
-    private boolean staDay = DefaultArgument.DEL_DEFAULT;//平台统计每日数据
-    private String replyFlag;//协议版本
-    private boolean forceReply = DefaultArgument.DEL_DEFAULT;//强制数据回复
-    private String haveAhr;//是否在指定权限组内
-    private boolean smsFlag = DefaultArgument.DEL_DEFAULT;//是否发送报警短信
-    private double pipeArea;//烟筒直径
-    private boolean staFlow;//平台统计标态流量
-    private DeviceProject deviceProject;//设备项目
-    private int hourCount = DefaultArgument.HOUR_COUNT;//小时内实时数据个数
+    private int deviceId = DefaultArgument.INT_DEFAULT;
+    private String deviceCode;
+    private String deviceMn;
+    private String deviceName;
+    private Manufacturer manufacturer;
+    private Status status;
+    private String deviceIp;
+    private int devicePort = DefaultArgument.INT_DEFAULT;
+    private String devicePwd;
+    private double deviceX = DefaultArgument.DOUBLE_DEFAULT;
+    private double deviceY = DefaultArgument.DOUBLE_DEFAULT;
+    private double gpsX = DefaultArgument.DOUBLE_DEFAULT;
+    private double gpsY = DefaultArgument.DOUBLE_DEFAULT;
+    private Area area;
+    private String systemVersion;
+    private Timestamp inspectTime;
+    private String buildFirm;
+    private User user;
+    private String deviceAddress;
+    private Oranization oranization;
+    private String deviceKm;
+    private boolean staMinute = DefaultArgument.DEL_DEFAULT;
+    private boolean staHour = DefaultArgument.DEL_DEFAULT;
+    private boolean staDay = DefaultArgument.DEL_DEFAULT;
+    private String replyFlag;
+    private boolean forceReply = DefaultArgument.DEL_DEFAULT;
+    private String haveAhr;
+    private boolean smsFlag = DefaultArgument.DEL_DEFAULT;
+    private double pipeArea;
+    private boolean staFlow;
+    private DeviceProject deviceProject;
+    private int hourCount = DefaultArgument.HOUR_COUNT;
 
     /**
      * @return the deviceMn

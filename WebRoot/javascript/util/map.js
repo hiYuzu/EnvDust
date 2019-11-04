@@ -34,13 +34,6 @@ function initMap() {
     $.getScript("../javascript/jquery-easyui-1.4.4/MarkerClusterer_min.js");
     map = new BMap.Map("allmap"); // 创建Map实例
     var point = new BMap.Point(117.1786889372559, 39.10762965106183); // 创建点坐标
-
- /*   map.addEventListener("tilesloaded", function () {//mapName是你的地图名称
-        if (loadCount == 1) {
-            map.setCenter(point);//point是设置的中心点
-        }
-        loadCount = loadCount + 1
-    });*/
     map.centerAndZoom(point, 12);
     var top_left_control = new BMap.ScaleControl({
         anchor: BMAP_ANCHOR_BOTTOM_LEFT
@@ -83,7 +76,7 @@ function initMap() {
     search.prototype = new BMap.Control();
     search.prototype.initialize = function (map) {
         return createSearchCtrl();
-    }
+    };
     var mySearchCtrl = new search();	// 创建控件
     map.addControl(mySearchCtrl);	// 添加到地图当中
 
@@ -103,21 +96,8 @@ function initMap() {
     // 右键菜单
     map.addContextMenu(getMenu());
 
-
-    /*
-     * map.addEventListener("mousemove",function(e){//坐标拾取 if(mylabel!=null){
-     * map.removeOverlay(mylabel); } var point = new
-     * BMap.Point(e.point.lng,e.point.lat); var opts = { position : point, //
-     * 指定文本标注所在的地理位置 offset : new BMap.Size(5, 20) //设置文本偏移量 } mylabel = new
-     * BMap.Label(e.point.lng+","+e.point.lat, opts); // 创建文本标注对象
-     * mylabel.setStyle({ color : "red", fontSize : "12px", height : "20px",
-     * lineHeight : "20px", fontFamily:"微软雅黑" }); map.addOverlay(mylabel); });
-     */
     selectedSearchData();
-//	getAreaBoundary();//追加天津市津南区行政区域
     getMapAreaPol();//添加地图区域边框
-//	maptimer = setInterval(selectedSearchDataConn, 200);
-
     /* 进行地图数据的实时加载  */
     initWebsocket();
 }
@@ -196,7 +176,7 @@ function addMapAreaPol(data) {
             //设置信息窗口
             var opts = {
                 title: "区域名称：" // 信息窗口标题
-            }
+            };
             var content = data.rows[i].maName;
             addPolygonClickHandler(content, polygon, opts, point);
         }
@@ -264,10 +244,6 @@ function initWebsocket() {
 
     /* 连接结束 */
     function onClose() {
-//		var reLogin = confirm("\n地图自动更新已经关闭连接,原因：服务器关闭！\n\n\n 是否重新登陆尝试？ ");
-//		if(reLogin){
-//			 window.location.href='../login.html';
-//		}
         console.log("websocket客户端出断连，开始重连！");
         reConnect();
     }
@@ -491,14 +467,14 @@ function addMarker(point, data) {
             }
         } else if (data.statusCode == "NT") {
             var image = "../images/pointalarm1.png";
-            var icon =  'icon-stationalarm1';
-            if(data.levelNo=="1"){
+            var icon = 'icon-stationalarm1';
+            if (data.levelNo == "1") {
                 image = "../images/pointalarm1.png";
                 icon = 'icon-stationalarm1';
-            }else if(data.levelNo=="2"){
+            } else if (data.levelNo == "2") {
                 image = "../images/pointalarm2.png";
                 icon = 'icon-stationalarm2';
-            }else if(data.levelNo=="3"){
+            } else if (data.levelNo == "3") {
                 image = "../images/pointalarm3.png";
                 icon = 'icon-stationalarm3';
             }
@@ -620,13 +596,13 @@ function selectedSearchMarkerData(marker, data) {
             title: data.deviceName + "--" + deviceData.rows[0].areaName,
             content: '<div class="easyui-layout" style="width:420px;height:500px;"data-options="fit:true">'
 
-                + '<div data-options="region:\'north\',border:false" style="height:45%">'
-                + '<div id="searchNorthContentMap"  style="background:yellow;"></div>'
-                + '</div>'
-                + '<div data-options="region:\'center\',border:false" id="centerContentMap">'
-                + '<div id="searchContentMap"  style="background:yellow;width:100%"></div>'
-                + '</div>'
-                + '</div>'
+            + '<div data-options="region:\'north\',border:false" style="height:45%">'
+            + '<div id="searchNorthContentMap"  style="background:yellow;"></div>'
+            + '</div>'
+            + '<div data-options="region:\'center\',border:false" id="centerContentMap">'
+            + '<div id="searchContentMap"  style="background:yellow;width:100%"></div>'
+            + '</div>'
+            + '</div>'
         }).panel("open");
     /* 重绘窗口 */
     $.parser.parse("#panelModel");
@@ -742,7 +718,6 @@ function selectedSearchData() {
                     }
                     if (alarmInfo != "") {
                         $("#logoimg").attr("src", "../javascript/jquery-easyui-1.4.4/themes/icons/emergency.gif");
-                        playSound();
                     } else {
                         $("#logoimg").attr("src", "../javascript/jquery-easyui-1.4.4/themes/icons/alarm.png");
                     }
@@ -752,30 +727,11 @@ function selectedSearchData() {
                     } else {
                         $("#morebtn").css('display', 'none');
                     }
-                    /*var length = Math.ceil(gpspoints.length / 10);
-                    var mode = gpspoints.length % 10;
-                    for (var i = 0; i < length; i++) {
-                        var gpspointsf = [];
-                        var mapdataf = [];
-                        if (i == length - 1 && mode != 0) {
-                            gpspointsf = gpspoints.slice(i * 10,
-                                    (i * 10 + mode));
-                            mapdataf = mapdata.slice(i * 10, (i * 10 + mode));
-                        } else {
-                            gpspointsf = gpspoints.slice(i * 10, (i + 1) * 10);
-                            mapdataf = mapdata.slice(i * 10, (i + 1) * 10);
-                        }
-                        gpsIntoBaiduPoint(mapdataf, gpspointsf);
-                    }*///gps坐标转百度坐标处理，暂时不用了，但先别删除
-//					if(mapCount>150){
-//						$.messager.alert("提示", "超过百度显示标记上线，将只显示部分标记，可缩小查看范围显示坐标！", "warning");
-//					}
                 }
             } else {
                 $.each(points, function (e, marker) {
                     map.removeOverlay(marker);
                 })
-//				map.clearOverlays();
             }
         }
     });
@@ -880,29 +836,11 @@ function selectedSearchDataConn() {
                     } else {
                         $("#morebtn").css('display', 'none');
                     }
-                    /*var length = Math.ceil(gpspoints.length / 10);
-                    var mode = gpspoints.length % 10;
-                    for (var i = 0; i < length; i++) {
-                        var gpspointsf = [];
-                        var mapdataf = [];
-                        if (i == length - 1 && mode != 0) {
-                            gpspointsf = gpspoints.slice(i * 10,
-                                    (i * 10 + mode));
-                            mapdataf = mapdata.slice(i * 10, (i * 10 + mode));
-                        } else {
-                            gpspointsf = gpspoints.slice(i * 10, (i + 1) * 10);
-                            mapdataf = mapdata.slice(i * 10, (i + 1) * 10);
-                        }
-                        gpsIntoBaiduPoint(mapdataf, gpspointsf);
-                    }*///gps坐标转百度坐标处理，暂时不用了，但先别删除
                 }
             }
             if (mapajaxconn > 0) {
                 mapajaxconn--; // 当连接关闭、连接数减1
             }
-//			if (mapajaxconn == 0) { // 如果连接数少于1 则发起新的连接
-//				selectedSearchDataConn();
-//			}
         }
     });
 }
@@ -997,6 +935,7 @@ function getDeviceInfo(deviceCode) {
 
 // 存储监控物的范围值
 var alarmMapRange = {};
+
 /* 查询设备24小时内的监控数据 */
 function searchMapDeviceDataFuc(deviceCode) {
     var colums = [];// 存储列内容
@@ -1056,7 +995,7 @@ function searchMapDeviceDataFuc(deviceCode) {
                                 field: name, title: title, width: 130, halign: 'center', align: 'center', hidden: true,
                                 formatter: function (value, row, index) {
                                     var zvalue = (row[(this.field + "-zs")] == null) ? "---" : (row[(this.field + "-zs")]);
-                                    return tableShowHandler(value, this.field, zsFlag, zvalue,alarmMapRange);
+                                    return tableShowHandler(value, this.field, zsFlag, zvalue, alarmMapRange);
                                 }
                             });
                         } else {
@@ -1064,7 +1003,7 @@ function searchMapDeviceDataFuc(deviceCode) {
                                 field: name, title: title, width: 130, halign: 'center', align: 'center',
                                 formatter: function (value, row, index) {
                                     var zvalue = (row[(this.field + "-zs")] == null) ? "---" : (row[(this.field + "-zs")]);
-                                    return tableShowHandler(value, this.field, zsFlag, zvalue,alarmMapRange);
+                                    return tableShowHandler(value, this.field, zsFlag, zvalue, alarmMapRange);
                                 }
                             });
                         }
@@ -1108,10 +1047,6 @@ function searchMapDeviceDataFuc(deviceCode) {
 /* 图表 */
 function searchMapChartFunction(deviceCode) {
     var datajson = [];
-//	var CentercontentMap = $("#centerContentMap");
-//	CentercontentMap.html("");
-//	$("#centerContentMap").append(
-//			'<div id="searchContentMap" style="width:600px;"></div>');
     var yname = "";// 图表y轴名称
     var units = "";// 监控物单位
     var timelist = {};
@@ -1186,9 +1121,6 @@ function searchMapChartFunction(deviceCode) {
                 }
                 initMapChart(timelist, legendData, selectedlegendData, seriesData, yname);
             }
-//			else {
-//				$.messager.alert("提示", "当前时间段内无数据，没有可查看的图表！", "warning");
-//			}
         }
     });
 }
@@ -1293,6 +1225,7 @@ function initMapChart(timelist, legendData, selectedlegendData, seriesData, ynam
 function displayAlarmInfo(deviceCode, statusCode) {
     return deviceCode + "：" + statusCode + "";
 }
+
 var mfrCodeDataMap = {};
 var mfrCodeValueMap = null;
 // 状态
@@ -1328,11 +1261,6 @@ var staFlowData = {
 var staFlowDataValue = "0";
 
 function addMonitorStation(point, stationpoints) {
-    //translateCallback = function(data) {
-    //if (data.status === 0) {
-    /*	var x_pi = 3.14159265358979324 * 3000.0 / 180.0;
-        var lng = 2 * point.lng - data.points[0].lng;
-        var lat = 2 * point.lat - data.points[0].lat;*///地图转gps坐标暂时不用了
     var lng = point.lng;
     var lat = point.lat;
     initParamMap();
@@ -1786,8 +1714,6 @@ function initParamMap() {
         },
         async: false,
         success: function (json) {
-//			userIdDataMap[0] = "---请选择---";
-//			userValueMap = "0";
             if (json.total > 0) {
                 for (var i = 0; i < json.total; i++) {
                     userIdDataMap[json.rows[i].id] = json.rows[i].name;
@@ -1834,18 +1760,11 @@ function initParamMap() {
 var alarmRange = {};
 //实时监控存储监控物带单位
 var monitorsThingJson = {};
-var monitorsnetStautsThingJson = {};
 //实时监控
 var monitorslist = [];
 //实时监控存储之前站点
 var preStation = null;
 var initMonitorsflag = true;
-//记录监控状态当前页
-var netStatuspageNumber = 1;
-var netStatuspageSize = 10;
-//记录监控数据当前页
-var netDatapageNumber = 1;
-var netDatapageSize = 10;
 
 $(function () {
     window.onload = loadJScript; // 异步加载地图
@@ -1896,9 +1815,6 @@ $(function () {
                     }
                 }
             });
-    var audio = document.getElementById("myaudio");
-    audio.src = "./../../1262.mp3";
-
 });
 
 
@@ -1986,32 +1902,4 @@ var heartCheck = {
             }, self.timeout)
         }, this.timeout)
     }
-}
-
-function playSound() {
-    /*   var audio = $("#myaudio");
-       audio.attr("src",src);*/
-    var audio = document.getElementById("myaudio");
-    console.info(audio.muted);
-    if (!audio.muted) {
-        audio.play();
-    } else {
-        audio.pause();
-    }
-
-}
-
-function closeSound() {
-    var audio = document.getElementById("myaudio");
-    if (audio.muted) {
-        document.getElementById("myImage").src = "./../javascript/jquery-easyui-1.4.4/themes/icons/voiceplay.png";
-        audio.muted = false;
-        if ($("#alarminfos").html() != "") {
-            audio.play();
-        }
-    } else {
-        document.getElementById("myImage").src = "./../javascript/jquery-easyui-1.4.4/themes/icons/voicestop.png";
-        audio.muted = true;
-    }
-
-}
+};

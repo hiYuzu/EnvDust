@@ -3,9 +3,9 @@ package com.kyq.env.pojo;
 import com.kyq.env.util.DefaultArgument;
 
 public class Status extends BasePojo{
-	private int statusId = DefaultArgument.INT_DEFAULT;//递增id
-	private String statusCode;//状态编号
-	private String statusName;//状态名称
+	private int statusId = DefaultArgument.INT_DEFAULT;
+	private String statusCode;
+	private String statusName;
 	/**
 	 * @return the statusId
 	 */

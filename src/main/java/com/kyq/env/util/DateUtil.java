@@ -38,17 +38,7 @@ public class DateUtil {
      * 默认转换时间戳日期格式(yyyy-MM-dd HH:mm:ss)
      */
     public static final String DEFUALT_SECOND = "yyyy-MM-dd HH:mm:ss";
-
-    /**
-     * 默认转换时间戳日期格式(yyyy-MM-dd)
-     */
-    public static final String YEAR_MONTH = "yyyy-MM";
-
-    /**
-     * 序列日期时间类型
-     */
-    public static String DATA_TIME_SER = "yyyyMMddHHmmss";
-
+    
     /**
      * [功能描述]：将时间戳转换为标准时间
      */
@@ -126,14 +116,7 @@ public class DateUtil {
     }
 
     /**
-     * <p>
      * [功能描述]：按照数据类型递增时间
-     * </p>
-     *
-     * @param datetime
-     * @return
-     * @author 王垒, 2016年3月30日下午3:08:50
-     * @since EnvDust 1.0.0
      */
     public static Timestamp getAddTime(Timestamp timestamp, String dataType) {
         if (timestamp != null && dataType != null && !dataType.isEmpty()) {
@@ -165,31 +148,7 @@ public class DateUtil {
     }
 
     /**
-     * <p>[功能描述]：取得某月天数</p>
-     *
-     * @param year
-     * @param month
-     * @return
-     * @author 王垒, 2017年10月10日下午2:13:29
-     * @since envdust 1.0.0
-     */
-    public static int getMonthDays(int year, int month) {
-        Calendar a = Calendar.getInstance();
-        a.set(Calendar.YEAR, year);
-        a.set(Calendar.MONTH, month);
-        a.set(Calendar.DATE, 1);//把日期设置为当月第一天
-        a.roll(Calendar.DATE, -1);//日期回滚一天，也就是最后一天
-        int maxDate = a.get(Calendar.DATE);
-        return maxDate;
-    }
-
-    /**
-     * <p>[功能描述]：StringToCalendar</p>
-     *
-     * @param dateTime
-     * @return
-     * @author 王垒, 2017年10月10日下午2:43:06
-     * @since envdust 1.0.0
+     * [功能描述]：StringToCalendar
      */
     public static Calendar StringToCalendar(String dateTime) {
         try {
@@ -201,28 +160,6 @@ public class DateUtil {
         } catch (Exception e) {
             logger.error(LOG + ":" + "转换日期失败，失败原因：" + e.getMessage());
             return null;
-        }
-    }
-
-    /**
-     * <p>[功能描述]：获取月内天数</p>
-     *
-     * @param dateString
-     * @return
-     * @author 王垒, 2018年5月18日下午3:56:30
-     * @since EnvDust 1.0.0
-     */
-    public static int getDaysOfMonth(String dateString) {
-        try {
-            SimpleDateFormat sdf = new SimpleDateFormat(DEFUALT_TIME);
-            String dstr = dateString;
-            Date date = sdf.parse(dstr);
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(date);
-            return calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
-        } catch (Exception e) {
-            logger.error(LOG + ":" + "获取月内天数失败，失败原因：" + e.getMessage());
-            return 0;
         }
     }
 
