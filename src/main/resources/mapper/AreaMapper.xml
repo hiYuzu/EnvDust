@@ -7,11 +7,6 @@
 		<result property="levelName" column="level_name" />
 		<result property="levelFlag" column="level_flag" />
 	</resultMap>
-	<!-- <resultMap type="com.kyq.env.pojo.AreaB" id="parentAreaResultMap"> 
-		<id property="areaId" column="area_id" /> <result property="areaName" column="area_name" 
-		/> <result property="areaPath" column="area_path_b" /> <result property="optUser" 
-		column="opt_user_b" /> <result property="optTime" column="opt_time_b" /> 
-		</resultMap> -->
 	<resultMap type="com.kyq.env.pojo.Area" id="areaResultMap">
 		<id property="areaId" column="area_id" />
 		<result property="areaName" column="area_name" />
@@ -20,8 +15,6 @@
 		<result property="cityId" column="city_id" />
 		<result property="optUser" column="opt_user" />
 		<result property="optTime" column="opt_time" />
-		<!-- 级联组织表 <association property="parentArea" column="parent_id" javaType="com.kyq.env.pojo.Area" 
-			resultMap="com.kyq.env.dao.IAreaDao.parentAreaResultMap"></association> -->
 		<association property="areaLevel" column="level_id"
 			javaType="com.kyq.env.pojo.AreaLevel" resultMap="com.kyq.env.dao.IAreaDao.areaLevelResultMap"></association>
 	</resultMap>
