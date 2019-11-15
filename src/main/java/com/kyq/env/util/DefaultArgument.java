@@ -156,11 +156,6 @@ public class DefaultArgument {
     public static int RECENT_DAYS = 30;
 
     /**
-     * 一度等于111322.2222米
-     */
-    public static double ONE_DEGREE = 111322.2222;
-
-    /**
      * 请求天气正确编码:ok
      */
     public static final String HE_OK = "ok";
