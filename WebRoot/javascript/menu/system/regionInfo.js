@@ -159,7 +159,7 @@ function editRegionFunc(title, icon, action) {
 		resizable : true,
 		closed : true,
 		content : '<form id="frmdialogModel" class="config-form" style="width:400px;"></form>'
-			+'<a href="../files/china-city-list.txt" target="_blank" style="margin-left:35px;width:360px;">备注：天气城市编码可用来查询当地天气情况</a>',
+			+'<a href="https://where.heweather.com/index.html" target="_blank" style="margin-left:35px;width:360px;">备注：天气城市编码可用来查询当地天气情况</a>',
 		buttons : [ {
 			text : "确定",
 			iconCls : "icon-ok",

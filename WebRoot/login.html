@@ -26,12 +26,7 @@
 		</div>
 		<div
 			style="width:100%;background: url(images/loginbg.png) repeat-x #ffffff;z-index:-1">
-		    <div class="twobar">
-			   <a href="javascript:;" class="twobar-item twobar-item-android"><span class="twobar-layer"></span></a>
-			</div>
-			
 			<div id="home">
-				
 				<img src="images/login.png" id="car" alt="公司Logo" style="z-index:2"/>
 				<form id="Form1" action="./UserController/toMain" method="post" onSubmit="return ajaxVaild()">
 					<div id="info">
@@ -70,7 +65,7 @@
 				$("button").click();
 			}
 		};
-		//设置版权所有时间为当前年份
+		//设置时间为当前年份
 		var currentdate = new Date();
 		var currentyear = currentdate.getFullYear();
 		document.getElementById("currentyear").innerHTML = currentyear;

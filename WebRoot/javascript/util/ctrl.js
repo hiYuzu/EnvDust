@@ -24,8 +24,6 @@ function createValidatebox(params){
            + '>' 
 			+ '<label for="' + params.name +'" style="font-size:12px;">' 
 			+ params.title 
-			/*+ (params.help ? '<a title="' + params.help + '" class="easyui-tooltip">' 
-			+ '<img src="easyui/themes/icons/tip.png" style="margin-bottom:-3px;margin-left:3px;"/></a>' : '') */
 			+ '</label>'
 			+ '<input class="easyui-validatebox input-border" '
 			+ (params.isPwd ? 'type="password" ' : 'type="text" ' ) 
@@ -41,7 +39,6 @@ function createValidatebox(params){
 	return tpl;
 }
 
-/* ---------- 勾选框<begin> ---------- */
 /**
  * 函数功能：绘制CheckBox
  **/
@@ -52,44 +49,6 @@ function createCheckbox(params){
 			+ ' id="' + params.name + '" name="' + params.name 
 			+ (params.checked ? '" checked="checked' : '')
 			+ '" />' + params.title + '</div>';
-	return tpl;
-}
-/**
- * 函数功能：序列化checkbox表单
- **/
-function getCheckboxArray(domId){
-	var arr = [];
-	$(domId).find("input[type='checkbox']").each(function(){
-		arr.push({
-			"name" : $(this).attr("name"),
-			"value" : $(this).attr("checked") ? "1" : "0"
-		});
-	});
-	return arr;
-}
-/* ---------- 勾选框<end> ---------- */
-
-/**
- * 函数功能：绘制NumberBox
- **/
-function createNumberbox(params){
-	var tpl = '<div id="' + params.name +'_div"' + (params.hidden ? 'style=display:none;' : '') + '>' 
-			+ '<label for="' + params.name +'" style="font-size:12px;">' 
-			+ params.title 
-		/*	+ (params.help ? '<a title="' + params.help + '" class="easyui-tooltip">' 
-			+ '<img src="easyui/themes/icons/tip.png" style="margin-bottom:-3px;margin-left:3px;"/></a>' : '') */
-			+ '</label>'
-			+ '<input class="easyui-numberbox input-border" type="text" ' 
-			+ 'id="' + params.name + '" name="' + params.name
-			+ (params.value==undefined ? '' : '"value="' + params.value)
-			+ (params.readonly ? '" readonly=true' : '"')
-			+ ' title="'
-			+ (params.tooltip ? params.tooltip : tooltipInfo(params.valid))
-			+ '" data-options="' 
-			+ (params.valid ? params.valid+',' : '')
-			+ (params.noBlank ? 'required:true,' : '')
-			+ (params.prefix ? ('prefix:\''+params.prefix+'\'') : '')
-			+ '" style="width:150px;" /></a></div>';
 	return tpl;
 }
 
@@ -106,8 +65,6 @@ function createCombobox(params){
 	var tpl = '<div id="' + params.name +'_div" style="height:20px;">' 
 			+ '<label for="' + params.name +'" style="font-size:12px;">' 
 			+ params.title 
-			/*+ (params.help ? '<a title="' + params.help + '" class="easyui-tooltip">' 
-			+ '<img src="easyui/themes/icons/tip.png" style="margin-bottom:-3px;margin-left:3px;"/></a>' : '') */
 			+ '</label>'
 			+ '<input class="easyui-combobox"' 
 			+ 'id="' + params.name + '" name="' + params.name
@@ -135,8 +92,6 @@ function createComboboxEdit(params){
 	var tpl = '<div id="' + params.name +'_div" style="height:20px;">' 
 			+ '<label for="' + params.name +'" style="font-size:12px;">' 
 			+ params.title 
-			/*+ (params.help ? '<a title="' + params.help + '" class="easyui-tooltip">' 
-			+ '<img src="easyui/themes/icons/tip.png" style="margin-bottom:-3px;margin-left:3px;"/></a>' : '') */
 			+ '</label>'
 			+ '<input class="easyui-combobox"' 
 			+ 'id="' + params.name + '" name="' + params.name
@@ -164,22 +119,6 @@ function createDatetimebox(params){
 			+ (params.type ? ',validType:\'' + params.type + '\'' : '')
 			+ (params.value ? '"value=\'' + params.value + '\'"' : '')
 			+ '" style="width:154px;" /></div>';
-	return tpl;
-}
-
-/**
- * 函数功能:绘制label
- */
-function createLabel(params){
-	var tpl = '<div id="' + params.name +'_div" '
-		+ (params.ishiden ? 'style="display:none" ' : '' )
-    + '>' 
-	+ '<label  style="font-size:12px;'
-	+ (params.color ? 'color:' + params.color : 'black')
-	+'">' 
-	+ params.title 
-	+ '</label>'
-	+'</div>';
 	return tpl;
 }
 
@@ -298,27 +237,6 @@ function ajaxLoadPartEnd(){
     $("#ajaxloader4").remove();
 }
 
-/*
- * 函数功能：获取cookie
- */
-function getCookieValue(name){  
-    var name = escape(name);  
-    var allcookies = document.cookie;  
-    name += "=";  
-    var pos = allcookies.indexOf(name);  
-    if(pos != -1){  
-        var start = pos + name.length;  
-        var end = allcookies.indexOf(";",start);  
-        if(end == -1){  
-            end = allcookies.length;  
-        }  
-        var value = allcookies.substring(start,end);  
-        return unescape(value);  
-    } else{  
-        return "";  
-    }  
-}  
-
 //Ajax文件下载
 $.download = function(url, data, method){
 	if(url && data){
@@ -339,107 +257,6 @@ function guid(){
         return v.toString(16);
     });
 }
-//二分法
-function binarySearch(value,items,isFind){
-	var startIndex = 0, stopIndex = items.length-1, middle = Math.floor(stopIndex/2);
-	while(startIndex <= stopIndex){
-		var startRes = value.localeCompare(items[startIndex].number),
-			middleRes = value.localeCompare(items[middle].number),
-			stopRes = value.localeCompare(items[stopIndex].number);
-		if(startRes < 0){
-			return isFind ? null : startIndex;
-		}else if(startRes == 0){
-			return startIndex;
-		}else if(startRes == 1 && middleRes == -1){
-			stopIndex = middle - 1;
-		}else if(middleRes == 0){
-			return middle;
-		}else if(middleRes == 1 && stopRes == -1){
-			startIndex = middle + 1;
-		}else if(stopRes == 0){
-			return stopIndex;
-		}else if(stopRes == 1){
-			return isFind ? null : stopIndex + 1;
-		}
-		middle = Math.floor((stopIndex + startIndex)/2);
-	}
-}
-
-//日期转换为毫秒
-function dateToMillisecond(date,precision){
-	switch(precision){
-		case 'second':
-			var temp = date.match(/(\d+)-(\d+)-(\d+) (\d+):(\d+):(\d+)/);
-			return new Date(temp[1],parseInt(temp[2])-1,temp[3],temp[4],temp[5],temp[6]).getTime();
-		case 'millisecond':
-			var temp = date.match(/(\d+)-(\d+)-(\d+) (\d+):(\d+):(\d+).(\d+)/);
-			return new Date(temp[1],parseInt(temp[2])-1,temp[3],temp[4],temp[5],temp[6],temp[7]).getTime();
-		default:
-			break;
-	}
-}
-
-//将毫秒转换成xx天xx小时xx分xx秒格式的字符串
-function msecondTransform(msec){
-	msec /= 1000;
-	var day = Math.floor(msec / 3600 / 24), timeString = day ? day + '天' : '';
-	msec -= 24 * 3600 * day;
-	var timeObj = {"小时":Math.floor(msec / 3600),"分":Math.floor(msec / 60 % 60),"秒":msec % 60};
-	for(var key in timeObj){
-		if(timeObj[key]){
-			timeString += timeObj[key] + key;
-		}
-	}
-	return timeString;
-}
-
-/*
- * 格式化当前日期，含当前时分秒
- */
-function formatterDateHMS(date) {
-	var day = date.getDate() > 9 ? date.getDate() : "0" + date.getDate();
-	var month = (date.getMonth() + 1) > 9 ? (date.getMonth() + 1) : "0"
-			+ (date.getMonth() + 1);
-	var hour = date.getHours() > 9 ? date.getHours() : "0" + date.getHours();
-	var minute = date.getMinutes() > 9 ? date.getMinutes() : "0"
-			+ date.getMinutes();
-	var second = date.getSeconds() > 9 ? date.getSeconds() : "0"
-			+ date.getSeconds();
-	return date.getFullYear() + "-" + month + "-" + day + " " + hour + ":"
-			+ minute + ":" + second;
-}
-
-function GetDateStr(AddDayCount,flag) {
-	var dd = new Date();
-	var timestr = "";
-	dd.setDate(dd.getDate() + AddDayCount);// 获取AddDayCount天后的日期
-	var y = dd.getFullYear();
-	var m = (dd.getMonth() + 1) < 10 ? "0" + (dd.getMonth() + 1) : (dd
-			.getMonth() + 1);// 获取当前月份的日期，不足10补0
-	var d = dd.getDate() < 10 ? "0" + dd.getDate() : dd.getDate(); // 获取当前几号，不足10补0
-	if(flag==1){
-		timestr = y + "-" + m + "-" + d +" 23:59:59";
-	}else{
-		timestr = y + "-" + m + "-" + d +" 00:00:00";
-	}
-	return timestr
-}
-
-function GetMonthStr(AddMonthCount,flag) {
-	var dd = new Date();
-	var timestr = "";
-	dd.setMonth(dd.getMonth() + AddMonthCount);// 获取AddDayCount月后的日期
-	var y = dd.getFullYear();
-	var m = (dd.getMonth() + 1) < 10 ? "0" + (dd.getMonth() + 1) : (dd
-			.getMonth() + 1);// 获取当前月份的日期，不足10补0
-	var d = dd.getDate() < 10 ? "0" + dd.getDate() : dd.getDate(); // 获取当前几号，不足10补0
-	if(flag==1){
-		timestr = y + "-" + m + "-" + d +" 23:59:59";
-	}else{
-		timestr = y + "-" + m + "-" + d +" 00:00:00";
-	}
-	return timestr
-}
 
 /*
  *格式化当前日期（只有月日年）
@@ -448,28 +265,6 @@ function formatterDate(date){
 	var day=date.getDate()>9 ? date.getDate() : "0"+date.getDate();
 	var month=(date.getMonth()+1)>9 ? (date.getMonth()+1) : "0"+(date.getMonth()+1);
 	return date.getFullYear()+"-"+month+"-"+day;
-}
-
-/*
- *格式化当前日期（按格式进行）
- */
-function formatterNowDate(fmt) {
-    var currentTime = new Date(new Date().getTime())
-//    console.log(currentTime) // Wed Jun 20 2018 16:12:12 GMT+0800 (中国标准时间)
-    var o = {
-      'M+': currentTime.getMonth() + 1, // 月份
-      'd+': currentTime.getDate(), // 日
-      'h+': currentTime.getHours(), // 小时
-      'm+': currentTime.getMinutes(), // 分
-      's+': currentTime.getSeconds(), // 秒
-      'q+': Math.floor((currentTime.getMonth() + 3) / 3), // 季度
-      'S': currentTime.getMilliseconds() // 毫秒
-    }
-    if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (currentTime.getFullYear() + '').substr(4 - RegExp.$1.length))
-    for (var k in o) {
-      if (new RegExp('(' + k + ')').test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? (o[k]) : (('00' + o[k]).substr(('' + o[k]).length)))
-    }
-    return fmt;
 }
 
 /**

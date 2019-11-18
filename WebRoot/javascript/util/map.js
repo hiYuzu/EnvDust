@@ -673,9 +673,7 @@ function selectedSearchData() {
                     alarmList = [];
                     var mapCount = mapdata.length;
                     for (var i = 0; i < mapCount; i++) {
-                        var deviceCode = mapdata[i].deviceCode;
                         var point = new BMap.Point(mapdata[i].deviceX, mapdata[i].deviceY);
-//						gpspoints.push(point);
                         addMarker(point, mapdata[i]);//描点
 
                         /*----------------------新增：点击站点弹出panel显示详细信息-------------------------*/
@@ -707,7 +705,6 @@ function selectedSearchData() {
                     }
 
                     addMarkerClusterer(pointArray);
-                    //if(station != null && station != undefined){
                     var view = map.getViewport(pointArray); //获取最佳视角
                     var zoom = view.zoom; //获取最佳视角的缩放层级
                     if (zoom <= 4) {
@@ -741,10 +738,8 @@ function selectedSearchData() {
 
 /* ajax长链接方式，20s查询一次 */
 function selectedSearchDataConn() {
-    var station = null;
     var mapdata = null;
     var zsFlag = false;
-//	var gpspoints = [];
     var alarmInfo = "";
     if (mapajaxconn > 0) {// 始终保持一个连接
         return false;
@@ -1556,10 +1551,6 @@ function addMonitorStation(point, stationpoints) {
         "deviceY": lat.toFixed(6)
     };
     $("#devfrmdialogModel").form("load", selectrow);
-    //}
-    //}
-    /*var convertor = new BMap.Convertor();
-    convertor.translate(stationpoints, 1, 5, translateCallback);*/
 }
 
 /* 更新监测站位置 */
@@ -1730,8 +1721,6 @@ function initParamMap() {
         },
         async: false,
         success: function (json) {
-//			orgIdDataMap[0] = "---请选择---";// orgID对应的键值
-//			orgValueMap = 0; // orgdata默认的值
             if (json.total > 0) {
                 for (var i = 0; i < json.total; i++) {
                     orgIdDataMap[json.rows[i].id] = json.rows[i].name;
@@ -1843,12 +1832,6 @@ function getMapMonitorThings() {
 function getMapMonitorAlarmLine(deviceCode) {
     var stationlist = [];
     stationlist.push(deviceCode);
-//	var selectedStation = $('#mytree').tree('getSelected');
-//	if(selectedStation!=null && selectedStation!=undefined){
-//		stationlist.push(deviceCode);
-//	}else{
-//		stationlist.push(deviceCode);
-//	}
     if (monitorslist != undefined) {
         $.ajax({
             url: "../DeviceAlarmSetController/getDeviceAlarmLineThgName",

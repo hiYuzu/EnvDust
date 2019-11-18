@@ -1,8 +1,6 @@
 /*********************************
  * 功能：GIS客户端登录界面的操作  
- * 日期：2016-3-22
  ********************************/
-var userNameTest = "";
 $(function() {
 	var UA = navigator.userAgent.toLowerCase();
 	// 判断浏览器类型,只支持谷歌、火狐、opera和IE10以上
@@ -15,9 +13,7 @@ $(function() {
 		browserFlag = true;
 	}else if (UA.indexOf("safari") != -1) {// 苹果浏览器
 		browserFlag = true;
-	}/*else if(UA.indexOf('compatible') != -1){
-		browserFlag = true;
-	}*/
+	}
 	else if ("ActiveXObject" in window) {// ie浏览器
 		if (!-[ 1, ] == false) {// ie10、ie11
 			browserFlag = true;
@@ -123,35 +119,6 @@ function setCookie(name,value,hours,path){
 		path = path =="" ? "":";path=" + path;  
 		_expires = (typeof hours) == "string" ? "": ";expires=" + expires.toUTCString();  
 		document.cookie = name + "=" + value + _expires + path;  
-/*		alert("---cookie:"+i+"c" + document.cookie);  
-*/	}
+	}
 	i++;
-}  
-function deleteCookie(name,path){  
-    var name = escape(name);  
-    var expires = new Date(0);  
-    path = path == "" ? "" : ";path=" + path;  
-    document.cookie = name + "=" + ";expires=" + expires.toUTCString() + path;  
-}  
-// 关闭浏览器后数据不会消失  
-function updatePageCountNoSession(){  
-    // localStorage.pagecount与localStorage.getItem("pagecount")在此处均可用，  
-    // 不同的是：若pagecount不存在，前者返回undefined，后者返回null。  
-    if(localStorage.pagecount){  
-        localStorage.pagecount = Number(localStorage.pagecount) + 1;  
-    } else{  
-        localStorage.pagecount = 1;  
-        // 取值或设置值的两种方式  
-        // localStorage.setItem("pagecount",1);  
-    }  
-    console.log("---localStorage pagecount:" + localStorage.getItem("pagecount"));  
-}  
-// 关闭网页后数据会消失  
-function updatePageCountWithSession(){  
-    if(sessionStorage.pagecount){  
-        sessionStorage.pagecount = Number(sessionStorage.pagecount) + 1;  
-    } else{  
-        sessionStorage.pagecount = 1;  
-    }  
-    console.log("---sessionStorage pagecount:" + sessionStorage.pagecount);   
-}  
+}

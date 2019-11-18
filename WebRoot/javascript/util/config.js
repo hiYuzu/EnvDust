@@ -14,7 +14,7 @@ function setLogoWeb(path){
 }
 
 /**
- * 加载web版主页logo
+ * 加载主页logo
  * @param path
  */
 function setMainLogoWeb(path){

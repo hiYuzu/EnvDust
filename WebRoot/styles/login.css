@@ -1,7 +1,5 @@
 /************************************
  * 功能：GIS客户端登录界面的样式表
- * 作者：whz
- * 日期：2016-3-18
  ************************************/
  @charset "utf-8";
 *{
@@ -127,15 +125,6 @@ img{
 	outline:none;
 	margin-top:5px;
 }
-/* #validateimg{
-	position:absolute;
-	height:35px;
-	width:70px;
-	z-index:999;
-	right:0;
-	border-left:1px solid #BBBBFF;
-	cursor: pointer;
-} */
 #idMsg,#pwdMsg{
 	position:absolute;
 	top:0; 
@@ -201,25 +190,4 @@ a {
 	clear: both;
 	visibility: hidden;
 }
-
-/*悬浮窗口*/
-.twobar-item,.twobar-layer{background:url(./../images/toolbar.png) no-repeat;}
-.twobar{	display:block;
-	position: fixed;
-	z-index: 999999999;
-	right:0px;
-	top: 34%;
-	cursor: pointer;
-	transition: all .3s ease;}/*假设网页宽度为1200px，导航条在右侧悬浮*/
-.twobar-item{display:block;width:52px;height:52px;margin-top:1px;-moz-transition:background-position 1s;-ms-transition:background-position 1s;-o-moz-transition:background-position 1s;-webkit-moz-transition:background-position 1s;transition:background-position 1s;}
-.twobar-item:hover .twobar-layer{opacity:1;filter:alpha(opacity=100);transform:scale(1);-webkit-transform:scale(1);-moz-transform:scale(1);-ms-transform:scale(1);-o-transform:scale(1);}
-.twobar-item-android{background-position:0 -426px;}
-.twobar-item-android:hover{background-position:0 -488px;}
-.twobar-item-android .twobar-layer{height:212px;background-position:0 0;}
-.twobar-item-apple{background-position:0 -550px;}
-.twobar-item-apple:hover{background-position:0 -612px;}
-.twobar-item-apple .twobar-layer{height:194px;background-position:0 -222px;}
-.twobar-layer{position:absolute;right:46px;bottom:-10px;width:172px;opacity:0;filter:alpha(opacity=0);
-transform-origin: 95% 95%;-moz-transform-origin: 95% 95%;-ms-transform-origin: 95% 95%;-o-transform-origin: 95% 95%;-webkit-transform-origin: 95% 95%;transform:scale(0.01);
--moz-transform:scale(0.01);-ms-transform:scale(0.01);-o-transform:scale(0.01);-webkit-transform:scale(0.01);transition:all 1s;-moz-transition:all 1s;-ms-transition:all 1s;-o-transition:all 1s;-webkit-transition:all 1s;}
 
