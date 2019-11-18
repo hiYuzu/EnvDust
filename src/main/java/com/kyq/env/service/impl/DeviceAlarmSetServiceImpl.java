@@ -11,16 +11,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * <p>
  * [功能描述]：报警门限服务接口实现类
- * </p>
- * <p>
- * Copyright (c) 1993-2016 TCB Corporation
- * </p>
  *
- * @author 王垒
- * @version 1.0, 2016年6月1日上午10:38:25
- * @since EnvDust 1.0.0
+ * @author kyq
  */
 @Service("deviceAlarmSetService")
 @Transactional(rollbackFor = Exception.class)

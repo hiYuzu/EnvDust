@@ -62,9 +62,4 @@ public interface IAreaService {
      * [功能描述]：查询地方/城市ID
      */
     List<String> getAreaCityId();
-
-    /**
-     * 获取第四级区域信息
-     */
-    List<Map<String, String>> queryFourthAreaInfo();
 }

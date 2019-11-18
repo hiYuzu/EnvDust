@@ -103,9 +103,4 @@ public class AreaServiceImpl implements IAreaService {
         return areaDao.getAreaCityId();
     }
 
-    @Override
-    public List<Map<String, String>> queryFourthAreaInfo() {
-        return areaDao.queryFourthAreaInfo();
-    }
-
 }

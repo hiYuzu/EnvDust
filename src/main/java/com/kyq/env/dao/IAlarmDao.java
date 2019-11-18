@@ -6,16 +6,9 @@ import com.kyq.env.pojo.Alarm;
 import org.apache.ibatis.annotations.Param;
 
 /**
- * <p>
  * [功能描述]：报警数据库操作接口
- * </p>
- * <p>
- * Copyright (c) 1993-2016 TCB Corporation
- * </p>
  *
- * @author 王垒
- * @version 1.0, 2016年4月26日下午1:48:21
- * @since EnvDust 1.0.0
+ * @author kyq
  */
 public interface IAlarmDao {
 

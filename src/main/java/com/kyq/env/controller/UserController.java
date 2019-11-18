@@ -12,12 +12,9 @@ import com.kyq.env.pojo.Oranization;
 import com.kyq.env.pojo.User;
 import com.kyq.env.util.DateUtil;
 import com.kyq.env.util.DefaultArgument;
-import com.kyq.env.util.DesUtil;
 import com.kyq.env.util.SHAUtil;
-import com.kyq.env.service.ISysflagService;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -49,11 +46,6 @@ public class UserController {
      */
     @Resource
     private IUserService userService;
-    /**
-     * 声明常量表服务
-     */
-    @Resource
-    private ISysflagService sysflagService;
 
     /**
      * 声明资源文件

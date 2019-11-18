@@ -319,12 +319,4 @@
 			) TEMP
 	</select>
 
-	<select id="queryFourthAreaInfo" resultType="java.util.Map">
-		SELECT
-		area_id AS areaId,
-		area_name AS areaName
-		FROM tbl_area
-		WHERE level_id = 4
-	</select>
-
 </mapper>

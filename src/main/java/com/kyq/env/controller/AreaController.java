@@ -214,16 +214,6 @@ public class AreaController {
     }
 
     /**
-     * 获取第四级区域信息
-     * @return list
-     */
-    @RequestMapping("/queryFourthAreaInfo")
-    @ResponseBody
-    public List<Map<String, String>> queryFourthAreaInfo() {
-        return areaService.queryFourthAreaInfo();
-    }
-
-    /**
      * [功能描述]：将Area转换成AreaModel
      */
     private Area ConvertArea(AreaModel areaModel, HttpSession httpsession) {

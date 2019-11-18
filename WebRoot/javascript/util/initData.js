@@ -252,18 +252,10 @@ function getUserPower() {
                     }
                     htmlArr.push("</dl>");
                 }
-                if(json.filelist){
-                    htmlArr.push("<dl>");
-                    htmlArr.push('<dt>文件存储</dt>');
-                    if (json.filelist) {
-                        htmlArr.push('<dd><a class="link" href="javascript:void(0)" onclick="$.getScript(\'../javascript/menu/query/filelist.js\');">文件上传下载列表</a></dd>');
-                    }
-                    htmlArr.push("</dl>");
-                }
                 htmlArr.push('</div></div>');
             }
             if (json.heatMap) {//热力分布图
-                navDom.append('<li class="" _t_nav="heatMap"><h2><a href="javascript:void(0)">分布溯源</a></h2></li>');
+                navDom.append('<li class="" _t_nav="heatMap"><h2><a href="javascript:void(0)">区域气象</a></h2></li>');
                 htmlArr.push('<div id="heatMap" class="nav-down-menu menu-1" style="display: none;" _t_nav="heatMap">');
                 htmlArr.push('<div class="navigation-down-inner">');
                 if (json.areaWeatherMap) {
@@ -271,9 +263,6 @@ function getUserPower() {
                 }
                 if (json.areaPollutionMap) {
                     htmlArr.push('<dl><dd><a class="link" href="javascript:void(0)" onclick="$.getScript(\'../javascript/menu/heatMap/areaPollutionMap.js\');">区域污染分布图</a></dd></dl>');
-                }
-                if (json.areaPollutionSource) {
-                    htmlArr.push('<dl><dd><a class="link" href="javascript:void(0)" onclick="$.getScript(\'../javascript/menu/heatMap/areaPollutionSource.js\');">区域污染溯源</a></dd></dl>');
                 }
                 htmlArr.push('</div></div>');
             }

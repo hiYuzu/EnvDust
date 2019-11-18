@@ -8,8 +8,6 @@ import com.kyq.env.model.ThermodynamicModel;
 import com.kyq.env.pojo.Device;
 import org.apache.ibatis.annotations.Param;
 
-import com.kyq.env.model.LocationModel;
-
 /**
  * [功能描述]：设备dao
  *
@@ -46,11 +44,6 @@ public interface IDeviceDao {
      */
     int getDeviceCodeExist(@Param("deviceid") int userid,
                            @Param("devicecode") String devicecode);
-
-    /**
-     * [功能描述]：查询设备MN号
-     */
-    String getDeviceMn(@Param("deviceCode") String deviceCode);
 
     /**
      * [功能描述]：查询设备MN号是都存在
@@ -145,12 +138,6 @@ public interface IDeviceDao {
             @Param("dataType") String dataType,
             @Param("thingCode") String thingCode,
             @Param("selectTime") Timestamp selectTime);
-
-    List<LocationModel> getDeviceTvocData(
-            @Param("areaId") int areaId,
-            @Param("beginTime") String beginTime,
-            @Param("endTime") String endTime
-    );
 
     List<String> getDeviceCodes();
 

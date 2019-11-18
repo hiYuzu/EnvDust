@@ -72,9 +72,4 @@ public interface IAreaDao {
 	 * [功能描述]：存在关联区域或设备个数
 	 */
 	int getRelationCount(@Param("areaId") int areaId);
-
-	/**
-	 * 获取第四级区域信息
-	 */
-	List<Map<String, String>> queryFourthAreaInfo();
 }

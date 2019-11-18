@@ -75,14 +75,6 @@
         <result property="deviceName" column="device_name"/>
     </resultMap>
 
-    <resultMap type="com.kyq.env.model.LocationModel" id="locationModelResultMap">
-        <result property="code" column="code"/>
-        <result property="lng" column="lng"/>
-        <result property="lat" column="lat"/>
-        <result property="val" column="val"/>
-        <result property="info" column="info"/>
-    </resultMap>
-
     <resultMap type="com.kyq.env.model.AreaDeviceValueModel" id="areaDeviceValueResultMap">
         <result property="areaId" column="area_id"/>
         <result property="areaName" column="area_name"/>
@@ -430,15 +422,6 @@
         </if>
     </select>
 
-    <!-- 查询设备MN号 -->
-    <select id="getDeviceMn" resultType="java.lang.String">
-		SELECT
-			device_mn
-		FROM tbl_device td
-		WHERE td.device_code = #{deviceCode,jdbcType = VARCHAR}
-		LIMIT 0,1
-	</select>
-
     <!-- 查询设备MN号是都存在 -->
     <select id="getDeviceMnExist" resultType="java.lang.Integer">
         SELECT
@@ -691,28 +674,6 @@
             </otherwise>
         </choose>
     </select>
-
-    <!-- 获取某个时间段类的 TVOC 数据值。每个设备获取离endTime最近的一条 -->
-    <select id="getDeviceTvocData" resultMap="locationModelResultMap">
-        SELECT
-         td.device_x AS lng,
-         td.device_y AS lat,
-         tdd.data_value AS val,
-         td.device_code AS code,
-         td.device_name AS info
-        FROM
-         tbl_therm_data tdd
-         LEFT JOIN envdust.tbl_device td ON tdd.device_code = td.device_code
-        WHERE
-         thing_code = 'a34002'
-         AND area_id = #{areaId}
-
-         AND tdd.data_type = 2061
-         AND tdd.data_time BETWEEN #{beginTime} AND #{endTime}
-
-        GROUP BY
-         tdd.device_code
-	</select>
     
     <select id="getDeviceCodes" resultType="java.lang.String">
         SELECT DISTINCT
