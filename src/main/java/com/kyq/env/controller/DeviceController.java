@@ -26,7 +26,6 @@ import com.kyq.env.model.MapMonitorData;
 import com.kyq.env.model.ResultAjaxPushModel;
 import com.kyq.env.model.ResultListModel;
 import com.kyq.env.model.ResultModel;
-import com.kyq.env.model.ThermodynamicModel;
 import com.kyq.env.model.TreeModel;
 import com.kyq.env.model.UserModel;
 import com.kyq.env.service.IAlarmService;
@@ -740,62 +739,6 @@ public class DeviceController {
             deviceModel.setOptTime(DateUtil.TimestampToString(device.getOptTime(), DateUtil.DATA_TIME));
         }
         return deviceModel;
-    }
-
-    /**
-     * [功能描述]：获取热力图显示数据
-     */
-    @RequestMapping(value = "/getThermodynamicData", method = {RequestMethod.POST})
-    @ResponseBody
-    public Map<String, List<ThermodynamicModel>> getThermodynamicData(
-            @RequestParam(value = "projectId", required = false) String projectId,
-            @RequestParam(value = "list[]") List<String> list, String levelflag,
-            String dataType, String thingCode, String beginTime, String endTime, boolean wFlag,
-            HttpSession httpsession) {
-        Map<String, List<ThermodynamicModel>> mapList = new TreeMap<String, List<ThermodynamicModel>>();
-        String usercode = null;
-        UserModel loginuser = (UserModel) httpsession.getAttribute(DefaultArgument.LOGIN_USER);
-        if (loginuser != null) {
-            usercode = loginuser.getUserCode();
-        }
-        if (list != null && list.size() > 0) {
-            try {
-                if (DefaultArgument.NONE_DEFAULT.equals(list.get(0))) {
-                    return mapList;
-                } else {
-                    List<String> listdevicecode = new ArrayList<String>();
-                    List<Integer> listareaid = new ArrayList<Integer>();
-                    if (levelflag != null && !levelflag.isEmpty()) {
-                        listareaid = treeService.getAuthorityBottomArea(projectId,
-                                listareaid, Integer.valueOf(list.get(0)), usercode);
-                    }
-                    if (String.valueOf(DefaultArgument.INT_DEFAULT).equals(list.get(0))) {
-                        List<TreeModel> listDev = treeService.getAuthorityDevices(usercode, projectId, DefaultArgument.INT_DEFAULT, null, null, null);
-                        for (TreeModel treeModel : listDev) {
-                            listdevicecode.add(treeModel.getId());
-                        }
-                    } else if (listareaid != null && listareaid.size() > 0) {
-                        for (Integer areaid : listareaid) {
-                            List<TreeModel> listDev = treeService.getAuthorityDevices(usercode, projectId, areaid, null, null, null);
-                            for (TreeModel treeModel : listDev) {
-                                listdevicecode.add(treeModel.getId());
-                            }
-                        }
-                    } else {
-                        for (String temp : list) {
-                            listdevicecode.add(temp);
-                        }
-                    }
-                    if (listdevicecode == null || listdevicecode.size() == 0) {
-                        return mapList;
-                    }
-                    mapList = deviceService.getThermodynamic(listdevicecode, dataType, thingCode, beginTime, endTime, wFlag);
-                }
-            } catch (Exception e) {
-                logger.error(LOG + ":查询热力图信息失败，信息为：" + e.getMessage());
-            }
-        }
-        return mapList;
     }
 
     /**

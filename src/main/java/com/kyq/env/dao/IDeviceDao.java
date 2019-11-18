@@ -4,7 +4,6 @@ import java.sql.Timestamp;
 import java.util.List;
 
 import com.kyq.env.model.MapDeviceModel;
-import com.kyq.env.model.ThermodynamicModel;
 import com.kyq.env.pojo.Device;
 import org.apache.ibatis.annotations.Param;
 
@@ -105,16 +104,6 @@ public interface IDeviceDao {
     String getAreaName(@Param("deviceCode") String deviceCode);
 
     /**
-     * [功能描述]：获取设备热力图信息（分表数据）
-     */
-    List<ThermodynamicModel> getThermodynamic(
-            @Param("dbName") String dbName,
-            @Param("deviceCode") String deviceCode,
-            @Param("dataType") String dataType,
-            @Param("thingCode") String thingCode,
-            @Param("selectTime") Timestamp selectTime);
-
-    /**
      * [功能描述]：更新设备状态
      */
     int updateDeviceStatus(
@@ -128,16 +117,6 @@ public interface IDeviceDao {
             @Param("deviceCode") String deviceCode,
             @Param("deviceX") String deviceX,
             @Param("deviceY") String deviceY);
-
-    /**
-     * [功能描述]：获取指定时间物质的数值
-     */
-    String getDeviceAppointValue(
-            @Param("dbName") String dbName,
-            @Param("deviceCode") String deviceCode,
-            @Param("dataType") String dataType,
-            @Param("thingCode") String thingCode,
-            @Param("selectTime") Timestamp selectTime);
 
     List<String> getDeviceCodes();
 

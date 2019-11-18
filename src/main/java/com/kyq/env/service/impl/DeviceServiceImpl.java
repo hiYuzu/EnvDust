@@ -8,13 +8,10 @@ import javax.annotation.Resource;
 import com.kyq.env.config.Dom4jConfig;
 import com.kyq.env.dao.IDeviceDao;
 import com.kyq.env.model.MapDeviceModel;
-import com.kyq.env.model.ThermodynamicModel;
 import com.kyq.env.pojo.Device;
 import com.kyq.env.service.IDeviceService;
 import com.kyq.env.util.DateUtil;
-import com.kyq.env.util.DefaultArgument;
 import com.kyq.env.util.EnumUtil;
-import com.kyq.env.util.SortListUtil;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -148,82 +145,6 @@ public class DeviceServiceImpl implements IDeviceService {
     @Override
     public String getDeviceName(String deviceCode) {
         return deviceDao.getDeviceName(deviceCode);
-    }
-
-    @Override
-    public Map<String, List<ThermodynamicModel>> getThermodynamic(List<String> listDevCode,
-                                                                  String dataType, String thingCode, String beginTime, String endTime, boolean wFlag) {
-        Map<String, List<ThermodynamicModel>> listMap = new TreeMap<String, List<ThermodynamicModel>>();
-        try {
-            if (beginTime != null && !beginTime.isEmpty() && dataType != null && !dataType.isEmpty()
-                    && listDevCode != null && listDevCode.size() > 0) {
-                Timestamp beginStampTime = DateUtil.StringToTimestampSecond(beginTime);
-                Timestamp endStampTime = DateUtil.StringToTimestampSecond(endTime);
-                while (endStampTime.compareTo(beginStampTime) >= 0) {
-
-                    List<ThermodynamicModel> thermList = new ArrayList<ThermodynamicModel>();
-                    String dbName = dom4jConfig.getDataBaseConfig().getDbName();
-                    if (!DateUtil.isRecentlyData(beginStampTime, DefaultArgument.RECENT_DAYS)) {
-                        dbName = dom4jConfig.getDataBaseConfig().getDbOldName();
-                    }
-                    //总量
-                    double allCount = 0;
-                    for (String deviceCode : listDevCode) {
-                        List<ThermodynamicModel> tempList = deviceDao.getThermodynamic(dbName, deviceCode, dataType, thingCode, beginStampTime);
-                        if (tempList != null && tempList.size() > 0) {
-                            //获取风速风向
-                            for (ThermodynamicModel temp : tempList) {
-                                allCount += temp.getCount();
-                                if (wFlag) {
-                                    //获取风速
-                                    String wsValue = deviceDao.getDeviceAppointValue(dbName, temp.getDeviceCode(), dataType, DefaultArgument.PRO_2017_WS_CODE, beginStampTime);
-                                    temp.setWs(wsValue);
-                                    //获取风向
-                                    String wdValue = deviceDao.getDeviceAppointValue(dbName, temp.getDeviceCode(), dataType, DefaultArgument.PRO_2017_WD_CODE, beginStampTime);
-                                    temp.setWd(wdValue);
-                                }
-                                thermList.add(temp);
-                            }
-                        }
-                    }
-                    //赋值百分比
-                    if (thermList != null && thermList.size() > 0 && allCount > 0) {
-                        for (ThermodynamicModel temp : thermList) {
-                            temp.setRatio(String.format("%.2f", (temp.getCount() / allCount) * 100));
-                        }
-                    }
-                    //排序
-                    SortListUtil<ThermodynamicModel> sortList = new SortListUtil<ThermodynamicModel>();
-                    sortList.sortDouble(thermList, "getCount", "desc");
-
-                    String date_format = "";
-                    switch (dataType) {
-                        case "2011"://实时数据
-                        case "2051"://分钟数据
-                            date_format = "yyyy-MM-dd HH:mm";
-                            break;
-                        case "2031"://日数据
-                            date_format = "yyyy-MM-dd";
-                            break;
-                        case "2061"://小时数据
-                            date_format = "yyyy-MM-dd HH";
-                        default:
-                            break;
-                    }
-                    String timeKey = DateUtil.TimestampToString(beginStampTime, date_format);
-                    if (!listMap.containsKey(timeKey)) {
-                        listMap.put(timeKey, thermList);
-                    } else {
-                        listMap.remove(timeKey);
-                        listMap.put(timeKey, thermList);
-                    }
-                    beginStampTime = DateUtil.getAddTime(beginStampTime, dataType);
-                }
-            }
-        } catch (Exception e) {
-            logger.error(LOG + ":获取热力数据失败，错误信息为：" + e.getMessage());
-        }
-        return listMap;
     }
 
     @Override

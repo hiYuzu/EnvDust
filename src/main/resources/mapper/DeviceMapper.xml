@@ -67,14 +67,6 @@
         <result property="userTel" column="user_tel"/>
     </resultMap>
 
-    <resultMap type="com.kyq.env.model.ThermodynamicModel" id="thermodynamicResultMap">
-        <result property="lng" column="lng"/>
-        <result property="lat" column="lat"/>
-        <result property="count" column="count"/>
-        <result property="deviceCode" column="device_code"/>
-        <result property="deviceName" column="device_name"/>
-    </resultMap>
-
     <resultMap type="com.kyq.env.model.AreaDeviceValueModel" id="areaDeviceValueResultMap">
         <result property="areaId" column="area_id"/>
         <result property="areaName" column="area_name"/>
@@ -592,43 +584,6 @@
 		LIMIT 0,1
 	</select>
 
-    <!-- 获取设备热力图信息（分表数据） -->
-    <select id="getThermodynamic" resultMap="thermodynamicResultMap">
-        SELECT td.device_x AS lng,
-        td.device_y AS lat,
-        CASE WHEN tms.update_type = '2011' THEN tms.thing_rtd ELSE tms.thing_avg END AS count,
-        td.device_code,
-        td.device_name
-        FROM tbl_device td
-        INNER JOIN ${dbName}.${deviceCode} tms ON td.device_code = tms.device_code
-        AND tms.thing_code = #{thingCode}
-        AND update_type = #{dataType}
-        <choose>
-            <when test="dataType != null and dataType == '2011'">
-                AND DATE(tms.rtd_time) = DATE(#{selectTime})
-                AND HOUR(tms.rtd_time) = HOUR(#{selectTime})
-                AND MINUTE(tms.rtd_time) = MINUTE(#{selectTime})
-            </when>
-            <when test="dataType != null and dataType == '2051'">
-                AND DATE(tms.begin_time) = DATE(#{selectTime})
-                AND HOUR(tms.begin_time) = HOUR(#{selectTime})
-                AND MINUTE(tms.begin_time) = MINUTE(#{selectTime})
-            </when>
-            <when test="dataType != null and dataType == '2061'">
-                AND DATE(tms.begin_time) = DATE(#{selectTime})
-                AND HOUR(tms.begin_time) = HOUR(#{selectTime})
-            </when>
-            <when test="dataType != null and dataType == '2031'">
-                AND DATE(tms.begin_time) = DATE(#{selectTime})
-            </when>
-            <otherwise>
-            </otherwise>
-        </choose>
-        WHERE td.device_code = #{deviceCode}
-        ORDER BY tms.update_time DESC
-        LIMIT 0,1
-    </select>
-
     <!-- 更新设备状态 -->
     <update id="updateDeviceStatus">
 		UPDATE tbl_device
@@ -643,38 +598,6 @@
 		WHERE device_code = #{deviceCode}
 	</update>
 
-    <!-- 获取指定时间物质的数值 -->
-    <select id="getDeviceAppointValue" resultType="java.lang.String">
-        SELECT
-        CASE WHEN update_type = '2011' THEN thing_rtd ELSE thing_avg END
-        FROM
-        ${dbName}.${deviceCode}
-        WHERE
-        thing_code = #{thingCode}
-        AND update_type = #{dataType}
-        <choose>
-            <when test="dataType != null and dataType == '2011'">
-                AND DATE(rtd_time) = DATE(#{selectTime})
-                AND HOUR(rtd_time) = HOUR(#{selectTime})
-                AND MINUTE(rtd_time) = MINUTE(#{selectTime})
-            </when>
-            <when test="dataType != null and dataType == '2051'">
-                AND DATE(begin_time) = DATE(#{selectTime})
-                AND HOUR(begin_time) = HOUR(#{selectTime})
-                AND MINUTE(begin_time) = MINUTE(#{selectTime})
-            </when>
-            <when test="dataType != null and dataType == '2061'">
-                AND DATE(begin_time) = DATE(#{selectTime})
-                AND HOUR(begin_time) = HOUR(#{selectTime})
-            </when>
-            <when test="dataType != null and dataType == '2031'">
-                AND DATE(begin_time) = DATE(#{selectTime})
-            </when>
-            <otherwise>
-            </otherwise>
-        </choose>
-    </select>
-    
     <select id="getDeviceCodes" resultType="java.lang.String">
         SELECT DISTINCT
         device_code

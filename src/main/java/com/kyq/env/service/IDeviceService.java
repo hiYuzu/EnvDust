@@ -2,10 +2,8 @@ package com.kyq.env.service;
 
 import java.sql.Timestamp;
 import java.util.List;
-import java.util.Map;
 
 import com.kyq.env.model.MapDeviceModel;
-import com.kyq.env.model.ThermodynamicModel;
 import com.kyq.env.pojo.Device;
 
 /**
@@ -74,12 +72,6 @@ public interface IDeviceService {
      * [功能描述]：通过设备编码获取名称
      */
     String getDeviceName(String deviceCode);
-
-    /**
-     * [功能描述]：获取设备热力图信息
-     */
-    Map<String, List<ThermodynamicModel>> getThermodynamic(List<String> listDevCode, String dataType,
-                                                           String thingCode, String beginTime, String endTime, boolean wFlag);
 
     /**
      * [功能描述]：更新设备地图坐标

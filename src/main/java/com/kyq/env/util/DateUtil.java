@@ -116,38 +116,6 @@ public class DateUtil {
     }
 
     /**
-     * [功能描述]：按照数据类型递增时间
-     */
-    public static Timestamp getAddTime(Timestamp timestamp, String dataType) {
-        if (timestamp != null && dataType != null && !dataType.isEmpty()) {
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(timestamp);
-            switch (dataType) {
-                case "2011":
-                    calendar.add(Calendar.MINUTE, 1);
-                    break;
-                case "2031":
-                    calendar.add(Calendar.DATE, 1);
-                    break;
-                case "2051":
-                    calendar.add(Calendar.MINUTE, 10);
-                    break;
-                case "2061":
-                    calendar.add(Calendar.HOUR_OF_DAY, 1);
-                    break;
-                case "C001":
-                    calendar.add(Calendar.MONTH, 1);
-                    break;
-                default:
-                    break;
-            }
-
-            timestamp = new Timestamp(calendar.getTimeInMillis());
-        }
-        return timestamp;
-    }
-
-    /**
      * 获取当前时间 "yyyy-MM-dd HH:mm:ss"
      */
     public static String getSystemTime(long date) {

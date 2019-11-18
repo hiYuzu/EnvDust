@@ -159,20 +159,4 @@ public class DefaultArgument {
      * 请求天气正确编码:ok
      */
     public static final String HE_OK = "ok";
-
-    /**
-     * 212协议风向编码
-     */
-    public static final String PRO_2017_WD_CODE = "a01008";
-
-    /**
-     * 212协议风速编码
-     */
-    public static final String PRO_2017_WS_CODE = "a01007";
-
-    /**
-     * 上传文件夹名称
-     */
-    public static final String UPLOAD_FOLDER = "upload";
-
 }
