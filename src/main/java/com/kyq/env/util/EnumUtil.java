@@ -23,4 +23,15 @@ public class EnumUtil {
         PERMONTH,
         PERQUARTER
     }
+
+    /**
+     * 监测物
+     */
+    public enum Monitor {
+        a34002,
+        a34004,
+        a01011,
+        a01012,
+        a01013
+    }
 }

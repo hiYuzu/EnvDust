@@ -194,22 +194,6 @@ public class UserController {
         ResultModel resultModel = new ResultModel();
         if (usermodel != null) {
             try {
-                String userMaxEnc = sysflagService.getSysFlagValue("usermax");
-                if (!StringUtils.isEmpty(userMaxEnc)) {
-                    String userMaxDec = DesUtil.Decrypt(userMaxEnc, "xpm84228");
-                    if (!StringUtils.isEmpty(userMaxDec)) {
-                        int sysUserCount = userService.getCount(null, true);
-                        if (sysUserCount >= Double.valueOf(userMaxDec)) {
-                            resultModel.setResult(false);
-                            resultModel.setDetail("不能新增用户：系统用户已达上限！");
-                            return resultModel;
-                        }
-                    }
-                } else {
-                    resultModel.setResult(false);
-                    resultModel.setDetail("不能新增用户：未设置系统用户数！");
-                    return resultModel;
-                }
                 User user = new User();
                 user.setUserCode(usermodel.getUserCode());
                 if (userService.getCount(user, true) == 0) {

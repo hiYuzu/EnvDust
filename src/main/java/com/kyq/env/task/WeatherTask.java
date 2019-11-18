@@ -41,7 +41,7 @@ public class WeatherTask {
     @Resource
     private IAreaService areaService;
 
-//    @Scheduled(cron = "0 45 * * * ?")
+    @Scheduled(cron = "0 45 * * * ?")
     public void taskCycle() {
         try {
             List<String> listCityId = areaService.getAreaCityId();

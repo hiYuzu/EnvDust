@@ -1,10 +1,7 @@
 package com.kyq.env.service.impl;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 import javax.annotation.Resource;
 
@@ -16,6 +13,7 @@ import com.kyq.env.pojo.Device;
 import com.kyq.env.service.IDeviceService;
 import com.kyq.env.util.DateUtil;
 import com.kyq.env.util.DefaultArgument;
+import com.kyq.env.util.EnumUtil;
 import com.kyq.env.util.SortListUtil;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
@@ -122,7 +120,7 @@ public class DeviceServiceImpl implements IDeviceService {
                                  Timestamp beginAlarmTime, Timestamp endAlarmTime, String overAlarmId) {
         try {
             if (listDevCode != null && listDevCode.size() > 0) {
-                return deviceDao.getMapDeviceCount(listDevCode, statusCode, noStatusCode, beginAlarmTime, endAlarmTime,overAlarmId);
+                return deviceDao.getMapDeviceCount(listDevCode, statusCode, noStatusCode, beginAlarmTime, endAlarmTime, overAlarmId);
             } else {
                 return 0;
             }
@@ -137,7 +135,7 @@ public class DeviceServiceImpl implements IDeviceService {
                                              Timestamp beginAlarmTime, Timestamp endAlarmTime, String overAlarmId, int rowIndex, int rowCount) {
         try {
             if (listDevCode != null && listDevCode.size() > 0) {
-                return deviceDao.getMapDevice(listDevCode, statusCode, noStatusCode, beginAlarmTime, endAlarmTime, overAlarmId,rowIndex, rowCount);
+                return deviceDao.getMapDevice(listDevCode, statusCode, noStatusCode, beginAlarmTime, endAlarmTime, overAlarmId, rowIndex, rowCount);
             } else {
                 return null;
             }
@@ -241,5 +239,73 @@ public class DeviceServiceImpl implements IDeviceService {
     @Override
     public String getAreaName(String deviceCode) {
         return deviceDao.getAreaName(deviceCode);
+    }
+
+    @Override
+    public List<String> getDeviceCodes() {
+        return deviceDao.getDeviceCodes();
+    }
+
+    @Override
+    public void insertRtdDeviceData(List<String> deviceCodes) {
+        for (String deviceCode : deviceCodes) {
+            deviceDao.insertRtdDeviceData(deviceCode, EnumUtil.Monitor.a01011.toString(), getRandom(), null, DateUtil.getSystemTime(System.currentTimeMillis()), DateUtil.getSystemTime(System.currentTimeMillis()));
+            deviceDao.insertRtdDeviceData(deviceCode, EnumUtil.Monitor.a01012.toString(), getRandom(), null, DateUtil.getSystemTime(System.currentTimeMillis()), DateUtil.getSystemTime(System.currentTimeMillis()));
+            deviceDao.insertRtdDeviceData(deviceCode, EnumUtil.Monitor.a01013.toString(), getRandom(), null, DateUtil.getSystemTime(System.currentTimeMillis()), DateUtil.getSystemTime(System.currentTimeMillis()));
+            deviceDao.insertRtdDeviceData(deviceCode, EnumUtil.Monitor.a34002.toString(), getRandom(), getRandom(), DateUtil.getSystemTime(System.currentTimeMillis()), DateUtil.getSystemTime(System.currentTimeMillis()));
+            deviceDao.insertRtdDeviceData(deviceCode, EnumUtil.Monitor.a34004.toString(), getRandom(), getRandom(), DateUtil.getSystemTime(System.currentTimeMillis()), DateUtil.getSystemTime(System.currentTimeMillis()));
+        }
+        logger.info(LOG + " : 实时数据添加成功！");
+    }
+
+    @Override
+    public void insertMinuteDeviceData(List<String> deviceCodes) {
+        for (String deviceCode : deviceCodes) {
+            deviceDao.insertMinuteDeviceData(deviceCode, EnumUtil.Monitor.a01011.toString(), getRandom(), getMaxRandom(), getMinRandom(), null, null, null, getRandom(), getRandom(), DateUtil.getSystemTime(System.currentTimeMillis()), DateUtil.getSystemTime(System.currentTimeMillis()), DateUtil.getSystemTime(System.currentTimeMillis() + 600000));
+            deviceDao.insertMinuteDeviceData(deviceCode, EnumUtil.Monitor.a01012.toString(), getRandom(), getMaxRandom(), getMinRandom(), null, null, null, getRandom(), getRandom(), DateUtil.getSystemTime(System.currentTimeMillis()), DateUtil.getSystemTime(System.currentTimeMillis()), DateUtil.getSystemTime(System.currentTimeMillis() + 600000));
+            deviceDao.insertMinuteDeviceData(deviceCode, EnumUtil.Monitor.a01013.toString(), getRandom(), getMaxRandom(), getMinRandom(), null, null, null, getRandom(), getRandom(), DateUtil.getSystemTime(System.currentTimeMillis()), DateUtil.getSystemTime(System.currentTimeMillis()), DateUtil.getSystemTime(System.currentTimeMillis() + 600000));
+            deviceDao.insertMinuteDeviceData(deviceCode, EnumUtil.Monitor.a34002.toString(), getRandom(), getMaxRandom(), getMinRandom(), getRandom(), getMaxRandom(), getMinRandom(), getRandom(), getRandom(), DateUtil.getSystemTime(System.currentTimeMillis()), DateUtil.getSystemTime(System.currentTimeMillis()), DateUtil.getSystemTime(System.currentTimeMillis() + 600000));
+            deviceDao.insertMinuteDeviceData(deviceCode, EnumUtil.Monitor.a34004.toString(), getRandom(), getMaxRandom(), getMinRandom(), getRandom(), getMaxRandom(), getMinRandom(), getRandom(), getRandom(), DateUtil.getSystemTime(System.currentTimeMillis()), DateUtil.getSystemTime(System.currentTimeMillis()), DateUtil.getSystemTime(System.currentTimeMillis() + 600000));
+        }
+        logger.info(LOG + " : 分钟数据添加成功！");
+    }
+
+    @Override
+    public void insertHourDeviceData(List<String> deviceCodes) {
+        for (String deviceCode : deviceCodes) {
+            deviceDao.insertHourDeviceData(deviceCode, EnumUtil.Monitor.a01011.toString(), getRandom(), getMaxRandom(), getMinRandom(), null, null, null, getRandom(), getRandom(), DateUtil.getSystemTime(System.currentTimeMillis()), DateUtil.getSystemTime(System.currentTimeMillis()), DateUtil.getSystemTime(System.currentTimeMillis() + 3600000));
+            deviceDao.insertHourDeviceData(deviceCode, EnumUtil.Monitor.a01012.toString(), getRandom(), getMaxRandom(), getMinRandom(), null, null, null, getRandom(), getRandom(), DateUtil.getSystemTime(System.currentTimeMillis()), DateUtil.getSystemTime(System.currentTimeMillis()), DateUtil.getSystemTime(System.currentTimeMillis() + 3600000));
+            deviceDao.insertHourDeviceData(deviceCode, EnumUtil.Monitor.a01013.toString(), getRandom(), getMaxRandom(), getMinRandom(), null, null, null, getRandom(), getRandom(), DateUtil.getSystemTime(System.currentTimeMillis()), DateUtil.getSystemTime(System.currentTimeMillis()), DateUtil.getSystemTime(System.currentTimeMillis() + 3600000));
+            deviceDao.insertHourDeviceData(deviceCode, EnumUtil.Monitor.a34002.toString(), getRandom(), getMaxRandom(), getMinRandom(), getRandom(), getMaxRandom(), getMinRandom(), getRandom(), getRandom(), DateUtil.getSystemTime(System.currentTimeMillis()), DateUtil.getSystemTime(System.currentTimeMillis()), DateUtil.getSystemTime(System.currentTimeMillis() + 3600000));
+            deviceDao.insertHourDeviceData(deviceCode, EnumUtil.Monitor.a34004.toString(), getRandom(), getMaxRandom(), getMinRandom(), getRandom(), getMaxRandom(), getMinRandom(), getRandom(), getRandom(), DateUtil.getSystemTime(System.currentTimeMillis()), DateUtil.getSystemTime(System.currentTimeMillis()), DateUtil.getSystemTime(System.currentTimeMillis() + 3600000));
+        }
+        logger.info(LOG + " : 小时数据添加成功！");
+    }
+
+    @Override
+    public void insertDayDeviceData(List<String> deviceCodes) {
+        for (String deviceCode : deviceCodes) {
+            deviceDao.insertDayDeviceData(deviceCode, EnumUtil.Monitor.a01011.toString(), getRandom(), getMaxRandom(), getMinRandom(), null, null, null, DateUtil.getSystemTime(System.currentTimeMillis()), DateUtil.getSystemTime(System.currentTimeMillis()), DateUtil.getSystemTime(System.currentTimeMillis() + 86400000));
+            deviceDao.insertDayDeviceData(deviceCode, EnumUtil.Monitor.a01012.toString(), getRandom(), getMaxRandom(), getMinRandom(), null, null, null, DateUtil.getSystemTime(System.currentTimeMillis()), DateUtil.getSystemTime(System.currentTimeMillis()), DateUtil.getSystemTime(System.currentTimeMillis() + 86400000));
+            deviceDao.insertDayDeviceData(deviceCode, EnumUtil.Monitor.a01013.toString(), getRandom(), getMaxRandom(), getMinRandom(), null, null, null, DateUtil.getSystemTime(System.currentTimeMillis()), DateUtil.getSystemTime(System.currentTimeMillis()), DateUtil.getSystemTime(System.currentTimeMillis() + 86400000));
+            deviceDao.insertDayDeviceData(deviceCode, EnumUtil.Monitor.a34002.toString(), getRandom(), getMaxRandom(), getMinRandom(), getRandom(), getMaxRandom(), getMinRandom(), DateUtil.getSystemTime(System.currentTimeMillis()), DateUtil.getSystemTime(System.currentTimeMillis()), DateUtil.getSystemTime(System.currentTimeMillis() + 86400000));
+            deviceDao.insertDayDeviceData(deviceCode, EnumUtil.Monitor.a34004.toString(), getRandom(), getMaxRandom(), getMinRandom(), getRandom(), getMaxRandom(), getMinRandom(), DateUtil.getSystemTime(System.currentTimeMillis()), DateUtil.getSystemTime(System.currentTimeMillis()), DateUtil.getSystemTime(System.currentTimeMillis() + 86400000));
+        }
+        logger.info(LOG + " : 每日数据添加成功！");
+    }
+
+    private double getRandom() {
+        String s = String.format("%.2f", Math.random() * 1049 + 1);
+        return Double.valueOf(s);
+    }
+
+    private double getMinRandom() {
+        String s = String.format("%.2f", Math.random() * 499 + 1);
+        return Double.valueOf(s);
+    }
+
+    private double getMaxRandom() {
+        String s = String.format("%.2f", Math.random() * 499 + 1001);
+        return Double.valueOf(s);
     }
 }

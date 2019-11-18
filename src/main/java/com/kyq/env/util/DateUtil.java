@@ -32,13 +32,13 @@ public class DateUtil {
     /**
      * 默认转换时间戳日期格式(yyyy-MM-dd)
      */
-    public static final String DEFUALT_TIME = "yyyy-MM-dd";
+    public static final String DEFAULT_TIME = "yyyy-MM-dd";
 
     /**
      * 默认转换时间戳日期格式(yyyy-MM-dd HH:mm:ss)
      */
-    public static final String DEFUALT_SECOND = "yyyy-MM-dd HH:mm:ss";
-    
+    public static final String DEFAULT_SECOND = "yyyy-MM-dd HH:mm:ss";
+
     /**
      * [功能描述]：将时间戳转换为标准时间
      */
@@ -62,7 +62,7 @@ public class DateUtil {
     public static Timestamp StringToTimestamp(String datetime) {
         try {
             if (datetime != null && !datetime.isEmpty()) {
-                SimpleDateFormat sdf = new SimpleDateFormat(DEFUALT_TIME);
+                SimpleDateFormat sdf = new SimpleDateFormat(DEFAULT_TIME);
                 Date date = sdf.parse(datetime);
                 return new Timestamp(date.getTime());
             } else {
@@ -80,7 +80,7 @@ public class DateUtil {
     public static Timestamp StringToTimestampSecond(String datetime) {
         try {
             if (datetime != null && !datetime.isEmpty()) {
-                SimpleDateFormat sdf = new SimpleDateFormat(DEFUALT_SECOND);
+                SimpleDateFormat sdf = new SimpleDateFormat(DEFAULT_SECOND);
                 Date date = sdf.parse(datetime);
                 return new Timestamp(date.getTime());
             } else {
@@ -135,7 +135,7 @@ public class DateUtil {
                 case "2061":
                     calendar.add(Calendar.HOUR_OF_DAY, 1);
                     break;
-                case "C001"://自定义月
+                case "C001":
                     calendar.add(Calendar.MONTH, 1);
                     break;
                 default:
@@ -148,19 +148,11 @@ public class DateUtil {
     }
 
     /**
-     * [功能描述]：StringToCalendar
+     * 获取当前时间 "yyyy-MM-dd HH:mm:ss"
      */
-    public static Calendar StringToCalendar(String dateTime) {
-        try {
-            SimpleDateFormat sdf = new SimpleDateFormat(DATA_TIME);
-            Date date = sdf.parse(dateTime);
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(date);
-            return calendar;
-        } catch (Exception e) {
-            logger.error(LOG + ":" + "转换日期失败，失败原因：" + e.getMessage());
-            return null;
-        }
+    public static String getSystemTime(long date) {
+        SimpleDateFormat sdf = new SimpleDateFormat(DEFAULT_SECOND);
+        return sdf.format(date);
     }
 
 }

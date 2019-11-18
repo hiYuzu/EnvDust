@@ -91,4 +91,16 @@ public interface IDeviceService {
      */
     String getAreaName(String deviceCode);
 
+    /**
+     * 获取deviceIds
+     */
+    List<String> getDeviceCodes();
+
+    void insertRtdDeviceData(List<String> deviceCodes);
+
+    void insertMinuteDeviceData(List<String> deviceCodes);
+
+    void insertHourDeviceData(List<String> deviceCodes);
+
+    void insertDayDeviceData(List<String> deviceCodes);
 }

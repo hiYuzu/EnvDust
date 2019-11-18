@@ -713,5 +713,186 @@
         GROUP BY
          tdd.device_code
 	</select>
+    
+    <select id="getDeviceCodes" resultType="java.lang.String">
+        SELECT DISTINCT
+        device_code
+        FROM
+        tbl_device
+    </select>
+
+    <insert id="insertRtdDeviceData">
+        INSERT INTO
+        ${deviceCode}
+        (
+        device_code,
+        thing_code,
+        thing_rtd,
+        <if test="thingZsRtd != null">
+            thing_zsrtd,
+        </if>
+        update_type,
+        update_time,
+        rtd_time
+        )
+        VALUES
+        (
+        #{deviceCode},
+        #{thingCode},
+        #{thingRtd},
+        <if test="thingZsRtd != null">
+            #{thingZsRtd},
+        </if>
+        "2011",
+        #{updateTime},
+        #{rtdTime}
+        )
+    </insert>
+
+    <insert id="insertMinuteDeviceData">
+        INSERT INTO
+        ${deviceCode}
+        (
+        device_code,
+        thing_code,
+        thing_avg,
+        thing_max,
+        thing_min,
+        <if test="thingZsAvg != null">
+            thing_zsavg,
+        </if>
+        <if test="thingZsMax != null">
+            thing_zsmax,
+        </if>
+        <if test="thingZsMin != null">
+            thing_zsmin,
+        </if>
+        thing_cou,
+        thing_zscou,
+        update_type,
+        update_time,
+        begin_time,
+        end_time
+        )
+        VALUES
+        (
+        #{deviceCode},
+        #{thingCode},
+        #{thingAvg},
+        #{thingMax},
+        #{thingMin},
+        <if test="thingZsAvg != null">
+            #{thingZsAvg},
+        </if>
+        <if test="thingZsMax != null">
+            #{thingZsMax},
+        </if>
+        <if test="thingZsMin != null">
+            #{thingZsMin},
+        </if>
+        #{thingCou},
+        #{thingZsCou},
+        "2051",
+        #{updateTime},
+        #{beginTime},
+        #{endTime}
+        )
+    </insert>
+
+    <insert id="insertHourDeviceData">
+        INSERT INTO
+        ${deviceCode}
+        (
+        device_code,
+        thing_code,
+        thing_avg,
+        thing_max,
+        thing_min,
+        <if test="thingZsAvg != null">
+            thing_zsavg,
+        </if>
+        <if test="thingZsMax != null">
+            thing_zsmax,
+        </if>
+        <if test="thingZsMin != null">
+            thing_zsmin,
+        </if>
+        thing_cou,
+        thing_zscou,
+        update_type,
+        update_time,
+        begin_time,
+        end_time
+        )
+        VALUES
+        (
+        #{deviceCode},
+        #{thingCode},
+        #{thingAvg},
+        #{thingMax},
+        #{thingMin},
+        <if test="thingZsAvg != null">
+            #{thingZsAvg},
+        </if>
+        <if test="thingZsMax != null">
+            #{thingZsMax},
+        </if>
+        <if test="thingZsMin != null">
+            #{thingZsMin},
+        </if>
+        #{thingCou},
+        #{thingZsCou},
+        "2061",
+        #{updateTime},
+        #{beginTime},
+        #{endTime}
+        )
+    </insert>
+
+    <insert id="insertDayDeviceData">
+        INSERT INTO
+        ${deviceCode}
+        (
+        device_code,
+        thing_code,
+        thing_avg,
+        thing_max,
+        thing_min,
+        <if test="thingZsAvg != null">
+            thing_zsavg,
+        </if>
+        <if test="thingZsMax != null">
+            thing_zsmax,
+        </if>
+        <if test="thingZsMin != null">
+            thing_zsmin,
+        </if>
+        update_type,
+        update_time,
+        begin_time,
+        end_time
+        )
+        VALUES
+        (
+        #{deviceCode},
+        #{thingCode},
+        #{thingAvg},
+        #{thingMax},
+        #{thingMin},
+        <if test="thingZsAvg != null">
+            #{thingZsAvg},
+        </if>
+        <if test="thingZsMax != null">
+            #{thingZsMax},
+        </if>
+        <if test="thingZsMin != null">
+            #{thingZsMin},
+        </if>
+        "2031",
+        #{updateTime},
+        #{beginTime},
+        #{endTime}
+        )
+    </insert>
 
 </mapper>

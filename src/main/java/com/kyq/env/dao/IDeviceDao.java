@@ -151,4 +151,53 @@ public interface IDeviceDao {
             @Param("beginTime") String beginTime,
             @Param("endTime") String endTime
     );
+
+    List<String> getDeviceCodes();
+
+    void insertRtdDeviceData(@Param("deviceCode") String deviceCode,
+                             @Param("thingCode") String thingCode,
+                             @Param("thingRtd") double thingRtd,
+                             @Param("thingZsRtd") Double thingZsRtd,
+                             @Param("updateTime") String updateTime,
+                             @Param("rtdTime") String rtdTime);
+
+    void insertMinuteDeviceData(@Param("deviceCode") String deviceCode,
+                                @Param("thingCode") String thingCode,
+                                @Param("thingAvg") double thingAvg,
+                                @Param("thingMax") double thingMax,
+                                @Param("thingMin") double thingMin,
+                                @Param("thingZsAvg") Double thingZsAvg,
+                                @Param("thingZsMax") Double thingZsMax,
+                                @Param("thingZsMin") Double thingZsMin,
+                                @Param("thingCou") double thingCou,
+                                @Param("thingZsCou") double thingZsCou,
+                                @Param("updateTime") String updateTime,
+                                @Param("beginTime") String beginTime,
+                                @Param("endTime") String endTime);
+
+    void insertHourDeviceData(@Param("deviceCode") String deviceCode,
+                              @Param("thingCode") String thingCode,
+                              @Param("thingAvg") double thingAvg,
+                              @Param("thingMax") double thingMax,
+                              @Param("thingMin") double thingMin,
+                              @Param("thingZsAvg") Double thingZsAvg,
+                              @Param("thingZsMax") Double thingZsMax,
+                              @Param("thingZsMin") Double thingZsMin,
+                              @Param("thingCou") double thingCou,
+                              @Param("thingZsCou") double thingZsCou,
+                              @Param("updateTime") String updateTime,
+                              @Param("beginTime") String beginTime,
+                              @Param("endTime") String endTime);
+
+    void insertDayDeviceData(@Param("deviceCode") String deviceCode,
+                              @Param("thingCode") String thingCode,
+                              @Param("thingAvg") double thingAvg,
+                              @Param("thingMax") double thingMax,
+                              @Param("thingMin") double thingMin,
+                              @Param("thingZsAvg") Double thingZsAvg,
+                              @Param("thingZsMax") Double thingZsMax,
+                              @Param("thingZsMin") Double thingZsMin,
+                              @Param("updateTime") String updateTime,
+                              @Param("beginTime") String beginTime,
+                              @Param("endTime") String endTime);
 }
