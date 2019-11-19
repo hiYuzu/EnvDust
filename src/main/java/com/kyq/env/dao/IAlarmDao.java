@@ -25,8 +25,6 @@ public interface IAlarmDao {
      * [功能描述]：获取报警信息
      */
     List<Alarm> getAlarm(
-            @Param("dbName") String dbName,
-            @Param("dbOldName") String dbOldName,
             @Param("alarm") Alarm alarm,
             @Param("listDevCode") List<String> listDevCode);
 

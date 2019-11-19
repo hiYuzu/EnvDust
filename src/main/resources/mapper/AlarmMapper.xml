@@ -17,15 +17,21 @@
         <result property="thingValue" column="thing_value"/>
         <result property="receiveFlag" column="receive_flag"/>
         <result property="levelNo" column="level_no"/>
-
-        <result property="statusCode" column="status_code"/>
-        <result property="statusName" column="status_name"/>
+        <!-- 级联类型表 -->
+        <association property="status" javaType="com.kyq.env.pojo.Status"
+                     resultMap="statusResultMap"></association>
         <!-- 级联设备表 -->
         <association property="device" javaType="com.kyq.env.pojo.Device"
                      resultMap="com.kyq.env.dao.IDeviceDao.deviceResultMap"></association>
         <!-- 级联监测物表 -->
         <association property="monitor" javaType="com.kyq.env.pojo.Monitor"
                      resultMap="com.kyq.env.dao.IMonitorDao.monitorResultMap"></association>
+    </resultMap>
+
+    <resultMap type="com.kyq.env.pojo.Status" id="statusResultMap">
+        <id property="statusId" column="status_id" />
+        <result property="statusCode" column="status_code" />
+        <result property="statusName" column="status_name" />
     </resultMap>
 
     <!-- 获取报警信息个数 -->
@@ -142,56 +148,6 @@
         temp.area_name,
         temp.level_no
         FROM (
-        <if test="dbOldName != null and dbOldName != ''">
-            SELECT
-            DISTINCT ta.alarm_id,
-            ts.status_code,
-            ts.status_name,
-            td.device_code,
-            td.device_name,
-            ta.alarm_info,
-            ta.alarm_action,
-            ta.action_user,
-            ta.alarm_status,
-            ta.alarm_time,
-            ta.action_time,
-            ta.send_flag,
-            tm.thing_code,
-            tm.thing_name,
-            ta.thing_value,
-            tar.area_id,
-            tar.area_name,
-            ta.level_no
-            FROM
-            ${dbOldName}.tbl_alarm AS ta
-            INNER JOIN ${dbName}.tbl_status AS ts ON ta.alarm_type = ts.status_code
-            INNER JOIN ${dbName}.tbl_device AS td ON ta.device_code = td.device_code
-            LEFT JOIN ${dbName}.tbl_monitor AS tm ON ta.thing_code = tm.thing_code
-            LEFT JOIN ${dbName}.tbl_area AS tar ON td.area_id = tar.area_id
-            WHERE 1 = 1
-            <if test="alarm.device.deviceName != null and alarm.device.deviceName != ''">
-                AND td.device_name LIKE CONCAT('%',CONCAT(#{alarm.device.deviceName},'%'))
-            </if>
-            <if test="alarm.status.statusCode != null and alarm.status.statusCode != ''">
-                AND ta.alarm_type = #{alarm.status.statusCode, jdbcType = VARCHAR}
-            </if>
-            <if test="alarm.alarmStatus != null and alarm.alarmStatus != ''">
-                AND ta.alarm_status = #{alarm.alarmStatus, jdbcType = VARCHAR}
-            </if>
-            <if test="alarm.beginAlarmTime != null and alarm.beginAlarmTime != ''">
-                AND TIMESTAMPDIFF(SECOND,#{alarm.beginAlarmTime},ta.alarm_time)>=0
-            </if>
-            <if test="alarm.endAlarmTime != null and alarm.endAlarmTime != ''">
-                AND TIMESTAMPDIFF(SECOND,ta.alarm_time,#{alarm.endAlarmTime})>=0
-            </if>
-            <if test="listDevCode.size>0">
-                AND td.device_code IN
-                <foreach collection="listDevCode" item="item" open="(" separator="," close=")">
-                    #{item}
-                </foreach>
-            </if>
-            UNION
-        </if>
         SELECT
         DISTINCT ta.alarm_id,
         ts.status_code,
@@ -212,11 +168,11 @@
         tar.area_name,
         ta.level_no
         FROM
-        ${dbName}.tbl_alarm AS ta
-        INNER JOIN ${dbName}.tbl_status AS ts ON ta.alarm_type = ts.status_code
-        INNER JOIN ${dbName}.tbl_device AS td ON ta.device_code = td.device_code
-        LEFT JOIN ${dbName}.tbl_monitor AS tm ON ta.thing_code = tm.thing_code
-        LEFT JOIN ${dbName}.tbl_area AS tar ON td.area_id = tar.area_id
+        tbl_alarm AS ta
+        INNER JOIN tbl_status AS ts ON ta.alarm_type = ts.status_code
+        INNER JOIN tbl_device AS td ON ta.device_code = td.device_code
+        LEFT JOIN tbl_monitor AS tm ON ta.thing_code = tm.thing_code
+        LEFT JOIN tbl_area AS tar ON td.area_id = tar.area_id
         WHERE 1 = 1
         <if test="alarm.device.deviceName != null and alarm.device.deviceName != ''">
             AND td.device_name LIKE CONCAT('%',CONCAT(#{alarm.device.deviceName},'%'))

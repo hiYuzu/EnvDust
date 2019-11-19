@@ -80,13 +80,7 @@ public class AlarmServiceImpl implements IAlarmService {
         List<Alarm> alarmList = new ArrayList<Alarm>();
         try {
             if (listDevCode != null && listDevCode.size() > 0) {
-                String dbName = dom4jConfig.getDataBaseConfig().getDbName();
-                String dbOldName = "";
-                Timestamp begintime = DateUtil.StringToTimestampSecond(alarm.getBeginAlarmTime());
-                if (!DateUtil.isRecentlyData(begintime, DefaultArgument.RECENT_DAYS)) {
-                    dbOldName = dom4jConfig.getDataBaseConfig().getDbOldName();
-                }
-                alarmList = alarmDao.getAlarm(dbName, dbOldName, alarm, listDevCode);
+                alarmList = alarmDao.getAlarm(alarm, listDevCode);
             }
         } catch (Exception e) {
             logger.error(LOG + "：查询报警数据失败，信息为：" + e.getMessage());
